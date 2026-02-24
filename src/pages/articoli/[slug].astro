@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// 1) OBBLIGATORIO: generiamo gli slug
+export async function getStaticPaths() {
+  const postModules = import.meta.glob('../../content/articoli/**/*.mdx', { eager: true });
+
+  const posts = Object.entries(postModules).map(([path, mod]) => {
+    const frontmatter = mod.frontmatter ?? {};
+    const fallbackSlug = path.split('/').pop().replace('.mdx', '');
+    const slug = frontmatter.slug ?? fallbackSlug;
+
+    return { slug };
+  });
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+}
+
+// 2) Carichiamo di nuovo tutti i moduli per trovare quello giusto
+const postModules = import.meta.glob('../../content/articoli/**/*.mdx', { eager: true });
+
+const posts = Object.entries(postModules).map(([path, mod]) => {
+  const frontmatter = mod.frontmatter ?? {};
+  const fallbackSlug = path.split('/').pop().replace('.mdx', '');
+  const slug = frontmatter.slug ?? fallbackSlug;
+
+  return { slug, mod, frontmatter };
+});
+
+const { slug } = Astro.params;
+const post = posts.find((p) => p.slug === slug);
+
+if (!post) {
+  throw new Error(`Articolo non trovato: ${slug}`);
+}
+
+const Content = post.mod.default;
+const title = post.frontmatter.title ?? slug;
+---
+
+<BaseLayout
+  title={`${title} | Hakkiri Nihongo`}
+  description={post.frontmatter.description}
+>
+
+  <article class="page-article prose prose-lg max-w-none">
+  <h1 class="post-title">
+    {title}
+    {post.frontmatter.subtitle && (
+      <span class="post-subtitle">
+        {post.frontmatter.subtitle}
+      </span>
+    )}
+  </h1>
+
+  <Content />
+</article>
+
+</BaseLayout>
+

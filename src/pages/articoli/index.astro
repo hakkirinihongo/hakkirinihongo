@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Import all MDX files in the content directory.  Each MDX file
+// must export a `frontmatter` object and a default component.  The
+// `import.meta.glob` call returns a map of file paths to functions
+// that import those modules lazily.
+const postImports = import.meta.glob('../../content/articoli/**/*.mdx');
+
+// Build an array of post objects containing frontmatter metadata and
+// derived fields.  The `slug` field is generated from the file name
+// unless the MDX frontmatter specifies its own slug.  Posts are
+// sorted by date (most recent first).
+const posts = await Promise.all(
+  Object.entries(postImports).map(async ([path, resolver]) => {
+    const mod = await resolver();
+    const fm = mod.frontmatter ?? {};
+    const slug = fm.slug ?? path.split('/').pop().replace(/\.mdx?$/, '');
+    return {
+      slug,
+      frontmatter: fm,
+    };
+  })
+);
+
+// Sort posts by date descending.  Posts without a date are placed
+// last.
+posts.sort((a, b) => {
+  const dateA = a.frontmatter.date ? new Date(a.frontmatter.date) : new Date(0);
+  const dateB = b.frontmatter.date ? new Date(b.frontmatter.date) : new Date(0);
+  return dateB.getTime() - dateA.getTime();
+});
+
+// Define the categories available in the blog.  Keys correspond to
+// values used in the MDX frontmatter.
+const categoriesMap = {
+  'concetti-e-distinzioni': 'Concetti e Distinzioni',
+  'dissezionamenti-grammaticali': 'Dissezionamenti grammaticali',
+  'giapponese-di-nicchia': 'Giapponese di nicchia',
+  'storia-della-grammatica': 'Storia della grammatica'
+};
+const catFromQuery = Astro.url.searchParams.get("cat");
+if (catFromQuery) {
+  return Astro.redirect(`/articoli/c/${catFromQuery}`, 301);
+}
+
+const filteredPosts = posts;
+
+---
+<BaseLayout
+  title="Articoli – grammatica giapponese avanzata | Hakkiri Nihongo"
+  description="Articoli di grammatica giapponese avanzata: concetti, distinzioni, grammatica di nicchia e approfondimenti per studenti di livello intermedio e avanzato."
+>
+<div class="page-articles">
+  <h2>Articoli</h2>
+
+ <nav class="category-nav">
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const cat = params.get("cat");
+  if (cat) {
+    window.location.replace(`/articoli/c/${cat}`);
+  }
+</script>
+
+  <a href="/articoli" class="active">Tutti</a>
+  {Object.entries(categoriesMap).map(([slug, title]) => (
+    <a href={`/articoli/c/${slug}`}>{title}</a>
+  ))}
+</nav>
+
+  <ul class="post-list">
+    {filteredPosts.map(({ slug, frontmatter }) => (
+      <li class="post-item">
+        <a href={`/articoli/${slug}`}>
+          <h3>{frontmatter.title ?? slug}</h3>
+          {frontmatter.description && <p>{frontmatter.description}</p>}
+          <div class="post-meta">
+            {frontmatter.date && (
+              <time datetime={frontmatter.date}>
+                {new Date(frontmatter.date).toLocaleDateString('it-IT')}
+              </time>
+            )}
+            {frontmatter.series && (
+              <span class="series">{frontmatter.series}</span>
+            )}
+            
+            {frontmatter.jlpt && (
+            <span class="tag">JLPT {frontmatter.jlpt}</span>
+            )}
+
+            {frontmatter.tags && frontmatter.tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        </a>
+      </li>
+    ))}
+    {filteredPosts.length === 0 && (
+      <li class="post-item">Non ci sono articoli in questa sezione al momento.</li>
+    )}
+  </ul>
+</div>
+</BaseLayout>

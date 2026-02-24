@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Define the categories displayed on the home page. Each object
+// contains a slug (used in URLs), a title and a brief description.
+const categories = [
+  {
+    slug: 'concetti-e-distinzioni',
+    title: 'Concetti e Distinzioni',
+    description: 'Distinguere significa capire.'
+  },
+  {
+    slug: 'dissezionamenti-grammaticali',
+    title: 'Dissezionamenti grammaticali',
+    description: 'La grammatica non è una regola.'
+  },
+  {
+    slug: 'giapponese-di-nicchia',
+    title: 'Giapponese di nicchia',
+    description: 'Quello che di solito non viene spiegato.'
+  },
+  {
+    slug: 'storia-della-grammatica',
+    title: 'Storia della grammatica',
+    description: 'Tornare alle origini per capire.'
+  }
+];
+---
+<BaseLayout title="Hakkiri Nihongo | grammatica giapponese avanzata spiegata chiaramente">
+  <section class="hero">
+   <h2 style="margin-bottom: 0.5rem; font-size: 2.4rem;">
+  Hakkiri Nihongo
+</h2>
+
+
+<h1 style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.7rem; font-weight: 600;">
+
+  Capire il giapponese oltre le regole
+</h1>
+
+<p style="margin-top: 0; white-space: normal; overflow: visible; text-overflow: clip;">
+  Benvenuti in Hakkiri Nihongo, il vostro punto di riferimento per lo studio della grammatica giapponese di livello avanzato.
+  Sfoglia le nostre sezioni per scoprire concetti, distinzioni e approfondimenti grammaticali.
+</p>
+
+
+
+  </section>
+  <section class="categories">
+    {categories.map((cat) => (
+      <a href={`/articoli/c/${cat.slug}`} class="category-card" id={cat.slug}>
+        <h3>{cat.title}</h3>
+        <p>{cat.description}</p>
+      </a>
+    ))}
+  </section>
+  <section class="cta" style="text-align:center; margin-top:2rem;">
+    <a href="/articoli" style="font-size:1rem; font-weight:600; color:var(--primary-color);">
+      Vai alla pagina Articoli&nbsp;→
+    </a>
+  </section>
+</BaseLayout>

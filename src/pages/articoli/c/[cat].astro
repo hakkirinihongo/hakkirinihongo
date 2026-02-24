@@ -1,0 +1,118 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  // Elenco delle categorie "ufficiali" (slug)
+  const categories = [
+    "concetti-e-distinzioni",
+    "dissezionamenti-grammaticali",
+    "giapponese-di-nicchia",
+    "storia-della-grammatica",
+  ];
+
+  return categories.map((cat) => ({
+    params: { cat },
+  }));
+}
+
+
+const { cat } = Astro.params;
+const categoryLabels = {
+  "concetti-e-distinzioni": "Concetti e Distinzioni",
+  "dissezionamenti-grammaticali": "Dissezionamenti grammaticali",
+  "giapponese-di-nicchia": "Giapponese di nicchia",
+  "storia-della-grammatica": "Storia della grammatica",
+};
+
+const categoryTitle = categoryLabels[cat] ?? cat;
+const seoMap = {
+  "concetti-e-distinzioni": {
+    title: "Concetti e distinzioni della grammatica giapponese | Hakkiri Nihongo",
+    description:
+      "Differenze sottili della grammatica giapponese spiegate chiaramente: usi reali, confronti e sfumature spesso ignorate nei manuali.",
+  },
+  "dissezionamenti-grammaticali": {
+    title: "Dissezionamenti grammaticali giapponesi | Hakkiri Nihongo",
+    description:
+      "Analisi approfondite di strutture grammaticali giapponesi: origine, logica interna e uso reale nei testi e nel JLPT.",
+  },
+  "giapponese-di-nicchia": {
+    title: "Grammatica giapponese di nicchia | Hakkiri Nihongo",
+    description:
+      "Forme grammaticali giapponesi poco spiegate o ignorate: costruzioni rare, sfumature avanzate e usi autentici.",
+  },
+  "storia-della-grammatica": {
+    title: "Storia della grammatica giapponese | Hakkiri Nihongo",
+    description:
+      "L’evoluzione storica della grammatica giapponese: origine delle forme, cambiamenti e logica linguistica.",
+  },
+};
+
+const seo = seoMap[cat] ?? {
+  title: `${categoryTitle} | Hakkiri Nihongo`,
+  description:
+    "Articoli di grammatica giapponese avanzata: concetti, distinzioni, grammatica di nicchia e approfondimenti per studenti di livello intermedio e avanzato.",
+};
+
+
+
+// carichiamo tutti gli articoli
+const postImports = import.meta.glob("../../../content/articoli/**/*.mdx", { eager: true });
+
+const posts = Object.entries(postImports).map(([path, mod]) => {
+  const fm = mod.frontmatter ?? {};
+  const slug = fm.slug ?? path.split("/").pop().replace(/\.mdx$/, "");
+  return { slug, frontmatter: fm };
+});
+
+// filtriamo per categoria
+const filteredPosts = posts.filter(
+  (p) => p.frontmatter.category === cat
+);
+---
+
+<BaseLayout title={seo.title} description={seo.description}>
+
+  <h2>Articoli</h2>
+
+  <nav class="category-nav">
+    <a href="/articoli" class="">Tutti</a>
+    <a href={`/articoli/c/${cat}`} class="active">{categoryTitle}</a>
+      
+    </a>
+  </nav>
+
+  <p style="opacity:0.8;">Categoria: <strong>{categoryTitle}</strong></p>
+
+  <ul class="post-list">
+    {filteredPosts.map(({ slug, frontmatter }) => (
+      <li class="post-item">
+        <a href={`/articoli/${slug}`}>
+          <h3>{frontmatter.title ?? slug}</h3>
+          {frontmatter.description && <p>{frontmatter.description}</p>}
+
+          <div class="post-meta">
+            {frontmatter.date && (
+              <time datetime={frontmatter.date}>
+                {new Date(frontmatter.date).toLocaleDateString("it-IT")}
+              </time>
+            )}
+            {frontmatter.series && (
+              <span class="series">{frontmatter.series}</span>
+            )}
+            {frontmatter.jlpt && (
+            <span class="tag">JLPT {frontmatter.jlpt}</span>
+            )}
+
+          </div>
+        </a>
+      </li>
+    ))}
+
+    {filteredPosts.length === 0 && (
+      <li class="post-item">Non ci sono articoli in questa sezione al momento.</li>
+    )}
+  </ul>
+</BaseLayout>
+
+
