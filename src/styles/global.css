@@ -313,6 +313,19 @@ a:hover{ color: #e74c3c; }
 .page-articles h3{
   font-weight: 700;
   opacity: 1;
+   /* ==================================================
+   FIX: Kanji sottili in Chrome/Opera nei titoli lista (page-articles)
+   ================================================== */
+.page-articles .post-item h3,
+.page-articles .post-item a,
+.page-articles .post-item h3 a{
+  /* assicura un font JP coerente e permette al browser di "creare" il bold */
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+               "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Noto Sans JP",
+               sans-serif;
+  font-synthesis: weight;
+  font-weight: 700;
+}
 }
 
 /* ==================================================
