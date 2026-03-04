@@ -511,16 +511,11 @@ h1.post-title .post-subtitle{
 /* ==================================================
    JP: default + solo negli esempi
    ================================================== */
+
 .jp{
   font-style: normal;
   opacity: 1;
 
-  /* forza un font JP coerente e permette il grassetto ereditato */
-  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
-  font-weight: inherit;
-
-  /* permette al browser di “simulare” il bold se manca un peso reale */
-  font-synthesis: weight;
 }
 
 article .jp-example .jp{
