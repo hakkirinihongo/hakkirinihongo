@@ -3,9 +3,19 @@ import type { APIRoute } from 'astro';
 export const GET: APIRoute = async ({ site }) => {
   const base = (site?.toString() || 'https://hakkirinihongo.com').replace(/\/$/, '');
 
-  // ✅ Metti qui gli URL principali del sito.
-  // Per ora ne inseriamo pochi e sicuri. Poi li allarghiamo.
-  const urls = [
+  // 🔎 Troviamo automaticamente tutti gli articoli MDX
+  const postModules = import.meta.glob('../../content/articoli/**/*.mdx', { eager: true });
+
+  const articleUrls = Object.entries(postModules).map(([path, mod]: any) => {
+    const frontmatter = mod.frontmatter ?? {};
+    const fallbackSlug = path.split('/').pop().replace('.mdx', '');
+    const slug = frontmatter.slug ?? fallbackSlug;
+
+    return `${base}/articoli/${slug}/`;
+  });
+
+  // 📚 Pagine principali del sito
+  const staticUrls = [
     `${base}/`,
     `${base}/articoli/`,
     `${base}/chi-siamo/`,
@@ -14,9 +24,9 @@ export const GET: APIRoute = async ({ site }) => {
     `${base}/articoli/c/dissezionamenti-grammaticali/`,
     `${base}/articoli/c/giapponese-di-nicchia/`,
     `${base}/articoli/c/storia-della-grammatica/`,
-    `${base}/articoli/ato-de-ato-ni-ato-wa/`,
-    `${base}/articoli/arigatou-gozaimasu/`,
   ];
+
+  const urls = [...staticUrls, ...articleUrls];
 
   const now = new Date().toISOString();
 
