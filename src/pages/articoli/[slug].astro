@@ -38,6 +38,17 @@ if (!post) {
 
 const Content = post.mod.default;
 const title = post.frontmatter.title ?? slug;
+
+const category = post.frontmatter.category;
+
+const categoryLabels = {
+  "concetti-e-distinzioni": "Concetti e Distinzioni",
+  "dissezionamenti-grammaticali": "Dissezionamenti grammaticali",
+  "giapponese-di-nicchia": "Giapponese di nicchia",
+  "storia-della-grammatica": "Storia della grammatica",
+};
+
+const categoryTitle = categoryLabels[category] ?? category;
 ---
 
 <BaseLayout
@@ -46,7 +57,7 @@ const title = post.frontmatter.title ?? slug;
 >
 
   <article class="page-article prose prose-lg max-w-none">
-  <h1 class="post-title">
+    <h1 class="post-title">
     {title}
     {post.frontmatter.subtitle && (
       <span class="post-subtitle">
@@ -54,6 +65,12 @@ const title = post.frontmatter.title ?? slug;
       </span>
     )}
   </h1>
+
+  {category && (
+    <p class="post-category">
+      Categoria: <a href={`/articoli/c/${category}`}>{categoryTitle}</a>
+    </p>
+  )}
 
   <Content />
 </article>
