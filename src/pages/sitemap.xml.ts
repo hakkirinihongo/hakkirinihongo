@@ -15,6 +15,7 @@ export const GET: APIRoute = async ({ site }) => {
     `${base}/articoli/c/giapponese-di-nicchia/`,
     `${base}/articoli/c/storia-della-grammatica/`,
     `${base}/articoli/ato-de-ato-ni-ato-wa/`,
+    `${base}/articoli/arigatou-gozaimasu/`,
   ];
 
   const now = new Date().toISOString();
