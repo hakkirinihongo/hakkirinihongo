@@ -83,6 +83,19 @@ const filteredPosts = posts.filter(
   </nav>
 
   <p style="opacity:0.8;">Categoria: <strong>{categoryTitle}</strong></p>
+<p class="category-intro">
+  {cat === "concetti-e-distinzioni" && 
+    "Distinguere significa capire. In questa sezione analizziamo differenze sottili della grammatica giapponese che spesso nei manuali vengono ignorate trattate come equivalenti."}
+
+  {cat === "dissezionamenti-grammaticali" && 
+    "Dissezioniamo le strutture della grammatica giapponese per comprenderne la logica interna: origine, funzionamento e uso reale nei testi."}
+
+  {cat === "giapponese-di-nicchia" && 
+    "Una raccolta di forme grammaticali poco spiegate o ignorate nei manuali, ma presenti nella lingua reale."}
+
+  {cat === "storia-della-grammatica" && 
+    "In questa sezione esploriamo l’origine e l’evoluzione storica delle forme grammaticali giapponesi."}
+</p>
 
   <ul class="post-list">
     {filteredPosts.map(({ slug, frontmatter }) => (
