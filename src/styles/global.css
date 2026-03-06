@@ -522,3 +522,11 @@ article .jp-example .jp{
   font-style: italic;
   opacity: 0.85;
 }
+/* ===============================
+   Sottotitolo articoli nella lista
+   =============================== */
+
+.post-item p{
+  font-weight: 400;
+  opacity: 0.85;
+}
