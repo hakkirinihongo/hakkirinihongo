@@ -25,6 +25,27 @@ const categories = [
     description: 'Tornare alle origini per capire.'
   }
 ];
+
+// 🔎 Recuperiamo automaticamente tutti gli articoli
+const postModules = import.meta.glob('../content/articoli/**/*.mdx', { eager: true });
+
+const posts = Object.entries(postModules).map(([path, mod]) => {
+  const frontmatter = mod.frontmatter ?? {};
+  const fallbackSlug = path.split('/').pop().replace('.mdx', '');
+  const slug = frontmatter.slug ?? fallbackSlug;
+
+  return {
+    slug,
+    title: frontmatter.title ?? slug,
+    date: frontmatter.date ?? '',
+  };
+});
+
+// Ordiniamo gli articoli per data (dal più recente)
+posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+// Prendiamo gli ultimi 5 articoli
+const latestPosts = posts.slice(0, 5);
 ---
 <BaseLayout title="Hakkiri Nihongo | grammatica giapponese avanzata spiegata chiaramente">
   <section class="hero">
