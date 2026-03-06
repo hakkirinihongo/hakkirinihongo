@@ -3,8 +3,8 @@ import type { APIRoute } from 'astro';
 export const GET: APIRoute = async ({ site }) => {
   const base = (site?.toString() || 'https://hakkirinihongo.com').replace(/\/$/, '');
 
-  // 🔎 Troviamo automaticamente tutti gli articoli MDX
-  const postModules = import.meta.glob('../../content/articoli/**/*.mdx', { eager: true });
+  // stessi articoli usati dal tuo sistema di routing
+  const postModules = import.meta.glob('../content/articoli/**/*.mdx', { eager: true });
 
   const articleUrls = Object.entries(postModules).map(([path, mod]: any) => {
     const frontmatter = mod.frontmatter ?? {};
@@ -14,7 +14,6 @@ export const GET: APIRoute = async ({ site }) => {
     return `${base}/articoli/${slug}/`;
   });
 
-  // 📚 Pagine principali del sito
   const staticUrls = [
     `${base}/`,
     `${base}/articoli/`,
@@ -34,17 +33,15 @@ export const GET: APIRoute = async ({ site }) => {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls
   .map(
-    (loc) => `  <url>
-    <loc>${loc}</loc>
-    <lastmod>${now}</lastmod>
-  </url>`
+    (loc) => `<url>
+<loc>${loc}</loc>
+<lastmod>${now}</lastmod>
+</url>`
   )
   .join('\n')}
 </urlset>`;
 
   return new Response(xml, {
-    headers: {
-      'Content-Type': 'application/xml; charset=utf-8',
-    },
+    headers: { 'Content-Type': 'application/xml' }
   });
 };
