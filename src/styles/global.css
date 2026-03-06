@@ -530,3 +530,7 @@ article .jp-example .jp{
   font-weight: 400;
   opacity: 0.85;
 }
+.post-item h3{
+  margin-bottom: 0.25rem;
+}
+
