@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const normalizeSeries = (value) => {
+  return String(value ?? '')
+    .toLowerCase()
+    .trim()
+    .replace(/[–—−]/g, '-')
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]/g, '');
+};
+
+const postImports = import.meta.glob('../../../content/articoli/**/*.mdx');
+
+const posts = await Promise.all(
+  Object.entries(postImports).map(async ([_, resolver]) => {
+    const mod = await resolver();
+    const fm = mod.frontmatter ?? {};
+
+    return {
+      series: fm.series ?? null
+    };
+  })
+);
+
+const seriesList = [...new Set(
+  posts
+    .map((post) => post.series)
+    .filter(Boolean)
+)].sort((a, b) => a.localeCompare(b, 'it'));
+---
+
+<BaseLayout
+  title="Serie di articoli | Hakkiri Nihongo"
+  description="Tutte le serie editoriali di Hakkiri Nihongo dedicate alla grammatica giapponese."
+>
+  <div class="page-articles">
+    <nav class="breadcrumbs">
+      <a href="/articoli">Articoli</a>
+      <span>›</span>
+      <span>Serie</span>
+    </nav>
+
+    <h2>Serie</h2>
+    <p class="archive-count">
+      {seriesList.length} {seriesList.length === 1 ? 'serie disponibile' : 'serie disponibili'}
+    </p>
+
+    <ul class="post-list">
+      {seriesList.map((seriesName) => (
+        <li class="post-item">
+          <h3 class="post-title">
+            <a class="post-link" href={`/articoli/serie/${normalizeSeries(seriesName)}`}>
+              {seriesName}
+            </a>
+          </h3>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>

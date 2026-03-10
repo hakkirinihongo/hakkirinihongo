@@ -1,0 +1,197 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const categories = [
+    "concetti-e-distinzioni",
+    "dissezionamenti-grammaticali",
+    "giapponese-di-nicchia",
+    "storia-della-grammatica",
+  ];
+
+  return categories.map((cat) => ({
+    params: { cat },
+  }));
+}
+
+const { cat } = Astro.params;
+
+const categoryLabels = {
+  "concetti-e-distinzioni": "Concetti e Distinzioni",
+  "dissezionamenti-grammaticali": "Dissezionamenti grammaticali",
+  "giapponese-di-nicchia": "Giapponese di nicchia",
+  "storia-della-grammatica": "Storia della grammatica",
+};
+
+const categoryTitle = categoryLabels[cat] ?? cat;
+
+const seoMap = {
+  "concetti-e-distinzioni": {
+    title: "Concetti e distinzioni della grammatica giapponese | Hakkiri Nihongo",
+    description:
+      "Differenze sottili della grammatica giapponese spiegate chiaramente: usi reali, confronti e sfumature spesso ignorate nei manuali.",
+  },
+  "dissezionamenti-grammaticali": {
+    title: "Dissezionamenti grammaticali giapponesi | Hakkiri Nihongo",
+    description:
+      "Analisi approfondite di strutture grammaticali giapponesi: origine, logica interna e uso reale nei testi e nel JLPT.",
+  },
+  "giapponese-di-nicchia": {
+    title: "Grammatica giapponese di nicchia | Hakkiri Nihongo",
+    description:
+      "Forme grammaticali giapponesi poco spiegate o ignorate: costruzioni rare, sfumature avanzate e usi autentici.",
+  },
+  "storia-della-grammatica": {
+    title: "Storia della grammatica giapponese | Hakkiri Nihongo",
+    description:
+      "L’evoluzione storica della grammatica giapponese: origine delle forme, cambiamenti e logica linguistica.",
+  },
+};
+
+const seo = seoMap[cat] ?? {
+  title: `${categoryTitle} | Hakkiri Nihongo`,
+  description:
+    "Articoli di grammatica giapponese avanzata: concetti, distinzioni, grammatica di nicchia e approfondimenti per studenti di livello intermedio e avanzato.",
+};
+
+const normalizeSeries = (value) => {
+  return String(value ?? "")
+    .toLowerCase()
+    .trim()
+    .replace(/[–—−]/g, "-")
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]/g, "");
+};
+
+const normalizeJlpt = (value) => {
+  return String(value ?? "")
+    .toLowerCase()
+    .trim()
+    .replace(/[–—−]/g, "-")
+    .replace(/\s*-\s*/g, "-")
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]/g, "");
+};
+
+const isAllLevelsJlpt = (value) => {
+  const raw = String(value ?? "").trim().toLowerCase();
+  return raw === "tutti i livelli" || raw === "tutti-i-livelli";
+};
+
+const isFilterableJlpt = (value) => {
+  if (isAllLevelsJlpt(value)) {
+    return true;
+  }
+
+  const normalized = normalizeJlpt(value);
+  const parts = normalized.split("-").filter(Boolean);
+  const allowed = new Set(["n5", "n4", "n3", "n2", "n1"]);
+
+  if (parts.length === 1) {
+    return allowed.has(parts[0]);
+  }
+
+  if (parts.length === 2) {
+    return allowed.has(parts[0]) && allowed.has(parts[1]);
+  }
+
+  return false;
+};
+
+const postImports = import.meta.glob("../../../content/articoli/**/*.mdx", { eager: true });
+
+const posts = Object.entries(postImports).map(([path, mod]) => {
+  const fm = mod.frontmatter ?? {};
+  const slug = fm.slug ?? path.split("/").pop().replace(/\.mdx$/, "");
+  return { slug, frontmatter: fm };
+});
+
+const filteredPosts = posts.filter((p) => p.frontmatter.category === cat);
+---
+
+<BaseLayout title={seo.title} description={seo.description}>
+  <div class="page-articles">
+    <h2>Articoli</h2>
+
+    <nav class="category-nav">
+      <a href="/articoli">Tutti</a>
+      <a href={`/articoli/c/${cat}`} class="active">{categoryTitle}</a>
+    </nav>
+
+    <p style="opacity:0.8;">Categoria: <strong>{categoryTitle}</strong></p>
+
+    <p class="category-intro">
+      {cat === "concetti-e-distinzioni" &&
+        "Distinguere significa capire. In questa sezione analizziamo differenze sottili della grammatica giapponese che spesso nei manuali vengono ignorate o trattate come equivalenti."}
+
+      {cat === "dissezionamenti-grammaticali" &&
+        "Dissezioniamo le strutture della grammatica giapponese per comprenderne la logica interna: origine, funzionamento e uso reale nei testi."}
+
+      {cat === "giapponese-di-nicchia" &&
+        "Una raccolta di forme grammaticali poco spiegate o ignorate nei manuali, ma presenti nella lingua reale."}
+
+      {cat === "storia-della-grammatica" &&
+        "In questa sezione esploriamo l’origine e l’evoluzione storica delle forme grammaticali giapponesi."}
+    </p>
+
+    <ul class="post-list">
+      {filteredPosts.map(({ slug, frontmatter }) => (
+        <li class="post-item">
+          <h3 class="post-title">
+            <a class="post-link" href={`/articoli/${slug}`}>
+              {frontmatter.title ?? slug}
+            </a>
+          </h3>
+
+          {frontmatter.description && (
+            <p class="post-description">
+              <a class="post-link" href={`/articoli/${slug}`}>
+                {frontmatter.description}
+              </a>
+            </p>
+          )}
+
+          <div class="post-meta">
+            {frontmatter.date && (
+              <time datetime={frontmatter.date}>
+                {new Date(frontmatter.date).toLocaleDateString("it-IT")}
+              </time>
+            )}
+
+            {frontmatter.series && (
+              <a
+                class="series"
+                href={`/articoli/serie/${normalizeSeries(frontmatter.series)}`}
+              >
+                {frontmatter.series}
+              </a>
+            )}
+
+            {frontmatter.jlpt && (
+              isFilterableJlpt(frontmatter.jlpt) ? (
+                <a
+                  class="tag"
+                  href={
+                    isAllLevelsJlpt(frontmatter.jlpt)
+                      ? "/articoli/jlpt"
+                      : `/articoli/jlpt/${normalizeJlpt(frontmatter.jlpt)}`
+                  }
+                >
+                  JLPT {frontmatter.jlpt}
+                </a>
+              ) : (
+                <span class="tag">JLPT {frontmatter.jlpt}</span>
+              )
+            )}
+          </div>
+        </li>
+      ))}
+
+      {filteredPosts.length === 0 && (
+        <li class="post-item">Non ci sono articoli in questa sezione al momento.</li>
+      )}
+    </ul>
+  </div>
+</BaseLayout>
+
+

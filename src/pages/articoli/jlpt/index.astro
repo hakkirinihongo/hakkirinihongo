@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const normalizeJlpt = (value) => {
+  return String(value ?? '')
+    .toLowerCase()
+    .trim()
+    .replace(/[–—−]/g, '-')
+    .replace(/\s*-\s*/g, '-')
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]/g, '');
+};
+
+const expandJlptLevels = (value) => {
+  const normalized = normalizeJlpt(value);
+  if (!normalized) return [];
+
+  const allowed = new Set(['n5', 'n4', 'n3', 'n2', 'n1']);
+
+  const parts = normalized.split('-').filter(Boolean);
+
+  // Caso singolo: N3, N2, ecc.
+  if (parts.length === 1) {
+    return allowed.has(parts[0]) ? [parts[0]] : [];
+  }
+
+  // Caso doppio: N3-N2, N4-N3, ecc.
+  if (
+    parts.length === 2 &&
+    allowed.has(parts[0]) &&
+    allowed.has(parts[1])
+  ) {
+    return [normalized, ...parts];
+  }
+
+  // Tutto il resto ("tutti", "livelli", ecc.) viene ignorato
+  return [];
+};
+
+const desiredOrder = ['n5', 'n4', 'n3', 'n2', 'n1'];
+
+const sortJlptLevels = (levels) => {
+  return [...levels].sort((a, b) => {
+    const aParts = a.split('-');
+    const bParts = b.split('-');
+
+    // Prima i livelli singoli
+    if (aParts.length !== bParts.length) {
+      return aParts.length - bParts.length;
+    }
+
+    // Poi ordine naturale JLPT
+    const aIndex = desiredOrder.indexOf(aParts[0]);
+    const bIndex = desiredOrder.indexOf(bParts[0]);
+
+    if (aIndex !== bIndex) {
+      return aIndex - bIndex;
+    }
+
+    // Se entrambi doppi, confronta anche la seconda parte
+    const aSecond = aParts[1] ? desiredOrder.indexOf(aParts[1]) : -1;
+    const bSecond = bParts[1] ? desiredOrder.indexOf(bParts[1]) : -1;
+
+    return aSecond - bSecond;
+  });
+};
+
+const postImports = import.meta.glob('../../../content/articoli/**/*.mdx');
+
+const posts = await Promise.all(
+  Object.entries(postImports).map(async ([_, resolver]) => {
+    const mod = await resolver();
+    const fm = mod.frontmatter ?? {};
+
+    return {
+      jlpt: fm.jlpt ?? null
+    };
+  })
+);
+
+const jlptSet = new Set(
+  posts.flatMap((post) => expandJlptLevels(post.jlpt)).filter(Boolean)
+);
+
+const jlptList = sortJlptLevels([...jlptSet]);
+---
+
+<BaseLayout
+  title="Livelli JLPT | Hakkiri Nihongo"
+  description="Tutti i livelli JLPT presenti negli articoli di Hakkiri Nihongo."
+>
+  <div class="page-articles">
+    <nav class="breadcrumbs">
+      <a href="/articoli">Articoli</a>
+      <span>›</span>
+      <span>JLPT</span>
+    </nav>
+
+    <h2>Livelli JLPT</h2>
+    <p class="archive-count">
+      {jlptList.length} {jlptList.length === 1 ? 'livello disponibile' : 'livelli disponibili'}
+    </p>
+
+    <ul class="post-list">
+      {jlptList.map((jlpt) => (
+        <li class="post-item">
+          <h3 class="post-title">
+            <a class="post-link" href={`/articoli/jlpt/${normalizeJlpt(jlpt)}`}>
+              JLPT {jlpt.toUpperCase()}
+            </a>
+          </h3>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>

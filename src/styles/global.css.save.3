@@ -1,0 +1,745 @@
+/*
+ * Stili globali per Hakkiri Nihongo.
+ * Il design utilizza una palette di colori caldi e puliti e mette
+ * in evidenza i contenuti in modo chiaro. Sentiti libero di
+ * personalizzare questi valori per adattarli alle tue preferenze.
+ */
+
+:root {
+  --primary-color: #c0392b; /* Rosso intenso per accenti e link */
+  --secondary-color: #f9f5f3; /* Sfondo tenue per sezioni e carte */
+  --text-color: #2d3748; /* Testo principale */
+  --heading-color: #1a202c; /* Colore per titoli */
+  --border-radius: 8px;
+  --container-width: 1000px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: #ffffff;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #e74c3c;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Header */
+/*
+.site-header {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+*/
+/*
+.site-header .site-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+*/
+/*
+.site-header a {
+  color: #ffffff;
+  margin-right: 1rem;
+  font-weight: 600;
+}
+*/
+/*
+.site-header a:hover {
+  text-decoration: underline;
+}
+*/
+/* Footer */
+.site-footer {
+  margin-top: 3rem;
+  padding: 1rem 0;
+  text-align: center;
+  font-size: 0.875rem;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+/* Home page */
+.hero {
+  padding: 3rem 1rem;
+  text-align: center;
+  background-color: var(--secondary-color);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.hero h2 {
+  margin-top: 0;
+  font-size: 2rem;
+  color: var(--heading-color);
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.category-card {
+  display: block;
+  padding: 1.5rem;
+  border: 1px solid #ececec;
+  border-radius: var(--border-radius);
+  background-color: #ffffff;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.category-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  color: var(--primary-color);
+}
+
+.category-card p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-color);
+}
+
+.category-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+}
+
+/* Category navigation on articles page */
+.category-nav {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  gap: 0.5rem;
+}
+
+.category-nav a {
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  background-color: #ffffff;
+  font-size: 0.875rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.category-nav a.active,
+.category-nav a:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+/* Article list */
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
+}
+
+.post-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid #ececec;
+}
+
+.post-item:last-child {
+  border-bottom: none;
+}
+
+.post-item h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.25rem;
+  color: var(--heading-color);
+}
+
+.post-item p {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.875rem;
+  color: var(--text-color);
+}
+
+.post-meta {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.post-meta time {
+  margin-right: 0.5rem;
+}
+
+.tag,
+.series {
+  display: inline-block;
+  margin-right: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: var(--border-radius);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.tag:last-child,
+.series:last-child {
+  margin-right: 0;
+}
+
+/* Single article */
+article h1 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  color: var(--heading-color);
+}
+
+article .post-content > *:first-child {
+  margin-top: 0;
+}
+
+article .post-content {
+  margin-top: 1.5rem;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* LOGO (JP + IT) */
+/* Logo: comportamento da logo, non da link */
+.site-logo{
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: inherit;
+  cursor: default;
+}
+
+.site-logo:hover,
+.site-logo:focus,
+.site-logo:active{
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ===== FIX DEFINITIVO LOGO (override totale) ===== */
+.site-header .site-title > a.site-logo,
+.site-header .site-title > a.site-logo:hover,
+.site-header .site-title > a.site-logo:focus,
+.site-header .site-title > a.site-logo:active{
+  text-decoration: none !important;
+  color: inherit !important;
+  cursor: default !important;
+}
+
+.site-header .site-title > a.site-logo{
+  display: inline-flex !important;
+  align-items: baseline !important;
+  gap: 0.6rem !important;
+}
+
+/* dimensioni SOBRIE (non “ingrossate”) */
+.site-header .site-title .logo-jp{
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.site-header .site-title .logo-it{
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+
+/* HEADER COMPATTO DEFINITIVO */
+.site-header {
+  background-color: #c0392b;
+  padding: 12px 0;
+}
+
+/* ===== HEADER: FIX DEFINITIVO (ripristina colori + menu) ===== */
+.site-header{
+  background-color: #c0392b;
+  padding: 12px 0;
+  color: #fff;
+}
+
+.site-header a{
+  color: inherit;
+  text-decoration: none;
+}
+
+/* layout header: logo a sinistra, menu a destra */
+.site-header .container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* menu visibile e ordinato */
+.site-nav{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.site-nav a{
+  font-weight: 600;
+  opacity: 0.95;
+}
+
+.site-nav a:hover{
+  opacity: 1;
+}
+
+}
+
+/* Header: logo davvero a sinistra */
+.site-title{
+  margin: 0;
+}
+
+.site-header .container{
+  justify-content: space-between;
+}
+
+.site-header .site-title{
+  flex: 0 0 auto;
+}
+
+.site-header .site-nav{
+  flex: 0 0 auto;
+}
+
+/* Header: container più largo (elimina il vuoto a sinistra) */
+.site-header .container{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+}
+
+/* Header full-width: logo a sinistra, menu a destra */
+.site-header{
+  background-color: #c0392b;
+  padding: 12px 0;
+  color: #fff;
+}
+
+.header-inner{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+
+/* =========================
+   Hakkiri Nihongo – Editorial Article Style
+   ========================= */
+
+:root{
+  --hn-text: #141414;
+  --hn-muted: #555;
+  --hn-line: #e6e6e6;
+  --hn-soft: #f7f6f4;
+  --hn-accent: #b7352d; /* rosso torii (accento discreto) */
+}
+
+/* Contenitore articolo: larghezza editoriale + respiro */
+article{
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3.2rem 1.5rem 4rem;
+  color: var(--hn-text);
+}
+
+/* Tipografia base */
+article{
+  font-size: 1.06rem;
+  line-height: 1.85;
+}
+
+/* Titolo */
+article h1{
+  font-size: 2.15rem;
+  line-height: 1.25;
+  margin: 0 0 1.2rem;
+  letter-spacing: -0.02em;
+}
+
+/* Sottotitolo / intro immediata (se usi un h2 subito dopo h1) */
+article h1 + h2{
+  margin-top: 0.6rem;
+}
+
+/* Paragrafi */
+article p{
+  margin: 0 0 1.25em;
+  color: var(--hn-text);
+}
+
+/* Grassetti e enfasi: più “editoriali” */
+article strong{
+  font-weight: 700;
+}
+article em{
+  color: var(--hn-muted);
+}
+
+/* Link: autorevoli, non “blu web 2005” */
+article a{
+  color: var(--hn-text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+article a:hover{
+  color: var(--hn-accent);
+}
+
+/* Sezioni (H2) – stile Hakkiri: barra a sinistra */
+article h2{
+  margin: 3.1rem 0 1rem;
+  font-size: 1.45rem;
+  line-height: 1.35;
+  padding-left: 0.9rem;
+  border-left: 4px solid var(--hn-accent);
+}
+
+/* H3 (se li usi) */
+article h3{
+  margin: 2.2rem 0 0.8rem;
+  font-size: 1.18rem;
+  line-height: 1.4;
+}
+
+/* Liste – più aria */
+article ul,
+article ol{
+  margin: 0.2rem 0 1.4rem 1.25rem;
+  padding: 0;
+}
+article li{
+  margin: 0.4rem 0;
+}
+article li p{
+  margin: 0.35rem 0;
+}
+
+/* Linee (---) eleganti */
+article hr{
+  border: none;
+  height: 1px;
+  background: var(--hn-line);
+  margin: 2.8rem 0;
+}
+
+/* Blocchi codice / esempi (MDX spesso li rende come pre/code) */
+article pre{
+  background: var(--hn-soft);
+  border: 1px solid var(--hn-line);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  overflow: auto;
+  margin: 1.4rem 0 1.8rem;
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+article code{
+  font-size: 0.98em;
+}
+
+/* Citazioni (se le userai) */
+article blockquote{
+  margin: 1.7rem 0;
+  padding: 0.9rem 1rem;
+  border-left: 4px solid var(--hn-line);
+  background: #fafafa;
+  color: var(--hn-muted);
+}
+
+/* Micro: spaziature migliori quando un titolo segue un hr */
+article hr + h2{
+  margin-top: 2.2rem;
+}
+
+/* Responsive: su schermi piccoli, riduci title e padding */
+@media (max-width: 520px){
+  article{
+    padding: 2.4rem 1.1rem 3rem;
+    font-size: 1.02rem;
+  }
+  article h1{
+    font-size: 1.85rem;
+  }
+  article h2{
+    font-size: 1.28rem;
+  }
+}
+
+/* =========================
+   Esempi giapponesi – stile editoriale
+   ========================= */
+
+article li{
+  margin: 0.8rem 0 1.1rem;
+}
+
+/* Prima riga dell’esempio (giapponese) */
+article li > p:first-child{
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+/* Traduzione / spiegazione subito sotto */
+article li em,
+article li i{
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* =========================
+   H1 – trattamento editoriale
+   ========================= */
+
+article h1{
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+/* Parte giapponese del titolo */
+article h1{
+  font-weight: 700;
+}
+
+/* Parte italiana dopo | */
+article h1 span,
+article h1 small{
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #555;
+}
+
+/* Titolo articolo con sottotitolo */
+article h1.post-title{
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 2.2rem;
+}
+
+article h1.post-title .post-subtitle{
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #555;
+}
+
+
+article .jp-example {
+  margin: 1.5rem 0 0.6rem 0 !important;
+  padding-left: 1rem !important;
+  border-left: 3px solid #c43a2f;
+
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+  font-size: 1.15rem !important;
+  line-height: 1.8 !important;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+}
+
+/* ===========================
+   Titolo pagina articolo (NON dentro <article>)
+   =========================== */
+h1.post-title{
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 2.2rem;
+
+  /* Ripristino "pienezza" del titolo */
+  font-weight: 800;
+  opacity: 1;
+}
+
+/* Sottotitolo sotto al titolo */
+h1.post-title .post-subtitle{
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #555;
+  opacity: 1;
+}
+
+h1.post-title{
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+               "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+}
+
+article :where(h2, h3){
+  font-weight: 700;
+  opacity: 1;
+}
+
+/* ===========================
+   TITOLO ARTICOLO
+   =========================== */
+
+h1.post-title{
+  font-weight: 800;
+  opacity: 1;
+}
+
+h1.post-title .post-subtitle{
+  font-weight: 500;
+  opacity: 1;
+}
+
+/* ==================================================
+   JP: di default NON alterare il giapponese nel sito
+   ================================================== */
+.jp{
+  font-style: normal !important;
+  opacity: 1 !important;
+}
+
+/* ==================================================
+   SOLO negli esempi stile editoriale
+   ================================================== */
+article .jp-example .jp{
+  font-style: italic !important;
+  opacity: 0.85 !important;
+}
+
+/* ====== ARTICOLO SINGOLO ====== */
+.page-article h1.post-title{
+  font-weight: 800;
+}
+
+.page-article h1.post-title .post-subtitle{
+  font-weight: 500;
+}
+
+.page-article h2,
+.page-article h3{
+  font-weight: 700;
+}
+/* ==================================================
+   FIX: nei TITOLI dei paragrafi, i kanji .jp devono essere pieni
+   (non sottili come gli esempi)
+   ================================================== */
+
+.page-article :where(h1,h2,h3,h4,h5,h6) .jp{
+  opacity: 1 !important;
+  font-style: normal !important;
+  font-weight: inherit !important;
+}
+
+/* ==================================================
+   Titoli interni negli articoli: font JP più "pieno"
+   (risolve kanji sottili nei titoli come: <h2>後 ...</h2>)
+   ================================================== */
+
+.page-article :where(h2, h3){
+  font-weight: 700 !important;
+
+  /* Font stack: prima i font latini di sistema, poi JP solidi */
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+               "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Noto Sans JP",
+               sans-serif !important;
+
+}
+
+/* ====== TITOLO ARTICOLO NELLA LISTA (pagina Articoli) ====== */.page-articles h2,
+.page-articles h3{
+  font-weight: 700 !important;
+}
+.page-articles a{
+  font-weight: 700 !important;
+}
+
+/* ====== PAGINA ARTICOLI: forza il grassetto su TUTTI i link della lista ====== */
+.page-articles a{
+  font-weight: 700 !important;
+  opacity: 1 !important;
+}
+
+
+/* Pagina Articoli: titolo card in grassetto */
+.page-articles a{
+  font-weight: 700 !important;
+}
+/* ====== FORZA TITOLO CARD NELLA PAGINA ARTICOLI ====== */
+.page-articles *{
+  font-weight: inherit;
+}
+
+.page-articles{
+  --article-title-weight: 700;
+}
+
+.page-articles h1,
+.page-articles h2,
+.page-articles h3,
+.page-articles a{
+  font-weight: var(--article-title-weight) !important;
+}
+.page-articles{
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+               "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP",
+               sans-serif;
+}
+
+
+/* ==================================================
+   LISTA ARTICOLI – FIX DEFINITIVO (vince su prose)
+   ================================================== */
+
+/* Navbar categorie: resta normale */
+.page-articles .category-nav a{
+  font-weight: 500;
+}
+
+/* Titoli articoli:
+   - <a> nella pagina Articoli
+   - <h3> nella pagina Categoria
+*/
+.page-articles a,
+.page-articles h3{
+  font-weight: 700 !important;
+  opacity: 1 !important;
+}
+
+
+
+
+
+

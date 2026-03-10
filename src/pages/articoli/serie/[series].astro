@@ -1,0 +1,231 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const normalizeSeries = (value) => {
+  return String(value ?? '')
+    .toLowerCase()
+    .trim()
+    .replace(/[–—−]/g, '-')
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]/g, '');
+};
+
+const normalizeJlpt = (value) => {
+  return String(value ?? '')
+    .toLowerCase()
+    .trim()
+    .replace(/[–—−]/g, '-')
+    .replace(/\s*-\s*/g, '-')
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]/g, '');
+};
+
+const isAllLevelsJlpt = (value) => {
+  const raw = String(value ?? '').trim().toLowerCase();
+  return raw === 'tutti i livelli' || raw === 'tutti-i-livelli';
+};
+
+const isFilterableJlpt = (value) => {
+  if (isAllLevelsJlpt(value)) {
+    return true;
+  }
+
+  const normalized = normalizeJlpt(value);
+  const parts = normalized.split('-').filter(Boolean);
+  const allowed = new Set(['n5', 'n4', 'n3', 'n2', 'n1']);
+
+  if (parts.length === 1) {
+    return allowed.has(parts[0]);
+  }
+
+  if (parts.length === 2) {
+    return allowed.has(parts[0]) && allowed.has(parts[1]);
+  }
+
+  return false;
+};
+
+export async function getStaticPaths() {
+  const postImports = import.meta.glob('../../../content/articoli/**/*.mdx');
+
+  const allSeries = await Promise.all(
+    Object.entries(postImports).map(async ([_, resolver]) => {
+      const mod = await resolver();
+      const fm = mod.frontmatter ?? {};
+
+      if (!fm.series) return null;
+
+      return String(fm.series)
+        .toLowerCase()
+        .trim()
+        .replace(/[–—−]/g, '-')
+        .replace(/\s+/g, '-')
+        .replace(/[^\w-]/g, '');
+    })
+  );
+
+  const uniqueSeries = [...new Set(allSeries.filter(Boolean))];
+
+  return uniqueSeries.map((series) => ({
+    params: { series }
+  }));
+}
+
+const postImports = import.meta.glob('../../../content/articoli/**/*.mdx');
+
+const posts = await Promise.all(
+  Object.entries(postImports).map(async ([path, resolver]) => {
+    const mod = await resolver();
+    const fm = mod.frontmatter ?? {};
+    const slug = fm.slug ?? path.split('/').pop().replace(/\.mdx?$/, '');
+
+    return {
+      slug,
+      frontmatter: fm,
+    };
+  })
+);
+
+posts.sort((a, b) => {
+  const dateA = a.frontmatter.date ? new Date(a.frontmatter.date) : new Date(0);
+  const dateB = b.frontmatter.date ? new Date(b.frontmatter.date) : new Date(0);
+  return dateB.getTime() - dateA.getTime();
+});
+
+const series = Astro.params.series;
+
+const filteredPosts = posts.filter(({ frontmatter }) => {
+  if (!frontmatter.series) return false;
+  return normalizeSeries(frontmatter.series) === series;
+});
+
+const seriesTitle =
+  filteredPosts[0]?.frontmatter?.series ?? String(series ?? '').replace(/-/g, ' ');
+
+const seriesCount = filteredPosts.length;
+
+const seriesPageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": seriesTitle,
+  "url": Astro.url.href,
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Hakkiri Nihongo",
+    "url": "https://hakkirinihongo.com"
+  }
+};
+
+const visibleJlpt = Object.entries(
+  filteredPosts.reduce((acc, { frontmatter }) => {
+    if (!frontmatter.jlpt) return acc;
+    acc[frontmatter.jlpt] = (acc[frontmatter.jlpt] ?? 0) + 1;
+    return acc;
+  }, {})
+);
+---
+
+<BaseLayout
+  title={`${seriesTitle} | Serie di articoli – Hakkiri Nihongo`}
+  description={`Articoli della serie "${seriesTitle}" su Hakkiri Nihongo: analisi e approfondimenti sulla grammatica giapponese.`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(seriesPageJsonLd)} />
+
+  <div class="page-articles">
+    <nav class="breadcrumbs">
+      <a href="/articoli">Articoli</a>
+      <span>›</span>
+      <span>Serie</span>
+      <span>›</span>
+      <span>{seriesTitle}</span>
+    </nav>
+
+    <h2>{seriesTitle}</h2>
+
+    <p class="archive-count">
+      {seriesCount} {seriesCount === 1 ? 'articolo in questa serie' : 'articoli in questa serie'}
+    </p>
+
+    {visibleJlpt.length > 0 && (
+      <div class="taxonomy-links">
+        <span class="taxonomy-label">Livelli presenti in questa serie:</span>
+        {visibleJlpt.map(([jlpt, count]) => (
+          isFilterableJlpt(jlpt) ? (
+            <a
+              class="tag"
+              href={
+                isAllLevelsJlpt(jlpt)
+                  ? '/articoli/jlpt'
+                  : `/articoli/jlpt/${normalizeJlpt(jlpt)}`
+              }
+            >
+              JLPT {jlpt} ({count})
+            </a>
+          ) : (
+            <span class="tag">JLPT {jlpt} ({count})</span>
+          )
+        ))}
+      </div>
+    )}
+
+    <ul class="post-list">
+      {filteredPosts.map(({ slug, frontmatter }) => (
+        <li class="post-item">
+          <h3 class="post-title">
+            <a class="post-link" href={`/articoli/${slug}`}>
+              {frontmatter.title ?? slug}
+            </a>
+          </h3>
+
+          {frontmatter.description && (
+            <p class="post-description">
+              <a class="post-link" href={`/articoli/${slug}`}>
+                {frontmatter.description}
+              </a>
+            </p>
+          )}
+
+          <div class="post-meta">
+            {frontmatter.date && (
+              <time datetime={frontmatter.date}>
+                {new Date(frontmatter.date).toLocaleDateString('it-IT')}
+              </time>
+            )}
+
+            {frontmatter.series && (
+              <a
+                class="series"
+                href={`/articoli/serie/${normalizeSeries(frontmatter.series)}`}
+              >
+                {frontmatter.series}
+              </a>
+            )}
+
+            {frontmatter.jlpt && (
+              isFilterableJlpt(frontmatter.jlpt) ? (
+                <a
+                  class="tag"
+                  href={
+                    isAllLevelsJlpt(frontmatter.jlpt)
+                      ? '/articoli/jlpt'
+                      : `/articoli/jlpt/${normalizeJlpt(frontmatter.jlpt)}`
+                  }
+                >
+                  JLPT {frontmatter.jlpt}
+                </a>
+              ) : (
+                <span class="tag">JLPT {frontmatter.jlpt}</span>
+              )
+            )}
+          </div>
+        </li>
+      ))}
+
+      {filteredPosts.length === 0 && (
+        <li class="post-item">
+          Non ci sono articoli per questa serie al momento.
+        </li>
+      )}
+    </ul>
+  </div>
+</BaseLayout>
