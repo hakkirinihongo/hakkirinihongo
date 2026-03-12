@@ -3,5 +3,6 @@ import mdx from '@astrojs/mdx';
 
 export default defineConfig({
   site: 'https://hakkirinihongo.com',
+  trailingSlash: 'never',
   integrations: [mdx()],
 });
