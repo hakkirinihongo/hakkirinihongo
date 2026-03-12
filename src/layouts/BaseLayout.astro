@@ -18,7 +18,7 @@ const pathname = Astro.url.pathname.endsWith('/') && Astro.url.pathname !== '/'
   ? Astro.url.pathname.slice(0, -1)
   : Astro.url.pathname;
 
-const canonicalUrl = `https://hakkirinihongo.com${pathname}`;
+const canonicalUrl = `https://hakkirinihongo.com${Astro.url.pathname}`;
 ---
 <!DOCTYPE html>
 <html lang="it">
