@@ -1,6 +1,6 @@
 ---
-// Base layout component for the site.  It provides a consistent
-// header, footer and global CSS import.  Child pages render
+// Base layout component for the site. It provides a consistent
+// header, footer and global CSS import. Child pages render
 // their content in the default slot.
 import '../styles/global.css';
 
@@ -14,6 +14,8 @@ const {
   description
 } = Astro.props as Props;
 
+// LOGICA PER URL PULITO: Rimuove la slash finale se presente (escluso la home "/")
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).href.replace(/\/$/, "");
 ---
 <!DOCTYPE html>
 <html lang="it">
@@ -21,84 +23,80 @@ const {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-<meta name="description" content={description ?? 'Hakkiri Nihongo: grammatica giapponese avanzata, concetti, distinzioni e grammatica di nicchia spiegati chiaramente.'} 
+    <meta name="description" content={description ?? 'Hakkiri Nihongo: grammatica giapponese avanzata, concetti, distinzioni e grammatica di nicchia spiegati chiaramente.'} />
 
-/>
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "WebSite",
- "name": "Hakkiri Nihongo",
- "url": "https://hakkirinihongo.com",
- "inLanguage": "it",
- "publisher": {
-   "@type": "Organization",
-   "name": "Hakkiri Nihongo"
- },
- "potentialAction": {
-   "@type": "SearchAction",
-   "target": "https://hakkirinihongo.com/articoli?q={search_term_string}",
-   "query-input": "required name=search_term_string"
- }
-}
-</script>
+    <script type="application/ld+json">
+    {
+     "@context": "https://schema.org",
+     "@type": "WebSite",
+     "name": "Hakkiri Nihongo",
+     "url": "https://hakkirinihongo.com",
+     "inLanguage": "it",
+     "publisher": {
+       "@type": "Organization",
+       "name": "Hakkiri Nihongo"
+     },
+     "potentialAction": {
+       "@type": "SearchAction",
+       "target": "https://hakkirinihongo.com{search_term_string}",
+       "query-input": "required name=search_term_string"
+     }
+    }
+    </script>
 
-<meta property="og:title" content={title} />
-<meta
-  property="og:description"
-  content={description ?? 'Hakkiri Nihongo: grammatica giapponese avanzata, concetti, distinzioni e grammatica di nicchia spiegati chiaramente.'}
-/>
-<meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url.href} />
-<meta property="og:image" content="https://hakkirinihongo.com/og-image.png" />
-<meta property="og:image:alt" content="Hakkiri Nihongo | grammatica giapponese avanzata spiegata chiaramente" />
+    <meta property="og:title" content={title} />
+    <meta
+      property="og:description"
+      content={description ?? 'Hakkiri Nihongo: grammatica giapponese avanzata, concetti, distinzioni e grammatica di nicchia spiegati chiaramente.'}
+    />
+    <meta property="og:type" content="website" />
+    <!-- Usiamo canonicalURL anche qui per coerenza sui social -->
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content="https://hakkirinihongo.com" />
+    <meta property="og:image:alt" content="Hakkiri Nihongo | grammatica giapponese avanzata spiegata chiaramente" />
 
-<link rel="canonical" href={Astro.url.href} />
+    <!-- Tag Canonical aggiornato per rimuovere la slash -->
+    <link rel="canonical" href={canonicalURL} />
 
-<link rel="icon" href="/favicons/favicon.ico" sizes="any" />
-<link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
-<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
-<link rel="manifest" href="/favicons/site.webmanifest" />
-<meta name="theme-color" content="#ffffff" />
-<meta name="msapplication-TileColor" content="#ffffff" />
-
-
-
-
-
+    <link rel="icon" href="/favicons/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+    <link rel="manifest" href="/favicons/site.webmanifest" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
   </head>
   <body>
-<header class="site-header">
-  <div class="header-inner">
-    <h1 class="site-title">
-      <a href="/" class="site-logo">
-        <span class="logo-jp">はっきり日本語</span>
-        <span class="logo-it">il giapponese chiaramente</span>
-      </a>
-    </h1>
+    <header class="site-header">
+      <div class="header-inner">
+        <h1 class="site-title">
+          <a href="/" class="site-logo">
+            <span class="logo-jp">はっきり日本語</span>
+            <span class="logo-it">il giapponese chiaramente</span>
+          </a>
+        </h1>
 
-    <nav class="site-nav">
-      <a href="/">Home</a>
-      <a href="/articoli">Articoli</a>
-      <a href="/chi-siamo">Chi siamo / Metodo</a>
-
-    </nav>
-  </div>
-</header>
+        <nav class="site-nav">
+          <a href="/">Home</a>
+          <a href="/articoli">Articoli</a>
+          <a href="/chi-siamo">Chi siamo / Metodo</a>
+        </nav>
+      </div>
+    </header>
 
     <main class="container">
       <slot />
     </main>
+
     <footer class="site-footer">
-  <p><strong>Hakkiri Nihongo – Il giapponese chiaramente</strong></p>
-  <p>
-    Sito dedicato allo studio della grammatica giapponese:
-    concetti, distinzioni, grammatica di nicchia e dissezionamenti grammaticali spiegati chiaramente.
-  </p>
-  <p>
-    © {new Date().getFullYear()} Hakkiri Nihongo. Tutti i diritti riservati.
-  </p>
-</footer>
+      <p><strong>Hakkiri Nihongo – Il giapponese chiaramente</strong></p>
+      <p>
+        Sito dedicato allo studio della grammatica giapponese:
+        concetti, distinzioni, grammatica di nicchia e dissezionamenti grammaticali spiegati chiaramente.
+      </p>
+      <p>
+        © {new Date().getFullYear()} Hakkiri Nihongo. Tutti i diritti riservati.
+      </p>
+    </footer>
   </body>
 </html>
