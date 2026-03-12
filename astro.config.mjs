@@ -16,3 +16,10 @@ integrations: [
     },
   }),
 ],
+  export default defineConfig({
+  trailingSlash: 'never',
+  build: {
+    format: 'file', // Fondamentale per generare 'about.html' invece di 'about/'
+  },
+});
+
