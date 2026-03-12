@@ -1,7 +1,11 @@
 import { defineConfig } from 'astro/config';
-import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://hakkirinihongo.com',
-  integrations: [mdx()],
+  trailingSlash: 'never', // Rimuove la slash finale dagli URL
+  integrations: [sitemap()],
+  build: {
+    format: 'file', // Genera 'about.html' invece di 'about/index.html'
+  },
 });
