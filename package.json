@@ -2,9 +2,7 @@
   "name": "hakkiri-nihongo",
   "type": "module",
   "version": "1.0.0",
-  "engines": {
-    "node": "18"
-  },
+
   "description": "Sito di riferimento per Hakkiri Nihongo - il giapponese chiaramente",
   "scripts": {
     "dev": "astro dev",
