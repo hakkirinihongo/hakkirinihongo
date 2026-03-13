@@ -1,23 +1,30 @@
 ---
 // Base layout component per Hakkiri Nihongo.
-// Fornisce l'header, il footer e l'import dei CSS globali.
+// Fornisce header, footer, meta SEO e import dei CSS globali.
 import '../styles/global.css';
 
 export interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  canonical?: string;
+  noindex?: boolean;
 }
 
 const {
   title = 'Hakkiri Nihongo | grammatica giapponese avanzata spiegata chiaramente',
-  description
+  description = 'Hakkiri Nihongo: grammatica giapponese avanzata, concetti, distinzioni e grammatica di nicchia spiegati chiaramente.',
+  image = 'https://hakkirinihongo.com/og-image.png',
+  canonical,
+  noindex = false
 } = Astro.props as Props;
 
-// LOGICA CANONICAL CORRETTA:
-// Forza la barra finale (trailing slash) su tutti gli URL per essere coerente 
-// con la configurazione di Astro ed evitare errori di redirect su Google.
-const canonicalURL = new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site).href;
+// Canonical coerente con trailing slash finale
+const canonicalURL =
+  canonical ??
+  new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site).href;
 ---
+
 <!DOCTYPE html>
 <html lang="it">
   <head>
@@ -25,43 +32,54 @@ const canonicalURL = new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
 
-    <meta
-      name="description"
-      content={description ?? 'Hakkiri Nihongo: grammatica giapponese avanzata, concetti, distinzioni e grammatica di nicchia spiegati chiaramente.'}
-    />
-
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Hakkiri Nihongo",
-      "url": "https://hakkirinihongo.com",
-      "inLanguage": "it",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Hakkiri Nihongo"
-      }
-    })}></script>
-
-    <meta property="og:title" content={title} />
-    <meta
-      property="og:description"
-      content={description ?? 'Hakkiri Nihongo: grammatica giapponese avanzata, concetti, distinzioni e grammatica di nicchia spiegati chiaramente.'}
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content="https://hakkirinihongo.comog-image.png" />
-    <meta property="og:image:alt" content="Hakkiri Nihongo | grammatica giapponese avanzata spiegata chiaramente" />
+    <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
 
     <link rel="canonical" href={canonicalURL} />
 
+    <!-- Structured data -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'Hakkiri Nihongo',
+        url: 'https://hakkirinihongo.com/',
+        inLanguage: 'it',
+        publisher: {
+          '@type': 'Organization',
+          name: 'Hakkiri Nihongo'
+        }
+      })}
+    ></script>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="Hakkiri Nihongo" />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:alt" content="Hakkiri Nihongo | grammatica giapponese spiegata chiaramente" />
+    <meta property="og:locale" content="it_IT" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <!-- Favicons -->
     <link rel="icon" href="/favicons/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
     <link rel="manifest" href="/favicons/site.webmanifest" />
+
     <meta name="theme-color" content="#ffffff" />
     <meta name="msapplication-TileColor" content="#ffffff" />
   </head>
+
   <body>
     <header class="site-header">
       <div class="header-inner">
