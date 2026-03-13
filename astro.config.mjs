@@ -5,4 +5,3 @@ export default defineConfig({
   site: 'https://hakkirinihongo.com',
   integrations: [mdx()],
 });
-
