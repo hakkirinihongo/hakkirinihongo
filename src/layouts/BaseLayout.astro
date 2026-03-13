@@ -14,8 +14,13 @@ const {
   description
 } = Astro.props as Props;
 
-// LOGICA PER URL PULITO: Rimuove la slash finale se presente (escluso la home "/")
-const canonicalURL = new URL(Astro.url.pathname, Astro.site).href.replace(/\/$/, "");
+// Canonical pulito:
+// - la home resta con slash finale: https://hakkirinihongo.com/
+// - le altre pagine vengono normalizzate senza slash finale
+const canonicalURL =
+  Astro.url.pathname === '/'
+    ? new URL('/', Astro.site).href
+    : new URL(Astro.url.pathname.replace(/\/$/, ''), Astro.site).href;
 ---
 <!DOCTYPE html>
 <html lang="it">
@@ -23,26 +28,23 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).href.replace(/\/$/,
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    <meta name="description" content={description ?? 'Hakkiri Nihongo: grammatica giapponese avanzata, concetti, distinzioni e grammatica di nicchia spiegati chiaramente.'} />
 
-    <script type="application/ld+json">
-    {
-     "@context": "https://schema.org",
-     "@type": "WebSite",
-     "name": "Hakkiri Nihongo",
-     "url": "https://hakkirinihongo.com",
-     "inLanguage": "it",
-     "publisher": {
-       "@type": "Organization",
-       "name": "Hakkiri Nihongo"
-     },
-     "potentialAction": {
-       "@type": "SearchAction",
-       "target": "https://hakkirinihongo.com{search_term_string}",
-       "query-input": "required name=search_term_string"
-     }
-    }
-    </script>
+    <meta
+      name="description"
+      content={description ?? 'Hakkiri Nihongo: grammatica giapponese avanzata, concetti, distinzioni e grammatica di nicchia spiegati chiaramente.'}
+    />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Hakkiri Nihongo",
+      "url": "https://hakkirinihongo.com/",
+      "inLanguage": "it",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hakkiri Nihongo"
+      }
+    })}></script>
 
     <meta property="og:title" content={title} />
     <meta
@@ -50,12 +52,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).href.replace(/\/$/,
       content={description ?? 'Hakkiri Nihongo: grammatica giapponese avanzata, concetti, distinzioni e grammatica di nicchia spiegati chiaramente.'}
     />
     <meta property="og:type" content="website" />
-    <!-- Usiamo canonicalURL anche qui per coerenza sui social -->
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content="https://hakkirinihongo.com" />
+    <meta property="og:image" content="https://hakkirinihongo.com/og-image.png" />
     <meta property="og:image:alt" content="Hakkiri Nihongo | grammatica giapponese avanzata spiegata chiaramente" />
 
-    <!-- Tag Canonical aggiornato per rimuovere la slash -->
     <link rel="canonical" href={canonicalURL} />
 
     <link rel="icon" href="/favicons/favicon.ico" sizes="any" />
