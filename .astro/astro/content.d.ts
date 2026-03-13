@@ -166,9 +166,9 @@ declare module 'astro:content' {
   collection: "articoli";
   data: any
 } & { render(): Render[".mdx"] };
-"ato-de-ato-ni-ato-wa.mdx": {
-	id: "ato-de-ato-ni-ato-wa.mdx";
-  slug: "ato-de-ato-ni-ato-wa";
+"differenza-ato-de-ato-ni-ato-wa-giapponese.mdx": {
+	id: "differenza-ato-de-ato-ni-ato-wa-giapponese.mdx";
+  slug: "differenza-ato-de-ato-ni-ato-wa-giapponese";
   body: string;
   collection: "articoli";
   data: any
@@ -176,6 +176,13 @@ declare module 'astro:content' {
 "differenza-kibun-choushi-taichou-guai.mdx": {
 	id: "differenza-kibun-choushi-taichou-guai.mdx";
   slug: "differenza-kibun-choushi-taichou-guai";
+  body: string;
+  collection: "articoli";
+  data: any
+} & { render(): Render[".mdx"] };
+"differenza-kuuki-kankyou-funiki-giapponese.mdx": {
+	id: "differenza-kuuki-kankyou-funiki-giapponese.mdx";
+  slug: "differenza-kuuki-kankyou-funiki-giapponese";
   body: string;
   collection: "articoli";
   data: any
@@ -197,13 +204,6 @@ declare module 'astro:content' {
 "differenza-verbi-opposizione-giapponese-hantai-hankou-teikou-tairitsu-sakarau.mdx": {
 	id: "differenza-verbi-opposizione-giapponese-hantai-hankou-teikou-tairitsu-sakarau.mdx";
   slug: "differenza-verbi-opposizione-giapponese-hantai-hankou-teikou-tairitsu-sakarau";
-  body: string;
-  collection: "articoli";
-  data: any
-} & { render(): Render[".mdx"] };
-"kuuki-kankyou-funiki.mdx": {
-	id: "kuuki-kankyou-funiki.mdx";
-  slug: "kuuki-kankyou-funiki";
   body: string;
   collection: "articoli";
   data: any
