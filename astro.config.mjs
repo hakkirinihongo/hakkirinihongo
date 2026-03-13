@@ -1,12 +1,12 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap'; // [AGGIUNTO]
+import sitemap from '@astrojs/sitemap'; // Importa la sitemap
 
 export default defineConfig({
   site: 'https://hakkirinihongo.com',
-  trailingSlash: 'always', // [AGGIUNTO] Forza la barra finale su tutti gli URL
+  trailingSlash: 'always', // Questo risolve l'errore di reindirizzamento di Google
   integrations: [
     mdx(), 
-    sitemap() // [AGGIUNTO] Genera automaticamente la mappa per Google
+    sitemap() // Attiva la sitemap
   ],
 });
