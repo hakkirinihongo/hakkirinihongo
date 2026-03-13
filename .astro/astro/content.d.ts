@@ -152,6 +152,13 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"articoli": {
+"Senza nome.mdx": {
+	id: "Senza nome.mdx";
+  slug: "senza-nome";
+  body: string;
+  collection: "articoli";
+  data: any
+} & { render(): Render[".mdx"] };
 "arigatou-gozaimasu.mdx": {
 	id: "arigatou-gozaimasu.mdx";
   slug: "arigatou-gozaimasu";
@@ -162,6 +169,13 @@ declare module 'astro:content' {
 "ato-de-ato-ni-ato-wa.mdx": {
 	id: "ato-de-ato-ni-ato-wa.mdx";
   slug: "ato-de-ato-ni-ato-wa";
+  body: string;
+  collection: "articoli";
+  data: any
+} & { render(): Render[".mdx"] };
+"differenza-kibun-choushi-taichou-guai.mdx": {
+	id: "differenza-kibun-choushi-taichou-guai.mdx";
+  slug: "differenza-kibun-choushi-taichou-guai";
   body: string;
   collection: "articoli";
   data: any
