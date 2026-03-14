@@ -2,7 +2,6 @@
   "name": "hakkiri-nihongo",
   "type": "module",
   "version": "1.0.0",
-
   "description": "Sito di riferimento per Hakkiri Nihongo - il giapponese chiaramente",
   "scripts": {
     "dev": "astro dev",
@@ -13,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^3.0.0",
+    "@astrojs/sitemap": "^3.7.1",
     "astro": "^4.0.0",
     "sharp": "^0.33.5"
   },
