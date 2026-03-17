@@ -57,7 +57,7 @@ a:hover{ color: #e74c3c; }
    ================================================== */
 .site-header{
   background-color: #c0392b;
-  padding: 12px 0;
+  padding: 24px 0;
   color: #fff;
 }
 
@@ -116,16 +116,18 @@ a:hover{ color: #e74c3c; }
   color: inherit;
 }
 
-/* dimensioni SOBRIE (non “ingrossate”) */
 .site-header .site-title .logo-jp{
   font-weight: 700;
-  font-size: 1.05rem;
-}
-.site-header .site-title .logo-it{
-  font-size: 0.95rem;
-  opacity: 0.85;
+  font-size: 1.08rem;
+  letter-spacing: 0.01em;
 }
 
+.site-header .site-title .logo-it{
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.96;
+  letter-spacing: -0.01em;
+}
 /* Menu header */
 .site-nav{
   display: flex;
@@ -134,7 +136,8 @@ a:hover{ color: #e74c3c; }
 }
 .site-nav a{
   font-weight: 600;
-  opacity: 0.95;
+  opacity: 0.98;
+  letter-spacing: 0.01em;
 }
 .site-nav a:hover{ opacity: 1; }
 
@@ -600,6 +603,150 @@ article .jp-example .jp{
   margin-bottom: 1.5rem;
 }
 
+/* ===== ARTICOLI CORRELATI / VEDI ANCHE ===== */
 
+.related-posts {
+  margin-top: 4.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(120, 120, 120, 0.22);
+}
 
+.related-posts-title {
+  margin: 0 0 1.4rem;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
 
+.related-posts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.related-post-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 1.15rem 1.2rem;
+  border: 1px solid rgba(120, 120, 120, 0.18);
+  border-radius: 16px;
+  background: #fffdf9;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+
+.related-post-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(170, 40, 40, 0.35);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+}
+
+.related-post-card:focus-visible {
+  outline: 2px solid rgba(170, 40, 40, 0.55);
+  outline-offset: 3px;
+}
+
+.related-post-card-category {
+  display: inline-block;
+  margin-bottom: 0.7rem;
+  font-size: 0.78rem;
+  line-height: 1;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8f2d2d;
+}
+
+.related-post-card h3 {
+  margin: 0 0 0.55rem;
+  font-size: 1.08rem;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.related-post-card p {
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: 1.65;
+  color: rgba(40, 40, 40, 0.82);
+}
+
+.related-post-card-link {
+  display: inline-block;
+  margin-top: 0.95rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #8f2d2d;
+}
+
+@media (min-width: 720px) {
+  .related-posts-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .related-posts-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* ===== PAGINA CONTATTI ===== */
+
+.page-intro {
+  max-width: 760px;
+  margin: 0 auto 2.5rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.6rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8b1e1e;
+}
+
+.page-lead {
+  font-size: 1.06rem;
+  line-height: 1.75;
+  color: #444;
+}
+
+.contact-card {
+  max-width: 760px;
+  margin: 0 auto 1.4rem;
+  padding: 1.4rem 1.25rem;
+  background: #fff;
+  border: 1px solid rgba(120, 120, 120, 0.2);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.contact-card h2 {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+}
+
+.contact-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.contact-list li + li {
+  margin-top: 0.5rem;
+}
+
+.contact-note {
+  max-width: 760px;
+  margin: 2rem auto 0;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: #555;
+}

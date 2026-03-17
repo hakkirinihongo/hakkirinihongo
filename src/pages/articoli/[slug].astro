@@ -40,6 +40,8 @@ const Content = post.mod.default;
 const title = post.frontmatter.title ?? slug;
 
 const category = post.frontmatter.category;
+const series = post.frontmatter.series;
+const currentDate = post.frontmatter.date ?? '';
 
 const categoryLabels = {
   "concetti-e-distinzioni": "Concetti e Distinzioni",
@@ -49,6 +51,30 @@ const categoryLabels = {
 };
 
 const categoryTitle = categoryLabels[category] ?? category;
+
+// ARTICOLI CORRELATI
+const relatedPosts = posts
+  .filter((p) => p.slug !== slug)
+  .map((p) => {
+    let score = 0;
+
+    if (series && p.frontmatter.series === series) score += 3;
+    if (category && p.frontmatter.category === category) score += 2;
+    if (post.frontmatter.jlpt && p.frontmatter.jlpt === post.frontmatter.jlpt) score += 1;
+
+    return {
+      ...p,
+      score,
+      date: p.frontmatter.date ?? '',
+      title: p.frontmatter.title ?? p.slug,
+      description: p.frontmatter.description ?? '',
+    };
+  })
+  .sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score;
+    return String(b.date).localeCompare(String(a.date));
+  })
+  .slice(0, 3);
 ---
 
 <BaseLayout
@@ -75,4 +101,30 @@ const categoryTitle = categoryLabels[category] ?? category;
     <Content />
   </article>
 
+    {relatedPosts.length > 0 && (
+    <section class="related-posts" aria-labelledby="related-posts-title">
+      <h2 id="related-posts-title" class="related-posts-title">Vedi anche</h2>
+
+      <div class="related-posts-grid">
+        {relatedPosts.map((related) => {
+          const relatedCategory = related.frontmatter.category;
+          const relatedCategoryTitle = categoryLabels[relatedCategory] ?? relatedCategory;
+
+          return (
+            <a class="related-post-card" href={`/articoli/${related.slug}/`}>
+              {relatedCategory && (
+                <span class="related-post-card-category">{relatedCategoryTitle}</span>
+              )}
+
+              <h3>{related.title}</h3>
+
+              {related.description && <p>{related.description}</p>}
+
+              <span class="related-post-card-link">Leggi l’articolo →</span>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  )}
 </BaseLayout>
