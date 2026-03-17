@@ -836,3 +836,55 @@ article .jp-example .jp{
     margin-right: auto;
   }
 }
+
+.hero {
+  padding: 4.5rem 1.5rem;
+}
+
+.hero-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero h1 {
+  margin-bottom: 0.5rem;
+  font-size: 2.4rem;
+}
+
+.hero h2 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+
+.hero p {
+  margin-top: 0;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+@media (max-width: 1024px) and (orientation: portrait) {
+  .hero {
+    padding: 3.25rem 1.25rem;
+  }
+
+  .hero-inner {
+    max-width: 700px;
+  }
+
+  .hero h1 {
+    font-size: 2.1rem;
+  }
+
+  .hero h2 {
+    font-size: 1.45rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+}
