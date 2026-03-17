@@ -65,7 +65,6 @@ export async function getStaticPaths() {
 
       const raw = String(fm.jlpt ?? '').trim().toLowerCase();
 
-      // "Tutti i livelli" compare nei livelli singoli, ma non genera una pagina propria
       if (raw === 'tutti i livelli' || raw === 'tutti-i-livelli') {
         return ['n5', 'n4', 'n3', 'n2', 'n1'];
       }
@@ -163,7 +162,7 @@ const visibleSeries = Object.entries(
 
   <div class="page-articles">
     <nav class="breadcrumbs">
-      <a href="/articoli">Articoli</a>
+      <a href="/articoli/">Articoli</a>
       <span>›</span>
       <span>JLPT</span>
       <span>›</span>
@@ -188,7 +187,7 @@ const visibleSeries = Object.entries(
           Serie di articoli presenti nel livello JLPT {String(level).toUpperCase()}:
         </p>
         {visibleSeries.map(([seriesName, count]) => (
-          <a class="series" href={`/articoli/serie/${normalizeSeries(seriesName)}`}>
+          <a class="series" href={`/articoli/serie/${normalizeSeries(seriesName)}/`}>
             {seriesName} ({count})
           </a>
         ))}
@@ -199,14 +198,14 @@ const visibleSeries = Object.entries(
       {filteredPosts.map(({ slug, frontmatter }) => (
         <li class="post-item">
           <h3 class="post-title">
-            <a class="post-link" href={`/articoli/${slug}`}>
+            <a class="post-link" href={`/articoli/${slug}/`}>
               {frontmatter.title ?? slug}
             </a>
           </h3>
 
           {frontmatter.description && (
             <p class="post-description">
-              <a class="post-link" href={`/articoli/${slug}`}>
+              <a class="post-link" href={`/articoli/${slug}/`}>
                 {frontmatter.description}
               </a>
             </p>
@@ -222,7 +221,7 @@ const visibleSeries = Object.entries(
             {frontmatter.series && (
               <a
                 class="series"
-                href={`/articoli/serie/${normalizeSeries(frontmatter.series)}`}
+                href={`/articoli/serie/${normalizeSeries(frontmatter.series)}/`}
               >
                 {frontmatter.series}
               </a>
@@ -234,8 +233,8 @@ const visibleSeries = Object.entries(
                   class="tag"
                   href={
                     isAllLevelsJlpt(frontmatter.jlpt)
-                      ? '/articoli/jlpt'
-                      : `/articoli/jlpt/${normalizeJlpt(frontmatter.jlpt)}`
+                      ? '/articoli/jlpt/'
+                      : `/articoli/jlpt/${normalizeJlpt(frontmatter.jlpt)}/`
                   }
                 >
                   JLPT {frontmatter.jlpt}

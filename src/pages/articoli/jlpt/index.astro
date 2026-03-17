@@ -91,7 +91,7 @@ const jlptList = sortJlptLevels([...jlptSet]);
 >
   <div class="page-articles">
     <nav class="breadcrumbs">
-      <a href="/articoli">Articoli</a>
+      <a href="/articoli/">Articoli</a>
       <span>›</span>
       <span>JLPT</span>
     </nav>
@@ -105,7 +105,7 @@ const jlptList = sortJlptLevels([...jlptSet]);
       {jlptList.map((jlpt) => (
         <li class="post-item">
           <h3 class="post-title">
-            <a class="post-link" href={`/articoli/jlpt/${normalizeJlpt(jlpt)}`}>
+            <a class="post-link" href={`/articoli/jlpt/${normalizeJlpt(jlpt)}/`}>
               JLPT {jlpt.toUpperCase()}
             </a>
           </h3>

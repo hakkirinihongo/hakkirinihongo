@@ -69,9 +69,10 @@ const isFilterableJlpt = (value) => {
 
   return false;
 };
+
 const catFromQuery = Astro.url.searchParams.get('cat');
 if (catFromQuery) {
-  return Astro.redirect(`/articoli/c/${catFromQuery}`, 301);
+  return Astro.redirect(`/articoli/c/${catFromQuery}/`, 301);
 }
 
 const filteredPosts = posts;
@@ -89,34 +90,34 @@ const filteredPosts = posts;
         const params = new URLSearchParams(window.location.search);
         const cat = params.get("cat");
         if (cat) {
-          window.location.replace(`/articoli/c/${cat}`);
+          window.location.replace(`/articoli/c/${cat}/`);
         }
       </script>
 
-      <a href="/articoli" class="active">Tutti</a>
+      <a href="/articoli/" class="active">Tutti</a>
       {Object.entries(categoriesMap).map(([slug, title]) => (
-        <a href={`/articoli/c/${slug}`}>{title}</a>
+        <a href={`/articoli/c/${slug}/`}>{title}</a>
       ))}
     </nav>
 
     <p class="archive-links">
-      <a href="/articoli/serie">Vedi tutte le serie</a>
+      <a href="/articoli/serie/">Vedi tutte le serie</a>
       <span> · </span>
-      <a href="/articoli/jlpt">Vedi tutti i livelli JLPT</a>
+      <a href="/articoli/jlpt/">Vedi tutti i livelli JLPT</a>
     </p>
 
     <ul class="post-list">
       {filteredPosts.map(({ slug, frontmatter }) => (
         <li class="post-item">
           <h3 class="post-title">
-            <a class="post-link" href={`/articoli/${slug}`}>
+            <a class="post-link" href={`/articoli/${slug}/`}>
               {frontmatter.title ?? slug}
             </a>
           </h3>
 
           {frontmatter.description && (
             <p class="post-description">
-              <a class="post-link" href={`/articoli/${slug}`}>
+              <a class="post-link" href={`/articoli/${slug}/`}>
                 {frontmatter.description}
               </a>
             </p>
@@ -132,28 +133,28 @@ const filteredPosts = posts;
             {frontmatter.series && (
               <a
                 class="series"
-                href={`/articoli/serie/${normalizeSeries(frontmatter.series)}`}
+                href={`/articoli/serie/${normalizeSeries(frontmatter.series)}/`}
               >
                 {frontmatter.series}
               </a>
             )}
 
             {frontmatter.jlpt && (
-  isFilterableJlpt(frontmatter.jlpt) ? (
-    <a
-      class="tag"
-      href={
-        normalizeJlpt(frontmatter.jlpt) === 'tutti-i-livelli'
-          ? '/articoli/jlpt'
-          : `/articoli/jlpt/${normalizeJlpt(frontmatter.jlpt)}`
-      }
-    >
-      JLPT {frontmatter.jlpt}
-    </a>
-  ) : (
-    <span class="tag">JLPT {frontmatter.jlpt}</span>
-  )
-)}
+              isFilterableJlpt(frontmatter.jlpt) ? (
+                <a
+                  class="tag"
+                  href={
+                    normalizeJlpt(frontmatter.jlpt) === 'tutti-i-livelli'
+                      ? '/articoli/jlpt/'
+                      : `/articoli/jlpt/${normalizeJlpt(frontmatter.jlpt)}/`
+                  }
+                >
+                  JLPT {frontmatter.jlpt}
+                </a>
+              ) : (
+                <span class="tag">JLPT {frontmatter.jlpt}</span>
+              )
+            )}
 
             {frontmatter.tags && frontmatter.tags.map((tag) => (
               <span class="tag">{tag}</span>

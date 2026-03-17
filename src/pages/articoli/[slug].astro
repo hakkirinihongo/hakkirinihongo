@@ -58,22 +58,21 @@ const categoryTitle = categoryLabels[category] ?? category;
 
   <article class="page-article prose prose-lg max-w-none">
     <h1 class="post-title">
-    {title}
-    {post.frontmatter.subtitle && (
-      <span class="post-subtitle">
-        {post.frontmatter.subtitle}
-      </span>
+      {title}
+      {post.frontmatter.subtitle && (
+        <span class="post-subtitle">
+          {post.frontmatter.subtitle}
+        </span>
+      )}
+    </h1>
+
+    {category && (
+      <p class="post-category">
+        Categoria: <a href={`/articoli/c/${category}/`}>{categoryTitle}</a>
+      </p>
     )}
-  </h1>
 
-  {category && (
-    <p class="post-category">
-      Categoria: <a href={`/articoli/c/${category}`}>{categoryTitle}</a>
-    </p>
-  )}
-
-  <Content />
-</article>
+    <Content />
+  </article>
 
 </BaseLayout>
-

@@ -36,7 +36,7 @@ const seriesList = [...new Set(
 >
   <div class="page-articles">
     <nav class="breadcrumbs">
-      <a href="/articoli">Articoli</a>
+      <a href="/articoli/">Articoli</a>
       <span>›</span>
       <span>Serie</span>
     </nav>
@@ -50,7 +50,7 @@ const seriesList = [...new Set(
       {seriesList.map((seriesName) => (
         <li class="post-item">
           <h3 class="post-title">
-            <a class="post-link" href={`/articoli/serie/${normalizeSeries(seriesName)}`}>
+            <a class="post-link" href={`/articoli/serie/${normalizeSeries(seriesName)}/`}>
               {seriesName}
             </a>
           </h3>

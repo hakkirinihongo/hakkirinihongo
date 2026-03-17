@@ -114,8 +114,8 @@ const filteredPosts = posts.filter((p) => p.frontmatter.category === cat);
     <h2>Articoli</h2>
 
     <nav class="category-nav">
-      <a href="/articoli">Tutti</a>
-      <a href={`/articoli/c/${cat}`} class="active">{categoryTitle}</a>
+      <a href="/articoli/">Tutti</a>
+      <a href={`/articoli/c/${cat}/`} class="active">{categoryTitle}</a>
     </nav>
 
     <p style="opacity:0.8;">Categoria: <strong>{categoryTitle}</strong></p>
@@ -138,14 +138,14 @@ const filteredPosts = posts.filter((p) => p.frontmatter.category === cat);
       {filteredPosts.map(({ slug, frontmatter }) => (
         <li class="post-item">
           <h3 class="post-title">
-            <a class="post-link" href={`/articoli/${slug}`}>
+            <a class="post-link" href={`/articoli/${slug}/`}>
               {frontmatter.title ?? slug}
             </a>
           </h3>
 
           {frontmatter.description && (
             <p class="post-description">
-              <a class="post-link" href={`/articoli/${slug}`}>
+              <a class="post-link" href={`/articoli/${slug}/`}>
                 {frontmatter.description}
               </a>
             </p>
@@ -161,7 +161,7 @@ const filteredPosts = posts.filter((p) => p.frontmatter.category === cat);
             {frontmatter.series && (
               <a
                 class="series"
-                href={`/articoli/serie/${normalizeSeries(frontmatter.series)}`}
+                href={`/articoli/serie/${normalizeSeries(frontmatter.series)}/`}
               >
                 {frontmatter.series}
               </a>
@@ -173,8 +173,8 @@ const filteredPosts = posts.filter((p) => p.frontmatter.category === cat);
                   class="tag"
                   href={
                     isAllLevelsJlpt(frontmatter.jlpt)
-                      ? "/articoli/jlpt"
-                      : `/articoli/jlpt/${normalizeJlpt(frontmatter.jlpt)}`
+                      ? "/articoli/jlpt/"
+                      : `/articoli/jlpt/${normalizeJlpt(frontmatter.jlpt)}/`
                   }
                 >
                   JLPT {frontmatter.jlpt}
@@ -193,5 +193,3 @@ const filteredPosts = posts.filter((p) => p.frontmatter.category === cat);
     </ul>
   </div>
 </BaseLayout>
-
-

@@ -51,13 +51,13 @@ const latestPosts = posts.slice(0, 5);
 
   <section class="hero">
 
-<h1 style="margin-bottom: 0.5rem; font-size: 2.4rem;">
-Hakkiri Nihongo
-</h1>
+    <h1 style="margin-bottom: 0.5rem; font-size: 2.4rem;">
+      Hakkiri Nihongo
+    </h1>
 
-<h2 style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.7rem; font-weight: 600;">
-Capire il giapponese oltre le regole
-</h2>
+    <h2 style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.7rem; font-weight: 600;">
+      Capire il giapponese oltre le regole
+    </h2>
 
     <p style="margin-top: 0; white-space: normal; overflow: visible; text-overflow: clip;">
       Benvenuti in Hakkiri Nihongo, il vostro punto di riferimento per lo studio della grammatica giapponese di livello avanzato.
@@ -67,7 +67,7 @@ Capire il giapponese oltre le regole
 
   <section class="categories">
     {categories.map((cat) => (
-      <a href={`/articoli/c/${cat.slug}`} class="category-card" id={cat.slug}>
+      <a href={`/articoli/c/${cat.slug}/`} class="category-card" id={cat.slug}>
         <h3>{cat.title}</h3>
         <p>{cat.description}</p>
       </a>
@@ -86,7 +86,7 @@ Capire il giapponese oltre le regole
   </section>
 
   <section class="cta" style="text-align:center; margin-top:2rem;">
-    <a href="/articoli" style="font-size:1rem; font-weight:600; color:var(--primary-color);">
+    <a href="/articoli/" style="font-size:1rem; font-weight:600; color:var(--primary-color);">
       Vai alla pagina Articoli&nbsp;→
     </a>
   </section>

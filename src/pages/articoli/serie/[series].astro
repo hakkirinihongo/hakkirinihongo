@@ -133,7 +133,7 @@ const visibleJlpt = Object.entries(
 
   <div class="page-articles">
     <nav class="breadcrumbs">
-      <a href="/articoli">Articoli</a>
+      <a href="/articoli/">Articoli</a>
       <span>›</span>
       <span>Serie</span>
       <span>›</span>
@@ -155,8 +155,8 @@ const visibleJlpt = Object.entries(
               class="tag"
               href={
                 isAllLevelsJlpt(jlpt)
-                  ? '/articoli/jlpt'
-                  : `/articoli/jlpt/${normalizeJlpt(jlpt)}`
+                  ? '/articoli/jlpt/'
+                  : `/articoli/jlpt/${normalizeJlpt(jlpt)}/`
               }
             >
               JLPT {jlpt} ({count})
@@ -172,14 +172,14 @@ const visibleJlpt = Object.entries(
       {filteredPosts.map(({ slug, frontmatter }) => (
         <li class="post-item">
           <h3 class="post-title">
-            <a class="post-link" href={`/articoli/${slug}`}>
+            <a class="post-link" href={`/articoli/${slug}/`}>
               {frontmatter.title ?? slug}
             </a>
           </h3>
 
           {frontmatter.description && (
             <p class="post-description">
-              <a class="post-link" href={`/articoli/${slug}`}>
+              <a class="post-link" href={`/articoli/${slug}/`}>
                 {frontmatter.description}
               </a>
             </p>
@@ -195,7 +195,7 @@ const visibleJlpt = Object.entries(
             {frontmatter.series && (
               <a
                 class="series"
-                href={`/articoli/serie/${normalizeSeries(frontmatter.series)}`}
+                href={`/articoli/serie/${normalizeSeries(frontmatter.series)}/`}
               >
                 {frontmatter.series}
               </a>
@@ -207,8 +207,8 @@ const visibleJlpt = Object.entries(
                   class="tag"
                   href={
                     isAllLevelsJlpt(frontmatter.jlpt)
-                      ? '/articoli/jlpt'
-                      : `/articoli/jlpt/${normalizeJlpt(frontmatter.jlpt)}`
+                      ? '/articoli/jlpt/'
+                      : `/articoli/jlpt/${normalizeJlpt(frontmatter.jlpt)}/`
                   }
                 >
                   JLPT {frontmatter.jlpt}
