@@ -750,3 +750,54 @@ article .jp-example .jp{
   line-height: 1.7;
   color: #555;
 }
+/* Tablet verticale */
+@media (max-width: 1024px) and (orientation: portrait) {
+  .hero,
+  .contatti-hero,
+  .page-hero {
+    padding: 3.5rem 1.5rem;
+  }
+
+  .hero h1,
+  .contatti-hero h1,
+  .page-hero h1 {
+    font-size: 2.4rem;
+    line-height: 1.15;
+  }
+
+  .hero h2,
+  .contatti-hero h2,
+  .page-hero h2 {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .hero p,
+  .contatti-hero p,
+  .page-hero p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .site-header .container,
+  header .container,
+  nav .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .site-header nav a,
+  header nav a {
+    font-size: 0.98rem;
+  }
+}
+@media (max-width: 1024px) and (orientation: portrait) {
+  .container,
+  .hero-content,
+  .contatti-container {
+    max-width: 90%;
+  }
+}
