@@ -750,3 +750,78 @@ article .jp-example .jp{
   line-height: 1.7;
   color: #555;
 }
+
+/* CONTENITORE */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 2rem 0; /* leggermente ridotto */
+  background: #fffdf9;
+}
+
+/* TABELLA */
+.hn-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 0.98rem; /* leggermente più compatto */
+  line-height: 1.5; /* più stretto ma leggibile */
+  background: #fffdf9;
+}
+
+/* CELLE */
+.hn-table th,
+.hn-table td {
+  padding: 0.55rem 0.9rem; /* molto più compatto */
+  border-bottom: 1px solid #ddd6cf;
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: break-word;
+}
+
+/* HEADER */
+.hn-table thead th {
+  font-weight: 600;
+  color: #1a1a1a;
+  border-bottom: 2px solid #7a6f67;
+  padding: 0.55rem 0.9rem;
+}
+
+/* ULTIMA RIGA */
+.hn-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* GERARCHIA TESTO */
+.hn-table strong {
+  font-weight: 600;
+}
+
+/* RESPIRO MINIMO TRA RIGHE */
+.hn-table tbody tr + tr td {
+  padding-top: 0.65rem; /* quasi impercettibile ma evita effetto blocco */
+}
+
+/* LARGHEZZE COLONNE */
+.hn-table th:nth-child(1),
+.hn-table td:nth-child(1) { width: 16%; }
+
+.hn-table th:nth-child(2),
+.hn-table td:nth-child(2) { width: 22%; }
+
+.hn-table th:nth-child(3),
+.hn-table td:nth-child(3) { width: 16%; }
+
+.hn-table th:nth-child(4),
+.hn-table td:nth-child(4) { width: 20%; }
+
+.hn-table th:nth-child(5),
+.hn-table td:nth-child(5) { width: 26%; }
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .hn-table {
+    min-width: 900px;
+    font-size: 0.93rem;
+  }
+}
