@@ -21,6 +21,7 @@ export const GET: APIRoute = async ({ site }) => {
   const staticUrls = [
     { loc: `${base}/`, lastmod: new Date().toISOString() },
     { loc: `${base}/articoli/`, lastmod: new Date().toISOString() },
+    { loc: `${base}/contatti/`, lastmod: new Date().toISOString() },
     { loc: `${base}/chi-siamo/`, lastmod: new Date().toISOString() },
     { loc: `${base}/chi-siamo-metodo/`, lastmod: new Date().toISOString() },
     { loc: `${base}/articoli/c/concetti-e-distinzioni/`, lastmod: new Date().toISOString() },
