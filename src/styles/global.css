@@ -825,3 +825,29 @@ article .jp-example .jp{
     font-size: 0.93rem;
   }
 }
+
+/* Variante per tabelle larghe / dense */
+.hn-table-wide {
+  table-layout: auto;
+}
+
+.hn-table-wide th,
+.hn-table-wide td {
+  min-width: 140px;
+}
+
+/* Annulla le larghezze fisse della tabella standard solo per questa variante */
+.hn-table-wide th:nth-child(1),
+.hn-table-wide td:nth-child(1),
+.hn-table-wide th:nth-child(2),
+.hn-table-wide td:nth-child(2),
+.hn-table-wide th:nth-child(3),
+.hn-table-wide td:nth-child(3),
+.hn-table-wide th:nth-child(4),
+.hn-table-wide td:nth-child(4),
+.hn-table-wide th:nth-child(5),
+.hn-table-wide td:nth-child(5),
+.hn-table-wide th:nth-child(6),
+.hn-table-wide td:nth-child(6) {
+  width: auto;
+}
