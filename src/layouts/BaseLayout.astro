@@ -123,5 +123,12 @@ const canonicalURL =
     © {new Date().getFullYear()} Hakkiri Nihongo. Tutti i diritti riservati.
   </p>
 </footer>
+<script>
+  if (window.location.search.includes('fbclid')) {
+    const url = new URL(window.location);
+    url.searchParams.delete('fbclid');
+    window.history.replaceState({}, document.title, url.pathname + url.search);
+  }
+</script>
   </body>
 </html>
