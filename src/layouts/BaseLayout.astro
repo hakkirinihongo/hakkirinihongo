@@ -1,6 +1,5 @@
 ---
 // Base layout component per Hakkiri Nihongo.
-// Fornisce header, footer, meta SEO e import dei CSS globali.
 import '../styles/global.css';
 
 export interface Props {
@@ -19,7 +18,6 @@ const {
   noindex = false
 } = Astro.props as Props;
 
-// Canonical coerente con trailing slash finale
 const canonicalURL =
   canonical ??
   new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site).href;
@@ -28,15 +26,16 @@ const canonicalURL =
 <!DOCTYPE html>
 <html lang="it">
   <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RRRLNXQQ8V"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RRRLNXQQ8V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-RRRLNXQQ8V');
+    </script>
 
-  gtag('config', 'G-RRRLNXQQ8V');
-</script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
@@ -46,7 +45,6 @@ const canonicalURL =
 
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Structured data -->
     <script
       type="application/ld+json"
       set:html={JSON.stringify({
@@ -62,23 +60,23 @@ const canonicalURL =
       })}
     ></script>
 
-    <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content="Hakkiri Nihongo" />
     <meta property="og:image" content={image} />
-    <meta property="og:image:alt" content="Hakkiri Nihongo | grammatica giapponese spiegata chiaramente" />
+    <meta
+      property="og:image:alt"
+      content="Hakkiri Nihongo | grammatica giapponese spiegata chiaramente"
+    />
     <meta property="og:locale" content="it_IT" />
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
 
-    <!-- Favicons -->
     <link rel="icon" href="/favicons/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
@@ -90,7 +88,7 @@ const canonicalURL =
   </head>
 
   <body>
-    <header class="site-header">
+    <header class="site-header" data-pagefind-ignore>
       <div class="header-inner">
         <div class="site-title">
           <a href="/" class="site-logo">
@@ -104,57 +102,384 @@ const canonicalURL =
           <a href="/articoli/">Articoli</a>
           <a href="/chi-siamo/">Chi siamo / Metodo</a>
           <a href="/contatti/">Contatti</a>
+
+          <button
+            id="search-open"
+            class="search-trigger"
+            type="button"
+            aria-label="Apri la ricerca"
+            aria-expanded="false"
+            aria-controls="search-overlay"
+          >
+            <svg class="search-trigger-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle>
+              <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
+            </svg>
+            <span>Cerca</span>
+          </button>
         </nav>
       </div>
     </header>
 
-    <main class="container">
+    <div id="search-overlay" class="search-overlay" hidden data-pagefind-ignore>
+      <div id="search-backdrop" class="search-backdrop"></div>
+
+      <div
+        class="search-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="search-modal-title"
+      >
+        <div class="search-modal-header">
+          <h2 id="search-modal-title">Cerca nel sito</h2>
+
+          <button
+            id="search-close"
+            class="search-close"
+            type="button"
+            aria-label="Chiudi la ricerca"
+          >
+            ×
+          </button>
+        </div>
+
+        <div class="search-modal-body">
+          <input
+            id="search-input"
+            class="search-input"
+            type="search"
+            placeholder="Cerca una parola, una forma grammaticale..."
+            autocomplete="off"
+          />
+
+          <div id="search-results" class="search-results"></div>
+        </div>
+      </div>
+    </div>
+
+    <main class="container" data-pagefind-body>
       <slot />
     </main>
 
-    <footer class="site-footer">
-  <p><strong>Hakkiri Nihongo – Il giapponese chiaramente</strong></p>
+    <footer class="site-footer" data-pagefind-ignore>
+      <p><strong>Hakkiri Nihongo – Il giapponese chiaramente</strong></p>
 
-  <p>
-    Sito dedicato allo studio della grammatica giapponese:
-    concetti, distinzioni, grammatica di nicchia e dissezionamenti grammaticali spiegati chiaramente.
-  </p>
+      <p>
+        Sito dedicato allo studio della grammatica giapponese:
+        concetti, distinzioni, grammatica di nicchia e dissezionamenti grammaticali spiegati chiaramente.
+      </p>
 
-  <!-- NUOVA RIGA -->
-  <p>
-    Segui Hakkiri Nihongo anche su
-    <a href="https://www.facebook.com/hakkirinihongo" target="_blank" rel="noopener noreferrer">
-      Facebook
-    </a>
-  </p>
+      <p>
+        Segui Hakkiri Nihongo anche su
+        <a
+          href="https://www.facebook.com/hakkirinihongo"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Facebook
+        </a>
+      </p>
 
-  <p>
-    © {new Date().getFullYear()} Hakkiri Nihongo. Tutti i diritti riservati.
-  </p>
-</footer>
-<script>
-  const paramsToRemove = [
-    'fbclid',
-    'utm_source',
-    'utm_medium',
-    'utm_campaign',
-    'utm_term',
-    'utm_content'
-  ];
+      <p>
+        © {new Date().getFullYear()} Hakkiri Nihongo. Tutti i diritti riservati.
+      </p>
+    </footer>
 
-  const url = new URL(window.location);
-  let modified = false;
+    <script is:inline>
+      const paramsToRemove = [
+        'fbclid',
+        'utm_source',
+        'utm_medium',
+        'utm_campaign',
+        'utm_term',
+        'utm_content'
+      ];
 
-  paramsToRemove.forEach(param => {
-    if (url.searchParams.has(param)) {
-      url.searchParams.delete(param);
-      modified = true;
-    }
-  });
+      const cleanUrl = new URL(window.location.href);
+      let modified = false;
 
-  if (modified) {
-    window.history.replaceState({}, document.title, url.pathname + url.search);
-  }
-</script>
+      paramsToRemove.forEach((param) => {
+        if (cleanUrl.searchParams.has(param)) {
+          cleanUrl.searchParams.delete(param);
+          modified = true;
+        }
+      });
+
+      if (modified) {
+        window.history.replaceState(
+          {},
+          document.title,
+          cleanUrl.pathname + cleanUrl.search + cleanUrl.hash
+        );
+      }
+
+      const searchOverlay = document.getElementById('search-overlay');
+      const searchOpen = document.getElementById('search-open');
+      const searchClose = document.getElementById('search-close');
+      const searchBackdrop = document.getElementById('search-backdrop');
+      const searchInput = document.getElementById('search-input');
+      const searchResults = document.getElementById('search-results');
+
+      let pagefindInstance = null;
+
+      function openSearch() {
+        if (!searchOverlay || !searchOpen || !searchInput) return;
+        searchOverlay.hidden = false;
+        document.body.classList.add('search-open');
+        searchOpen.setAttribute('aria-expanded', 'true');
+        setTimeout(() => searchInput.focus(), 20);
+      }
+
+      function closeSearch() {
+        if (!searchOverlay || !searchOpen || !searchResults || !searchInput) return;
+        searchOverlay.hidden = true;
+        document.body.classList.remove('search-open');
+        searchOpen.setAttribute('aria-expanded', 'false');
+        searchInput.value = '';
+        searchResults.innerHTML = '';
+      }
+
+      async function loadPagefind() {
+        if (!pagefindInstance) {
+          pagefindInstance = await import('/pagefind/pagefind.js');
+        }
+        return pagefindInstance;
+      }
+
+      if (searchOpen) {
+        searchOpen.addEventListener('click', openSearch);
+      }
+
+      if (searchClose) {
+        searchClose.addEventListener('click', closeSearch);
+      }
+
+      if (searchBackdrop) {
+        searchBackdrop.addEventListener('click', closeSearch);
+      }
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && searchOverlay && !searchOverlay.hidden) {
+          closeSearch();
+        }
+      });
+
+      if (searchInput && searchResults) {
+        searchInput.addEventListener('input', async () => {
+          const query = searchInput.value.trim();
+
+          if (!query) {
+            searchResults.innerHTML = '';
+            return;
+          }
+
+          const pagefind = await loadPagefind();
+          const search = await pagefind.search(query);
+          const data = await Promise.all(search.results.map((r) => r.data()));
+
+          if (!data.length) {
+            searchResults.innerHTML = `
+              <p class="search-empty">Nessun risultato trovato.</p>
+            `;
+            return;
+          }
+
+          searchResults.innerHTML = data
+            .map(
+              (r) => `
+                <article class="search-result-item">
+                  <a href="${r.url}" class="search-result-title">${r.meta.title ?? r.url}</a>
+                  <p class="search-result-excerpt">${r.excerpt ?? ''}</p>
+                </article>
+              `
+            )
+            .join('');
+        });
+
+        searchResults.addEventListener('click', (event) => {
+          const target = event.target;
+          if (target instanceof HTMLElement && target.closest('a')) {
+            closeSearch();
+          }
+        });
+      }
+    </script>
+
+    <style>
+      .search-trigger {
+        background: none;
+        border: none;
+        color: white;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.42rem;
+        cursor: pointer;
+        font: inherit;
+        padding: 0;
+        margin-left: 0.5rem;
+        opacity: 0.96;
+        transition:
+          opacity 0.2s ease,
+          transform 0.15s ease;
+      }
+
+      .search-trigger:hover {
+        opacity: 1;
+        transform: translateY(-1px);
+      }
+
+      .search-trigger:focus-visible,
+      .search-close:focus-visible,
+      .search-input:focus-visible {
+        outline: 2px solid rgba(192, 57, 43, 0.45);
+        outline-offset: 2px;
+      }
+
+      .search-trigger-icon {
+        width: 18px;
+        height: 18px;
+        display: block;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2.2;
+      }
+
+      .search-overlay[hidden] {
+        display: none;
+      }
+
+      .search-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+      }
+
+      .search-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(15, 18, 26, 0.42);
+        backdrop-filter: blur(2px);
+      }
+
+      .search-modal {
+        position: relative;
+        z-index: 1;
+        width: min(900px, calc(100vw - 2rem));
+        margin: 7rem auto 0;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+        overflow: hidden;
+      }
+
+      .search-modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.1rem 1.25rem;
+        border-bottom: 1px solid #ece7e4;
+        background: #fcfbfa;
+      }
+
+      .search-modal-header h2 {
+        margin: 0;
+        font-size: 1.25rem;
+        color: #1f2a44;
+      }
+
+      .search-close {
+        background: none;
+        border: none;
+        color: #4a5568;
+        font-size: 1.8rem;
+        line-height: 1;
+        cursor: pointer;
+        padding: 0.1rem 0.35rem;
+      }
+
+      .search-modal-body {
+        padding: 1.15rem 1.25rem 1.35rem;
+      }
+
+      .search-input {
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid #d8d5d2;
+        border-radius: 10px;
+        padding: 0.95rem 1rem;
+        font-size: 1rem;
+        color: #1f2a44;
+        transition:
+          border-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .search-input:focus {
+        border-color: #c0392b;
+        box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.12);
+      }
+
+      .search-results {
+        margin-top: 1rem;
+        max-height: min(60vh, 520px);
+        overflow: auto;
+        padding-right: 0.25rem;
+      }
+
+      .search-result-item {
+        padding: 0.95rem 0;
+        border-bottom: 1px solid #efebe8;
+      }
+
+      .search-result-item:last-child {
+        border-bottom: none;
+      }
+
+      .search-result-title {
+        color: #c0392b;
+        font-weight: 700;
+        text-decoration: none;
+        font-size: 1.04rem;
+      }
+
+      .search-result-title:hover {
+        text-decoration: underline;
+      }
+
+      .search-result-excerpt {
+        margin: 0.45rem 0 0;
+        color: #4a5568;
+        line-height: 1.55;
+        font-size: 0.96rem;
+      }
+
+      .search-empty {
+        margin: 0.5rem 0 0;
+        color: #6b7280;
+        font-style: italic;
+      }
+
+      body.search-open {
+        overflow: hidden;
+      }
+
+      @media (max-width: 720px) {
+        .search-modal {
+          width: calc(100vw - 1rem);
+          margin-top: 5.5rem;
+          border-radius: 14px;
+        }
+
+        .search-modal-header,
+        .search-modal-body {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+
+        .search-trigger span {
+          display: none;
+        }
+      }
+    </style>
   </body>
 </html>

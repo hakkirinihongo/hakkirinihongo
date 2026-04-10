@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Cerca nel sito">
+  <main class="search-page">
+    <h1>Cerca nel sito</h1>
+
+    <div class="search-box">
+      <input
+        id="search-input"
+        type="search"
+        placeholder="Cerca una parola, una forma grammaticale..."
+      />
+    </div>
+
+    <div id="results" class="results"></div>
+  </main>
+
+  <script is:inline>
+    window.addEventListener("DOMContentLoaded", async () => {
+      const pagefind = await import("/pagefind/pagefind.js");
+
+      const input = document.getElementById("search-input");
+      const results = document.getElementById("results");
+
+      if (!input || !results) return;
+
+      input.addEventListener("input", async () => {
+        const query = input.value.trim();
+
+        if (!query) {
+          results.innerHTML = "";
+          return;
+        }
+
+        const search = await pagefind.search(query);
+        const data = await Promise.all(search.results.map((r) => r.data()));
+
+        results.innerHTML = data
+          .map(
+            (r) => `
+              <article class="result">
+                <a href="${r.url}" class="result-title">${r.meta.title ?? r.url}</a>
+                <p class="result-excerpt">${r.excerpt ?? ""}</p>
+              </article>
+            `
+          )
+          .join("");
+
+        if (!data.length) {
+          results.innerHTML = `<p class="no-results">Nessun risultato trovato.</p>`;
+        }
+      });
+    });
+  </script>
+
+  <style>
+    .search-page {
+      max-width: 860px;
+      margin: 3rem auto;
+      padding: 1rem;
+    }
+
+    .search-page h1 {
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      color: #1a202c;
+    }
+
+    .search-box {
+      margin-bottom: 2rem;
+    }
+
+    #search-input {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      outline: none;
+      transition: border 0.2s ease, box-shadow 0.2s ease;
+      box-sizing: border-box;
+    }
+
+    #search-input:focus {
+      border-color: #c0392b;
+      box-shadow: 0 0 0 2px rgba(192, 57, 43, 0.15);
+    }
+
+    .results {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .result {
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .result-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #c0392b;
+      text-decoration: none;
+    }
+
+    .result-title:hover {
+      text-decoration: underline;
+    }
+
+    .result-excerpt {
+      margin-top: 0.4rem;
+      color: #555;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .no-results {
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</BaseLayout>
