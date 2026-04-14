@@ -3,3 +3,4 @@ dist
 .DS_Store
 .env
 .astro.DS_Store
+.astro/
