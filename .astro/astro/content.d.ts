@@ -264,9 +264,9 @@ declare module 'astro:content' {
   collection: "articoli";
   data: any
 } & { render(): Render[".mdx"] };
-"particella-ka-significato-indeterminazione-giapponese.mdx": {
-	id: "particella-ka-significato-indeterminazione-giapponese.mdx";
-  slug: "particella-ka-significato-indeterminazione-giapponese";
+"qualcosa-qualcuno-giapponese-nanika-dareka-dokoka.mdx": {
+	id: "qualcosa-qualcuno-giapponese-nanika-dareka-dokoka.mdx";
+  slug: "qualcosa-qualcuno-giapponese-nanika-dareka-dokoka";
   body: string;
   collection: "articoli";
   data: any
