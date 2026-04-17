@@ -299,6 +299,13 @@ declare module 'astro:content' {
   collection: "articoli";
   data: any
 } & { render(): Render[".mdx"] };
+"totemo-kanari-zuibun-differenza-avverbi-intensita-giapponese.mdx": {
+	id: "totemo-kanari-zuibun-differenza-avverbi-intensita-giapponese.mdx";
+  slug: "totemo-kanari-zuibun-differenza-avverbi-intensita-giapponese";
+  body: string;
+  collection: "articoli";
+  data: any
+} & { render(): Render[".mdx"] };
 "wa-betsu-to-shite-dissezione-grammaticale.mdx": {
 	id: "wa-betsu-to-shite-dissezione-grammaticale.mdx";
   slug: "wa-betsu-to-shite-dissezione-grammaticale";
