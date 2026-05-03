@@ -1,31 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Define the categories displayed on the home page.
 const categories = [
   {
     slug: 'concetti-e-distinzioni',
-    title: 'Concetti e Distinzioni',
-    description: 'Distinguere significa capire.'
+    title: 'Concetti\ne Distinzioni',
+    description: 'Distinguere per comprendere.'
   },
   {
     slug: 'dissezionamenti-grammaticali',
-    title: 'Dissezionamenti grammaticali',
-    description: 'La grammatica non è una regola.'
+    title: 'Dissezionamenti\nGrammaticali',
+    description: 'Approfondimenti sulle regole del giapponese.'
   },
   {
     slug: 'giapponese-di-nicchia',
-    title: 'Giapponese di nicchia',
+    title: 'Giapponese\ndi Nicchia',
     description: 'Quello che di solito non viene spiegato.'
   },
   {
     slug: 'storia-della-grammatica',
-    title: 'Storia della grammatica',
-    description: 'Tornare alle origini per capire.'
+    title: 'Storia della\nGrammatica',
+    description: 'Le origini della lingua.'
   }
 ];
 
-// Recuperiamo automaticamente tutti gli articoli
 const postModules = import.meta.glob('../content/articoli/**/*.mdx', { eager: true });
 
 const posts = Object.entries(postModules).map(([path, mod]) => {
@@ -37,58 +35,74 @@ const posts = Object.entries(postModules).map(([path, mod]) => {
     slug,
     title: frontmatter.title ?? slug,
     date: frontmatter.date ?? '',
+    image: frontmatter.image ?? '/images/article-placeholder.jpg',
   };
 });
 
-// Ordiniamo per data
 posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-// Prendiamo gli ultimi 5
-const latestPosts = posts.slice(0, 5);
+const latestPosts = posts.slice(0, 3);
+
+const formatDate = (date) => {
+  if (!date) return '';
+  return new Date(date).toLocaleDateString('it-IT', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+};
 ---
 
 <BaseLayout title="Hakkiri Nihongo | grammatica giapponese avanzata spiegata chiaramente">
 
- <section class="hero">
-
-    <h1 style="margin-bottom: 0.5rem; font-size: 2.4rem;">
-      Hakkiri Nihongo
-    </h1>
-
-    <h2 style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.7rem; font-weight: 600;">
-      Capire il giapponese oltre le regole
-    </h2>
-
-    <p style="margin-top: 0; white-space: normal; overflow: visible; text-overflow: clip;">
-      Benvenuti in Hakkiri Nihongo, il vostro punto di riferimento per lo studio della grammatica giapponese di livello avanzato.
-      Sfoglia le nostre sezioni per scoprire concetti, distinzioni e approfondimenti grammaticali.
-    </p>
+  <section class="hn-home-hero">
+    <div class="hn-home-hero__overlay">
+      <div class="hn-home-hero__content">
+        <h1>Hakkiri Nihongo</h1>
+        <p class="hn-home-hero__subtitle">Capire il giapponese oltre le regole</p>
+        <p class="hn-home-hero__text">
+          Il vostro punto di riferimento per la grammatica giapponese avanzata.
+        </p>
+        <a href="/articoli/" class="hn-home-hero__button">
+          Sfoglia gli articoli
+        </a>
+      </div>
+    </div>
   </section>
 
-  <section class="categories">
-    {categories.map((cat) => (
-      <a href={`/articoli/c/${cat.slug}/`} class="category-card" id={cat.slug}>
-        <h3>{cat.title}</h3>
-        <p>{cat.description}</p>
-      </a>
-    ))}
-  </section>
+  <main class="hn-home-main">
 
-  <section class="home-latest">
-    <h2>Ultimi articoli</h2>
-    <ul>
-      {latestPosts.map((post) => (
-        <li>
-          <a href={`/articoli/${post.slug}/`}>{post.title}</a>
-        </li>
+    <section class="hn-home-categories">
+      {categories.map((cat, index) => (
+        <a href={`/articoli/c/${cat.slug}/`} class={`hn-home-category-card cat-${index}`}>
+          <h2>{cat.title}</h2>
+          <p>{cat.description}</p>
+        </a>
       ))}
-    </ul>
-  </section>
+    </section>
 
-  <section class="cta" style="text-align:center; margin-top:2rem;">
-    <a href="/articoli/" style="font-size:1rem; font-weight:600; color:var(--primary-color);">
-      Vai alla pagina Articoli&nbsp;→
-    </a>
-  </section>
+    <section class="hn-home-latest">
+      <h2>Ultimi Articoli</h2>
+
+      <div class="hn-home-latest-grid">
+        {latestPosts.map((post) => (
+          <article class="hn-home-post-card">
+            <a href={`/articoli/${post.slug}/`}>
+              <img src={post.image} alt="" loading="lazy" />
+              <div class="hn-home-post-card__body">
+                <h3>{post.title}</h3>
+                {post.date && <p>{formatDate(post.date)}</p>}
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <div class="hn-home-all-link">
+        <a href="/articoli/">Leggi tutti gli articoli&nbsp;›</a>
+      </div>
+    </section>
+
+  </main>
 
 </BaseLayout>
