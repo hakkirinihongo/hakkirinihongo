@@ -26,8 +26,13 @@ const canonicalURL =
 <!DOCTYPE html>
 <html lang="it">
   <head>
-    
-<link rel="preconnect" href="https://fonts.googleapis.com" />
+    <style>
+      html {
+        visibility: hidden;
+      }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,500;1,600&family=Playfair+Display:wght@400;500;600&display=swap"
@@ -96,7 +101,11 @@ const canonicalURL =
   </head>
 
   <body>
-      <header class="site-header" data-pagefind-ignore>
+    <script>
+      document.documentElement.style.visibility = 'visible';
+    </script>
+
+    <header class="site-header" data-pagefind-ignore>
       <div class="header-inner">
         <div class="site-title">
           <a href="/" class="site-logo">
