@@ -1,5 +1,3 @@
-
-
 /* ==================================================
    TOKENS
    ================================================== */
@@ -60,21 +58,19 @@ a:hover {
   position: sticky;
   top: 0;
   z-index: 1000;
-
-  background-color: #fbf8f4;
   padding: 18px 0;
   color: #2f3440;
+  background-color: #fbf8f4;
   border-bottom: 1px solid rgba(90, 70, 55, 0.12);
-
   font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
 }
 
 .site-header .container,
 .site-header .header-inner {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 24px;
-  width: 100%;
 
   display: flex;
   align-items: center;
@@ -142,11 +138,9 @@ a:hover {
   position: absolute;
   left: 0;
   bottom: -6px;
-
   width: 0%;
   height: 2px;
   background-color: #b7352d;
-
   transition: width 0.25s ease;
 }
 
@@ -182,7 +176,7 @@ a:hover {
   content: "";
   position: absolute;
   inset: -80px 0 0 0;
-  background: url('/images/home-bottom.jpg') center top / cover no-repeat;
+  background: url("/images/home-bottom.jpg") center top / cover no-repeat;
   opacity: 0.42;
   z-index: -2;
 }
@@ -201,46 +195,48 @@ a:hover {
 .hn-home-hero {
   position: relative;
   width: 100vw;
-  margin-left: calc(50% - 50vw);
-  height: 540px;
   max-width: none;
-
-  background: url('/images/home-hero-fuji.jpg') center center / cover no-repeat;
+  height: 540px;
+  margin-left: calc(50% - 50vw);
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  background: url("/images/home-hero-fuji.jpg") center center / cover no-repeat;
 }
 
 .hn-home-hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(
-      rgba(255, 250, 246, 0.38),
-      rgba(255, 250, 246, 0.48)
-    );
+  background: linear-gradient(
+    rgba(255, 250, 246, 0.38),
+    rgba(255, 250, 246, 0.48)
+  );
 }
 
 .hn-home-hero__overlay {
   position: relative;
-  text-align: center;
   max-width: 900px;
   padding: 2rem 2.4rem;
+  text-align: center;
 }
 
 .hn-home-hero h1 {
+  margin: 0 0 1.35rem;
+
   font-family: "Cormorant Garamond", Georgia, serif !important;
   font-size: clamp(3.2rem, 5.8vw, 5.7rem);
   font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 0.95;
   color: #7a2e2a;
-  margin: 0 0 1.35rem;
 }
 
 .hn-home-hero__subtitle {
+  margin: 0 0 1.15rem;
+
   font-family: "Cormorant Garamond", Georgia, serif !important;
   font-style: italic;
   font-size: clamp(1.55rem, 2.7vw, 2.55rem);
@@ -248,15 +244,16 @@ a:hover {
   letter-spacing: -0.01em;
   line-height: 1.15;
   color: #2f3540;
-  margin: 0 0 1.15rem;
 }
 
 .hn-home-hero__text {
-  border-top: 1px solid rgba(80, 60, 45, 0.26);
-  padding-top: 1.1rem;
   margin-top: 0.4rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(80, 60, 45, 0.26);
+
   color: rgba(31, 35, 43, 0.92);
   opacity: 1;
+
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: clamp(1.05rem, 1.6vw, 1.28rem);
   font-weight: 500;
@@ -297,6 +294,7 @@ a:hover {
   transform: translateY(-2px);
   box-shadow: 0 14px 28px rgba(120, 40, 30, 0.22);
 }
+
 /* ==================================================
    HOME MAIN / CATEGORIE
    ================================================== */
@@ -345,7 +343,6 @@ a:hover {
   content: "";
   position: absolute;
   inset: 0;
-
   background-size: cover;
   background-position: center;
   z-index: 0;
@@ -355,7 +352,6 @@ a:hover {
   content: "";
   position: absolute;
   inset: 0;
-
   background: rgba(250, 246, 241, 0.42);
   z-index: 1;
 }
@@ -371,54 +367,52 @@ a:hover {
 }
 
 .hn-home-category-card h2 {
+  margin-top: 0;
+  margin-bottom: 0.9rem;
+
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 1.45rem;
   font-weight: 600;
   line-height: 1.15;
   letter-spacing: -0.015em;
   color: #2c3340;
-
-  margin-top: 0;
-  margin-bottom: 0.9rem;
 }
 
 .hn-home-category-card h2::after {
   content: "";
   display: block;
-
   width: 36px;
   height: 3px;
-
-  background: #c0392b;
   margin-top: 0.5rem;
   border-radius: 2px;
+  background: #c0392b;
 }
 
 .hn-home-category-card p {
+  max-width: 85%;
+  margin-top: 0;
+
   font-family: Georgia, "Times New Roman", serif;
   font-size: 0.95rem;
   line-height: 1.45;
   letter-spacing: 0.01em;
   color: #4a525f;
-
-  max-width: 85%;
-  margin-top: 0;
 }
 
 .cat-0::before {
-  background-image: url('/images/cat-sakura.jpg');
+  background-image: url("/images/cat-sakura.jpg");
 }
 
 .cat-1::before {
-  background-image: url('/images/cat-paper.jpg');
+  background-image: url("/images/cat-paper.jpg");
 }
 
 .cat-2::before {
-  background-image: url('/images/cat-mountain.jpg');
+  background-image: url("/images/cat-mountain.jpg");
 }
 
 .cat-3::before {
-  background-image: url('/images/cat-history.jpg');
+  background-image: url("/images/cat-history.jpg");
 }
 
 /* ==================================================
@@ -434,23 +428,21 @@ a:hover {
   position: relative;
   display: inline-block;
 
+  margin-bottom: 0.4rem;
+
   font-family: Georgia, "Times New Roman", serif;
   font-size: 2.4rem;
   color: #1f2530 !important;
-  margin-bottom: 0.4rem;
 }
 
 .hn-home-latest h2::after {
   content: "";
   display: block;
-
   width: 44px;
   height: 4px;
-
-  background: #b7352d;
   margin-top: 0.25rem;
   border-radius: 2px;
-
+  background: #b7352d;
   transition: width 0.25s ease;
 }
 
@@ -467,12 +459,9 @@ a:hover {
 
 .hn-home-post-card {
   overflow: hidden;
-
-  background: rgba(255, 252, 246, 0.88);
   border-radius: 10px;
-
+  background: rgba(255, 252, 246, 0.88);
   box-shadow: 0 10px 25px rgba(70, 55, 40, 0.06);
-
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
@@ -483,16 +472,25 @@ a:hover {
   box-shadow: 0 18px 35px rgba(70, 55, 40, 0.1);
 }
 
+.hn-home-post-card a {
+  display: block;
+  height: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: inherit;
+  text-decoration: none !important;
+  background: #ffffff;
+  border-radius: 10px;
+}
+
 .hn-home-post-card img {
   display: block;
   width: 100%;
   height: 200px;
+  margin: 0 !important;
+  padding: 0 !important;
   object-fit: cover;
-
-  margin: 0;
-  padding: 0;
-  border-radius: 0;
-
+  border-radius: 10px 10px 0 0;
   filter: brightness(1.05) contrast(1.05) saturate(1.1);
 }
 
@@ -501,10 +499,11 @@ a:hover {
 }
 
 .hn-home-post-card h3 {
+  margin-bottom: 0.4rem;
+
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 1.3rem;
   line-height: 1.2;
-  margin-bottom: 0.4rem;
 
   color: #1f2530 !important;
   text-decoration: none !important;
@@ -520,11 +519,6 @@ a:hover {
   font-size: 0.85rem;
   color: #777;
   text-decoration: none !important;
-}
-
-.hn-home-post-card a {
-  text-decoration: none !important;
-  color: inherit;
 }
 
 .hn-home-all-link {
@@ -550,48 +544,12 @@ a:hover {
       rgba(251, 248, 241, 0.18) 38%,
       rgba(251, 248, 241, 0) 65%
     ),
-    url('/images/home-bottom.jpg') center bottom / cover no-repeat;
+    url("/images/home-bottom.jpg") center bottom / cover no-repeat;
 
   pointer-events: none;
   z-index: -1;
 }
-.hn-home-post-card > a {
-  display: block;
-  padding: 0 !important;
-  margin: 0 !important;
-  text-decoration: none !important;
-  color: inherit;
-}
 
-.hn-home-post-card > a > img {
-  display: block;
-  width: 100%;
-  height: 200px;
-  margin: 0 !important;
-  padding: 0 !important;
-  border-radius: 0;
-  object-fit: cover;
-}
-.hn-home-post-card a {
-  display: block;
-  height: 100%;
-  padding: 0 !important;
-  margin: 0 !important;
-  text-decoration: none !important;
-  color: inherit;
-  background: #ffffff;
-  border-radius: 10px;
-}
-
-.hn-home-post-card img {
-  display: block;
-  width: 100%;
-  height: 200px;
-  margin: 0 !important;
-  padding: 0 !important;
-  object-fit: cover;
-  border-radius: 10px 10px 0 0;
-}
 /* ==================================================
    PAGINA ARTICOLI / ARCHIVIO
    ================================================== */
@@ -601,11 +559,24 @@ a:hover {
     "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
 }
 
-.category-nav {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 1.5rem;
-  gap: 0.5rem;
+.page-articles-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.page-articles-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background-image: url("/images/home-bottom.jpg");
+  background-size: 1850px auto;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 0.10;
+  pointer-events: none;
+  z-index: -1;
 }
 
 .category-nav {
@@ -668,16 +639,19 @@ a:hover {
 .post-item {
   padding: 1.4rem 0 1.6rem;
   border-bottom: 1px solid rgba(120, 90, 70, 0.12);
+  transition: transform 0.25s ease;
 }
 
 .post-item:last-child {
   border-bottom: none;
 }
 
-/* ===== TITOLI ===== */
-.post-item h3 {
-  display: inline-block; /* 🔥 CHIAVE */
+.post-item:hover {
+  transform: translateX(2px);
+}
 
+.post-item h3 {
+  display: inline-block;
   margin: 0 0 0.4rem 0 !important;
 
   font-family: "Cormorant Garamond", Georgia, serif;
@@ -686,34 +660,29 @@ a:hover {
   line-height: 1.25;
 
   color: #7a2e2a;
-
   transition: color 0.3s ease;
 }
 
-/* linea */
 .post-item h3::after {
   content: "";
   display: block;
 
   width: 0%;
   height: 2px;
-
-  background: #b7352d;
   margin-top: 0.45rem;
 
-  transition: width 3s ease; /* 🔥 PIÙ LENTA */
+  background: #b7352d;
+  transition: width 3s ease;
 }
 
-/* hover */
 .post-item:hover h3 {
   color: #8f2d27;
 }
 
 .post-item:hover h3::after {
-  width: 100%; /* ora è perfetto */
+  width: 100%;
 }
 
-/* ===== LINK ===== */
 .post-item a,
 .post-item a:hover,
 .post-item a:visited {
@@ -721,8 +690,8 @@ a:hover {
   text-decoration: none !important;
 }
 
-/* ===== DESCRIZIONE ===== */
 .post-item p {
+  max-width: 85%;
   margin: 0.25rem 0 0.7rem;
 
   font-family: Georgia, "Times New Roman", serif;
@@ -731,18 +700,6 @@ a:hover {
 
   color: #4a525f;
   opacity: 0.95;
-
-  max-width: 85%;
-}
-/* leggero effetto hover blocco */
-.post-item:hover {
-  transform: translateX(2px);
-}
-.post-item a,
-.post-item a:hover,
-.post-item a:visited {
-  color: inherit !important;
-  text-decoration: none !important;
 }
 
 .post-meta {
@@ -810,7 +767,7 @@ a:hover {
   position: fixed;
   inset: 0;
 
-  background: url('/images/cat-sakura.jpg') center / cover no-repeat;
+  background: url("/images/cat-sakura.jpg") center / cover no-repeat;
   opacity: 0.20;
 
   pointer-events: none;
@@ -841,7 +798,6 @@ a:hover {
   color: var(--hn-accent);
 }
 
-/* Titolo articolo */
 .page-article h1,
 .page-article .post-title {
   display: flex;
@@ -868,23 +824,21 @@ a:hover {
   opacity: 1;
 }
 
-/* Categoria */
 .post-category {
   font-size: 0.95rem;
   color: #666;
   margin-bottom: 2rem;
 }
 
-/* Intro manuale */
 .article-intro {
+  margin-top: 0.8rem;
+  margin-bottom: 2rem;
+
   font-size: 1.2rem;
   line-height: 1.75;
   color: #2c3340;
-  margin-top: 0.8rem;
-  margin-bottom: 2rem;
 }
 
-/* H2 / H3 */
 .page-article h2 {
   margin: 2.2rem 0 1.2rem;
 
@@ -908,7 +862,6 @@ a:hover {
   color: #3a4350;
 }
 
-/* Liste */
 .page-article ul,
 .page-article ol {
   margin: 0.2rem 0 1.4rem 1.25rem;
@@ -936,7 +889,6 @@ a:hover {
   color: #555;
 }
 
-/* Linee */
 .page-article hr {
   border: none;
   height: 1px;
@@ -948,7 +900,6 @@ a:hover {
   margin-top: 2.2rem;
 }
 
-/* Code */
 .page-article pre {
   background: var(--hn-soft);
   border: 1px solid var(--hn-line);
@@ -964,7 +915,6 @@ a:hover {
   font-size: 0.98em;
 }
 
-/* Citazioni */
 .page-article blockquote {
   margin: 1.7rem 0;
   padding: 0.9rem 1rem;
@@ -973,7 +923,6 @@ a:hover {
   color: var(--hn-muted);
 }
 
-/* Esempi giapponesi */
 .jp {
   font-style: normal;
   opacity: 1;
@@ -1189,19 +1138,29 @@ a:hover {
 }
 
 .hn-table th:nth-child(1),
-.hn-table td:nth-child(1) { width: 16%; }
+.hn-table td:nth-child(1) {
+  width: 16%;
+}
 
 .hn-table th:nth-child(2),
-.hn-table td:nth-child(2) { width: 22%; }
+.hn-table td:nth-child(2) {
+  width: 22%;
+}
 
 .hn-table th:nth-child(3),
-.hn-table td:nth-child(3) { width: 16%; }
+.hn-table td:nth-child(3) {
+  width: 16%;
+}
 
 .hn-table th:nth-child(4),
-.hn-table td:nth-child(4) { width: 20%; }
+.hn-table td:nth-child(4) {
+  width: 20%;
+}
 
 .hn-table th:nth-child(5),
-.hn-table td:nth-child(5) { width: 26%; }
+.hn-table td:nth-child(5) {
+  width: 26%;
+}
 
 .hn-table-wide {
   table-layout: auto;
@@ -1209,12 +1168,8 @@ a:hover {
 
 .hn-table-wide th,
 .hn-table-wide td {
-  min-width: 140px;
-}
-
-.hn-table-wide th,
-.hn-table-wide td {
   width: auto !important;
+  min-width: 140px;
 }
 
 /* ==================================================
@@ -1275,41 +1230,3 @@ a:hover {
     font-size: 1.35rem;
   }
 }
-
-/* ==================================================
-   TITOLI SEZIONI - FORZATI
-   ================================================== */
-
-h2,
-h3,
-.article h2,
-.article h3,
-.hn-article h2,
-.hn-article h3 {
-  color: #7a2e2a !important;
-}
-
-.page-articles-bg{
-  position: relative;
-  overflow: hidden;
-}
-
-.page-articles-bg::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-
-  background-image: url("/images/home-bottom.jpg");
-  background-size: 1850px auto;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  opacity: 0.10;
-
-  pointer-events: none;
-  z-index: -1;
-}
-
-
-
-
