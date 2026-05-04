@@ -26,12 +26,19 @@ const canonicalURL =
 <!DOCTYPE html>
 <html lang="it">
   <head>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap"
-  rel="stylesheet"
-/>
+    <style>
+      html {
+        visibility: hidden;
+      }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RRRLNXQQ8V"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -93,7 +100,11 @@ const canonicalURL =
     <meta name="msapplication-TileColor" content="#ffffff" />
   </head>
 
-<body>
+  <body>
+    <script>
+      document.documentElement.style.visibility = 'visible';
+    </script>
+
     <header class="site-header" data-pagefind-ignore>
       <div class="header-inner">
         <div class="site-title">
