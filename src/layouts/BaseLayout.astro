@@ -27,85 +27,10 @@ const canonicalURL =
 <html lang="it">
   <head>
     <style>
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    background: #fbf8f1;
-    color: #2d3748;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    line-height: 1.6;
-  }
-
-  .container {
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: #fbf8f4;
-    padding: 18px 0;
-    color: #2f3440;
-    border-bottom: 1px solid rgba(90, 70, 55, 0.12);
-    font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  }
-
-  .site-header .header-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-  }
-
-  .site-logo {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.6rem;
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .logo-jp {
-    font-weight: 300;
-    font-size: 1.08rem;
-    letter-spacing: 0.12em;
-    opacity: 0.75;
-  }
-
-  .logo-it {
-    font-size: 1.3rem;
-    font-weight: 600;
-    opacity: 0.96;
-    letter-spacing: -0.01em;
-  }
-
-  .site-nav {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .site-nav a {
-    color: #2f3440;
-    font-size: 1.12rem;
-    font-weight: 600;
-    text-decoration: none;
-  }
-</style>
+      html {
+        visibility: hidden;
+      }
+    </style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -176,7 +101,9 @@ const canonicalURL =
   </head>
 
   <body>
-    
+    <script>
+      document.documentElement.style.visibility = 'visible';
+    </script>
 
     <header class="site-header" data-pagefind-ignore>
       <div class="header-inner">
