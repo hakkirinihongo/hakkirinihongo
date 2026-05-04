@@ -21,6 +21,8 @@ const {
 const canonicalURL =
   canonical ??
   new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site).href;
+
+const imageURL = new URL(image, Astro.site).href;
 ---
 
 <!DOCTYPE html>
@@ -80,7 +82,7 @@ const canonicalURL =
     <meta property="og:type" content="article" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content="Hakkiri Nihongo" />
-    <meta property="og:image" content={image} />
+   <meta property="og:image" content={imageURL} />
     <meta
       property="og:image:alt"
       content="Hakkiri Nihongo | grammatica giapponese spiegata chiaramente"
@@ -90,7 +92,7 @@ const canonicalURL =
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image" content={imageURL} />
 
     <link rel="icon" href="/favicons/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
