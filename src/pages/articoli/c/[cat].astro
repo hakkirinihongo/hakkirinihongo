@@ -18,7 +18,7 @@ const { cat } = Astro.params;
 
 const categoryLabels = {
   "concetti-e-distinzioni": "Concetti e Distinzioni",
-  "dissezionamenti-grammaticali": "Dissezionamenti grammaticali",
+  "dissezionamenti-grammaticali": "Dissezioni grammaticali",
   "giapponese-di-nicchia": "Giapponese di nicchia",
   "storia-della-grammatica": "Storia della grammatica",
 };
@@ -32,10 +32,10 @@ const seoMap = {
       "Differenze sottili della grammatica giapponese spiegate chiaramente: usi reali, confronti e sfumature spesso ignorate nei manuali.",
   },
   "dissezionamenti-grammaticali": {
-    title: "Dissezionamenti grammaticali giapponesi | Hakkiri Nihongo",
-    description:
-      "Analisi approfondite di strutture grammaticali giapponesi: origine, logica interna e uso reale nei testi e nel JLPT.",
-  },
+  title: "Dissezioni grammaticali giapponesi | Hakkiri Nihongo",
+  description:
+    "Analisi approfondite di strutture grammaticali giapponesi: origine, logica interna e uso reale nei testi e nel JLPT.",
+},
   "giapponese-di-nicchia": {
     title: "Grammatica giapponese di nicchia | Hakkiri Nihongo",
     description:
@@ -105,6 +105,15 @@ const posts = Object.entries(postImports).map(([path, mod]) => {
   const slug = fm.slug ?? path.split("/").pop().replace(/\.mdx$/, "");
   return { slug, frontmatter: fm };
 });
+const renderTitleWithJapaneseSpans = (title) => {
+  const text = String(title ?? "");
+  const parts = text.split(/([\u3040-\u30ff\u3400-\u9fff々〆〤ヶ]+)/g);
+
+  return parts.map((part) => ({
+    text: part,
+    isJapanese: /[\u3040-\u30ff\u3400-\u9fff々〆〤ヶ]/.test(part),
+  }));
+};
 
 const filteredPosts = posts.filter((p) => p.frontmatter.category === cat);
 ---
@@ -118,9 +127,11 @@ const filteredPosts = posts.filter((p) => p.frontmatter.category === cat);
       <a href={`/articoli/c/${cat}/`} class="active">{categoryTitle}</a>
     </nav>
 
-    <p style="opacity:0.8;">Categoria: <strong>{categoryTitle}</strong></p>
+    <p class="category-kicker">
+  Categoria: <strong>{categoryTitle}</strong>
+</p>
 
-    <p class="category-intro">
+    <p class="category-intro editorial-intro">
       {cat === "concetti-e-distinzioni" &&
         "Distinguere significa capire. In questa sezione analizziamo differenze sottili della grammatica giapponese che spesso nei manuali vengono ignorate o trattate come equivalenti."}
 
@@ -138,10 +149,16 @@ const filteredPosts = posts.filter((p) => p.frontmatter.category === cat);
       {filteredPosts.map(({ slug, frontmatter }) => (
         <li class="post-item">
           <h3 class="post-title">
-            <a class="post-link" href={`/articoli/${slug}/`}>
-              {frontmatter.title ?? slug}
-            </a>
-          </h3>
+  <a class="post-link" href={`/articoli/${slug}/`}>
+    {renderTitleWithJapaneseSpans(frontmatter.title ?? slug).map((part) =>
+      part.isJapanese ? (
+        <span class="post-title-jp">{part.text}</span>
+      ) : (
+        part.text
+      )
+    )}
+  </a>
+</h3>
 
           {frontmatter.description && (
             <p class="post-description">

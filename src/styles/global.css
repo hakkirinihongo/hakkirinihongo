@@ -203,7 +203,7 @@ a:hover {
   align-items: center;
   justify-content: center;
 
-  background: url("/images/home-hero-fuji.jpg") center center / cover no-repeat;
+  background: url("/images/home-hero-fuji.avif") center center / cover no-repeat;
 }
 
 .hn-home-hero::before {
@@ -400,19 +400,19 @@ a:hover {
 }
 
 .cat-0::before {
-  background-image: url("/images/cat-sakura.jpg");
+  background-image: url("/images/cat-sakura.avif");
 }
 
 .cat-1::before {
-  background-image: url("/images/cat-paper.jpg");
+  background-image: url("/images/cat-paper.avif");
 }
 
 .cat-2::before {
-  background-image: url("/images/cat-mountain.jpg");
+  background-image: url("/images/cat-mountain.avif");
 }
 
 .cat-3::before {
-  background-image: url("/images/cat-history.jpg");
+  background-image: url("/images/cat-history.avif");
 }
 
 /* ==================================================
@@ -544,7 +544,7 @@ a:hover {
       rgba(251, 248, 241, 0.18) 38%,
       rgba(251, 248, 241, 0) 65%
     ),
-    url("/images/home-bottom.jpg") center bottom / cover no-repeat;
+    url("/images/home-bottom.avif") center bottom / cover no-repeat;
 
   pointer-events: none;
   z-index: -1;
@@ -783,8 +783,15 @@ a:hover {
   font-weight: 700;
 }
 
-.page-article em {
+..page-article em {
   color: var(--hn-muted);
+  font-style: italic;
+}
+
+.page-article em:lang(ja),
+.page-article em:has(:lang(ja)) {
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+  font-style: normal;
 }
 
 .page-article a {
@@ -1230,3 +1237,100 @@ a:hover {
     font-size: 1.35rem;
   }
 }
+
+/* Categoria pagina articoli */
+.page-articles .category-kicker {
+  margin: 1.4rem 0 0.45rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.15rem;
+  line-height: 1.35;
+  color: #7f2d28;
+  letter-spacing: 0.01em;
+}
+
+.page-articles .category-kicker strong {
+  font-weight: 600;
+  color: #8f2f28;
+}
+
+/* Intro categorie editoriali */
+.page-articles .editorial-intro {
+  max-width: 780px;
+  margin: 0 0 2.8rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.16rem;
+  line-height: 1.58;
+  font-weight: 500;
+  color: #3e342f;
+  letter-spacing: 0.01em;
+}
+
+/* Titoli lista articoli: parte giapponese più controllata */
+.page-articles .post-title-jp {
+  font-size: 0.88em;
+  letter-spacing: 0.01em;
+}
+
+/* ==================================================
+   CHI SIAMO / METODO
+   ================================================== */
+
+.about-method-page {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 1.5rem 1.2rem 4rem;
+}
+
+.about-method-page h1 {
+  margin-bottom: 2.2rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 3rem;
+  line-height: 1.05;
+  font-weight: 600;
+  color: #7f2d28;
+  letter-spacing: -0.02em;
+}
+
+.about-method-page p {
+  margin: 0 0 1.55rem;
+  font-size: 1.12rem;
+  line-height: 1.82;
+  color: #2f3747;
+font-family: Georgia, serif;
+}
+
+.about-method-page strong {
+  color: #1f2c42;
+}
+
+.about-method-page ul {
+  margin: 1.4rem 0 2rem 1.4rem;
+  padding: 0;
+}
+
+.about-method-page li {
+  margin-bottom: 1rem;
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: #2f3747;
+}
+
+.about-method-page ul ul {
+  margin-top: 1rem;
+}
+
+.about-method-page .jp {
+  font-size: 0.92em;
+}
+
+/* Giapponese inline negli articoli: più leggibile, meno pittorico */
+.page-article .jp,
+.page-article :lang(ja) {
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+
+
