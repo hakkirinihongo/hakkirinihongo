@@ -1,0 +1,195 @@
+Credo di essere arrivato al capolinea con tutti sti copia incolla, non sto più capendo nulla. Mi ridail il file corretto per cortesia: 
+
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const postImports = import.meta.glob('../content/articoli/**/*.mdx');
+
+const posts = await Promise.all(
+  Object.entries(postImports).map(async ([path, resolver]) => {
+    const mod = await resolver();
+    const fm = mod.frontmatter ?? {};
+    const slug = fm.slug ?? path.split('/').pop().replace(/\.mdx?$/, '');
+
+    return {
+      slug,
+      frontmatter: fm,
+    };
+  })
+);
+
+posts.sort((a, b) => {
+  const dateA = a.frontmatter.date ? new Date(a.frontmatter.date) : new Date(0);
+  const dateB = b.frontmatter.date ? new Date(b.frontmatter.date) : new Date(0);
+  return dateB.getTime() - dateA.getTime();
+});
+---
+
+<BaseLayout
+  title="Sfoglia articoli | Hakkiri Nihongo"
+  description="Sfoglia gli articoli di Hakkiri Nihongo in una visualizzazione editoriale dedicata alla grammatica giapponese."
+>
+  <main class="browse-page">
+    <section class="browse-hero container">
+      <p class="browse-eyebrow">Hakkiri Nihongo</p>
+
+      <h1>Sfoglia gli articoli</h1>
+
+      <p class="browse-intro">
+        Una modalità più visuale per esplorare gli articoli di grammatica,
+        lessico e sfumature del giapponese.
+      </p>
+
+      <a class="browse-classic-link" href="/articoli/">
+        Passa alla visualizzazione classica →
+      </a>
+
+      <div class="browse-carousel">
+        {posts.map(({ slug, frontmatter }, index) => (
+          <article
+            class="browse-card"
+            data-index={index}
+            data-url={`/articoli/${slug}/`}
+          >
+            <img
+              class="browse-card-image"
+              src={frontmatter.image || '/images/article-placeholder.jpg'}
+              alt={frontmatter.title ?? slug}
+              loading="lazy"
+            />
+
+            <div class="browse-card-body">
+              <span class="browse-category">
+                {frontmatter.category ?? 'Articolo'}
+              </span>
+
+              <h2>{frontmatter.title ?? slug}</h2>
+
+              {frontmatter.description && (
+                <p>{frontmatter.description}</p>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const cards = document.querySelectorAll('.browse-card');
+    const carousel = document.querySelector('.browse-carousel');
+
+    let current = 1;
+    let autoplay = null;
+
+    function updateCarousel() {
+      cards.forEach((card, index) => {
+        card.classList.remove(
+          'center-card',
+          'side-left',
+          'side-right',
+          'hidden-card'
+        );
+
+        const prev = (current - 1 + cards.length) % cards.length;
+        const next = (current + 1) % cards.length;
+
+        if (index === current) {
+          card.classList.add('center-card');
+        } else if (index === prev) {
+          card.classList.add('side-left');
+        } else if (index === next) {
+          card.classList.add('side-right');
+        } else {
+          card.classList.add('hidden-card');
+        }
+      });
+    }
+
+    function nextCard() {
+      current = (current + 1) % cards.length;
+      updateCarousel();
+    }
+
+    function previousCard() {
+      current = (current - 1 + cards.length) % cards.length;
+      updateCarousel();
+    }
+function preloadNearbyImages() {
+  const nearbyIndexes = [
+    current,
+    (current - 1 + cards.length) % cards.length,
+    (current + 1) % cards.length,
+    (current + 2) % cards.length,
+  ];
+
+  nearbyIndexes.forEach((index) => {
+    const img = cards[index]?.querySelector('.browse-card-image');
+
+    if (img?.src) {
+      const preload = new Image();
+      preload.src = img.src;
+    }
+  });
+}
+
+    cards.forEach((card, index) => {
+      card.addEventListener('click', () => {
+        if (index === current) {
+          const url = card.dataset.url;
+
+          if (url) {
+            window.location.href = url;
+          }
+
+          return;
+        }
+
+        const prev = (current - 1 + cards.length) % cards.length;
+        const next = (current + 1) % cards.length;
+
+        if (index === prev) {
+          previousCard();
+        } else if (index === next) {
+          nextCard();
+        }
+      });
+    });
+
+    function startAutoplay() {
+      autoplay = setInterval(nextCard, 5500);
+    }
+
+    function stopAutoplay() {
+      clearInterval(autoplay);
+    }
+
+    if (cards.length > 0) {
+      updateCarousel();
+      startAutoplay();
+    }
+
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+let touchStartX = 0;
+let touchEndX = 0;
+
+carousel.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+carousel.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+
+  const diff = touchStartX - touchEndX;
+
+  if (Math.abs(diff) < 40) return;
+
+  if (diff > 0) {
+    nextCard();
+  } else {
+    previousCard();
+  }
+});
+  </script>
+</BaseLayout>
