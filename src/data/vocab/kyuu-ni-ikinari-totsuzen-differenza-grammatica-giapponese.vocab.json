@@ -1,0 +1,342 @@
+[
+  {
+    "term": "あり",
+    "reading": "アリ"
+  },
+  {
+    "term": "いきなり",
+    "reading": "イキナリ"
+  },
+  {
+    "term": "お金",
+    "reading": "オカネ"
+  },
+  {
+    "term": "お湯",
+    "reading": "オユ"
+  },
+  {
+    "term": "きゅう",
+    "reading": "キュウ"
+  },
+  {
+    "term": "くる",
+    "reading": "クル"
+  },
+  {
+    "term": "さっき",
+    "reading": "サッキ"
+  },
+  {
+    "term": "さま",
+    "reading": "サマ"
+  },
+  {
+    "term": "さん",
+    "reading": "サン"
+  },
+  {
+    "term": "だしぬける",
+    "reading": "ダシヌケ"
+  },
+  {
+    "term": "つける",
+    "reading": "ツケ"
+  },
+  {
+    "term": "ドア",
+    "reading": "ドア"
+  },
+  {
+    "term": "とつぜん",
+    "reading": "トツゼン"
+  },
+  {
+    "term": "びっくり",
+    "reading": "ビックリ"
+  },
+  {
+    "term": "ふう",
+    "reading": "フイ"
+  },
+  {
+    "term": "られる",
+    "reading": "ラレ"
+  },
+  {
+    "term": "れる",
+    "reading": "レ"
+  },
+  {
+    "term": "歌手",
+    "reading": "カシュ"
+  },
+  {
+    "term": "会長",
+    "reading": "カイチョウ"
+  },
+  {
+    "term": "開ける",
+    "reading": "アケ"
+  },
+  {
+    "term": "覚める",
+    "reading": "サメル"
+  },
+  {
+    "term": "寒い",
+    "reading": "サムク"
+  },
+  {
+    "term": "環境",
+    "reading": "カンキョウ"
+  },
+  {
+    "term": "機嫌",
+    "reading": "キゲン"
+  },
+  {
+    "term": "帰る",
+    "reading": "カエッ"
+  },
+  {
+    "term": "起きる",
+    "reading": "オキル"
+  },
+  {
+    "term": "起こる",
+    "reading": "オコル"
+  },
+  {
+    "term": "泣く",
+    "reading": "ナキ"
+  },
+  {
+    "term": "叫ぶ",
+    "reading": "サケブ"
+  },
+  {
+    "term": "空気",
+    "reading": "クウキ"
+  },
+  {
+    "term": "形容動詞",
+    "reading": "ケイヨウドウシ"
+  },
+  {
+    "term": "結論",
+    "reading": "ケツロン"
+  },
+  {
+    "term": "現れる",
+    "reading": "アラワレル"
+  },
+  {
+    "term": "言う",
+    "reading": "イワ"
+  },
+  {
+    "term": "行き",
+    "reading": "イキ"
+  },
+  {
+    "term": "降り出す",
+    "reading": "フリダス"
+  },
+  {
+    "term": "降る",
+    "reading": "フリ"
+  },
+  {
+    "term": "困る",
+    "reading": "コマッ"
+  },
+  {
+    "term": "始める",
+    "reading": "ハジメ"
+  },
+  {
+    "term": "子供",
+    "reading": "コドモ"
+  },
+  {
+    "term": "死ぬ",
+    "reading": "シヌ"
+  },
+  {
+    "term": "事故",
+    "reading": "ジコ"
+  },
+  {
+    "term": "質問",
+    "reading": "シツモン"
+  },
+  {
+    "term": "借りる",
+    "reading": "カリ"
+  },
+  {
+    "term": "授業",
+    "reading": "ジュギョウ"
+  },
+  {
+    "term": "重い",
+    "reading": "オモイ"
+  },
+  {
+    "term": "出す",
+    "reading": "ダシ"
+  },
+  {
+    "term": "出る",
+    "reading": "デ"
+  },
+  {
+    "term": "出場",
+    "reading": "シュツジョウ"
+  },
+  {
+    "term": "述べる",
+    "reading": "ノベ"
+  },
+  {
+    "term": "順番",
+    "reading": "ジュンバン"
+  },
+  {
+    "term": "書く",
+    "reading": "カキ"
+  },
+  {
+    "term": "触れる",
+    "reading": "フレ"
+  },
+  {
+    "term": "進む",
+    "reading": "ススム"
+  },
+  {
+    "term": "吹く",
+    "reading": "フク"
+  },
+  {
+    "term": "晴れる",
+    "reading": "ハレ"
+  },
+  {
+    "term": "切りつける",
+    "reading": "キリツケル"
+  },
+  {
+    "term": "先生",
+    "reading": "センセイ"
+  },
+  {
+    "term": "前触れ",
+    "reading": "マエブレ"
+  },
+  {
+    "term": "大雨",
+    "reading": "オオアメ"
+  },
+  {
+    "term": "大声",
+    "reading": "オオゴエ"
+  },
+  {
+    "term": "着替える",
+    "reading": "キガエ"
+  },
+  {
+    "term": "痛い",
+    "reading": "イタク"
+  },
+  {
+    "term": "怒鳴る",
+    "reading": "ドナリ"
+  },
+  {
+    "term": "答える",
+    "reading": "コタエ"
+  },
+  {
+    "term": "道路",
+    "reading": "ドウロ"
+  },
+  {
+    "term": "突然",
+    "reading": "トツゼン"
+  },
+  {
+    "term": "入る",
+    "reading": "ハイッ"
+  },
+  {
+    "term": "悲しい",
+    "reading": "カナシク"
+  },
+  {
+    "term": "飛ばす",
+    "reading": "トバシ"
+  },
+  {
+    "term": "飛び出す",
+    "reading": "トビダシ"
+  },
+  {
+    "term": "必要",
+    "reading": "ヒツヨウ"
+  },
+  {
+    "term": "部屋",
+    "reading": "ヘヤ"
+  },
+  {
+    "term": "風呂",
+    "reading": "フロ"
+  },
+  {
+    "term": "物事",
+    "reading": "モノゴト"
+  },
+  {
+    "term": "雰囲気",
+    "reading": "フンイキ"
+  },
+  {
+    "term": "変わる",
+    "reading": "カワル"
+  },
+  {
+    "term": "訪問",
+    "reading": "ホウモン"
+  },
+  {
+    "term": "亡くなる",
+    "reading": "ナクナリ"
+  },
+  {
+    "term": "忙しい",
+    "reading": "イソガシク"
+  },
+  {
+    "term": "眠い",
+    "reading": "ネムク"
+  },
+  {
+    "term": "野崎",
+    "reading": "ノサキ"
+  },
+  {
+    "term": "予期",
+    "reading": "ヨキ"
+  },
+  {
+    "term": "立ち上がる",
+    "reading": "タチアガル"
+  },
+  {
+    "term": "連用形",
+    "reading": "レンヨウケイ"
+  }
+]

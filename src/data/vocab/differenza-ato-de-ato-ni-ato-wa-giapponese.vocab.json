@@ -1,0 +1,286 @@
+[
+  {
+    "term": "アイスクリーム",
+    "reading": "アイスクリーム"
+  },
+  {
+    "term": "あと",
+    "reading": "アト"
+  },
+  {
+    "term": "いい",
+    "reading": "イイ"
+  },
+  {
+    "term": "お伝え",
+    "reading": "オツタエ"
+  },
+  {
+    "term": "くださる",
+    "reading": "クダサイ"
+  },
+  {
+    "term": "ゲーム",
+    "reading": "ゲーム"
+  },
+  {
+    "term": "ごはん",
+    "reading": "ゴハン"
+  },
+  {
+    "term": "さらに",
+    "reading": "サラニ"
+  },
+  {
+    "term": "すぐ",
+    "reading": "スグ"
+  },
+  {
+    "term": "その後",
+    "reading": "ソノゴ"
+  },
+  {
+    "term": "テスト",
+    "reading": "テスト"
+  },
+  {
+    "term": "のち",
+    "reading": "ノチ"
+  },
+  {
+    "term": "パーティー",
+    "reading": "パーティー"
+  },
+  {
+    "term": "ビール",
+    "reading": "ビール"
+  },
+  {
+    "term": "もう",
+    "reading": "モウ"
+  },
+  {
+    "term": "やつ",
+    "reading": "ヤツ"
+  },
+  {
+    "term": "飲む",
+    "reading": "ノム"
+  },
+  {
+    "term": "映画",
+    "reading": "エイガ"
+  },
+  {
+    "term": "夏休み",
+    "reading": "ナツヤスミ"
+  },
+  {
+    "term": "会議",
+    "reading": "カイギ"
+  },
+  {
+    "term": "感想",
+    "reading": "カンソウ"
+  },
+  {
+    "term": "期間",
+    "reading": "キカン"
+  },
+  {
+    "term": "気がつく",
+    "reading": "キガツキ"
+  },
+  {
+    "term": "起こる",
+    "reading": "オコッ"
+  },
+  {
+    "term": "詰める",
+    "reading": "ツメル"
+  },
+  {
+    "term": "休む",
+    "reading": "ヤスム"
+  },
+  {
+    "term": "警察",
+    "reading": "ケイサツ"
+  },
+  {
+    "term": "見る",
+    "reading": "ミ"
+  },
+  {
+    "term": "午後",
+    "reading": "ゴゴ"
+  },
+  {
+    "term": "後で",
+    "reading": "アトデ"
+  },
+  {
+    "term": "後に",
+    "reading": "ノチニ"
+  },
+  {
+    "term": "後ほど",
+    "reading": "ノチホド"
+  },
+  {
+    "term": "後日",
+    "reading": "ゴジツ"
+  },
+  {
+    "term": "公園",
+    "reading": "コウエン"
+  },
+  {
+    "term": "行く",
+    "reading": "イキ"
+  },
+  {
+    "term": "高校",
+    "reading": "コウコウ"
+  },
+  {
+    "term": "作家",
+    "reading": "サッカ"
+  },
+  {
+    "term": "散歩",
+    "reading": "サンポ"
+  },
+  {
+    "term": "仕事",
+    "reading": "シゴト"
+  },
+  {
+    "term": "始める",
+    "reading": "ハジメヨ"
+  },
+  {
+    "term": "試験",
+    "reading": "シケン"
+  },
+  {
+    "term": "事故",
+    "reading": "ジコ"
+  },
+  {
+    "term": "終わる",
+    "reading": "オワッ"
+  },
+  {
+    "term": "終了",
+    "reading": "シュウリョウ"
+  },
+  {
+    "term": "住む",
+    "reading": "スン"
+  },
+  {
+    "term": "宿題",
+    "reading": "シュクダイ"
+  },
+  {
+    "term": "出発",
+    "reading": "シュッパツ"
+  },
+  {
+    "term": "笑う",
+    "reading": "ワラッ"
+  },
+  {
+    "term": "詳細",
+    "reading": "ショウサイ"
+  },
+  {
+    "term": "食べる",
+    "reading": "タベル"
+  },
+  {
+    "term": "食事",
+    "reading": "ショクジ"
+  },
+  {
+    "term": "寝る",
+    "reading": "ネル"
+  },
+  {
+    "term": "大学",
+    "reading": "ダイガク"
+  },
+  {
+    "term": "着く",
+    "reading": "ツイ"
+  },
+  {
+    "term": "痛い",
+    "reading": "イタク"
+  },
+  {
+    "term": "動詞",
+    "reading": "ドウシ"
+  },
+  {
+    "term": "特に",
+    "reading": "トクニ"
+  },
+  {
+    "term": "日本",
+    "reading": "ニッポン"
+  },
+  {
+    "term": "入る",
+    "reading": "ハイッ"
+  },
+  {
+    "term": "任せる",
+    "reading": "マカセ"
+  },
+  {
+    "term": "必要",
+    "reading": "ヒツヨウ"
+  },
+  {
+    "term": "風呂",
+    "reading": "フロ"
+  },
+  {
+    "term": "勉強",
+    "reading": "ベンキョウ"
+  },
+  {
+    "term": "忘れ物",
+    "reading": "ワスレモノ"
+  },
+  {
+    "term": "名詞",
+    "reading": "メイシ"
+  },
+  {
+    "term": "有名",
+    "reading": "ユウメイ"
+  },
+  {
+    "term": "遊ぶ",
+    "reading": "アソボ"
+  },
+  {
+    "term": "来る",
+    "reading": "キ"
+  },
+  {
+    "term": "留学",
+    "reading": "リュウガク"
+  },
+  {
+    "term": "連絡",
+    "reading": "レンラク"
+  },
+  {
+    "term": "話し合う",
+    "reading": "ハナシアオ"
+  }
+]

@@ -1,0 +1,342 @@
+[
+  {
+    "term": "いい",
+    "reading": "イイ"
+  },
+  {
+    "term": "いかが",
+    "reading": "イカガ"
+  },
+  {
+    "term": "いく",
+    "reading": "イッ"
+  },
+  {
+    "term": "うまい",
+    "reading": "ウマイ"
+  },
+  {
+    "term": "エンジン",
+    "reading": "エンジン"
+  },
+  {
+    "term": "おかしい",
+    "reading": "オカシイ"
+  },
+  {
+    "term": "おく",
+    "reading": "オキ"
+  },
+  {
+    "term": "ゴール",
+    "reading": "ゴール"
+  },
+  {
+    "term": "コピー",
+    "reading": "コピー"
+  },
+  {
+    "term": "さん",
+    "reading": "サン"
+  },
+  {
+    "term": "ずっと",
+    "reading": "ズット"
+  },
+  {
+    "term": "そろそろ",
+    "reading": "ソロソロ"
+  },
+  {
+    "term": "だいぶ",
+    "reading": "ダイブ"
+  },
+  {
+    "term": "たくさん",
+    "reading": "タクサン"
+  },
+  {
+    "term": "ちょっと",
+    "reading": "チョット"
+  },
+  {
+    "term": "テレビ",
+    "reading": "テレビ"
+  },
+  {
+    "term": "どう",
+    "reading": "ドウ"
+  },
+  {
+    "term": "とても",
+    "reading": "トテモ"
+  },
+  {
+    "term": "バス",
+    "reading": "バス"
+  },
+  {
+    "term": "パソコン",
+    "reading": "パソコン"
+  },
+  {
+    "term": "まだ",
+    "reading": "マダ"
+  },
+  {
+    "term": "ミス",
+    "reading": "ミス"
+  },
+  {
+    "term": "もう",
+    "reading": "モウ"
+  },
+  {
+    "term": "よく",
+    "reading": "ヨク"
+  },
+  {
+    "term": "られる",
+    "reading": "ラレ"
+  },
+  {
+    "term": "悪い",
+    "reading": "ワルイ"
+  },
+  {
+    "term": "下がる",
+    "reading": "サガッ"
+  },
+  {
+    "term": "会える",
+    "reading": "アエル"
+  },
+  {
+    "term": "管理",
+    "reading": "カンリ"
+  },
+  {
+    "term": "機械",
+    "reading": "キカイ"
+  },
+  {
+    "term": "機嫌",
+    "reading": "キゲン"
+  },
+  {
+    "term": "帰る",
+    "reading": "カエリ"
+  },
+  {
+    "term": "気持ち",
+    "reading": "キモチ"
+  },
+  {
+    "term": "気分",
+    "reading": "キブン"
+  },
+  {
+    "term": "詰まる",
+    "reading": "ツマッ"
+  },
+  {
+    "term": "休む",
+    "reading": "ヤスン"
+  },
+  {
+    "term": "具合",
+    "reading": "グアイ"
+  },
+  {
+    "term": "景気",
+    "reading": "ケイキ"
+  },
+  {
+    "term": "見る",
+    "reading": "ミル"
+  },
+  {
+    "term": "工合",
+    "reading": "グアイ"
+  },
+  {
+    "term": "降りる",
+    "reading": "オリ"
+  },
+  {
+    "term": "合わせる",
+    "reading": "アワセル"
+  },
+  {
+    "term": "今日",
+    "reading": "キョウ"
+  },
+  {
+    "term": "今年",
+    "reading": "コトシ"
+  },
+  {
+    "term": "最近",
+    "reading": "サイキン"
+  },
+  {
+    "term": "昨日",
+    "reading": "キノウ"
+  },
+  {
+    "term": "昨夜",
+    "reading": "サクヤ"
+  },
+  {
+    "term": "仕事",
+    "reading": "シゴト"
+  },
+  {
+    "term": "重い",
+    "reading": "オモク"
+  },
+  {
+    "term": "暑い",
+    "reading": "アツイ"
+  },
+  {
+    "term": "乗る",
+    "reading": "ノル"
+  },
+  {
+    "term": "食後",
+    "reading": "ショクゴ"
+  },
+  {
+    "term": "進む",
+    "reading": "ススミ"
+  },
+  {
+    "term": "進める",
+    "reading": "ススメ"
+  },
+  {
+    "term": "酔う",
+    "reading": "ヨッ"
+  },
+  {
+    "term": "整える",
+    "reading": "トトノエ"
+  },
+  {
+    "term": "先週",
+    "reading": "センシュウ"
+  },
+  {
+    "term": "洗濯",
+    "reading": "センタク"
+  },
+  {
+    "term": "選手",
+    "reading": "センシュ"
+  },
+  {
+    "term": "全然",
+    "reading": "ゼンゼン"
+  },
+  {
+    "term": "早退",
+    "reading": "ソウタイ"
+  },
+  {
+    "term": "息子",
+    "reading": "ムスコ"
+  },
+  {
+    "term": "多い",
+    "reading": "オオイ"
+  },
+  {
+    "term": "体裁",
+    "reading": "テイサイ"
+  },
+  {
+    "term": "体調",
+    "reading": "タイチョウ"
+  },
+  {
+    "term": "替える",
+    "reading": "カエ"
+  },
+  {
+    "term": "大丈夫",
+    "reading": "ダイジョウブ"
+  },
+  {
+    "term": "断る",
+    "reading": "コトワル"
+  },
+  {
+    "term": "調子",
+    "reading": "チョウシ"
+  },
+  {
+    "term": "痛い",
+    "reading": "イタイ"
+  },
+  {
+    "term": "田中",
+    "reading": "タナカ"
+  },
+  {
+    "term": "電車",
+    "reading": "デンシャ"
+  },
+  {
+    "term": "途中",
+    "reading": "トチュウ"
+  },
+  {
+    "term": "都合",
+    "reading": "ツゴウ"
+  },
+  {
+    "term": "動く",
+    "reading": "ウゴカ"
+  },
+  {
+    "term": "買う",
+    "reading": "カイ"
+  },
+  {
+    "term": "不良",
+    "reading": "フリョウ"
+  },
+  {
+    "term": "勉強",
+    "reading": "ベンキョウ"
+  },
+  {
+    "term": "崩す",
+    "reading": "クズス"
+  },
+  {
+    "term": "褒める",
+    "reading": "ホメ"
+  },
+  {
+    "term": "明日",
+    "reading": "アシタ"
+  },
+  {
+    "term": "来る",
+    "reading": "キ"
+  },
+  {
+    "term": "落ち込む",
+    "reading": "オチコン"
+  },
+  {
+    "term": "旅行",
+    "reading": "リョコウ"
+  },
+  {
+    "term": "良い",
+    "reading": "ヨク"
+  }
+]

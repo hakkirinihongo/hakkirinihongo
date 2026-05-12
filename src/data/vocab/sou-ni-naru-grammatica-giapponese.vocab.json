@@ -1,0 +1,342 @@
+[
+  {
+    "term": "あまりに",
+    "reading": "アマリニ"
+  },
+  {
+    "term": "あわや",
+    "reading": "アワヤ"
+  },
+  {
+    "term": "かける",
+    "reading": "カケル"
+  },
+  {
+    "term": "ころ",
+    "reading": "コロ"
+  },
+  {
+    "term": "シーン",
+    "reading": "シーン"
+  },
+  {
+    "term": "しまう",
+    "reading": "シマイ"
+  },
+  {
+    "term": "すべる",
+    "reading": "スベル"
+  },
+  {
+    "term": "せる",
+    "reading": "セ"
+  },
+  {
+    "term": "そう",
+    "reading": "ソウ"
+  },
+  {
+    "term": "そのまま",
+    "reading": "ソノママ"
+  },
+  {
+    "term": "できる",
+    "reading": "デキル"
+  },
+  {
+    "term": "ところ",
+    "reading": "トコロ"
+  },
+  {
+    "term": "パニック",
+    "reading": "パニック"
+  },
+  {
+    "term": "びっくり",
+    "reading": "ビックリ"
+  },
+  {
+    "term": "もうすぐ",
+    "reading": "モウスグ"
+  },
+  {
+    "term": "もう少し",
+    "reading": "モウスコシ"
+  },
+  {
+    "term": "れる",
+    "reading": "レ"
+  },
+  {
+    "term": "意味",
+    "reading": "イミ"
+  },
+  {
+    "term": "飲む",
+    "reading": "ノン"
+  },
+  {
+    "term": "映画",
+    "reading": "エイガ"
+  },
+  {
+    "term": "解説",
+    "reading": "カイセツ"
+  },
+  {
+    "term": "階段",
+    "reading": "カイダン"
+  },
+  {
+    "term": "滑る",
+    "reading": "スベッ"
+  },
+  {
+    "term": "漢字",
+    "reading": "カンジ"
+  },
+  {
+    "term": "緩和",
+    "reading": "カンワ"
+  },
+  {
+    "term": "間に合う",
+    "reading": "マニアッ"
+  },
+  {
+    "term": "間違える",
+    "reading": "マチガエ"
+  },
+  {
+    "term": "危うい",
+    "reading": "アヤウク"
+  },
+  {
+    "term": "危ない",
+    "reading": "アブナク"
+  },
+  {
+    "term": "泣き",
+    "reading": "ナキ"
+  },
+  {
+    "term": "泣く",
+    "reading": "ナキ"
+  },
+  {
+    "term": "驚く",
+    "reading": "オドロイ"
+  },
+  {
+    "term": "見る",
+    "reading": "ミ"
+  },
+  {
+    "term": "元気",
+    "reading": "ゲンキ"
+  },
+  {
+    "term": "呼ぶ",
+    "reading": "ヨバ"
+  },
+  {
+    "term": "交通",
+    "reading": "コウツウ"
+  },
+  {
+    "term": "降りる",
+    "reading": "オリ"
+  },
+  {
+    "term": "最後",
+    "reading": "サイゴ"
+  },
+  {
+    "term": "財布",
+    "reading": "サイフ"
+  },
+  {
+    "term": "思う",
+    "reading": "オモッ"
+  },
+  {
+    "term": "思わず",
+    "reading": "オモワズ"
+  },
+  {
+    "term": "止まる",
+    "reading": "トマリ"
+  },
+  {
+    "term": "事故",
+    "reading": "ジコ"
+  },
+  {
+    "term": "質問",
+    "reading": "シツモン"
+  },
+  {
+    "term": "首相",
+    "reading": "シュショウ"
+  },
+  {
+    "term": "充電",
+    "reading": "ジュウデン"
+  },
+  {
+    "term": "出かける",
+    "reading": "デカケル"
+  },
+  {
+    "term": "述べる",
+    "reading": "ノベル"
+  },
+  {
+    "term": "食べる",
+    "reading": "タベ"
+  },
+  {
+    "term": "寝る",
+    "reading": "ネル"
+  },
+  {
+    "term": "心臓",
+    "reading": "シンゾウ"
+  },
+  {
+    "term": "吹き出す",
+    "reading": "フキダシ"
+  },
+  {
+    "term": "静か",
+    "reading": "シズカ"
+  },
+  {
+    "term": "切れる",
+    "reading": "キレ"
+  },
+  {
+    "term": "先生",
+    "reading": "センセイ"
+  },
+  {
+    "term": "走る",
+    "reading": "ハシリ"
+  },
+  {
+    "term": "遭う",
+    "reading": "アイ"
+  },
+  {
+    "term": "遅い",
+    "reading": "オソク"
+  },
+  {
+    "term": "直前",
+    "reading": "チョクゼン"
+  },
+  {
+    "term": "痛い",
+    "reading": "イタク"
+  },
+  {
+    "term": "溺れる",
+    "reading": "オボレル"
+  },
+  {
+    "term": "転び",
+    "reading": "コロビ"
+  },
+  {
+    "term": "転ぶ",
+    "reading": "コロビ"
+  },
+  {
+    "term": "転落",
+    "reading": "テンラク"
+  },
+  {
+    "term": "電車",
+    "reading": "デンシャ"
+  },
+  {
+    "term": "倒れる",
+    "reading": "タオレ"
+  },
+  {
+    "term": "読みかける",
+    "reading": "ヨミカケ"
+  },
+  {
+    "term": "読む",
+    "reading": "ヨミ"
+  },
+  {
+    "term": "難しい",
+    "reading": "ムズカシイ"
+  },
+  {
+    "term": "日本語",
+    "reading": "ニホンゴ"
+  },
+  {
+    "term": "熱い",
+    "reading": "アツ"
+  },
+  {
+    "term": "飛び上がる",
+    "reading": "トビアガリ"
+  },
+  {
+    "term": "聞く",
+    "reading": "キイ"
+  },
+  {
+    "term": "勉強",
+    "reading": "ベンキョウ"
+  },
+  {
+    "term": "忘れる",
+    "reading": "ワスレ"
+  },
+  {
+    "term": "吠える",
+    "reading": "ホエ"
+  },
+  {
+    "term": "名前",
+    "reading": "ナマエ"
+  },
+  {
+    "term": "免れる",
+    "reading": "マヌカレ"
+  },
+  {
+    "term": "様態",
+    "reading": "ヨウタイ"
+  },
+  {
+    "term": "落ちる",
+    "reading": "オチ"
+  },
+  {
+    "term": "落とす",
+    "reading": "オトシ"
+  },
+  {
+    "term": "立つ",
+    "reading": "タッ"
+  },
+  {
+    "term": "料理",
+    "reading": "リョウリ"
+  },
+  {
+    "term": "話す",
+    "reading": "ハナス"
+  },
+  {
+    "term": "話せる",
+    "reading": "ハナセル"
+  }
+]

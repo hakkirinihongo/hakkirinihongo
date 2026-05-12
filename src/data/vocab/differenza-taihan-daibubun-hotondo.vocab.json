@@ -1,0 +1,298 @@
+[
+  {
+    "term": "おおかた",
+    "reading": "オオカタ"
+  },
+  {
+    "term": "おおむね",
+    "reading": "オオムネ"
+  },
+  {
+    "term": "おる",
+    "reading": "オリ"
+  },
+  {
+    "term": "かなり",
+    "reading": "カナリ"
+  },
+  {
+    "term": "ケース",
+    "reading": "ケース"
+  },
+  {
+    "term": "しまう",
+    "reading": "シマッ"
+  },
+  {
+    "term": "ずいぶん",
+    "reading": "ズイブン"
+  },
+  {
+    "term": "たい",
+    "reading": "タイ"
+  },
+  {
+    "term": "だい",
+    "reading": "ダイ"
+  },
+  {
+    "term": "たいてい",
+    "reading": "タイテイ"
+  },
+  {
+    "term": "だいぶ",
+    "reading": "ダイブ"
+  },
+  {
+    "term": "たす",
+    "reading": "タス"
+  },
+  {
+    "term": "チェック",
+    "reading": "チェック"
+  },
+  {
+    "term": "できる",
+    "reading": "デキ"
+  },
+  {
+    "term": "ところ",
+    "reading": "トコロ"
+  },
+  {
+    "term": "とても",
+    "reading": "トテモ"
+  },
+  {
+    "term": "はん",
+    "reading": "ハン"
+  },
+  {
+    "term": "プロジェクト",
+    "reading": "プロジェクト"
+  },
+  {
+    "term": "ぶん",
+    "reading": "ブン"
+  },
+  {
+    "term": "ほとんど",
+    "reading": "ホトンド"
+  },
+  {
+    "term": "ほぼ",
+    "reading": "ホボ"
+  },
+  {
+    "term": "られる",
+    "reading": "ラレ"
+  },
+  {
+    "term": "意見",
+    "reading": "イケン"
+  },
+  {
+    "term": "概ね",
+    "reading": "オオムネ"
+  },
+  {
+    "term": "学生",
+    "reading": "ガクセイ"
+  },
+  {
+    "term": "寒い",
+    "reading": "サムイ"
+  },
+  {
+    "term": "完成",
+    "reading": "カンセイ"
+  },
+  {
+    "term": "完了",
+    "reading": "カンリョウ"
+  },
+  {
+    "term": "患者",
+    "reading": "カンジャ"
+  },
+  {
+    "term": "危ない",
+    "reading": "アブナク"
+  },
+  {
+    "term": "見る",
+    "reading": "ミ"
+  },
+  {
+    "term": "最終",
+    "reading": "サイシュウ"
+  },
+  {
+    "term": "昨夜",
+    "reading": "サクヤ"
+  },
+  {
+    "term": "参加",
+    "reading": "サンカ"
+  },
+  {
+    "term": "山林",
+    "reading": "サンリン"
+  },
+  {
+    "term": "賛成",
+    "reading": "サンセイ"
+  },
+  {
+    "term": "残り",
+    "reading": "ノコリ"
+  },
+  {
+    "term": "仕事",
+    "reading": "シゴト"
+  },
+  {
+    "term": "時間",
+    "reading": "ジカン"
+  },
+  {
+    "term": "治療",
+    "reading": "チリョウ"
+  },
+  {
+    "term": "示す",
+    "reading": "シメシ"
+  },
+  {
+    "term": "失う",
+    "reading": "ウシナウ"
+  },
+  {
+    "term": "終わる",
+    "reading": "オワッ"
+  },
+  {
+    "term": "出席",
+    "reading": "シュッセキ"
+  },
+  {
+    "term": "準備",
+    "reading": "ジュンビ"
+  },
+  {
+    "term": "初心者",
+    "reading": "ショシンシャ"
+  },
+  {
+    "term": "書類",
+    "reading": "ショルイ"
+  },
+  {
+    "term": "乗客",
+    "reading": "ジョウキャク"
+  },
+  {
+    "term": "食べる",
+    "reading": "タベ"
+  },
+  {
+    "term": "寝る",
+    "reading": "ネ"
+  },
+  {
+    "term": "進む",
+    "reading": "ススン"
+  },
+  {
+    "term": "占める",
+    "reading": "シメ"
+  },
+  {
+    "term": "全部",
+    "reading": "ゼンブ"
+  },
+  {
+    "term": "多数",
+    "reading": "タスウ"
+  },
+  {
+    "term": "対象",
+    "reading": "タイショウ"
+  },
+  {
+    "term": "大体",
+    "reading": "ダイタイ"
+  },
+  {
+    "term": "大抵",
+    "reading": "タイテイ"
+  },
+  {
+    "term": "大半",
+    "reading": "タイハン"
+  },
+  {
+    "term": "大分",
+    "reading": "オオイタ"
+  },
+  {
+    "term": "大方",
+    "reading": "オオカタ"
+  },
+  {
+    "term": "知る",
+    "reading": "シッ"
+  },
+  {
+    "term": "著作",
+    "reading": "チョサク"
+  },
+  {
+    "term": "調査",
+    "reading": "チョウサ"
+  },
+  {
+    "term": "通り",
+    "reading": "ドオリ"
+  },
+  {
+    "term": "読む",
+    "reading": "ヨン"
+  },
+  {
+    "term": "反応",
+    "reading": "ハンノウ"
+  },
+  {
+    "term": "疲れる",
+    "reading": "ツカレ"
+  },
+  {
+    "term": "部分",
+    "reading": "ブブン"
+  },
+  {
+    "term": "眠れる",
+    "reading": "ネムレ"
+  },
+  {
+    "term": "無事",
+    "reading": "ブジ"
+  },
+  {
+    "term": "夕飯",
+    "reading": "ユウハン"
+  },
+  {
+    "term": "予想",
+    "reading": "ヨソウ"
+  },
+  {
+    "term": "来る",
+    "reading": "コ"
+  },
+  {
+    "term": "良い",
+    "reading": "ヨイ"
+  }
+]

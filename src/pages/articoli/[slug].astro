@@ -18,15 +18,20 @@ export async function getStaticPaths() {
   }));
 }
 
-// 2) Carichiamo di nuovo tutti i moduli per trovare quello giusto
+// 2) Carichiamo articoli e vocab
 const postModules = import.meta.glob('../../content/articoli/**/*.mdx', { eager: true });
+const vocabModules = import.meta.glob('../../data/vocab/*.vocab.json', { eager: true });
 
 const posts = Object.entries(postModules).map(([path, mod]) => {
   const frontmatter = mod.frontmatter ?? {};
   const fallbackSlug = path.split('/').pop().replace('.mdx', '');
   const slug = frontmatter.slug ?? fallbackSlug;
 
-  return { slug, mod, frontmatter };
+  const vocabPath = `../../data/vocab/${fallbackSlug}.vocab.json`;
+  const vocabModule = vocabModules[vocabPath];
+  const vocab = vocabModule?.default ?? [];
+
+  return { slug, mod, frontmatter, vocab };
 });
 
 const { slug } = Astro.params;
@@ -41,7 +46,6 @@ const title = post.frontmatter.title ?? slug;
 
 const category = post.frontmatter.category;
 const series = post.frontmatter.series;
-const currentDate = post.frontmatter.date ?? '';
 
 const categoryLabels = {
   "concetti-e-distinzioni": "Concetti e Distinzioni",
@@ -52,7 +56,6 @@ const categoryLabels = {
 
 const categoryTitle = categoryLabels[category] ?? category;
 
-// ARTICOLI CORRELATI
 const relatedPosts = posts
   .filter((p) => p.slug !== slug)
   .map((p) => {
@@ -82,7 +85,6 @@ const relatedPosts = posts
   description={post.frontmatter.description}
   image={post.frontmatter.image}
 >
-
   <article class="page-article prose prose-lg max-w-none">
     <h1 class="post-title">
       {title}
@@ -99,11 +101,29 @@ const relatedPosts = posts
       </p>
     )}
 
-
     <Content />
+
+    {false && post.vocab.length > 0 && (
+      <section class="article-vocab" aria-labelledby="article-vocab-title">
+        <h2 id="article-vocab-title">Vocabolario dell’articolo</h2>
+
+        <p class="article-vocab-intro">
+         Una selezione di vocaboli giapponesi presenti nell’articolo, estratti automaticamente e utili per ripassare lessico, forme grammaticali e termini ricorrenti.
+        </p>
+
+        <ul class="article-vocab-list">
+          {post.vocab.slice(0, 40).map((item) => (
+            <li>
+              <span lang="ja">{item.term}</span>
+
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
   </article>
 
-    {relatedPosts.length > 0 && (
+  {relatedPosts.length > 0 && (
     <section class="related-posts" aria-labelledby="related-posts-title">
       <h2 id="related-posts-title" class="related-posts-title">Vedi anche</h2>
 

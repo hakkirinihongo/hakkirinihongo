@@ -1,0 +1,414 @@
+[
+  {
+    "term": "アレルギー性",
+    "reading": "アレルギーセイ"
+  },
+  {
+    "term": "こる",
+    "reading": "コリ"
+  },
+  {
+    "term": "サ変",
+    "reading": "サヘン"
+  },
+  {
+    "term": "ショウ",
+    "reading": "ショウ"
+  },
+  {
+    "term": "しんぱい",
+    "reading": "シンパイ"
+  },
+  {
+    "term": "せい",
+    "reading": "セイ"
+  },
+  {
+    "term": "セイ",
+    "reading": "セイ"
+  },
+  {
+    "term": "タンパク",
+    "reading": "タンパク"
+  },
+  {
+    "term": "たんぱく質",
+    "reading": "タンパクシツ"
+  },
+  {
+    "term": "ひえ",
+    "reading": "ヒエ"
+  },
+  {
+    "term": "ほん",
+    "reading": "ホン"
+  },
+  {
+    "term": "マチ",
+    "reading": "マチ"
+  },
+  {
+    "term": "られる",
+    "reading": "ラレル"
+  },
+  {
+    "term": "リュウ",
+    "reading": "リュウ"
+  },
+  {
+    "term": "れる",
+    "reading": "レ"
+  },
+  {
+    "term": "安全",
+    "reading": "アンゼン"
+  },
+  {
+    "term": "異性",
+    "reading": "イセイ"
+  },
+  {
+    "term": "一つ",
+    "reading": "ヒトツ"
+  },
+  {
+    "term": "可能",
+    "reading": "カノウ"
+  },
+  {
+    "term": "課題",
+    "reading": "カダイ"
+  },
+  {
+    "term": "海水",
+    "reading": "カイスイ"
+  },
+  {
+    "term": "確認",
+    "reading": "カクニン"
+  },
+  {
+    "term": "感じる",
+    "reading": "カンジ"
+  },
+  {
+    "term": "危険",
+    "reading": "キケン"
+  },
+  {
+    "term": "器具",
+    "reading": "キグ"
+  },
+  {
+    "term": "急性",
+    "reading": "キュウセイ"
+  },
+  {
+    "term": "強い",
+    "reading": "ツヨイ"
+  },
+  {
+    "term": "教育",
+    "reading": "キョウイク"
+  },
+  {
+    "term": "凝り性",
+    "reading": "コリショウ"
+  },
+  {
+    "term": "金属",
+    "reading": "キンゾク"
+  },
+  {
+    "term": "具体",
+    "reading": "グタイ"
+  },
+  {
+    "term": "形態",
+    "reading": "ケイタイ"
+  },
+  {
+    "term": "形容動詞",
+    "reading": "ケイヨウドウシ"
+  },
+  {
+    "term": "計画",
+    "reading": "ケイカク"
+  },
+  {
+    "term": "芸術",
+    "reading": "ゲイジュツ"
+  },
+  {
+    "term": "欠ける",
+    "reading": "カケ"
+  },
+  {
+    "term": "結合",
+    "reading": "ケツゴウ"
+  },
+  {
+    "term": "検討",
+    "reading": "ケントウ"
+  },
+  {
+    "term": "献立",
+    "reading": "コンダテ"
+  },
+  {
+    "term": "語幹",
+    "reading": "ゴカン"
+  },
+  {
+    "term": "向く",
+    "reading": "ムイ"
+  },
+  {
+    "term": "攻撃",
+    "reading": "コウゲキ"
+  },
+  {
+    "term": "高い",
+    "reading": "タカイ"
+  },
+  {
+    "term": "高める",
+    "reading": "タカメル"
+  },
+  {
+    "term": "国民",
+    "reading": "コクミン"
+  },
+  {
+    "term": "再現",
+    "reading": "サイゲン"
+  },
+  {
+    "term": "細菌",
+    "reading": "サイキン"
+  },
+  {
+    "term": "残る",
+    "reading": "ノコッ"
+  },
+  {
+    "term": "試験",
+    "reading": "シケン"
+  },
+  {
+    "term": "示す",
+    "reading": "シメス"
+  },
+  {
+    "term": "疾患",
+    "reading": "シッカン"
+  },
+  {
+    "term": "実験",
+    "reading": "ジッケン"
+  },
+  {
+    "term": "実現",
+    "reading": "ジツゲン"
+  },
+  {
+    "term": "実効",
+    "reading": "ジッコウ"
+  },
+  {
+    "term": "習慣",
+    "reading": "シュウカン"
+  },
+  {
+    "term": "重なる",
+    "reading": "カサナル"
+  },
+  {
+    "term": "出発",
+    "reading": "シュッパツ"
+  },
+  {
+    "term": "女性",
+    "reading": "ジョセイ"
+  },
+  {
+    "term": "植物",
+    "reading": "ショクブツ"
+  },
+  {
+    "term": "心配",
+    "reading": "シンパイ"
+  },
+  {
+    "term": "神経",
+    "reading": "シンケイ"
+  },
+  {
+    "term": "人間",
+    "reading": "ニンゲン"
+  },
+  {
+    "term": "性質",
+    "reading": "セイシツ"
+  },
+  {
+    "term": "性別",
+    "reading": "セイベツ"
+  },
+  {
+    "term": "生産",
+    "reading": "セイサン"
+  },
+  {
+    "term": "製品",
+    "reading": "セイヒン"
+  },
+  {
+    "term": "切符",
+    "reading": "キップ"
+  },
+  {
+    "term": "説明",
+    "reading": "セツメイ"
+  },
+  {
+    "term": "素材",
+    "reading": "ソザイ"
+  },
+  {
+    "term": "組み立てる",
+    "reading": "クミタテ"
+  },
+  {
+    "term": "足りる",
+    "reading": "タリ"
+  },
+  {
+    "term": "属性",
+    "reading": "ゾクセイ"
+  },
+  {
+    "term": "妥当",
+    "reading": "ダトウ"
+  },
+  {
+    "term": "体言",
+    "reading": "タイゲン"
+  },
+  {
+    "term": "耐酸",
+    "reading": "タイサン"
+  },
+  {
+    "term": "耐水",
+    "reading": "タイスイ"
+  },
+  {
+    "term": "耐熱",
+    "reading": "タイネツ"
+  },
+  {
+    "term": "大腸菌",
+    "reading": "ダイチョウキン"
+  },
+  {
+    "term": "男性",
+    "reading": "ダンセイ"
+  },
+  {
+    "term": "中心",
+    "reading": "チュウシン"
+  },
+  {
+    "term": "丁寧",
+    "reading": "テイネイ"
+  },
+  {
+    "term": "調理",
+    "reading": "チョウリ"
+  },
+  {
+    "term": "長期",
+    "reading": "チョウキ"
+  },
+  {
+    "term": "低い",
+    "reading": "ヒクイ"
+  },
+  {
+    "term": "熱帯",
+    "reading": "ネッタイ"
+  },
+  {
+    "term": "発言",
+    "reading": "ハツゲン"
+  },
+  {
+    "term": "彼女",
+    "reading": "カノジョ"
+  },
+  {
+    "term": "必要",
+    "reading": "ヒツヨウ"
+  },
+  {
+    "term": "病原",
+    "reading": "ビョウゲン"
+  },
+  {
+    "term": "病名",
+    "reading": "ビョウメイ"
+  },
+  {
+    "term": "文化",
+    "reading": "ブンカ"
+  },
+  {
+    "term": "便秘",
+    "reading": "ベンピ"
+  },
+  {
+    "term": "方向",
+    "reading": "ホウコウ"
+  },
+  {
+    "term": "防水",
+    "reading": "ボウスイ"
+  },
+  {
+    "term": "本性",
+    "reading": "ホンショウ"
+  },
+  {
+    "term": "名詞",
+    "reading": "メイシ"
+  },
+  {
+    "term": "目的",
+    "reading": "モクテキ"
+  },
+  {
+    "term": "優れる",
+    "reading": "スグレル"
+  },
+  {
+    "term": "予算",
+    "reading": "ヨサン"
+  },
+  {
+    "term": "用言",
+    "reading": "ヨウゲン"
+  },
+  {
+    "term": "流動",
+    "reading": "リュウドウ"
+  },
+  {
+    "term": "両方",
+    "reading": "リョウホウ"
+  },
+  {
+    "term": "冷え性",
+    "reading": "ヒエショウ"
+  }
+]

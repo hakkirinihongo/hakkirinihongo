@@ -1,0 +1,346 @@
+[
+  {
+    "term": "いい",
+    "reading": "イイ"
+  },
+  {
+    "term": "いつ",
+    "reading": "イツ"
+  },
+  {
+    "term": "いつか",
+    "reading": "イツカ"
+  },
+  {
+    "term": "うそ",
+    "reading": "ウソ"
+  },
+  {
+    "term": "おいしい",
+    "reading": "オイシイ"
+  },
+  {
+    "term": "がる",
+    "reading": "ガル"
+  },
+  {
+    "term": "こんなに",
+    "reading": "コンナニ"
+  },
+  {
+    "term": "たい",
+    "reading": "タク"
+  },
+  {
+    "term": "たち",
+    "reading": "タチ"
+  },
+  {
+    "term": "ダメ",
+    "reading": "ダメ"
+  },
+  {
+    "term": "ちゃう",
+    "reading": "チャッ"
+  },
+  {
+    "term": "つく",
+    "reading": "ツク"
+  },
+  {
+    "term": "どうして",
+    "reading": "ドウシテ"
+  },
+  {
+    "term": "なつかしい",
+    "reading": "ナツカシイ"
+  },
+  {
+    "term": "まだ",
+    "reading": "マダ"
+  },
+  {
+    "term": "むやみ",
+    "reading": "ムヤミ"
+  },
+  {
+    "term": "ものの",
+    "reading": "モノノ"
+  },
+  {
+    "term": "もの狂い",
+    "reading": "モノグルイ"
+  },
+  {
+    "term": "もの悲しい",
+    "reading": "モノガナシイ"
+  },
+  {
+    "term": "もん",
+    "reading": "モン"
+  },
+  {
+    "term": "やる",
+    "reading": "ヤラ"
+  },
+  {
+    "term": "よく",
+    "reading": "ヨク"
+  },
+  {
+    "term": "違う",
+    "reading": "チガイ"
+  },
+  {
+    "term": "泳ぐ",
+    "reading": "オヨイ"
+  },
+  {
+    "term": "温泉",
+    "reading": "オンセン"
+  },
+  {
+    "term": "海外",
+    "reading": "カイガイ"
+  },
+  {
+    "term": "学ぶ",
+    "reading": "マナブ"
+  },
+  {
+    "term": "学校",
+    "reading": "ガッコウ"
+  },
+  {
+    "term": "楽しい",
+    "reading": "タノシイ"
+  },
+  {
+    "term": "寒い",
+    "reading": "サムイ"
+  },
+  {
+    "term": "帰る",
+    "reading": "カエリ"
+  },
+  {
+    "term": "経つ",
+    "reading": "タツ"
+  },
+  {
+    "term": "建てる",
+    "reading": "タテ"
+  },
+  {
+    "term": "広い",
+    "reading": "ヒロイ"
+  },
+  {
+    "term": "考え方",
+    "reading": "カンガエカタ"
+  },
+  {
+    "term": "行く",
+    "reading": "イキ"
+  },
+  {
+    "term": "困る",
+    "reading": "コマル"
+  },
+  {
+    "term": "子ども",
+    "reading": "コドモ"
+  },
+  {
+    "term": "子供",
+    "reading": "コドモ"
+  },
+  {
+    "term": "思い",
+    "reading": "オモイ"
+  },
+  {
+    "term": "思い通り",
+    "reading": "オモイドオリ"
+  },
+  {
+    "term": "思う",
+    "reading": "オモイ"
+  },
+  {
+    "term": "時間",
+    "reading": "ジカン"
+  },
+  {
+    "term": "時代",
+    "reading": "ジダイ"
+  },
+  {
+    "term": "自分",
+    "reading": "ジブン"
+  },
+  {
+    "term": "自由",
+    "reading": "ジユウ"
+  },
+  {
+    "term": "失敗",
+    "reading": "シッパイ"
+  },
+  {
+    "term": "取る",
+    "reading": "トル"
+  },
+  {
+    "term": "守る",
+    "reading": "マモル"
+  },
+  {
+    "term": "宿題",
+    "reading": "シュクダイ"
+  },
+  {
+    "term": "暑い",
+    "reading": "アツイ"
+  },
+  {
+    "term": "将来",
+    "reading": "ショウライ"
+  },
+  {
+    "term": "信用",
+    "reading": "シンヨウ"
+  },
+  {
+    "term": "申し訳",
+    "reading": "モウシワケ"
+  },
+  {
+    "term": "人生",
+    "reading": "ジンセイ"
+  },
+  {
+    "term": "世の中",
+    "reading": "ヨノナカ"
+  },
+  {
+    "term": "世界",
+    "reading": "セカイ"
+  },
+  {
+    "term": "全然",
+    "reading": "ゼンゼン"
+  },
+  {
+    "term": "早い",
+    "reading": "ハヤク"
+  },
+  {
+    "term": "大学",
+    "reading": "ダイガク"
+  },
+  {
+    "term": "知る",
+    "reading": "シラ"
+  },
+  {
+    "term": "遅い",
+    "reading": "オソク"
+  },
+  {
+    "term": "遅れる",
+    "reading": "オクレ"
+  },
+  {
+    "term": "貯金",
+    "reading": "チョキン"
+  },
+  {
+    "term": "通り",
+    "reading": "ドオリ"
+  },
+  {
+    "term": "電車",
+    "reading": "デンシャ"
+  },
+  {
+    "term": "登る",
+    "reading": "ノボリ"
+  },
+  {
+    "term": "疲れる",
+    "reading": "ツカレ"
+  },
+  {
+    "term": "美味しい",
+    "reading": "オイシク"
+  },
+  {
+    "term": "不思議",
+    "reading": "フシギ"
+  },
+  {
+    "term": "富士山",
+    "reading": "フジサン"
+  },
+  {
+    "term": "物語",
+    "reading": "モノガタリ"
+  },
+  {
+    "term": "物事",
+    "reading": "モノゴト"
+  },
+  {
+    "term": "物理",
+    "reading": "ブツリ"
+  },
+  {
+    "term": "歩く",
+    "reading": "アルイ"
+  },
+  {
+    "term": "暮らす",
+    "reading": "クラシ"
+  },
+  {
+    "term": "忘れっぽい",
+    "reading": "ワスレッポク"
+  },
+  {
+    "term": "忘れる",
+    "reading": "ワスレ"
+  },
+  {
+    "term": "本当に",
+    "reading": "ホントウニ"
+  },
+  {
+    "term": "毎晩",
+    "reading": "マイバン"
+  },
+  {
+    "term": "約束",
+    "reading": "ヤクソク"
+  },
+  {
+    "term": "友達",
+    "reading": "トモダチ"
+  },
+  {
+    "term": "遊ぶ",
+    "reading": "アソビ"
+  },
+  {
+    "term": "料理",
+    "reading": "リョウリ"
+  },
+  {
+    "term": "話す",
+    "reading": "ハナシ"
+  },
+  {
+    "term": "綺麗",
+    "reading": "キレイ"
+  }
+]

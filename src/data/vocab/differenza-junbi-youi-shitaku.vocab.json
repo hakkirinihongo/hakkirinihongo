@@ -1,0 +1,370 @@
+[
+  {
+    "term": "いい",
+    "reading": "イイ"
+  },
+  {
+    "term": "いたす",
+    "reading": "イタシ"
+  },
+  {
+    "term": "おく",
+    "reading": "オク"
+  },
+  {
+    "term": "おる",
+    "reading": "オリ"
+  },
+  {
+    "term": "お金",
+    "reading": "オカネ"
+  },
+  {
+    "term": "くださる",
+    "reading": "クダサイ"
+  },
+  {
+    "term": "ごはん",
+    "reading": "ゴハン"
+  },
+  {
+    "term": "ご飯",
+    "reading": "ゴハン"
+  },
+  {
+    "term": "サンドイッチ",
+    "reading": "サンドイッチ"
+  },
+  {
+    "term": "たち",
+    "reading": "タチ"
+  },
+  {
+    "term": "だらけ",
+    "reading": "ダラケ"
+  },
+  {
+    "term": "できる",
+    "reading": "デキ"
+  },
+  {
+    "term": "なさる",
+    "reading": "ナサイ"
+  },
+  {
+    "term": "パーティー",
+    "reading": "パーティー"
+  },
+  {
+    "term": "ピクニック",
+    "reading": "ピクニック"
+  },
+  {
+    "term": "びら",
+    "reading": "ビラ"
+  },
+  {
+    "term": "プレゼンテーション",
+    "reading": "プレゼンテーション"
+  },
+  {
+    "term": "ホテル",
+    "reading": "ホテル"
+  },
+  {
+    "term": "もう",
+    "reading": "モウ"
+  },
+  {
+    "term": "ゆっくり",
+    "reading": "ユックリ"
+  },
+  {
+    "term": "ロビー",
+    "reading": "ロビー"
+  },
+  {
+    "term": "椅子",
+    "reading": "イス"
+  },
+  {
+    "term": "一式",
+    "reading": "イッシキ"
+  },
+  {
+    "term": "引っ越し",
+    "reading": "ヒッコシ"
+  },
+  {
+    "term": "飲み物",
+    "reading": "ノミモノ"
+  },
+  {
+    "term": "家中",
+    "reading": "イエジュウ"
+  },
+  {
+    "term": "会議",
+    "reading": "カイギ"
+  },
+  {
+    "term": "会社",
+    "reading": "カイシャ"
+  },
+  {
+    "term": "会場",
+    "reading": "カイジョウ"
+  },
+  {
+    "term": "外出",
+    "reading": "ガイシュツ"
+  },
+  {
+    "term": "学校",
+    "reading": "ガッコウ"
+  },
+  {
+    "term": "環境",
+    "reading": "カンキョウ"
+  },
+  {
+    "term": "帰り支度",
+    "reading": "カエリジタク"
+  },
+  {
+    "term": "帰国",
+    "reading": "キコク"
+  },
+  {
+    "term": "教材",
+    "reading": "キョウザイ"
+  },
+  {
+    "term": "決心",
+    "reading": "ケッシン"
+  },
+  {
+    "term": "研究",
+    "reading": "ケンキュウ"
+  },
+  {
+    "term": "向ける",
+    "reading": "ムケ"
+  },
+  {
+    "term": "行う",
+    "reading": "オコナウ"
+  },
+  {
+    "term": "行く",
+    "reading": "イク"
+  },
+  {
+    "term": "行動",
+    "reading": "コウドウ"
+  },
+  {
+    "term": "済ませる",
+    "reading": "スマセ"
+  },
+  {
+    "term": "済む",
+    "reading": "スン"
+  },
+  {
+    "term": "仕度",
+    "reading": "シタク"
+  },
+  {
+    "term": "始まる",
+    "reading": "ハジマル"
+  },
+  {
+    "term": "子供",
+    "reading": "コドモ"
+  },
+  {
+    "term": "支度",
+    "reading": "シタク"
+  },
+  {
+    "term": "試験",
+    "reading": "シケン"
+  },
+  {
+    "term": "資料",
+    "reading": "シリョウ"
+  },
+  {
+    "term": "事業",
+    "reading": "ジギョウ"
+  },
+  {
+    "term": "事前",
+    "reading": "ジゼン"
+  },
+  {
+    "term": "実験",
+    "reading": "ジッケン"
+  },
+  {
+    "term": "社員",
+    "reading": "シャイン"
+  },
+  {
+    "term": "手伝う",
+    "reading": "テツダオ"
+  },
+  {
+    "term": "周到",
+    "reading": "シュウトウ"
+  },
+  {
+    "term": "週末",
+    "reading": "シュウマツ"
+  },
+  {
+    "term": "出かける",
+    "reading": "デカケル"
+  },
+  {
+    "term": "準備",
+    "reading": "ジュンビ"
+  },
+  {
+    "term": "常食",
+    "reading": "ジョウショク"
+  },
+  {
+    "term": "食事",
+    "reading": "ショクジ"
+  },
+  {
+    "term": "寝る",
+    "reading": "ネル"
+  },
+  {
+    "term": "新入",
+    "reading": "シンニュウ"
+  },
+  {
+    "term": "身支度",
+    "reading": "ミジタク"
+  },
+  {
+    "term": "進める",
+    "reading": "ススメル"
+  },
+  {
+    "term": "整える",
+    "reading": "トトノエ"
+  },
+  {
+    "term": "赤ちゃん",
+    "reading": "アカチャン"
+  },
+  {
+    "term": "前もって",
+    "reading": "マエモッテ"
+  },
+  {
+    "term": "掃除",
+    "reading": "ソウジ"
+  },
+  {
+    "term": "早い",
+    "reading": "ハヤク"
+  },
+  {
+    "term": "大会",
+    "reading": "タイカイ"
+  },
+  {
+    "term": "段ボール",
+    "reading": "ダンボール"
+  },
+  {
+    "term": "調査",
+    "reading": "チョウサ"
+  },
+  {
+    "term": "徹底的",
+    "reading": "テッテイテキ"
+  },
+  {
+    "term": "入る",
+    "reading": "ハイッ"
+  },
+  {
+    "term": "発表",
+    "reading": "ハッピョウ"
+  },
+  {
+    "term": "彼女",
+    "reading": "カノジョ"
+  },
+  {
+    "term": "備える",
+    "reading": "ソナエ"
+  },
+  {
+    "term": "必要",
+    "reading": "ヒツヨウ"
+  },
+  {
+    "term": "不足",
+    "reading": "フソク"
+  },
+  {
+    "term": "布団",
+    "reading": "フトン"
+  },
+  {
+    "term": "部屋",
+    "reading": "ヘヤ"
+  },
+  {
+    "term": "風呂",
+    "reading": "フロ"
+  },
+  {
+    "term": "万が一",
+    "reading": "マンガイチ"
+  },
+  {
+    "term": "万端",
+    "reading": "バンタン"
+  },
+  {
+    "term": "名札",
+    "reading": "ナフダ"
+  },
+  {
+    "term": "明日",
+    "reading": "アシタ"
+  },
+  {
+    "term": "夕食",
+    "reading": "ユウショク"
+  },
+  {
+    "term": "予備",
+    "reading": "ヨビ"
+  },
+  {
+    "term": "用意",
+    "reading": "ヨウイ"
+  },
+  {
+    "term": "来週",
+    "reading": "ライシュウ"
+  },
+  {
+    "term": "旅行",
+    "reading": "リョコウ"
+  },
+  {
+    "term": "料理",
+    "reading": "リョウリ"
+  }
+]

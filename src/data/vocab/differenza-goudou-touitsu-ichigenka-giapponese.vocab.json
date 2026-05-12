@@ -1,0 +1,618 @@
+[
+  {
+    "term": "アップ",
+    "reading": "アップ"
+  },
+  {
+    "term": "いい",
+    "reading": "イイ"
+  },
+  {
+    "term": "イベント",
+    "reading": "イベント"
+  },
+  {
+    "term": "イメージ",
+    "reading": "イメージ"
+  },
+  {
+    "term": "インターフェース",
+    "reading": "インターフェース"
+  },
+  {
+    "term": "エベレスト",
+    "reading": "エベレスト"
+  },
+  {
+    "term": "くださる",
+    "reading": "クダサイ"
+  },
+  {
+    "term": "グループ",
+    "reading": "グループ"
+  },
+  {
+    "term": "コード",
+    "reading": "コード"
+  },
+  {
+    "term": "サービス",
+    "reading": "サービス"
+  },
+  {
+    "term": "システム",
+    "reading": "システム"
+  },
+  {
+    "term": "スキーマ",
+    "reading": "スキーマ"
+  },
+  {
+    "term": "すぎる",
+    "reading": "スギ"
+  },
+  {
+    "term": "スケジュール",
+    "reading": "スケジュール"
+  },
+  {
+    "term": "スタイル",
+    "reading": "スタイル"
+  },
+  {
+    "term": "せる",
+    "reading": "セル"
+  },
+  {
+    "term": "チーム",
+    "reading": "チーム"
+  },
+  {
+    "term": "ツール",
+    "reading": "ツール"
+  },
+  {
+    "term": "データ",
+    "reading": "データ"
+  },
+  {
+    "term": "データベース",
+    "reading": "データベース"
+  },
+  {
+    "term": "できる",
+    "reading": "デキル"
+  },
+  {
+    "term": "デザイン",
+    "reading": "デザイン"
+  },
+  {
+    "term": "テスト",
+    "reading": "テスト"
+  },
+  {
+    "term": "なくなる",
+    "reading": "ナクナッ"
+  },
+  {
+    "term": "パーティー",
+    "reading": "パーティー"
+  },
+  {
+    "term": "ばらつき",
+    "reading": "バラツキ"
+  },
+  {
+    "term": "フォーマット",
+    "reading": "フォーマット"
+  },
+  {
+    "term": "ブランド",
+    "reading": "ブランド"
+  },
+  {
+    "term": "プレス",
+    "reading": "プレス"
+  },
+  {
+    "term": "プロジェクト",
+    "reading": "プロジェクト"
+  },
+  {
+    "term": "プロセス",
+    "reading": "プロセス"
+  },
+  {
+    "term": "ほう",
+    "reading": "ホウ"
+  },
+  {
+    "term": "まとめる",
+    "reading": "マトメル"
+  },
+  {
+    "term": "ミート",
+    "reading": "ミート"
+  },
+  {
+    "term": "みんな",
+    "reading": "ミンナ"
+  },
+  {
+    "term": "ユーザ",
+    "reading": "ユーザ"
+  },
+  {
+    "term": "ユーザー",
+    "reading": "ユーザー"
+  },
+  {
+    "term": "リリース",
+    "reading": "リリース"
+  },
+  {
+    "term": "ルール",
+    "reading": "ルール"
+  },
+  {
+    "term": "れる",
+    "reading": "レ"
+  },
+  {
+    "term": "ログ",
+    "reading": "ログ"
+  },
+  {
+    "term": "意見",
+    "reading": "イケン"
+  },
+  {
+    "term": "意思",
+    "reading": "イシ"
+  },
+  {
+    "term": "一つ",
+    "reading": "ヒトツ"
+  },
+  {
+    "term": "一元",
+    "reading": "イチゲン"
+  },
+  {
+    "term": "一元化",
+    "reading": "イチゲンカ"
+  },
+  {
+    "term": "一緒",
+    "reading": "イッショ"
+  },
+  {
+    "term": "一体化",
+    "reading": "イッタイカ"
+  },
+  {
+    "term": "一統",
+    "reading": "イットウ"
+  },
+  {
+    "term": "運動会",
+    "reading": "ウンドウカイ"
+  },
+  {
+    "term": "価格",
+    "reading": "カカク"
+  },
+  {
+    "term": "家計",
+    "reading": "カケイ"
+  },
+  {
+    "term": "家事",
+    "reading": "カジ"
+  },
+  {
+    "term": "箇所",
+    "reading": "カショ"
+  },
+  {
+    "term": "会議",
+    "reading": "カイギ"
+  },
+  {
+    "term": "会計",
+    "reading": "カイケイ"
+  },
+  {
+    "term": "会社",
+    "reading": "カイシャ"
+  },
+  {
+    "term": "解消",
+    "reading": "カイショウ"
+  },
+  {
+    "term": "開く",
+    "reading": "ヒラク"
+  },
+  {
+    "term": "開催",
+    "reading": "カイサイ"
+  },
+  {
+    "term": "開発",
+    "reading": "カイハツ"
+  },
+  {
+    "term": "格差",
+    "reading": "カクサ"
+  },
+  {
+    "term": "環境",
+    "reading": "カンキョウ"
+  },
+  {
+    "term": "管理",
+    "reading": "カンリ"
+  },
+  {
+    "term": "企業",
+    "reading": "キギョウ"
+  },
+  {
+    "term": "基準",
+    "reading": "キジュン"
+  },
+  {
+    "term": "規格",
+    "reading": "キカク"
+  },
+  {
+    "term": "逆らう",
+    "reading": "サカラウ"
+  },
+  {
+    "term": "共同",
+    "reading": "キョウドウ"
+  },
+  {
+    "term": "協力",
+    "reading": "キョウリョク"
+  },
+  {
+    "term": "業務",
+    "reading": "ギョウム"
+  },
+  {
+    "term": "金融",
+    "reading": "キンユウ"
+  },
+  {
+    "term": "形式",
+    "reading": "ケイシキ"
+  },
+  {
+    "term": "経営",
+    "reading": "ケイエイ"
+  },
+  {
+    "term": "経理",
+    "reading": "ケイリ"
+  },
+  {
+    "term": "計画",
+    "reading": "ケイカク"
+  },
+  {
+    "term": "決定",
+    "reading": "ケッテイ"
+  },
+  {
+    "term": "結果",
+    "reading": "ケッカ"
+  },
+  {
+    "term": "権限",
+    "reading": "ケンゲン"
+  },
+  {
+    "term": "研究",
+    "reading": "ケンキュウ"
+  },
+  {
+    "term": "研修",
+    "reading": "ケンシュウ"
+  },
+  {
+    "term": "呼称",
+    "reading": "コショウ"
+  },
+  {
+    "term": "顧客",
+    "reading": "コキャク"
+  },
+  {
+    "term": "向上",
+    "reading": "コウジョウ"
+  },
+  {
+    "term": "考える",
+    "reading": "カンガエ"
+  },
+  {
+    "term": "行う",
+    "reading": "オコナウ"
+  },
+  {
+    "term": "行政",
+    "reading": "ギョウセイ"
+  },
+  {
+    "term": "合同",
+    "reading": "ゴウドウ"
+  },
+  {
+    "term": "合併",
+    "reading": "ガッペイ"
+  },
+  {
+    "term": "国内",
+    "reading": "コクナイ"
+  },
+  {
+    "term": "作業",
+    "reading": "サギョウ"
+  },
+  {
+    "term": "撮る",
+    "reading": "トロ"
+  },
+  {
+    "term": "市場",
+    "reading": "シジョウ"
+  },
+  {
+    "term": "事業",
+    "reading": "ジギョウ"
+  },
+  {
+    "term": "写真",
+    "reading": "シャシン"
+  },
+  {
+    "term": "社員",
+    "reading": "シャイン"
+  },
+  {
+    "term": "社内",
+    "reading": "シャナイ"
+  },
+  {
+    "term": "集中",
+    "reading": "シュウチュウ"
+  },
+  {
+    "term": "書き方",
+    "reading": "カキカタ"
+  },
+  {
+    "term": "書式",
+    "reading": "ショシキ"
+  },
+  {
+    "term": "場所",
+    "reading": "バショ"
+  },
+  {
+    "term": "情報",
+    "reading": "ジョウホウ"
+  },
+  {
+    "term": "新入",
+    "reading": "シンニュウ"
+  },
+  {
+    "term": "進める",
+    "reading": "ススメル"
+  },
+  {
+    "term": "人事",
+    "reading": "ジンジ"
+  },
+  {
+    "term": "水準",
+    "reading": "スイジュン"
+  },
+  {
+    "term": "制度",
+    "reading": "セイド"
+  },
+  {
+    "term": "声明",
+    "reading": "セイメイ"
+  },
+  {
+    "term": "製品",
+    "reading": "セイヒン"
+  },
+  {
+    "term": "設定",
+    "reading": "セッテイ"
+  },
+  {
+    "term": "戦略",
+    "reading": "センリャク"
+  },
+  {
+    "term": "全国",
+    "reading": "ゼンコク"
+  },
+  {
+    "term": "全部",
+    "reading": "ゼンブ"
+  },
+  {
+    "term": "窓口",
+    "reading": "マドグチ"
+  },
+  {
+    "term": "多元",
+    "reading": "タゲン"
+  },
+  {
+    "term": "体験",
+    "reading": "タイケン"
+  },
+  {
+    "term": "対応",
+    "reading": "タイオウ"
+  },
+  {
+    "term": "対立",
+    "reading": "タイリツ"
+  },
+  {
+    "term": "大学",
+    "reading": "ダイガク"
+  },
+  {
+    "term": "誕生",
+    "reading": "タンジョウ"
+  },
+  {
+    "term": "挑戦",
+    "reading": "チョウセン"
+  },
+  {
+    "term": "通貨",
+    "reading": "ツウカ"
+  },
+  {
+    "term": "抵抗",
+    "reading": "テイコウ"
+  },
+  {
+    "term": "登山",
+    "reading": "トザン"
+  },
+  {
+    "term": "統一",
+    "reading": "トウイツ"
+  },
+  {
+    "term": "統合",
+    "reading": "トウゴウ"
+  },
+  {
+    "term": "働く",
+    "reading": "ハタラク"
+  },
+  {
+    "term": "難しい",
+    "reading": "ムズカシイ"
+  },
+  {
+    "term": "認証",
+    "reading": "ニンショウ"
+  },
+  {
+    "term": "年金",
+    "reading": "ネンキン"
+  },
+  {
+    "term": "発表",
+    "reading": "ハッピョウ"
+  },
+  {
+    "term": "反抗",
+    "reading": "ハンコウ"
+  },
+  {
+    "term": "反対",
+    "reading": "ハンタイ"
+  },
+  {
+    "term": "被用者",
+    "reading": "ヒヨウシャ"
+  },
+  {
+    "term": "費用",
+    "reading": "ヒヨウ"
+  },
+  {
+    "term": "必要",
+    "reading": "ヒツヨウ"
+  },
+  {
+    "term": "負担",
+    "reading": "フタン"
+  },
+  {
+    "term": "部署",
+    "reading": "ブショ"
+  },
+  {
+    "term": "複数",
+    "reading": "フクスウ"
+  },
+  {
+    "term": "物事",
+    "reading": "モノゴト"
+  },
+  {
+    "term": "分散",
+    "reading": "ブンサン"
+  },
+  {
+    "term": "勉強",
+    "reading": "ベンキョウ"
+  },
+  {
+    "term": "報告",
+    "reading": "ホウコク"
+  },
+  {
+    "term": "方針",
+    "reading": "ホウシン"
+  },
+  {
+    "term": "方法",
+    "reading": "ホウホウ"
+  },
+  {
+    "term": "本社",
+    "reading": "ホンシャ"
+  },
+  {
+    "term": "問い合わせ",
+    "reading": "トイアワセ"
+  },
+  {
+    "term": "問答",
+    "reading": "モンドウ"
+  },
+  {
+    "term": "友達",
+    "reading": "トモダチ"
+  },
+  {
+    "term": "容易",
+    "reading": "ヨウイ"
+  },
+  {
+    "term": "両国",
+    "reading": "リョウコク"
+  },
+  {
+    "term": "練習",
+    "reading": "レンシュウ"
+  },
+  {
+    "term": "連絡",
+    "reading": "レンラク"
+  },
+  {
+    "term": "和気",
+    "reading": "ワキ"
+  }
+]
