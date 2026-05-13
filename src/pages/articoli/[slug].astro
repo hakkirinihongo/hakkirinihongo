@@ -133,18 +133,28 @@ const relatedPosts = posts
           const relatedCategoryTitle = categoryLabels[relatedCategory] ?? relatedCategory;
 
           return (
-            <a class="related-post-card" href={`/articoli/${related.slug}/`}>
-              {relatedCategory && (
-                <span class="related-post-card-category">{relatedCategoryTitle}</span>
-              )}
+  <a class="related-post-card" href={`/articoli/${related.slug}/`}>
+    <span class="related-post-card-image">
+      <img
+        src={related.frontmatter.image ?? '/og-image.png'}
+        alt=""
+        loading="lazy"
+      />
+    </span>
 
-              <h3>{related.title}</h3>
+    <span class="related-post-card-body">
+      {relatedCategory && (
+        <span class="related-post-card-category">{relatedCategoryTitle}</span>
+      )}
 
-              {related.description && <p>{related.description}</p>}
+      <h3>{related.title}</h3>
 
-              <span class="related-post-card-link">Leggi l’articolo →</span>
-            </a>
-          );
+      {related.description && <p>{related.description}</p>}
+
+      <span class="related-post-card-link">Leggi l’articolo →</span>
+    </span>
+  </a>
+);
         })}
       </div>
     </section>

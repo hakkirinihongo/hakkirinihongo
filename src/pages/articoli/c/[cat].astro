@@ -32,10 +32,10 @@ const seoMap = {
       "Differenze sottili della grammatica giapponese spiegate chiaramente: usi reali, confronti e sfumature spesso ignorate nei manuali.",
   },
   "dissezionamenti-grammaticali": {
-  title: "Dissezioni grammaticali giapponesi | Hakkiri Nihongo",
-  description:
-    "Analisi approfondite di strutture grammaticali giapponesi: origine, logica interna e uso reale nei testi e nel JLPT.",
-},
+    title: "Dissezioni grammaticali giapponesi | Hakkiri Nihongo",
+    description:
+      "Analisi approfondite di strutture grammaticali giapponesi: origine, logica interna e uso reale nei testi e nel JLPT.",
+  },
   "giapponese-di-nicchia": {
     title: "Grammatica giapponese di nicchia | Hakkiri Nihongo",
     description:
@@ -105,6 +105,7 @@ const posts = Object.entries(postImports).map(([path, mod]) => {
   const slug = fm.slug ?? path.split("/").pop().replace(/\.mdx$/, "");
   return { slug, frontmatter: fm };
 });
+
 const renderTitleWithJapaneseSpans = (title) => {
   const text = String(title ?? "");
   const parts = text.split(/([\u3040-\u30ff\u3400-\u9fff々〆〤ヶ]+)/g);
@@ -128,8 +129,8 @@ const filteredPosts = posts.filter((p) => p.frontmatter.category === cat);
     </nav>
 
     <p class="category-kicker">
-  Categoria: <strong>{categoryTitle}</strong>
-</p>
+      Categoria: <strong>{categoryTitle}</strong>
+    </p>
 
     <p class="category-intro editorial-intro">
       {cat === "concetti-e-distinzioni" &&
@@ -148,58 +149,73 @@ const filteredPosts = posts.filter((p) => p.frontmatter.category === cat);
     <ul class="post-list">
       {filteredPosts.map(({ slug, frontmatter }) => (
         <li class="post-item">
-          <h3 class="post-title">
-  <a class="post-link" href={`/articoli/${slug}/`}>
-    {renderTitleWithJapaneseSpans(frontmatter.title ?? slug).map((part) =>
-      part.isJapanese ? (
-        <span class="post-title-jp">{part.text}</span>
-      ) : (
-        part.text
-      )
-    )}
-  </a>
-</h3>
+          <a
+            class="post-thumb"
+            href={`/articoli/${slug}/`}
+            aria-hidden="true"
+            tabindex="-1"
+          >
+            <img
+              src={frontmatter.image ?? "/og-image.png"}
+              alt=""
+              loading="lazy"
+            />
+          </a>
 
-          {frontmatter.description && (
-            <p class="post-description">
+          <div class="post-content">
+            <h3 class="post-title">
               <a class="post-link" href={`/articoli/${slug}/`}>
-                {frontmatter.description}
+                {renderTitleWithJapaneseSpans(frontmatter.title ?? slug).map((part) =>
+                  part.isJapanese ? (
+                    <span class="post-title-jp">{part.text}</span>
+                  ) : (
+                    part.text
+                  )
+                )}
               </a>
-            </p>
-          )}
+            </h3>
 
-          <div class="post-meta">
-            {frontmatter.date && (
-              <time datetime={frontmatter.date}>
-                {new Date(frontmatter.date).toLocaleDateString("it-IT")}
-              </time>
-            )}
-
-            {frontmatter.series && (
-              <a
-                class="series"
-                href={`/articoli/serie/${normalizeSeries(frontmatter.series)}/`}
-              >
-                {frontmatter.series}
-              </a>
-            )}
-
-            {frontmatter.jlpt && (
-              isFilterableJlpt(frontmatter.jlpt) ? (
-                <a
-                  class="tag"
-                  href={
-                    isAllLevelsJlpt(frontmatter.jlpt)
-                      ? "/articoli/jlpt/"
-                      : `/articoli/jlpt/${normalizeJlpt(frontmatter.jlpt)}/`
-                  }
-                >
-                  JLPT {frontmatter.jlpt}
+            {frontmatter.description && (
+              <p class="post-description">
+                <a class="post-link" href={`/articoli/${slug}/`}>
+                  {frontmatter.description}
                 </a>
-              ) : (
-                <span class="tag">JLPT {frontmatter.jlpt}</span>
-              )
+              </p>
             )}
+
+            <div class="post-meta">
+              {frontmatter.date && (
+                <time datetime={frontmatter.date}>
+                  {new Date(frontmatter.date).toLocaleDateString("it-IT")}
+                </time>
+              )}
+
+              {frontmatter.series && (
+                <a
+                  class="series"
+                  href={`/articoli/serie/${normalizeSeries(frontmatter.series)}/`}
+                >
+                  {frontmatter.series}
+                </a>
+              )}
+
+              {frontmatter.jlpt && (
+                isFilterableJlpt(frontmatter.jlpt) ? (
+                  <a
+                    class="tag"
+                    href={
+                      isAllLevelsJlpt(frontmatter.jlpt)
+                        ? "/articoli/jlpt/"
+                        : `/articoli/jlpt/${normalizeJlpt(frontmatter.jlpt)}/`
+                    }
+                  >
+                    JLPT {frontmatter.jlpt}
+                  </a>
+                ) : (
+                  <span class="tag">JLPT {frontmatter.jlpt}</span>
+                )
+              )}
+            </div>
           </div>
         </li>
       ))}

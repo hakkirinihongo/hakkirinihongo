@@ -1613,3 +1613,29 @@ perspective: 700px;
   }
 }
 
+/* Immagini nelle card Vedi anche */
+.related-post-card {
+  overflow: hidden;
+}
+
+.related-post-card-image {
+  display: block;
+  margin: -2rem -2rem 1.4rem;
+  overflow: hidden;
+}
+
+.related-post-card-image {
+  display: block;
+  margin: -2rem -2rem 1.4rem;
+}
+
+.related-post-card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.related-post-card-body {
+  display: block;
+}
+
