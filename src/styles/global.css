@@ -1572,5 +1572,44 @@ perspective: 700px;
 .side-right:hover {
   opacity: 0.78;
 }
+/* Immagini nella pagina Articoli */
+.page-articles .post-item {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1.8rem;
+  align-items: start;
+}
 
+.page-articles .post-thumb {
+  display: block;
+  width: 220px;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.page-articles .post-thumb img {
+  display: block;
+  width: 100%;
+  height: 145px;
+  object-fit: cover;
+}
+
+.page-articles .post-content {
+  min-width: 0;
+}
+
+@media (max-width: 760px) {
+  .page-articles .post-item {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .page-articles .post-thumb {
+    width: 100%;
+  }
+
+  .page-articles .post-thumb img {
+    height: 210px;
+  }
+}
 

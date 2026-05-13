@@ -109,56 +109,71 @@ const filteredPosts = posts;
     <ul class="post-list">
       {filteredPosts.map(({ slug, frontmatter }) => (
         <li class="post-item">
-          <h3 class="post-title">
-            <a class="post-link" href={`/articoli/${slug}/`}>
-              {frontmatter.title ?? slug}
-            </a>
-          </h3>
+  <a
+    class="post-thumb"
+    href={`/articoli/${slug}/`}
+    aria-hidden="true"
+    tabindex="-1"
+  >
+    <img
+      src={frontmatter.image ?? '/og-image.png'}
+      alt=""
+      loading="lazy"
+    />
+  </a>
 
-          {frontmatter.description && (
-            <p class="post-description">
+  <div class="post-content">
+            <h3 class="post-title">
               <a class="post-link" href={`/articoli/${slug}/`}>
-                {frontmatter.description}
+                {frontmatter.title ?? slug}
               </a>
-            </p>
-          )}
+            </h3>
 
-          <div class="post-meta">
-            {frontmatter.date && (
-              <time datetime={frontmatter.date}>
-                {new Date(frontmatter.date).toLocaleDateString('it-IT')}
-              </time>
-            )}
-
-            {frontmatter.series && (
-              <a
-                class="series"
-                href={`/articoli/serie/${normalizeSeries(frontmatter.series)}/`}
-              >
-                {frontmatter.series}
-              </a>
-            )}
-
-            {frontmatter.jlpt && (
-              isFilterableJlpt(frontmatter.jlpt) ? (
-                <a
-                  class="tag"
-                  href={
-                    normalizeJlpt(frontmatter.jlpt) === 'tutti-i-livelli'
-                      ? '/articoli/jlpt/'
-                      : `/articoli/jlpt/${normalizeJlpt(frontmatter.jlpt)}/`
-                  }
-                >
-                  JLPT {frontmatter.jlpt}
+            {frontmatter.description && (
+              <p class="post-description">
+                <a class="post-link" href={`/articoli/${slug}/`}>
+                  {frontmatter.description}
                 </a>
-              ) : (
-                <span class="tag">JLPT {frontmatter.jlpt}</span>
-              )
+              </p>
             )}
 
-            {frontmatter.tags && frontmatter.tags.map((tag) => (
-              <span class="tag">{tag}</span>
-            ))}
+            <div class="post-meta">
+              {frontmatter.date && (
+                <time datetime={frontmatter.date}>
+                  {new Date(frontmatter.date).toLocaleDateString('it-IT')}
+                </time>
+              )}
+
+              {frontmatter.series && (
+                <a
+                  class="series"
+                  href={`/articoli/serie/${normalizeSeries(frontmatter.series)}/`}
+                >
+                  {frontmatter.series}
+                </a>
+              )}
+
+              {frontmatter.jlpt && (
+                isFilterableJlpt(frontmatter.jlpt) ? (
+                  <a
+                    class="tag"
+                    href={
+                      normalizeJlpt(frontmatter.jlpt) === 'tutti-i-livelli'
+                        ? '/articoli/jlpt/'
+                        : `/articoli/jlpt/${normalizeJlpt(frontmatter.jlpt)}/`
+                    }
+                  >
+                    JLPT {frontmatter.jlpt}
+                  </a>
+                ) : (
+                  <span class="tag">JLPT {frontmatter.jlpt}</span>
+                )
+              )}
+
+              {frontmatter.tags && frontmatter.tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
           </div>
         </li>
       ))}
