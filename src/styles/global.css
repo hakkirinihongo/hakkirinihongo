@@ -1639,3 +1639,56 @@ perspective: 700px;
   display: block;
 }
 
+/* ==================================================
+   INDICE ARTICOLO
+   ================================================== */
+
+.article-toc {
+  margin: 2.8rem 0 3.2rem;
+  padding: 1.8rem 2rem;
+  border-top: 1px solid rgba(183, 53, 45, 0.22);
+  border-bottom: 1px solid rgba(183, 53, 45, 0.22);
+  background:
+    linear-gradient(
+      to right,
+      rgba(183, 53, 45, 0.025),
+      rgba(183, 53, 45, 0.01)
+    );
+}
+
+.article-toc-title {
+  margin: 0 0 1.2rem;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--hn-accent);
+  letter-spacing: 0.03em;
+}
+
+.article-toc-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.article-toc-list li {
+  margin-bottom: 0.75rem;
+}
+
+.article-toc-list a {
+  color: var(--hn-accent);
+  text-decoration: none;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  border-bottom: 1px solid transparent;
+  transition:
+    border-color 0.25s ease,
+    opacity 0.25s ease,
+    padding-left 0.25s ease;
+}
+
+.article-toc-list a:hover {
+  opacity: 0.78;
+  border-color: rgba(183, 53, 45, 0.4);
+  padding-left: 0.2rem;
+}
+

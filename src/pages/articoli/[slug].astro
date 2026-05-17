@@ -44,6 +44,9 @@ if (!post) {
 const Content = post.mod.default;
 const title = post.frontmatter.title ?? slug;
 
+const headings = await post.mod.getHeadings?.() ?? [];
+const articleToc = headings.filter((heading) => heading.depth === 2);
+
 const category = post.frontmatter.category;
 const series = post.frontmatter.series;
 
@@ -101,6 +104,22 @@ const relatedPosts = posts
       </p>
     )}
 
+    {articleToc.length > 0 && (
+      <nav class="article-toc" aria-labelledby="article-toc-title">
+        <p id="article-toc-title" class="article-toc-title">
+          In questo articolo
+        </p>
+
+        <ol class="article-toc-list">
+          {articleToc.map((heading) => (
+            <li>
+              <a href={`#${heading.slug}`}>{heading.text}</a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )}
+
     <Content />
 
     {false && post.vocab.length > 0 && (
@@ -108,14 +127,13 @@ const relatedPosts = posts
         <h2 id="article-vocab-title">Vocabolario dell’articolo</h2>
 
         <p class="article-vocab-intro">
-         Una selezione di vocaboli giapponesi presenti nell’articolo, estratti automaticamente e utili per ripassare lessico, forme grammaticali e termini ricorrenti.
+          Una selezione di vocaboli giapponesi presenti nell’articolo, estratti automaticamente e utili per ripassare lessico, forme grammaticali e termini ricorrenti.
         </p>
 
         <ul class="article-vocab-list">
           {post.vocab.slice(0, 40).map((item) => (
             <li>
               <span lang="ja">{item.term}</span>
-
             </li>
           ))}
         </ul>
@@ -133,28 +151,28 @@ const relatedPosts = posts
           const relatedCategoryTitle = categoryLabels[relatedCategory] ?? relatedCategory;
 
           return (
-  <a class="related-post-card" href={`/articoli/${related.slug}/`}>
-    <span class="related-post-card-image">
-      <img
-        src={related.frontmatter.image ?? '/og-image.png'}
-        alt=""
-        loading="lazy"
-      />
-    </span>
+            <a class="related-post-card" href={`/articoli/${related.slug}/`}>
+              <span class="related-post-card-image">
+                <img
+                  src={related.frontmatter.image ?? '/og-image.png'}
+                  alt=""
+                  loading="lazy"
+                />
+              </span>
 
-    <span class="related-post-card-body">
-      {relatedCategory && (
-        <span class="related-post-card-category">{relatedCategoryTitle}</span>
-      )}
+              <span class="related-post-card-body">
+                {relatedCategory && (
+                  <span class="related-post-card-category">{relatedCategoryTitle}</span>
+                )}
 
-      <h3>{related.title}</h3>
+                <h3>{related.title}</h3>
 
-      {related.description && <p>{related.description}</p>}
+                {related.description && <p>{related.description}</p>}
 
-      <span class="related-post-card-link">Leggi l’articolo →</span>
-    </span>
-  </a>
-);
+                <span class="related-post-card-link">Leggi l’articolo →</span>
+              </span>
+            </a>
+          );
         })}
       </div>
     </section>
