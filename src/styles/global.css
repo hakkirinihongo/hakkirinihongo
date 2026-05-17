@@ -92,6 +92,8 @@ body {
   background: #fbf8f1;
 }
 
+
+
 a {
   color: var(--primary-color);
   text-decoration: none;
@@ -1691,4 +1693,59 @@ perspective: 700px;
   border-color: rgba(183, 53, 45, 0.4);
   padding-left: 0.2rem;
 }
+/* ==================================================
+   INDICE STICKY A SINISTRA SENZA SPOSTARE L'ARTICOLO
+   ================================================== */
 
+.article-layout {
+  width: 100%;
+  margin: 0;
+}
+
+@media (min-width: 1350px) {
+
+  .article-sidebar {
+    position: fixed;
+    top: 230px;
+    left: max(2rem, calc((100vw - 1180px) / 2 - 100px));
+
+    width: 280px;
+    z-index: 4;
+  }
+
+  .article-sidebar .article-toc {
+    margin: 0;
+    padding: 1.35rem 1.4rem;
+
+    border: 1px solid #eadfd2;
+    border-radius: 22px;
+
+    background: rgba(252, 249, 245, 0.94);
+    backdrop-filter: blur(8px);
+
+    box-shadow: 0 12px 32px rgba(0,0,0,0.04);
+  }
+
+}
+
+/* ==================================================
+   INDICE ARTICOLO - VOCE ATTIVA
+   ================================================== */
+
+.article-toc a {
+  transition:
+    color 0.2s ease,
+    font-weight 0.2s ease,
+    padding-left 0.2s ease;
+}
+
+.article-toc a.is-active {
+  color: #8f2f28;
+  font-weight: 700;
+  padding-left: 0.45rem;
+  border-left: 2px solid #8f2f28;
+}
+
+h2 {
+  scroll-margin-top: 140px;
+}

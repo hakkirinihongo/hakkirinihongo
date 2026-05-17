@@ -88,58 +88,62 @@ const relatedPosts = posts
   description={post.frontmatter.description}
   image={post.frontmatter.image}
 >
-  <article class="page-article prose prose-lg max-w-none">
-    <h1 class="post-title">
-      {title}
-      {post.frontmatter.subtitle && (
-        <span class="post-subtitle">
-          {post.frontmatter.subtitle}
-        </span>
-      )}
-    </h1>
+  <div class="article-layout">
+    <article class="page-article prose prose-lg max-w-none">
+      <h1 class="post-title">
+        {title}
+        {post.frontmatter.subtitle && (
+          <span class="post-subtitle">
+            {post.frontmatter.subtitle}
+          </span>
+        )}
+      </h1>
 
-    {category && (
-      <p class="post-category">
-        Categoria: <a href={`/articoli/c/${category}/`}>{categoryTitle}</a>
-      </p>
-    )}
+      {category && (
+        <p class="post-category">
+          Categoria: <a href={`/articoli/c/${category}/`}>{categoryTitle}</a>
+        </p>
+      )}
+
+      <Content />
+
+      {false && post.vocab.length > 0 && (
+        <section class="article-vocab" aria-labelledby="article-vocab-title">
+          <h2 id="article-vocab-title">Vocabolario dell’articolo</h2>
+
+          <p class="article-vocab-intro">
+            Una selezione di vocaboli giapponesi presenti nell’articolo, estratti automaticamente e utili per ripassare lessico, forme grammaticali e termini ricorrenti.
+          </p>
+
+          <ul class="article-vocab-list">
+            {post.vocab.slice(0, 40).map((item) => (
+              <li>
+                <span lang="ja">{item.term}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </article>
 
     {articleToc.length > 0 && (
-      <nav class="article-toc" aria-labelledby="article-toc-title">
-        <p id="article-toc-title" class="article-toc-title">
-          In questo articolo
-        </p>
+      <aside class="article-sidebar">
+        <nav class="article-toc" aria-labelledby="article-toc-title">
+          <p id="article-toc-title" class="article-toc-title">
+            In questo articolo
+          </p>
 
-        <ol class="article-toc-list">
-          {articleToc.map((heading) => (
-            <li>
-              <a href={`#${heading.slug}`}>{heading.text}</a>
-            </li>
-          ))}
-        </ol>
-      </nav>
+          <ol class="article-toc-list">
+            {articleToc.map((heading) => (
+              <li>
+                <a href={`#${heading.slug}`}>{heading.text}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </aside>
     )}
-
-    <Content />
-
-    {false && post.vocab.length > 0 && (
-      <section class="article-vocab" aria-labelledby="article-vocab-title">
-        <h2 id="article-vocab-title">Vocabolario dell’articolo</h2>
-
-        <p class="article-vocab-intro">
-          Una selezione di vocaboli giapponesi presenti nell’articolo, estratti automaticamente e utili per ripassare lessico, forme grammaticali e termini ricorrenti.
-        </p>
-
-        <ul class="article-vocab-list">
-          {post.vocab.slice(0, 40).map((item) => (
-            <li>
-              <span lang="ja">{item.term}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
-    )}
-  </article>
+  </div>
 
   {relatedPosts.length > 0 && (
     <section class="related-posts" aria-labelledby="related-posts-title">
@@ -177,4 +181,83 @@ const relatedPosts = posts
       </div>
     </section>
   )}
+
+  <script>
+    const updateActiveTocLink = () => {
+      const headings = Array.from(document.querySelectorAll('h2[id]'));
+      const tocLinks = Array.from(document.querySelectorAll('.article-toc a'));
+
+      let currentHeadingId = null;
+
+      headings.forEach((heading) => {
+        const rect = heading.getBoundingClientRect();
+
+        if (rect.top <= 500) {
+          currentHeadingId = heading.id;
+        }
+      });
+
+      tocLinks.forEach((link) => {
+        link.classList.remove('is-active');
+
+        if (link.getAttribute('href') === `#${currentHeadingId}`) {
+          link.classList.add('is-active');
+        }
+      });
+    };
+
+    document.addEventListener('scroll', updateActiveTocLink, { passive: true });
+    window.addEventListener('load', updateActiveTocLink);
+
+    updateActiveTocLink();
+
+    const tocLinks = document.querySelectorAll('.article-toc a');
+
+    tocLinks.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const targetId = link.getAttribute('href');
+        const target = document.querySelector(targetId);
+
+        if (!target) return;
+
+        const offset = 120;
+
+        const targetPosition =
+          target.getBoundingClientRect().top +
+          window.scrollY -
+          offset;
+
+        const startPosition = window.scrollY;
+        const distance = targetPosition - startPosition;
+        const duration = Math.min(1800, Math.max(900, Math.abs(distance) * 0.7));
+
+        let startTime = null;
+
+        const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+        const animateScroll = (currentTime) => {
+          if (startTime === null) {
+            startTime = currentTime;
+          }
+
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const easedProgress = easeOutCubic(progress);
+
+          window.scrollTo(
+            0,
+            startPosition + distance * easedProgress
+          );
+
+          if (progress < 1) {
+            requestAnimationFrame(animateScroll);
+          }
+        };
+
+        requestAnimationFrame(animateScroll);
+      });
+    });
+  </script>
 </BaseLayout>
