@@ -1749,23 +1749,3 @@ perspective: 700px;
 h2 {
   scroll-margin-top: 140px;
 }
-/* ==================================================
-   INDICE ARTICOLO MOBILE / TABLET
-   ================================================== */
-
-@media (max-width: 1349px) {
-  .article-sidebar {
-    position: static;
-    width: auto;
-    margin: 2rem auto 3rem;
-  }
-
-  .article-layout {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .article-sidebar {
-    order: -1;
-  }
-}
