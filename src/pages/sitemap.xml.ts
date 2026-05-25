@@ -4,6 +4,7 @@ export const GET: APIRoute = async ({ site }) => {
   const base = (site?.toString() || 'https://hakkirinihongo.com').replace(/\/$/, '');
 
   const postModules = import.meta.glob('../content/articoli/**/*.mdx', { eager: true });
+  const englishPostModules = import.meta.glob('../content/en/**/*.mdx', { eager: true });
 
   const articleUrls = Object.entries(postModules).map(([path, mod]: any) => {
     const frontmatter = mod.frontmatter ?? {};
@@ -18,19 +19,36 @@ export const GET: APIRoute = async ({ site }) => {
     };
   });
 
+  const englishArticleUrls = Object.entries(englishPostModules).map(([path, mod]: any) => {
+    const frontmatter = mod.frontmatter ?? {};
+    const fallbackSlug = path.split('/').pop()?.replace('.mdx', '') ?? '';
+    const slug = frontmatter.slug ?? fallbackSlug;
+
+    const lastmod = frontmatter.updated ?? frontmatter.date ?? new Date().toISOString();
+
+    return {
+      loc: `${base}/en/articles/${slug}/`,
+      lastmod: new Date(lastmod).toISOString()
+    };
+  });
+
   const staticUrls = [
     { loc: `${base}/`, lastmod: new Date().toISOString() },
     { loc: `${base}/articoli/`, lastmod: new Date().toISOString() },
     { loc: `${base}/contatti/`, lastmod: new Date().toISOString() },
     { loc: `${base}/chi-siamo/`, lastmod: new Date().toISOString() },
     { loc: `${base}/chi-siamo-metodo/`, lastmod: new Date().toISOString() },
+
+    { loc: `${base}/en/`, lastmod: new Date().toISOString() },
+    { loc: `${base}/en/articles/`, lastmod: new Date().toISOString() },
+
     { loc: `${base}/articoli/c/concetti-e-distinzioni/`, lastmod: new Date().toISOString() },
     { loc: `${base}/articoli/c/dissezionamenti-grammaticali/`, lastmod: new Date().toISOString() },
     { loc: `${base}/articoli/c/giapponese-di-nicchia/`, lastmod: new Date().toISOString() },
     { loc: `${base}/articoli/c/storia-della-grammatica/`, lastmod: new Date().toISOString() },
   ];
 
-  const urls = [...staticUrls, ...articleUrls]
+  const urls = [...staticUrls, ...articleUrls, ...englishArticleUrls]
     .filter((item) => item.loc)
     .sort((a, b) => a.loc.localeCompare(b.loc));
 
