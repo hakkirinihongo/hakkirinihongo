@@ -8,6 +8,9 @@ export interface Props {
   image?: string;
   canonical?: string;
   noindex?: boolean;
+  
+  alternateItalian?: string;
+  alternateEnglish?: string;
 }
 
 const {
@@ -15,7 +18,10 @@ const {
   description = 'Hakkiri Nihongo: grammatica giapponese avanzata, concetti, distinzioni e grammatica di nicchia spiegati chiaramente.',
   image = 'https://hakkirinihongo.com/og-image.png',
   canonical,
-  noindex = false
+  noindex = false,
+
+  alternateItalian,
+  alternateEnglish
 } = Astro.props as Props;
 
 const isEnglish = Astro.url.pathname.startsWith('/en/');
@@ -24,6 +30,13 @@ const canonicalURL =
   canonical ?? new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site).href;
 
 const imageURL = new URL(image, Astro.site).href;
+const alternateItalianURL = alternateItalian
+  ? new URL(alternateItalian, Astro.site).href
+  : null;
+
+const alternateEnglishURL = alternateEnglish
+  ? new URL(alternateEnglish, Astro.site).href
+  : null;
 ---
 
 <!DOCTYPE html>
@@ -111,6 +124,13 @@ const imageURL = new URL(image, Astro.site).href;
     <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
 
     <link rel="canonical" href={canonicalURL} />
+{alternateItalianURL && (
+  <link rel="alternate" hreflang="it" href={alternateItalianURL} />
+)}
+
+{alternateEnglishURL && (
+  <link rel="alternate" hreflang="en" href={alternateEnglishURL} />
+)}
 
     <meta
       name="facebook-domain-verification"
@@ -179,7 +199,7 @@ const imageURL = new URL(image, Astro.site).href;
           <a href="/articoli/">Articoli</a>
           <a href="/chi-siamo/">Chi siamo / Metodo</a>
           <a href="/contatti/">Contatti</a>
-          <a href="/en/">English</a>
+         <a href="/en/">English</a>
 
           <button
             id="search-open"

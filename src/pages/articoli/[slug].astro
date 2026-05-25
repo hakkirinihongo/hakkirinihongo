@@ -87,6 +87,8 @@ const relatedPosts = posts
   title={`${title} | Hakkiri Nihongo`}
   description={post.frontmatter.description}
   image={post.frontmatter.image}
+  alternateItalian={Astro.url.pathname}
+  alternateEnglish={post.frontmatter.alternateEnglish}
 >
   <div class="article-layout">
     <article
