@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const articleImports = import.meta.glob('../../../content/en/**/*.mdx');
+
+const articles = await Promise.all(
+  Object.entries(articleImports).map(async ([path, resolver]) => {
+    const mod = await resolver();
+    const fm = mod.frontmatter ?? {};
+    const slug = path.split('/').pop()?.replace(/\.mdx?$/, '') ?? '';
+
+    return {
+      slug,
+      frontmatter: fm
+    };
+  })
+);
+
+articles.sort((a, b) => {
+  const dateA = a.frontmatter.date ? new Date(a.frontmatter.date) : new Date(0);
+  const dateB = b.frontmatter.date ? new Date(b.frontmatter.date) : new Date(0);
+  return dateB.getTime() - dateA.getTime();
+});
+---
+
+<BaseLayout
+  title="Japanese Grammar Articles | Hakkiri Nihongo English"
+  description="Browse Japanese grammar articles in English: nuance, grammar distinctions, and advanced explanations made clear."
+>
+  <main class="hn-page">
+    <section class="hn-section">
+      <h1>Japanese grammar articles</h1>
+
+      <p>
+        Browse Hakkiri Nihongo articles in English:
+        grammar distinctions, subtle nuance, and advanced Japanese explained clearly.
+      </p>
+
+      {
+        articles.length === 0 ? (
+          <p>English articles will appear here.</p>
+        ) : (
+          <div class="en-articles-grid">
+            {articles.map((article) => (
+              <article class="en-article-card">
+                {article.frontmatter.image && (
+                  <a href={`/en/articles/${article.slug}/`} class="en-article-image-link">
+                    <img
+                      src={article.frontmatter.image}
+                      alt={article.frontmatter.title}
+                      class="en-article-image"
+                      loading="lazy"
+                    />
+                  </a>
+                )}
+
+                <div class="en-article-card-body">
+                  <h2>
+                    <a href={`/en/articles/${article.slug}/`}>
+                      {article.frontmatter.title}
+                    </a>
+                  </h2>
+
+                  {article.frontmatter.description && (
+                    <p>{article.frontmatter.description}</p>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        )
+      }
+
+      <p>
+        <a href="/en/">← Back to English home</a>
+      </p>
+    </section>
+  </main>
+
+  <style>
+    .en-articles-grid {
+      display: grid;
+      gap: 1.4rem;
+      margin: 2rem 0 2.5rem;
+      max-width: 920px;
+    }
+
+    .en-article-card {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 1.25rem;
+      align-items: center;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(120, 90, 70, 0.18);
+    }
+
+    .en-article-image-link {
+      display: block;
+    }
+
+    .en-article-image {
+      display: block;
+      width: 220px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .en-article-card-body {
+      padding: 0;
+    }
+
+    .en-article-card h2 {
+      margin: 0 0 0.45rem;
+      font-size: 1.45rem;
+      line-height: 1.25;
+    }
+
+    .en-article-card h2 a {
+      color: #c0392b;
+      text-decoration: none;
+    }
+
+    .en-article-card h2 a:hover {
+      text-decoration: underline;
+    }
+
+    .en-article-card p {
+      margin: 0;
+      line-height: 1.55;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 720px) {
+      .en-article-card {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .en-article-image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3 / 2;
+      }
+    }
+  </style>
+</BaseLayout>

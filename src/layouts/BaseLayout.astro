@@ -18,6 +18,8 @@ const {
   noindex = false
 } = Astro.props as Props;
 
+const isEnglish = Astro.url.pathname.startsWith('/en/');
+
 const canonicalURL =
   canonical ?? new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site).href;
 
@@ -25,7 +27,7 @@ const imageURL = new URL(image, Astro.site).href;
 ---
 
 <!DOCTYPE html>
-<html lang="it">
+<html lang={isEnglish ? 'en' : 'it'}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -67,26 +69,27 @@ const imageURL = new URL(image, Astro.site).href;
         }
       </style>
     </noscript>
-<!-- Google Fonts -->
-<!--
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-<link
-  href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Playfair+Display:wght@400;500;600&display=swap"
-  rel="stylesheet"
-/>
--->
+    <!-- Google Fonts -->
+    <!--
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-<!-- Preload SOLO della hero principale -->
-<!--
-<link
-  rel="preload"
-  as="image"
-  href="/images/home-hero-fuji.avif"
-  type="image/avif"
-/>
--->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Playfair+Display:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    -->
+
+    <!-- Preload SOLO della hero principale -->
+    <!--
+    <link
+      rel="preload"
+      as="image"
+      href="/images/home-hero-fuji.avif"
+      type="image/avif"
+    />
+    -->
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RRRLNXQQ8V"></script>
@@ -121,7 +124,7 @@ const imageURL = new URL(image, Astro.site).href;
         '@type': 'WebSite',
         name: 'Hakkiri Nihongo',
         url: 'https://hakkirinihongo.com/',
-        inLanguage: 'it',
+        inLanguage: isEnglish ? 'en' : 'it',
         publisher: {
           '@type': 'Organization',
           name: 'Hakkiri Nihongo'
@@ -138,9 +141,11 @@ const imageURL = new URL(image, Astro.site).href;
     <meta property="og:image" content={imageURL} />
     <meta
       property="og:image:alt"
-      content="Hakkiri Nihongo | grammatica giapponese spiegata chiaramente"
+      content={isEnglish
+        ? 'Hakkiri Nihongo | Japanese grammar explained clearly'
+        : 'Hakkiri Nihongo | grammatica giapponese spiegata chiaramente'}
     />
-    <meta property="og:locale" content="it_IT" />
+    <meta property="og:locale" content={isEnglish ? 'en_US' : 'it_IT'} />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -174,6 +179,7 @@ const imageURL = new URL(image, Astro.site).href;
           <a href="/articoli/">Articoli</a>
           <a href="/chi-siamo/">Chi siamo / Metodo</a>
           <a href="/contatti/">Contatti</a>
+          <a href="/en/">English</a>
 
           <button
             id="search-open"
@@ -234,15 +240,23 @@ const imageURL = new URL(image, Astro.site).href;
     </main>
 
     <footer class="site-footer" data-pagefind-ignore>
-      <p><strong>Hakkiri Nihongo – Il giapponese chiaramente</strong></p>
-
       <p>
-        Sito dedicato allo studio della grammatica giapponese:
-        concetti, distinzioni, grammatica di nicchia e dissezioni grammaticali spiegati chiaramente.
+        <strong>
+          {isEnglish
+            ? 'Hakkiri Nihongo – Japanese clearly explained'
+            : 'Hakkiri Nihongo – Il giapponese chiaramente'}
+        </strong>
       </p>
 
       <p>
-        Segui Hakkiri Nihongo anche su
+        {isEnglish
+          ? 'A site dedicated to Japanese grammar: distinctions, nuanced grammar, advanced patterns, and clear explanations beyond textbook rules.'
+          : 'Sito dedicato allo studio della grammatica giapponese: concetti, distinzioni, grammatica di nicchia e dissezioni grammaticali spiegati chiaramente.'}
+      </p>
+
+      <p>
+        {isEnglish ? 'Follow Hakkiri Nihongo on' : 'Segui Hakkiri Nihongo anche su'}
+        {' '}
         <a
           href="https://www.facebook.com/hakkirinihongo"
           target="_blank"
@@ -253,7 +267,8 @@ const imageURL = new URL(image, Astro.site).href;
       </p>
 
       <p>
-        © {new Date().getFullYear()} Hakkiri Nihongo. Tutti i diritti riservati.
+        © {new Date().getFullYear()} Hakkiri Nihongo.
+        {isEnglish ? ' All rights reserved.' : ' Tutti i diritti riservati.'}
       </p>
     </footer>
 

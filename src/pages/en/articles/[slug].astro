@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const articleImports = import.meta.glob('../../../content/en/**/*.mdx');
+
+  const articles = await Promise.all(
+    Object.entries(articleImports).map(async ([path, resolver]) => {
+      const mod = await resolver();
+      const slug = path.split('/').pop()?.replace(/\.mdx?$/, '') ?? '';
+
+      return {
+        params: { slug },
+        props: {
+          Content: mod.default,
+          frontmatter: mod.frontmatter
+        }
+      };
+    })
+  );
+
+  return articles;
+}
+
+const { Content, frontmatter } = Astro.props;
+---
+
+<BaseLayout
+  title={frontmatter.title}
+  description={frontmatter.description}
+  image={frontmatter.image}
+>
+  <article class="page-article">
+    <h1>{frontmatter.title}</h1>
+
+    {frontmatter.subtitle && (
+      <p class="article-subtitle">{frontmatter.subtitle}</p>
+    )}
+
+    <Content />
+  </article>
+</BaseLayout>
