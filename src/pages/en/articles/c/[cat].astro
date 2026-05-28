@@ -1,0 +1,195 @@
+---
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const categories = [
+    "concepts-and-distinctions",
+    "grammar-dissections",
+    "niche-japanese",
+    "history-of-grammar",
+  ];
+
+  return categories.map((cat) => ({
+    params: { cat },
+  }));
+}
+
+const { cat } = Astro.params;
+
+const categoryLabels = {
+  "concepts-and-distinctions": "Concepts & Distinctions",
+  "grammar-dissections": "Grammar Dissections",
+  "niche-japanese": "Niche Japanese",
+  "history-of-grammar": "History of Grammar",
+};
+
+const categoryTitle = categoryLabels[cat] ?? cat;
+
+const seoMap = {
+  "concepts-and-distinctions": {
+    title: "Concepts & distinctions in Japanese grammar | Hakkiri Nihongo",
+    description:
+      "Subtle distinctions in Japanese grammar explained clearly: real usage, nuance, and comparisons often overlooked in textbooks.",
+  },
+  "grammar-dissections": {
+    title: "Japanese grammar dissections | Hakkiri Nihongo",
+    description:
+      "In-depth analysis of Japanese grammar structures: origin, internal logic, and real-world usage.",
+  },
+  "niche-japanese": {
+    title: "Niche Japanese grammar | Hakkiri Nihongo",
+    description:
+      "Japanese grammar patterns often overlooked: uncommon structures, advanced nuance and authentic usage.",
+  },
+  "history-of-grammar": {
+    title: "History of Japanese grammar | Hakkiri Nihongo",
+    description:
+      "The historical evolution of Japanese grammar: where structures come from and how they developed.",
+  },
+};
+
+const seo = seoMap[cat] ?? {
+  title: `${categoryTitle} | Hakkiri Nihongo`,
+  description:
+    "Japanese grammar explained clearly: distinctions, nuance and advanced structures.",
+};
+
+const normalizeSeries = (value) => {
+  return String(value ?? "")
+    .toLowerCase()
+    .trim()
+    .replace(/[–—−]/g, "-")
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]/g, "");
+};
+
+const normalizeJlpt = (value) => {
+  return String(value ?? "")
+    .toLowerCase()
+    .trim()
+    .replace(/[–—−]/g, "-")
+    .replace(/\s*-\s*/g, "-")
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]/g, "");
+};
+
+const postImports = import.meta.glob("../../../../content/en/**/*.mdx", {
+  eager: true,
+});
+
+const posts = Object.entries(postImports).map(([path, mod]) => {
+  const fm = mod.frontmatter ?? {};
+  const slug = fm.slug ?? path.split("/").pop().replace(/\.mdx$/, "");
+  return { slug, frontmatter: fm };
+});
+
+posts.sort((a, b) => {
+  const dateA = a.frontmatter.date
+    ? new Date(a.frontmatter.date)
+    : new Date(0);
+
+  const dateB = b.frontmatter.date
+    ? new Date(b.frontmatter.date)
+    : new Date(0);
+
+  return dateB.getTime() - dateA.getTime();
+});
+
+const filteredPosts = posts.filter((p) => p.frontmatter.category === cat);
+---
+
+<BaseLayout title={seo.title} description={seo.description}>
+  <div class="page-articles">
+    <h2>Articles</h2>
+
+    <nav class="category-nav">
+      <a href="/en/articles/">All</a>
+      <a href={`/en/articles/c/${cat}/`} class="active">{categoryTitle}</a>
+    </nav>
+
+    <p class="category-kicker">
+      Category: <strong>{categoryTitle}</strong>
+    </p>
+
+    <p class="category-intro editorial-intro">
+      {cat === "concepts-and-distinctions" &&
+        "Understanding Japanese often starts with seeing the differences clearly. This section focuses on subtle distinctions that textbooks frequently simplify."}
+
+      {cat === "grammar-dissections" &&
+        "A close look at Japanese grammar structures: how they work, why they exist, and how they are actually used."}
+
+      {cat === "niche-japanese" &&
+        "A collection of expressions and patterns often overlooked in textbooks, but important in real Japanese."}
+
+      {cat === "history-of-grammar" &&
+        "The historical side of Japanese grammar: origins, development, and linguistic background."}
+    </p>
+
+    <ul class="post-list">
+      {filteredPosts.map(({ slug, frontmatter }) => (
+        <li class="post-item">
+          <a
+            class="post-thumb"
+            href={`/en/articles/${slug}/`}
+            aria-hidden="true"
+            tabindex="-1"
+          >
+            <img
+              src={frontmatter.image ?? "/og-image.png"}
+              alt=""
+              loading="lazy"
+            />
+          </a>
+
+          <div class="post-content">
+            <h3 class="post-title">
+              <a class="post-link" href={`/en/articles/${slug}/`}>
+                {frontmatter.title ?? slug}
+              </a>
+            </h3>
+
+            {frontmatter.description && (
+              <p class="post-description">
+                <a class="post-link" href={`/en/articles/${slug}/`}>
+                  {frontmatter.description}
+                </a>
+              </p>
+            )}
+
+            <div class="post-meta">
+              {frontmatter.date && (
+                <time datetime={frontmatter.date}>
+                  {new Date(frontmatter.date).toLocaleDateString("en-US")}
+                </time>
+              )}
+
+              {frontmatter.series && (
+                <a
+                  class="series"
+                  href={`/en/articles/series/${normalizeSeries(frontmatter.series)}/`}
+                >
+                  {frontmatter.series}
+                </a>
+              )}
+
+              {frontmatter.jlpt && (
+                <a
+                  class="tag"
+                  href={`/en/articles/jlpt/${normalizeJlpt(frontmatter.jlpt)}/`}
+                >
+                  JLPT {frontmatter.jlpt}
+                </a>
+              )}
+            </div>
+          </div>
+        </li>
+      ))}
+
+      {filteredPosts.length === 0 && (
+        <li class="post-item">
+          No articles in this category yet.
+        </li>
+      )}
+    </ul>
+  </div>
+</BaseLayout>

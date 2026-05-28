@@ -1,7 +1,7 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const postImports = import.meta.glob('../content/articoli/**/*.mdx');
+const postImports = import.meta.glob('../../content/en/**/*.mdx');
 
 const posts = await Promise.all(
   Object.entries(postImports).map(async ([path, resolver]) => {
@@ -24,22 +24,22 @@ posts.sort((a, b) => {
 ---
 
 <BaseLayout
-  title="Sfoglia articoli | Hakkiri Nihongo"
-  description="Sfoglia gli articoli di Hakkiri Nihongo in una visualizzazione editoriale dedicata alla grammatica giapponese."
+  title="Browse articles | Hakkiri Nihongo English"
+  description="Browse Hakkiri Nihongo English articles in a dedicated editorial view focused on Japanese grammar."
 >
   <main class="browse-page">
     <section class="browse-hero container">
       <p class="browse-eyebrow">Hakkiri Nihongo</p>
 
-      <h1>Sfoglia gli articoli</h1>
+      <h1>Browse articles</h1>
 
       <p class="browse-intro">
-        Una modalità più visuale per esplorare gli articoli di grammatica,
-        lessico e sfumature del giapponese.
+        A more visual way to explore Japanese grammar,
+        vocabulary, and subtle language nuances.
       </p>
 
-      <a class="browse-classic-link" href="/articoli/">
-        Passa alla visualizzazione classica →
+      <a class="browse-classic-link" href="/en/articles/">
+        Switch to classic view →
       </a>
 
       <div class="browse-carousel">
@@ -47,7 +47,7 @@ posts.sort((a, b) => {
           <article
             class="browse-card"
             data-index={index}
-            data-url={`/articoli/${slug}/`}
+            data-url={`/en/articles/${slug}/`}
           >
             <img
               class="browse-card-image"
@@ -58,7 +58,7 @@ posts.sort((a, b) => {
 
             <div class="browse-card-body">
               <span class="browse-category">
-                {frontmatter.category ?? 'Articolo'}
+                {frontmatter.category ?? 'Article'}
               </span>
 
               <h2>{frontmatter.title ?? slug}</h2>
@@ -113,23 +113,6 @@ posts.sort((a, b) => {
       current = (current - 1 + cards.length) % cards.length;
       updateCarousel();
     }
-function preloadNearbyImages() {
-  const nearbyIndexes = [
-    current,
-    (current - 1 + cards.length) % cards.length,
-    (current + 1) % cards.length,
-    (current + 2) % cards.length,
-  ];
-
-  nearbyIndexes.forEach((index) => {
-    const img = cards[index]?.querySelector('.browse-card-image');
-
-    if (img?.src) {
-      const preload = new Image();
-      preload.src = img.src;
-    }
-  });
-}
 
     cards.forEach((card, index) => {
       card.addEventListener('click', () => {
@@ -169,25 +152,26 @@ function preloadNearbyImages() {
 
     carousel.addEventListener('mouseenter', stopAutoplay);
     carousel.addEventListener('mouseleave', startAutoplay);
-let touchStartX = 0;
-let touchEndX = 0;
 
-carousel.addEventListener('touchstart', (e) => {
-  touchStartX = e.changedTouches[0].screenX;
-});
+    let touchStartX = 0;
+    let touchEndX = 0;
 
-carousel.addEventListener('touchend', (e) => {
-  touchEndX = e.changedTouches[0].screenX;
+    carousel.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
 
-  const diff = touchStartX - touchEndX;
+    carousel.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
 
-  if (Math.abs(diff) < 40) return;
+      const diff = touchStartX - touchEndX;
 
-  if (diff > 0) {
-    nextCard();
-  } else {
-    previousCard();
-  }
-});
+      if (Math.abs(diff) < 40) return;
+
+      if (diff > 0) {
+        nextCard();
+      } else {
+        previousCard();
+      }
+    });
   </script>
 </BaseLayout>

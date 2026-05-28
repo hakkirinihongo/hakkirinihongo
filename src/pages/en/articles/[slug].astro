@@ -1,6 +1,22 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 
+const normalizeCategory = (value) => {
+  return String(value ?? '')
+    .toLowerCase()
+    .trim()
+    .replace(/[–—−]/g, '-')
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]/g, '');
+};
+
+const categoryLabels = {
+  "concepts-and-distinctions": "Concepts & Distinctions",
+  "grammar-dissections": "Grammar Dissections",
+  "niche-japanese": "Niche Japanese",
+  "history-of-grammar": "History of Grammar",
+};
+
 export async function getStaticPaths() {
   const articleImports = import.meta.glob('../../../content/en/**/*.mdx');
 
@@ -8,12 +24,15 @@ export async function getStaticPaths() {
     Object.entries(articleImports).map(async ([path, resolver]) => {
       const mod = await resolver();
       const slug = path.split('/').pop()?.replace(/\.mdx?$/, '') ?? '';
+      const headings = await mod.getHeadings?.() ?? [];
 
       return {
         params: { slug },
         props: {
           Content: mod.default,
-          frontmatter: mod.frontmatter
+          frontmatter: mod.frontmatter,
+          headings,
+          slug
         }
       };
     })
@@ -22,7 +41,52 @@ export async function getStaticPaths() {
   return articles;
 }
 
-const { Content, frontmatter } = Astro.props;
+const articleImports = import.meta.glob('../../../content/en/**/*.mdx');
+
+const posts = await Promise.all(
+  Object.entries(articleImports).map(async ([path, resolver]) => {
+    const mod = await resolver();
+    const frontmatter = mod.frontmatter ?? {};
+    const slug = path.split('/').pop()?.replace(/\.mdx?$/, '') ?? '';
+
+    return {
+      slug,
+      frontmatter,
+      title: frontmatter.title ?? slug,
+      description: frontmatter.description ?? '',
+      date: frontmatter.date ?? '',
+    };
+  })
+);
+
+const { Content, frontmatter, headings, slug } = Astro.props;
+
+const articleToc = headings.filter((heading) => heading.depth === 2);
+
+const category = normalizeCategory(frontmatter.category);
+const series = frontmatter.series;
+const jlpt = frontmatter.jlpt;
+
+const relatedPosts = posts
+  .filter((p) => p.slug !== slug)
+  .map((p) => {
+    let score = 0;
+
+    if (series && p.frontmatter.series === series) score += 3;
+    if (category && normalizeCategory(p.frontmatter.category) === category) score += 2;
+    if (jlpt && p.frontmatter.jlpt === jlpt) score += 1;
+
+    return {
+      ...p,
+      score,
+    };
+  })
+  .filter((p) => p.score > 0)
+  .sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score;
+    return String(b.date).localeCompare(String(a.date));
+  })
+  .slice(0, 3);
 ---
 
 <BaseLayout
@@ -32,15 +96,88 @@ const { Content, frontmatter } = Astro.props;
   alternateItalian={frontmatter.alternateItalian}
   alternateEnglish={Astro.url.pathname}
 >
-  <article class="page-article en-article-page">
-    <h1>{frontmatter.title}</h1>
+  <div class="article-layout">
+    <article id="introduction" class="page-article en-article-page">
+      <h1>{frontmatter.title}</h1>
 
-    {frontmatter.subtitle && (
-      <p class="article-subtitle">{frontmatter.subtitle}</p>
+      {frontmatter.subtitle && (
+        <p class="article-subtitle">{frontmatter.subtitle}</p>
+      )}
+
+      {frontmatter.category && (
+        <p class="post-category">
+          Category:{" "}
+          <a href={`/en/articles/c/${category}/`}>
+            {categoryLabels[category] ?? frontmatter.category}
+          </a>
+        </p>
+      )}
+
+      <Content />
+    </article>
+
+    {articleToc.length > 0 && (
+      <aside class="article-sidebar">
+        <nav class="article-toc" aria-labelledby="article-toc-title">
+          <p id="article-toc-title" class="article-toc-title">
+            In this article
+          </p>
+
+          <ol class="article-toc-list">
+            <li>
+              <a href="#introduction">Introduction</a>
+            </li>
+
+            {articleToc.map((heading) => (
+              <li>
+                <a href={`#${heading.slug}`}>{heading.text}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </aside>
     )}
+  </div>
 
-    <Content />
-  </article>
+  {relatedPosts.length > 0 && (
+    <section class="related-posts" aria-labelledby="related-posts-title">
+      <h2 id="related-posts-title" class="related-posts-title">See also</h2>
+
+      <div class="related-posts-grid">
+        {relatedPosts.map((related) => {
+          const relatedCategory = normalizeCategory(related.frontmatter.category);
+          const relatedCategoryTitle =
+            categoryLabels[relatedCategory] ?? related.frontmatter.category;
+
+          return (
+            <a class="related-post-card" href={`/en/articles/${related.slug}/`}>
+              <span class="related-post-card-image">
+                <img
+                  src={related.frontmatter.image ?? '/og-image.png'}
+                  alt=""
+                  loading="lazy"
+                />
+              </span>
+
+              <span class="related-post-card-body">
+                {related.frontmatter.category && (
+                  <span class="related-post-card-category">
+                    {relatedCategoryTitle}
+                  </span>
+                )}
+
+                <h3>{related.title}</h3>
+
+                {related.description && <p>{related.description}</p>}
+
+                <span class="related-post-card-link">Read the article →</span>
+              </span>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  )}
 
   <style>
     .en-article-page h1 {
@@ -61,4 +198,84 @@ const { Content, frontmatter } = Astro.props;
       max-width: 780px;
     }
   </style>
+
+  <script>
+    const updateActiveTocLink = () => {
+      const headings = Array.from(document.querySelectorAll('h2[id]'));
+      const tocLinks = Array.from(document.querySelectorAll('.article-toc a'));
+
+      let currentHeadingId = null;
+
+      headings.forEach((heading) => {
+        const rect = heading.getBoundingClientRect();
+
+        if (rect.top <= 500) {
+          currentHeadingId = heading.id;
+        }
+      });
+
+      tocLinks.forEach((link) => {
+        link.classList.remove('is-active');
+
+        if (link.getAttribute('href') === `#${currentHeadingId}`) {
+          link.classList.add('is-active');
+        }
+      });
+    };
+
+    document.addEventListener('scroll', updateActiveTocLink, { passive: true });
+    window.addEventListener('load', updateActiveTocLink);
+
+    updateActiveTocLink();
+
+    const tocLinks = document.querySelectorAll('.article-toc a');
+
+    tocLinks.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const targetId = link.getAttribute('href');
+        const target = document.querySelector(targetId);
+
+        if (!target) return;
+
+        const offset = 120;
+
+        const targetPosition =
+          target.getBoundingClientRect().top +
+          window.scrollY -
+          offset;
+
+        const startPosition = window.scrollY;
+        const distance = targetPosition - startPosition;
+        const duration = Math.min(1800, Math.max(900, Math.abs(distance) * 0.7));
+
+        let startTime = null;
+
+        const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+        const animateScroll = (currentTime) => {
+          if (startTime === null) {
+            startTime = currentTime;
+          }
+
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const easedProgress = easeOutCubic(progress);
+
+          window.scrollTo(
+            0,
+            startPosition + distance * easedProgress
+          );
+
+          if (progress < 1) {
+            requestAnimationFrame(animateScroll);
+          }
+        };
+
+        requestAnimationFrame(animateScroll);
+      });
+    });
+  </script>
 </BaseLayout>
+

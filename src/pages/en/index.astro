@@ -1,37 +1,118 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const categories = [
+  {
+    slug: 'concepts-and-distinctions',
+    title: 'Concepts\nand Distinctions',
+    description: 'Learning Japanese by seeing the differences.'
+  },
+  {
+    slug: 'grammar-dissections',
+    title: 'Grammar\nDissections',
+    description: 'In-depth explanations of Japanese grammar.'
+  },
+  {
+    slug: 'niche-japanese',
+    title: 'Niche\nJapanese',
+    description: 'What textbooks often leave unexplained.'
+  },
+  {
+    slug: 'history-of-grammar',
+    title: 'History of\nGrammar',
+    description: 'Where Japanese expressions come from.'
+  }
+];
+
+const postModules = import.meta.glob('../../content/en/**/*.mdx', { eager: true });
+
+const posts = Object.entries(postModules).map(([path, mod]) => {
+  const frontmatter = mod.frontmatter ?? {};
+  const fallbackSlug = path.split('/').pop().replace('.mdx', '');
+  const slug = frontmatter.slug ?? fallbackSlug;
+
+  return {
+    slug,
+    title: frontmatter.title ?? slug,
+    date: frontmatter.date ?? '',
+    image: frontmatter.image ?? '/images/article-placeholder.jpg',
+  };
+});
+
+posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+const latestPosts = posts.slice(0, 3);
+
+const formatDate = (date) => {
+  if (!date) return '';
+  return new Date(date).toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+};
 ---
 
 <BaseLayout
-  title="Hakkiri Nihongo English | Japanese grammar explained clearly"
-  description="Advanced Japanese grammar explained clearly in English. Nuance, usage, distinctions, and deep grammar insights."
+  title="Hakkiri Nihongo | Advanced Japanese grammar explained clearly"
+  description="Hakkiri Nihongo: advanced Japanese grammar, subtle distinctions, niche grammar, and clear explanations beyond textbook rules."
 >
-  <main class="hn-page">
-  <section class="hn-section">
-    <h1>Japanese grammar explained clearly</h1>
+<link
+  rel="preload"
+  as="image"
+  href="/images/home-hero-fuji.avif"
+  type="image/avif"
+  fetchpriority="high"
+/>
 
-    <p>
-      Welcome to the English section of Hakkiri Nihongo.
-    </p>
-
-    <p>
-      Here you will find advanced Japanese grammar explained clearly:
-      subtle distinctions, nuanced grammar patterns,
-      and expressions that textbooks often oversimplify.
-    </p>
-
-    <p>
-      If you are studying for the JLPT or simply want to understand
-      how Japanese really works beyond memorizing rules,
-      this section is for you.
-    </p>
-    <p>
-      <a href="/en/articles/">→ Browse English articles</a>
-    </p>
-
-    <p>
-      <a href="/articoli/">→ Vai alla versione italiana degli articoli</a>
-    </p>
+  <section class="hn-home-hero">
+    <div class="hn-home-hero__overlay">
+      <div class="hn-home-hero__content">
+        <h1>Hakkiri Nihongo</h1>
+        <p class="hn-home-hero__subtitle">Understand Japanese beyond the rules</p>
+        <p class="hn-home-hero__text">
+          Your reference point for advanced Japanese grammar explained clearly.
+        </p>
+        <a href="/en/browse/" class="hn-home-hero__button">
+          Browse articles
+        </a>
+      </div>
+    </div>
   </section>
-</main>
+
+  <main class="hn-home-main">
+
+    <section class="hn-home-categories">
+      {categories.map((cat, index) => (
+        <a href={`/en/articles/c/${cat.slug}/`} class={`hn-home-category-card cat-${index}`}>
+          <h2>{cat.title}</h2>
+          <p>{cat.description}</p>
+        </a>
+      ))}
+    </section>
+
+    <section class="hn-home-latest">
+      <h2>Latest Articles</h2>
+
+      <div class="hn-home-latest-grid">
+        {latestPosts.map((post) => (
+          <article class="hn-home-post-card">
+            <a href={`/en/articles/${post.slug}/`}>
+              <img src={post.image} alt="" loading="lazy" />
+              <div class="hn-home-post-card__body">
+                <h3>{post.title}</h3>
+                {post.date && <p>{formatDate(post.date)}</p>}
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <div class="hn-home-all-link">
+        <a href="/en/articles/">Read all articles&nbsp;›</a>
+      </div>
+    </section>
+
+  </main>
+
 </BaseLayout>

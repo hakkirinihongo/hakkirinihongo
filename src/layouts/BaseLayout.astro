@@ -195,17 +195,28 @@ const alternateEnglishURL = alternateEnglish
         </div>
 
         <nav class="site-nav">
-          <a href="/">Home</a>
-          <a href="/articoli/">Articoli</a>
-          <a href="/chi-siamo/">Chi siamo / Metodo</a>
-          <a href="/contatti/">Contatti</a>
-         <a href="/en/">English</a>
-
+  {isEnglish ? (
+    <>
+      <a href="/en/">Home</a>
+      <a href="/en/articles/">Articles</a>
+      <a href="/en/about/">About / Method</a>
+      <a href="/en/contact/">Contact</a>
+      <a href="/">Italiano</a>
+    </>
+  ) : (
+    <>
+      <a href="/">Home</a>
+      <a href="/articoli/">Articoli</a>
+      <a href="/chi-siamo/">Chi siamo / Metodo</a>
+      <a href="/contatti/">Contatti</a>
+      <a href="/en/">English</a>
+    </>
+  )}
           <button
             id="search-open"
             class="search-trigger"
             type="button"
-            aria-label="Apri la ricerca"
+            aria-label={isEnglish ? 'Open search' : 'Apri la ricerca'}
             aria-expanded="false"
             aria-controls="search-overlay"
           >
@@ -213,7 +224,7 @@ const alternateEnglishURL = alternateEnglish
               <circle cx="11" cy="11" r="7"></circle>
               <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
             </svg>
-            <span>Cerca</span>
+            <span>{isEnglish ? 'Search' : 'Cerca'}</span>
           </button>
         </nav>
       </div>
@@ -229,7 +240,9 @@ const alternateEnglishURL = alternateEnglish
         aria-labelledby="search-modal-title"
       >
         <div class="search-modal-header">
-          <h2 id="search-modal-title">Cerca nel sito</h2>
+          <h2 id="search-modal-title">
+  {isEnglish ? 'Search the site' : 'Cerca nel sito'}
+</h2>
 
           <button
             id="search-close"
@@ -246,7 +259,11 @@ const alternateEnglishURL = alternateEnglish
             id="search-input"
             class="search-input"
             type="search"
-            placeholder="Cerca una parola, una forma grammaticale..."
+            placeholder={
+  isEnglish
+    ? 'Search for a word or grammar pattern...'
+    : 'Cerca una parola, una forma grammaticale...'
+}
             autocomplete="off"
           />
 
@@ -387,7 +404,9 @@ const alternateEnglishURL = alternateEnglish
 
           if (!data.length) {
             searchResults.innerHTML = `
-              <p class="search-empty">Nessun risultato trovato.</p>
+              <p class="search-empty">
+  ${isEnglish ? 'No results found.' : 'Nessun risultato trovato.'}
+</p>
             `;
             return;
           }
