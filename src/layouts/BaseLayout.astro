@@ -132,6 +132,14 @@ const alternateEnglishURL = alternateEnglish
   <link rel="alternate" hreflang="en" href={alternateEnglishURL} />
 )}
 
+{(alternateItalianURL || alternateEnglishURL) && (
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href={alternateItalianURL ?? canonicalURL}
+  />
+)}
+
     <meta
       name="facebook-domain-verification"
       content="o0h6tv530bu2v1ib7rz3m0ywdoqiy9"
@@ -166,6 +174,13 @@ const alternateEnglishURL = alternateEnglish
         : 'Hakkiri Nihongo | grammatica giapponese spiegata chiaramente'}
     />
     <meta property="og:locale" content={isEnglish ? 'en_US' : 'it_IT'} />
+{alternateItalianURL && isEnglish && (
+  <meta property="og:locale:alternate" content="it_IT" />
+)}
+
+{alternateEnglishURL && !isEnglish && (
+  <meta property="og:locale:alternate" content="en_US" />
+)}
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
