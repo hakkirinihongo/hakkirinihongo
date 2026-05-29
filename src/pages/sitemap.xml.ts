@@ -6,12 +6,13 @@ export const GET: APIRoute = async ({ site }) => {
   const postModules = import.meta.glob('../content/articoli/**/*.mdx', { eager: true });
   const englishPostModules = import.meta.glob('../content/en/**/*.mdx', { eager: true });
 
+  const now = new Date().toISOString();
+
   const articleUrls = Object.entries(postModules).map(([path, mod]: any) => {
     const frontmatter = mod.frontmatter ?? {};
     const fallbackSlug = path.split('/').pop()?.replace('.mdx', '') ?? '';
     const slug = frontmatter.slug ?? fallbackSlug;
-
-    const lastmod = frontmatter.updated ?? frontmatter.date ?? new Date().toISOString();
+    const lastmod = frontmatter.updated ?? frontmatter.date ?? now;
 
     return {
       loc: `${base}/articoli/${slug}/`,
@@ -23,8 +24,7 @@ export const GET: APIRoute = async ({ site }) => {
     const frontmatter = mod.frontmatter ?? {};
     const fallbackSlug = path.split('/').pop()?.replace('.mdx', '') ?? '';
     const slug = frontmatter.slug ?? fallbackSlug;
-
-    const lastmod = frontmatter.updated ?? frontmatter.date ?? new Date().toISOString();
+    const lastmod = frontmatter.updated ?? frontmatter.date ?? now;
 
     return {
       loc: `${base}/en/articles/${slug}/`,
@@ -33,19 +33,32 @@ export const GET: APIRoute = async ({ site }) => {
   });
 
   const staticUrls = [
-    { loc: `${base}/`, lastmod: new Date().toISOString() },
-    { loc: `${base}/articoli/`, lastmod: new Date().toISOString() },
-    { loc: `${base}/contatti/`, lastmod: new Date().toISOString() },
-    { loc: `${base}/chi-siamo/`, lastmod: new Date().toISOString() },
-    { loc: `${base}/chi-siamo-metodo/`, lastmod: new Date().toISOString() },
+    { loc: `${base}/`, lastmod: now },
+    { loc: `${base}/articoli/`, lastmod: now },
+    { loc: `${base}/contatti/`, lastmod: now },
+    { loc: `${base}/chi-siamo/`, lastmod: now },
+    { loc: `${base}/chi-siamo-metodo/`, lastmod: now },
 
-    { loc: `${base}/en/`, lastmod: new Date().toISOString() },
-    { loc: `${base}/en/articles/`, lastmod: new Date().toISOString() },
+    { loc: `${base}/articoli/jlpt/`, lastmod: now },
+    { loc: `${base}/articoli/series/`, lastmod: now },
 
-    { loc: `${base}/articoli/c/concetti-e-distinzioni/`, lastmod: new Date().toISOString() },
-    { loc: `${base}/articoli/c/dissezionamenti-grammaticali/`, lastmod: new Date().toISOString() },
-    { loc: `${base}/articoli/c/giapponese-di-nicchia/`, lastmod: new Date().toISOString() },
-    { loc: `${base}/articoli/c/storia-della-grammatica/`, lastmod: new Date().toISOString() },
+    { loc: `${base}/articoli/c/concetti-e-distinzioni/`, lastmod: now },
+    { loc: `${base}/articoli/c/dissezionamenti-grammaticali/`, lastmod: now },
+    { loc: `${base}/articoli/c/giapponese-di-nicchia/`, lastmod: now },
+    { loc: `${base}/articoli/c/storia-della-grammatica/`, lastmod: now },
+
+    { loc: `${base}/en/`, lastmod: now },
+    { loc: `${base}/en/articles/`, lastmod: now },
+    { loc: `${base}/en/about/`, lastmod: now },
+    { loc: `${base}/en/contact/`, lastmod: now },
+
+    { loc: `${base}/en/articles/jlpt/`, lastmod: now },
+    { loc: `${base}/en/articles/series/`, lastmod: now },
+
+    { loc: `${base}/en/articles/c/concepts-and-distinctions/`, lastmod: now },
+    { loc: `${base}/en/articles/c/grammar-dissections/`, lastmod: now },
+    { loc: `${base}/en/articles/c/niche-japanese/`, lastmod: now },
+    { loc: `${base}/en/articles/c/history-of-grammar/`, lastmod: now },
   ];
 
   const urls = [...staticUrls, ...articleUrls, ...englishArticleUrls]
