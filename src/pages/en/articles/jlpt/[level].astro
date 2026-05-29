@@ -96,6 +96,34 @@ const filteredPosts = posts.filter(({ frontmatter }) => {
 });
 
 const jlptCount = filteredPosts.length;
+const normalizeSeries = (value) => {
+  return String(value ?? '')
+    .toLowerCase()
+    .trim()
+    .replace(/[–—−]/g, '-')
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]/g, '');
+};
+
+const seriesSummary = Object.values(
+  filteredPosts.reduce((acc, { frontmatter }) => {
+    const series = frontmatter.series;
+    if (!series) return acc;
+
+    const key = String(series).trim();
+
+    if (!acc[key]) {
+      acc[key] = {
+        label: key,
+        slug: normalizeSeries(key),
+        count: 0
+      };
+    }
+
+    acc[key].count += 1;
+    return acc;
+  }, {})
+);
 ---
 
 <BaseLayout
@@ -122,6 +150,17 @@ const jlptCount = filteredPosts.length;
     <p class="archive-count">
       {jlptCount} {jlptCount === 1 ? 'article at this level' : 'articles at this level'}
     </p>
+{seriesSummary.length > 0 && (
+  <div class="archive-filter-summary">
+    <span>Series at this JLPT level:</span>
+
+    {seriesSummary.map((item) => (
+      <a class="tag" href={`/en/articles/series/${item.slug}/`}>
+        {item.label} ({item.count})
+      </a>
+    ))}
+  </div>
+)}
 
     <ul class="post-list">
       {filteredPosts.map(({ slug, frontmatter }) => (
@@ -157,6 +196,19 @@ const jlptCount = filteredPosts.length;
                   JLPT {frontmatter.jlpt}
                 </a>
               )}
+{frontmatter.series && (
+  <a
+    class="tag"
+    href={`/en/articles/series/${String(frontmatter.series)
+      .toLowerCase()
+      .trim()
+      .replace(/[–—−]/g, '-')
+      .replace(/\s+/g, '-')
+      .replace(/[^\w-]/g, '')}/`}
+  >
+    {frontmatter.series}
+  </a>
+)}
             </div>
           </div>
         </li>
