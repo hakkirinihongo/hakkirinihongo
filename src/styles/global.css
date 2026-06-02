@@ -580,8 +580,55 @@ a:hover {
 }
 
 .hn-home-all-link {
-  text-align: center;
-  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 2.8rem;
+}
+
+.hn-home-all-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+
+  padding: 0.85rem 2rem;
+  border-radius: 999px;
+
+  border: 1px solid rgba(183, 53, 45, 0.28);
+  background: rgba(255, 252, 246, 0.78);
+
+  color: #8f2d27;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.18rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+
+  box-shadow: 0 10px 24px rgba(80, 55, 40, 0.06);
+
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    background 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.hn-home-all-button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(183, 53, 45, 0.48);
+  background: rgba(255, 250, 244, 0.96);
+  color: #7a2e2a;
+  box-shadow: 0 16px 34px rgba(80, 55, 40, 0.1);
+}
+
+.hn-home-all-button span {
+  font-size: 1.35rem;
+  line-height: 1;
+  transition: transform 0.22s ease;
+}
+
+.hn-home-all-button:hover span {
+  transform: translateX(4px);
 }
 
 .hn-home-latest::after {
@@ -1722,8 +1769,8 @@ a:hover {
 
   .article-sidebar {
     position: fixed;
-    top: 230px;
-    left: max(2rem, calc((100vw - 1180px) / 2 - 100px));
+    top: 180px;
+    left: max(2rem, calc((100vw - 1180px) / 2 - 200px));
 
     width: 280px;
     z-index: 4;
