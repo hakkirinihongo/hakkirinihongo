@@ -1816,3 +1816,42 @@ scrollbar-color: #d7d1ca transparent;
 h2 {
   scroll-margin-top: 140px;
 }
+
+/* ==================================================
+   TOC MOBILE / TABLET
+   ================================================== */
+
+/* Mobile: non mostrare l'indice in fondo all'articolo */
+@media (max-width: 767px) {
+  .article-sidebar {
+    display: none;
+  }
+}
+
+/* Tablet: indice fisso a sinistra */
+@media (min-width: 768px) and (max-width: 1349px) {
+  .article-sidebar {
+    position: fixed;
+    top: 150px;
+    left: 1rem;
+
+    width: 230px;
+    z-index: 4;
+  }
+
+  .article-sidebar .article-toc {
+    margin: 0;
+    padding: 1.1rem 1.15rem;
+
+    max-height: 65vh;
+    overflow-y: auto;
+
+    border: 1px solid #eadfd2;
+    border-radius: 20px;
+
+    background: rgba(252, 249, 245, 0.94);
+    backdrop-filter: blur(8px);
+
+    box-shadow: 0 12px 32px rgba(0,0,0,0.04);
+  }
+}
