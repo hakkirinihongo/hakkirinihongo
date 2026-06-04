@@ -1860,12 +1860,7 @@ h2 {
 @media (max-width: 1023px) {
 
   .article-sidebar {
-    display: block;
-    position: static;
-  }
-
-  .article-sidebar .article-toc {
-    margin: 2.8rem 0 3.2rem;
+    display: none;
   }
 
 }
