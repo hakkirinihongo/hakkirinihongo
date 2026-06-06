@@ -96,6 +96,32 @@ const relatedPosts = posts
   alternateItalian={frontmatter.alternateItalian}
   alternateEnglish={Astro.url.pathname}
 >
+   <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: frontmatter.title,
+      description: frontmatter.description,
+      image: frontmatter.image
+        ? new URL(frontmatter.image, Astro.site).href
+        : 'https://hakkirinihongo.com/og-image.png',
+      url: new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site).href,
+      mainEntityOfPage: new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site).href,
+      inLanguage: 'en',
+      author: {
+        '@type': 'Person',
+        name: 'Andrea Stevoli',
+        '@id': 'https://hakkirinihongo.com/#andrea-stevoli'
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'Hakkiri Nihongo',
+        url: 'https://hakkirinihongo.com/',
+        '@id': 'https://hakkirinihongo.com/#organization'
+      }
+    })}
+  />
   <div class="article-layout">
     <article id="introduction" class="page-article en-article-page">
       <h1>{frontmatter.title}</h1>

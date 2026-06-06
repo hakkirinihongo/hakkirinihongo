@@ -159,6 +159,24 @@ const alternateEnglishURL = alternateEnglish
         }
       })}
     />
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Andrea Stevoli',
+    jobTitle: isEnglish
+      ? 'Japanese Language Writer and Researcher'
+      : 'Autore e ricercatore di lingua giapponese',
+    url: isEnglish
+      ? 'https://hakkirinihongo.com/en/about/'
+      : 'https://hakkirinihongo.com/chi-siamo/',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Hakkiri Nihongo'
+    }
+  })}
+/>
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
