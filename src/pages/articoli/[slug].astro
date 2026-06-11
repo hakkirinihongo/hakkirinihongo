@@ -136,6 +136,15 @@ const relatedPosts = posts
           Categoria: <a href={`/articoli/c/${category}/`}>{categoryTitle}</a>
         </p>
       )}
+{post.frontmatter.image && (
+  <figure class="article-hero-image">
+    <img
+      src={post.frontmatter.image}
+      alt={title}
+      loading="eager"
+    />
+  </figure>
+)}
 
       <Content />
 
