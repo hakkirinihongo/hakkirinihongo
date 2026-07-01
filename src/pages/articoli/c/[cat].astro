@@ -3,11 +3,12 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
   const categories = [
-    "concetti-e-distinzioni",
-    "dissezionamenti-grammaticali",
-    "giapponese-di-nicchia",
-    "storia-della-grammatica",
-  ];
+  "concetti-e-distinzioni",
+  "dissezionamenti-grammaticali",
+  "giapponese-di-nicchia",
+  "storia-della-grammatica",
+  "kanji-funzionali",
+];
 
   return categories.map((cat) => ({
     params: { cat },
@@ -21,6 +22,7 @@ const categoryLabels = {
   "dissezionamenti-grammaticali": "Dissezioni grammaticali",
   "giapponese-di-nicchia": "Giapponese di nicchia",
   "storia-della-grammatica": "Storia della grammatica",
+  "kanji-funzionali": "Kanji funzionali",
 };
 
 const categoryTitle = categoryLabels[cat] ?? cat;
@@ -45,6 +47,11 @@ const seoMap = {
     title: "Storia della grammatica giapponese | Hakkiri Nihongo",
     description:
       "L’evoluzione storica della grammatica giapponese: origine delle forme, cambiamenti e logica linguistica.",
+  },
+  "kanji-funzionali": {
+  title: "Kanji funzionali | I kanji che costruiscono la grammatica giapponese | Hakkiri Nihongo",
+  description:
+    "Una raccolta di studi dedicati ai kanji il cui significato è all'origine di numerose strutture grammaticali del giapponese moderno. Comprendere il valore di questi kanji significa comprendere più a fondo anche la grammatica che costruiscono.",
   },
 };
 
@@ -156,6 +163,8 @@ const filteredPosts = posts.filter((p) => p.frontmatter.category === cat);
 
       {cat === "storia-della-grammatica" &&
         "In questa sezione esploriamo l’origine e l’evoluzione storica delle forme grammaticali giapponesi."}
+      {cat === "kanji-funzionali" &&
+        "In questa sezione studiamo i kanji che costituiscono il fondamento di numerose strutture grammaticali del giapponese. Comprendere il significato originario di questi caratteri significa comprendere più a fondo anche la logica delle costruzioni grammaticali che da essi derivano."}
     </p>
 
     <ul class="post-list">

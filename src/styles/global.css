@@ -365,13 +365,15 @@ a:hover {
 
 .hn-home-categories {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
 
   margin: 3rem 0;
   padding-top: 1.4rem;
   border-top: 1px solid rgba(80, 60, 45, 0.12);
+
 }
+
 
 .hn-home-category-card {
   position: relative;
@@ -425,6 +427,7 @@ a:hover {
 }
 
 .hn-home-category-card h2 {
+
   margin-top: 0;
   margin-bottom: 0.9rem;
 
@@ -434,6 +437,8 @@ a:hover {
   line-height: 1.15;
   letter-spacing: -0.015em;
   color: #2c3340;
+white-space: pre-line;
+
 }
 
 .hn-home-category-card h2::after {
@@ -471,6 +476,9 @@ a:hover {
 
 .cat-3::before {
   background-image: url("/images/cat-history.avif");
+}
+.cat-4::before {
+  background-image: url("/images/kanji.avif");
 }
 
 /* ==================================================
