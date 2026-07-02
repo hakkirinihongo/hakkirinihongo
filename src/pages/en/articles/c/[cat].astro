@@ -7,6 +7,7 @@ export async function getStaticPaths() {
     "grammar-dissections",
     "niche-japanese",
     "history-of-grammar",
+    "functional-kanji",
   ];
 
   return categories.map((cat) => ({
@@ -21,6 +22,7 @@ const categoryLabels = {
   "grammar-dissections": "Grammar Dissections",
   "niche-japanese": "Niche Japanese",
   "history-of-grammar": "History of Grammar",
+  "functional-kanji": "Functional Kanji",
 };
 
 const categoryTitle = categoryLabels[cat] ?? cat;
@@ -46,6 +48,11 @@ const seoMap = {
     description:
       "The historical evolution of Japanese grammar: where structures come from and how they developed.",
   },
+  "functional-kanji": {
+    title: "Functional Kanji | The kanji that build Japanese grammar | Hakkiri Nihongo",
+    description:
+      "A collection of studies dedicated to the kanji that lie behind many Japanese grammar structures. Understanding their original meaning means understanding the grammar they help build.",
+},
 };
 
 const seo = seoMap[cat] ?? {
@@ -123,6 +130,8 @@ const filteredPosts = posts.filter((p) => p.frontmatter.category === cat);
 
       {cat === "history-of-grammar" &&
         "The historical side of Japanese grammar: origins, development, and linguistic background."}
+      {cat === "functional-kanji" &&
+        "This section explores the kanji that form the foundation of many Japanese grammar structures. Understanding their original meaning provides a deeper understanding of the grammatical constructions they give rise to."}
     </p>
 
     <ul class="post-list">
