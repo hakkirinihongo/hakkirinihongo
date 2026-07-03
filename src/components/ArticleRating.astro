@@ -1,0 +1,358 @@
+---
+const { articleKey, lang = 'it' } = Astro.props;
+
+const isEnglish = lang === 'en';
+
+const copy = isEnglish
+  ? {
+      emptySummary: 'Reader rating: no votes yet',
+      summaryLabel: 'Reader rating',
+      voteSingular: 'vote',
+      votePlural: 'votes',
+      saving: 'Saving rating…',
+      thanks: 'Thank you, your rating has been saved.',
+      error: 'The rating could not be saved. Please try again later.',
+    }
+  : {
+      emptySummary: 'Media lettori: nessun voto ancora',
+      summaryLabel: 'Media lettori',
+      voteSingular: 'voto',
+      votePlural: 'voti',
+      saving: 'Salvataggio voto…',
+      thanks: 'Grazie, voto registrato.',
+      error: 'Non è stato possibile salvare il voto. Riprova più tardi.',
+    };
+
+const eyebrow = isEnglish ? 'Rate this article' : 'Valuta questo articolo';
+const starsAria = isEnglish
+  ? 'Rate this article from 1 to 10'
+  : 'Vota questo articolo da 1 a 10';
+const hint = isEnglish
+  ? 'Click the stars to vote'
+  : 'Clicca le stelle per votare';
+---
+
+<article-rating
+  class="hn-rating"
+  data-article-key={articleKey}
+  data-copy={JSON.stringify(copy)}
+>
+  <div class="hn-rating__inner">
+    <p class="hn-rating__eyebrow">{eyebrow}</p>
+
+    <div class="hn-rating__stars" aria-label={starsAria}>
+      {
+        Array.from({ length: 10 }, (_, index) => {
+          const value = index + 1;
+          const voteAria = isEnglish
+            ? `Rate ${value} out of 10`
+            : `Vota ${value} su 10`;
+
+          return (
+            <button
+              type="button"
+              class="hn-rating__star"
+              data-rating-value={value}
+              aria-label={voteAria}
+              aria-pressed="false"
+            >
+              ★
+            </button>
+          );
+        })
+      }
+    </div>
+
+    <p class="hn-rating__hint">{hint}</p>
+
+    <p class="hn-rating__summary" data-rating-summary>
+      {copy.emptySummary}
+    </p>
+
+    <p class="hn-rating__status" data-rating-status aria-live="polite"></p>
+  </div>
+</article-rating>
+
+<script>
+  class HNArticleRating extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.ready === 'true') return;
+      this.dataset.ready = 'true';
+
+      const articleKey = this.dataset.articleKey;
+      const copy = JSON.parse(this.dataset.copy || '{}');
+
+      const buttons = this.querySelectorAll('[data-rating-value]');
+      const summary = this.querySelector('[data-rating-summary]');
+      const status = this.querySelector('[data-rating-status]');
+
+      if (!articleKey || !summary || !status) return;
+
+      const endpoint = '/.netlify/functions/article-rating';
+      const clientStorageKey = 'hn_rating_client_id';
+      const voteStorageKey = `hn_rating_vote_${articleKey}`;
+
+      function getClientId() {
+        try {
+          let clientId = localStorage.getItem(clientStorageKey);
+
+          if (!clientId) {
+            clientId =
+              crypto.randomUUID?.() ||
+              `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+
+            localStorage.setItem(clientStorageKey, clientId);
+          }
+
+          return clientId;
+        } catch {
+          return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+        }
+      }
+
+      function setSelected(value) {
+        const numericValue = Number(value);
+
+        buttons.forEach((button) => {
+          const buttonValue = Number(button.dataset.ratingValue);
+          const isFilled = buttonValue <= numericValue;
+          const isExact = buttonValue === numericValue;
+
+          button.classList.toggle('is-filled', isFilled);
+          button.classList.toggle('is-selected', isExact);
+          button.setAttribute('aria-pressed', isExact ? 'true' : 'false');
+        });
+      }
+
+      function clearSelected() {
+        buttons.forEach((button) => {
+          button.classList.remove('is-filled', 'is-selected');
+          button.setAttribute('aria-pressed', 'false');
+        });
+      }
+
+      function renderSummary(data) {
+        const voteCount = Number(data.voteCount || 0);
+        const averageRating =
+          data.averageRating === null || data.averageRating === undefined
+            ? null
+            : Number(data.averageRating);
+
+        if (!voteCount || !averageRating) {
+          summary.textContent = copy.emptySummary;
+          return;
+        }
+
+        const label = voteCount === 1 ? copy.voteSingular : copy.votePlural;
+        const formattedAverage = averageRating.toFixed(1).replace('.', ',');
+
+        summary.textContent = `${copy.summaryLabel}: ${formattedAverage} / 10 · ${voteCount} ${label}`;
+      }
+
+      async function loadSummary() {
+        try {
+          const response = await fetch(
+            `${endpoint}?articleKey=${encodeURIComponent(articleKey)}`
+          );
+
+          if (!response.ok) return;
+
+          const data = await response.json();
+          renderSummary(data);
+        } catch {
+          // Se fallisce, l'articolo resta comunque leggibile.
+        }
+      }
+
+      const savedVote = (() => {
+        try {
+          return localStorage.getItem(voteStorageKey);
+        } catch {
+          return null;
+        }
+      })();
+
+      if (savedVote) {
+        setSelected(savedVote);
+      }
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', async () => {
+          const rating = Number(button.dataset.ratingValue);
+
+          if (!rating) return;
+
+          status.textContent = copy.saving;
+
+          try {
+            const response = await fetch(endpoint, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                articleKey,
+                rating,
+                clientId: getClientId(),
+              }),
+            });
+
+            if (!response.ok) {
+              throw new Error('Rating request failed');
+            }
+
+            const data = await response.json();
+
+            try {
+              localStorage.setItem(voteStorageKey, String(rating));
+            } catch {
+              // Anche senza localStorage, il voto viene salvato lato server.
+            }
+
+            setSelected(rating);
+            renderSummary(data);
+
+            status.textContent = copy.thanks;
+          } catch {
+            status.textContent = copy.error;
+          }
+        });
+
+        button.addEventListener('mouseenter', () => {
+          setSelected(button.dataset.ratingValue);
+        });
+      });
+
+      this.addEventListener('mouseleave', () => {
+        const currentVote = (() => {
+          try {
+            return localStorage.getItem(voteStorageKey);
+          } catch {
+            return null;
+          }
+        })();
+
+        if (currentVote) {
+          setSelected(currentVote);
+        } else {
+          clearSelected();
+        }
+      });
+
+      loadSummary();
+    }
+  }
+
+  if (!customElements.get('article-rating')) {
+    customElements.define('article-rating', HNArticleRating);
+  }
+</script>
+
+<style>
+  .hn-rating {
+    display: block;
+    margin: 2.5rem 0 2rem;
+  }
+
+  .hn-rating,
+  .hn-rating * {
+    box-sizing: border-box;
+  }
+
+  .hn-rating__inner {
+    max-width: 560px;
+    border: 1px solid rgba(120, 54, 48, 0.18);
+    border-radius: 16px;
+    padding: 1rem 1.15rem 0.95rem;
+    background: rgba(255, 252, 247, 0.78);
+    box-shadow: none;
+  }
+
+  .hn-rating__eyebrow {
+    margin: 0 0 0.65rem !important;
+    color: rgba(120, 54, 48, 0.82);
+    font-size: 0.78rem !important;
+    font-weight: 800;
+    line-height: 1.2 !important;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .hn-rating__stars {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.08rem;
+    margin: 0 0 0.45rem;
+  }
+
+  .hn-rating__star {
+    appearance: none;
+    width: 1.8rem;
+    height: 1.8rem;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: rgba(120, 54, 48, 0.28);
+    font: inherit;
+    font-size: 1.45rem;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+      color 140ms ease,
+      transform 140ms ease;
+  }
+
+  .hn-rating__star:hover,
+  .hn-rating__star:focus-visible {
+    transform: translateY(-1px);
+    outline: none;
+  }
+
+  .hn-rating__star.is-filled {
+    color: #f2b632;
+  }
+
+  .hn-rating__stars:hover .hn-rating__star.is-filled {
+    color: #f5c542;
+  }
+
+  .hn-rating__star.is-selected {
+    transform: translateY(-1px) scale(1.03);
+  }
+
+  .hn-rating__hint {
+    margin: 0 0 0.2rem !important;
+    color: rgba(49, 55, 65, 0.68);
+    font-size: 0.86rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .hn-rating__summary {
+    margin: 0 !important;
+    color: rgba(49, 55, 65, 0.78);
+    font-size: 0.86rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .hn-rating__status {
+    min-height: 1.25em;
+    margin: 0.25rem 0 0 !important;
+    color: rgba(49, 55, 65, 0.62);
+    font-size: 0.82rem !important;
+    line-height: 1.45 !important;
+  }
+
+  @media (max-width: 640px) {
+    .hn-rating__inner {
+      max-width: none;
+      padding: 0.95rem;
+      border-radius: 14px;
+    }
+
+    .hn-rating__star {
+      width: 1.55rem;
+      height: 1.55rem;
+      font-size: 1.3rem;
+    }
+  }
+</style>

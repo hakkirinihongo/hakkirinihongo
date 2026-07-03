@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ArticleRating from '../../../components/ArticleRating.astro';
 
 const normalizeCategory = (value) => {
   return String(value ?? '')
@@ -140,6 +141,7 @@ const relatedPosts = posts
       )}
 
       <Content />
+    <ArticleRating articleKey={`en:${slug}`} lang="en" />
     </article>
 
     {articleToc.length > 0 && (

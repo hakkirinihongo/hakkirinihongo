@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleRating from '../../components/ArticleRating.astro';
 
 // 1) OBBLIGATORIO: generiamo gli slug
 export async function getStaticPaths() {
@@ -147,6 +148,7 @@ const relatedPosts = posts
 )}
 
       <Content />
+      <ArticleRating articleKey={`it:${post.slug}`} />
 
       {false && post.vocab.length > 0 && (
         <section class="article-vocab" aria-labelledby="article-vocab-title">

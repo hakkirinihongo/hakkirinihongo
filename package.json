@@ -13,6 +13,7 @@
   "dependencies": {
     "@astrojs/mdx": "^3.0.0",
     "@astrojs/sitemap": "^3.7.1",
+    "@supabase/supabase-js": "^2.78.0",
     "astro": "^4.0.0",
     "kuromoji": "^0.1.2",
     "sharp": "^0.33.5"
