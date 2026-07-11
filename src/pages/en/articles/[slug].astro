@@ -140,6 +140,11 @@ const relatedPosts = posts
         </p>
       )}
 
+      <aside class="translation-note" aria-label="Translation note">
+        <strong>Translation note:</strong>
+        This article was translated from the original Italian using AI-assisted machine translation. While every effort has been made to ensure the accuracy of the Japanese grammar explanations and examples, some English phrasing may occasionally sound slightly unnatural. To read the original Italian articles, please visit hakkirinihongo.com/articoli.
+      </aside>
+
       <Content />
     <ArticleRating articleKey={`en:${slug}`} lang="en" />
     </article>
@@ -225,6 +230,22 @@ const relatedPosts = posts
       color: #1f2937;
       max-width: 780px;
     }
+    .translation-note {
+      margin: 1.4rem 0 2rem;
+      padding: 0.9rem 1rem;
+      border-left: 3px solid #a8a29e;
+      background: #f7f4ef;
+
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #4b5563;
+    }
+
+    .translation-note strong {
+      color: #1f2937;
+    }
+
   </style>
 
   <script>
