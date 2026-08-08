@@ -494,7 +494,12 @@ const alternateEnglishURL = alternateEnglish
       function closeNavDropdown() {
         if (!navDropdown || !navDropdownTrigger) return;
 
-       if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        navDropdown.classList.remove('is-open');
+        navDropdownTrigger.setAttribute('aria-expanded', 'false');
+      }
+
+      if (navDropdown && navDropdownTrigger) {
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   navDropdown.addEventListener('mouseenter', () => {
     navDropdown.classList.add('is-open');
     navDropdownTrigger.setAttribute('aria-expanded', 'true');
