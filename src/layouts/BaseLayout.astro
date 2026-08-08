@@ -499,6 +499,14 @@ const alternateEnglishURL = alternateEnglish
       }
 
       if (navDropdown && navDropdownTrigger) {
+      navDropdown.addEventListener('mouseenter', () => {
+      navDropdown.classList.add('is-open');
+      navDropdownTrigger.setAttribute('aria-expanded', 'true');
+});
+
+navDropdown.addEventListener('mouseleave', () => {
+  closeNavDropdown();
+});
         navDropdownTrigger.addEventListener('click', (event) => {
           event.stopPropagation();
 
