@@ -239,7 +239,30 @@ const alternateEnglishURL = alternateEnglish
   ) : (
     <>
       <a href="/">Home</a>
-      <a href="/articoli/">Articoli</a>
+      <div class="nav-dropdown">
+  <button
+    class="nav-dropdown-trigger"
+    type="button"
+    aria-expanded="false"
+    aria-haspopup="true"
+  >
+    Articoli
+    <span class="nav-dropdown-arrow" aria-hidden="true">⌄</span>
+  </button>
+
+  <div class="nav-dropdown-menu">
+    <a href="/articoli/">Tutti gli articoli</a>
+    <a href="/prossimi-articoli/">Prossimi articoli</a>
+
+    <div class="nav-dropdown-separator"></div>
+
+    <a href="/articoli/jlpt/n5/">JLPT N5</a>
+    <a href="/articoli/jlpt/n4/">JLPT N4</a>
+    <a href="/articoli/jlpt/n3/">JLPT N3</a>
+    <a href="/articoli/jlpt/n2/">JLPT N2</a>
+    <a href="/articoli/jlpt/n1/">JLPT N1</a>
+  </div>
+</div>
       <a href="/chi-siamo/">Chi siamo / Metodo</a>
       <a href="/contatti/">Contatti</a>
       <a href="/en/">English</a>
@@ -461,6 +484,43 @@ const alternateEnglishURL = alternateEnglish
 
           if (target instanceof HTMLElement && target.closest('a')) {
             closeSearch();
+          }
+        });
+      }
+
+      const navDropdown = document.querySelector('.nav-dropdown');
+      const navDropdownTrigger = document.querySelector('.nav-dropdown-trigger');
+
+      function closeNavDropdown() {
+        if (!navDropdown || !navDropdownTrigger) return;
+
+        navDropdown.classList.remove('is-open');
+        navDropdownTrigger.setAttribute('aria-expanded', 'false');
+      }
+
+      if (navDropdown && navDropdownTrigger) {
+        navDropdownTrigger.addEventListener('click', (event) => {
+          event.stopPropagation();
+
+          const isOpen = navDropdown.classList.toggle('is-open');
+          navDropdownTrigger.setAttribute(
+            'aria-expanded',
+            isOpen ? 'true' : 'false'
+          );
+        });
+
+        document.addEventListener('click', (event) => {
+          if (
+            event.target instanceof Node &&
+            !navDropdown.contains(event.target)
+          ) {
+            closeNavDropdown();
+          }
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') {
+            closeNavDropdown();
           }
         });
       }
