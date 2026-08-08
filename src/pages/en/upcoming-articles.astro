@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const upcomingArticles = [
+  {
+    title: 'ものか | Meaning, usage, and nuances in Japanese',
+    date: '2026-08-10'
+  },
+  {
+    title: 'かのように (ka no you ni): meaning, usage, formation, and grammatical structure',
+    date: '2026-08-25'
+  },
+  {
+    title: 'させてもらう (sasete morau) | Meaning, usage, and nuances in Japanese',
+    date: '2026-09-01'
+  }
+];
+---
+
+<BaseLayout
+  title="Upcoming Articles | Hakkiri Nihongo"
+  description="See the upcoming articles scheduled for publication on Hakkiri Nihongo."
+>
+  <section class="upcoming-page">
+    <h1>Upcoming Articles</h1>
+
+    <p class="upcoming-intro">
+      A preview of the next in-depth articles coming to Hakkiri Nihongo.
+      The schedule is updated as new articles enter production.
+    </p>
+
+    <div class="upcoming-list">
+      {upcomingArticles.map((article) => (
+        <article class="upcoming-item">
+          <time datetime={article.date}>
+            {new Date(`${article.date}T12:00:00`).toLocaleDateString('en-US', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric'
+            })}
+          </time>
+
+          <h2>{article.title}</h2>
+        </article>
+      ))}
+    </div>
+
+    <p class="upcoming-note">
+      The dates shown reflect the current editorial schedule and may be subject to change.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .upcoming-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 5rem;
+    position: relative;
+  }
+
+  .upcoming-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("/images/article-placeholder.avif");
+    background-size: 1850px auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.10;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .upcoming-page h1 {
+    margin: 0 0 1rem;
+    text-align: center;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: clamp(2.3rem, 5vw, 3.5rem);
+    font-weight: 500;
+    line-height: 1.1;
+  }
+
+  .upcoming-intro {
+    max-width: 680px;
+    margin: 0 auto 3rem;
+    text-align: center;
+    font-size: 1.08rem;
+    line-height: 1.75;
+  }
+
+  .upcoming-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .upcoming-item {
+    padding: 2rem 2.2rem;
+    background: rgba(255, 255, 255, 0.38);
+    border: 1px solid rgba(90, 70, 60, 0.09);
+    border-radius: 4px;
+  }
+
+  .upcoming-item time {
+    display: block;
+    margin-bottom: 0.7rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #9b3f3f;
+  }
+
+  .upcoming-item h2 {
+    margin: 0;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: clamp(1.35rem, 3vw, 1.75rem);
+    font-weight: 500;
+    line-height: 1.35;
+  }
+
+  .upcoming-note {
+    max-width: 680px;
+    margin: 2.5rem auto 0;
+    text-align: center;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    opacity: 0.65;
+  }
+
+  @media (max-width: 640px) {
+    .upcoming-page {
+      padding: 2.8rem 1rem 4rem;
+    }
+
+    .upcoming-intro {
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .upcoming-item {
+      padding: 1.5rem;
+    }
+  }
+</style>

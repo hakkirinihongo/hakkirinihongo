@@ -123,8 +123,18 @@ const filteredPosts = posts;
               )}
 
               {frontmatter.jlpt && (
-                <span class="tag">JLPT {frontmatter.jlpt}</span>
-              )}
+  <a
+    class="tag"
+    href={
+      normalizeJlpt(frontmatter.jlpt) === 'all-levels' ||
+      normalizeJlpt(frontmatter.jlpt) === 'tutti-i-livelli'
+        ? '/en/articles/jlpt/'
+        : `/en/articles/jlpt/${normalizeJlpt(frontmatter.jlpt)}/`
+    }
+  >
+    JLPT {frontmatter.jlpt}
+  </a>
+)}
             </div>
           </div>
         </li>

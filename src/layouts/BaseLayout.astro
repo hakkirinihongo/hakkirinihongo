@@ -231,7 +231,30 @@ const alternateEnglishURL = alternateEnglish
   {isEnglish ? (
     <>
       <a href="/en/">Home</a>
-      <a href="/en/articles/">Articles</a>
+      <div class="nav-dropdown">
+  <button
+    class="nav-dropdown-trigger"
+    type="button"
+    aria-expanded="false"
+    aria-haspopup="true"
+  >
+    Articles
+    <span class="nav-dropdown-arrow" aria-hidden="true">⌄</span>
+  </button>
+
+  <div class="nav-dropdown-menu">
+    <a href="/en/articles/">All articles</a>
+    <a href="/en/upcoming-articles/">Upcoming articles</a>
+
+    <div class="nav-dropdown-separator"></div>
+
+    <a href="/en/articles/jlpt/n5/">JLPT N5</a>
+    <a href="/en/articles/jlpt/n4/">JLPT N4</a>
+    <a href="/en/articles/jlpt/n3/">JLPT N3</a>
+    <a href="/en/articles/jlpt/n2/">JLPT N2</a>
+    <a href="/en/articles/jlpt/n1/">JLPT N1</a>
+  </div>
+</div>
       <a href="/en/about/">About / Method</a>
       <a href="/en/contact/">Contact</a>
       <a href="/">Italiano</a>

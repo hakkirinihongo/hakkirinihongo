@@ -833,10 +833,7 @@ white-space: pre-line;
     box-shadow 0.22s ease,
     transform 0.22s ease;
 }
-  .category-nav a:last-child {
-  grid-column: 2;
-}
-
+  
 .category-nav a:last-child {
   grid-column: 2;
 }
