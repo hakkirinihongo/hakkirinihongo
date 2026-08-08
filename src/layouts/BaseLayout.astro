@@ -494,15 +494,16 @@ const alternateEnglishURL = alternateEnglish
       function closeNavDropdown() {
         if (!navDropdown || !navDropdownTrigger) return;
 
-        navDropdown.classList.remove('is-open');
-        navDropdownTrigger.setAttribute('aria-expanded', 'false');
-      }
+       if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  navDropdown.addEventListener('mouseenter', () => {
+    navDropdown.classList.add('is-open');
+    navDropdownTrigger.setAttribute('aria-expanded', 'true');
+  });
 
-      if (navDropdown && navDropdownTrigger) {
-      navDropdown.addEventListener('mouseenter', () => {
-      navDropdown.classList.add('is-open');
-      navDropdownTrigger.setAttribute('aria-expanded', 'true');
-});
+  navDropdown.addEventListener('mouseleave', () => {
+    closeNavDropdown();
+  });
+}
 
 navDropdown.addEventListener('mouseleave', () => {
   closeNavDropdown();
