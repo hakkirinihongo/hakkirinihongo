@@ -499,29 +499,27 @@ const alternateEnglishURL = alternateEnglish
       }
 
       if (navDropdown && navDropdownTrigger) {
-      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-  navDropdown.addEventListener('mouseenter', () => {
-    navDropdown.classList.add('is-open');
-    navDropdownTrigger.setAttribute('aria-expanded', 'true');
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    navDropdown.addEventListener('mouseenter', () => {
+      navDropdown.classList.add('is-open');
+      navDropdownTrigger.setAttribute('aria-expanded', 'true');
+    });
+
+    navDropdown.addEventListener('mouseleave', () => {
+      closeNavDropdown();
+    });
+  }
+
+  navDropdownTrigger.addEventListener('click', (event) => {
+    event.stopPropagation();
+
+    const isOpen = navDropdown.classList.toggle('is-open');
+
+    navDropdownTrigger.setAttribute(
+      'aria-expanded',
+      isOpen ? 'true' : 'false'
+    );
   });
-
-  navDropdown.addEventListener('mouseleave', () => {
-    closeNavDropdown();
-  });
-}
-
-navDropdown.addEventListener('mouseleave', () => {
-  closeNavDropdown();
-});
-        navDropdownTrigger.addEventListener('click', (event) => {
-          event.stopPropagation();
-
-          const isOpen = navDropdown.classList.toggle('is-open');
-          navDropdownTrigger.setAttribute(
-            'aria-expanded',
-            isOpen ? 'true' : 'false'
-          );
-        });
 
         document.addEventListener('click', (event) => {
           if (

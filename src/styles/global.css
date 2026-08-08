@@ -261,9 +261,9 @@ a:hover {
 
   transform: translate(0, -6px);
   transition:
-    opacity 0.50s ease,
-  transform 0.50s ease,
-  visibility 0.50s ease;
+    opacity 0.60s ease,
+  transform 0.60s ease,
+  visibility 0.60s ease;
 
   z-index: 1100;
 }
