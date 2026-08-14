@@ -1,0 +1,38 @@
+{
+  "slug": "sasete-morau",
+  "articleSlug": "sasete-morau-significato-uso-grammatica-giapponese",
+  "title": "Esercizi su ～させてもらう",
+  "description": "10 domande su significato, uso, permesso e sfumature di ～させてもらう.",
+  "jlpt": "N3-N2",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "prompt": "先生にこの本を読ませてもらいました。",
+      "question": "Quale interpretazione descrive meglio la frase?",
+      "options": [
+        "Ho costretto l'insegnante a leggere questo libro.",
+        "L'insegnante mi ha permesso di leggere questo libro.",
+        "Sono stato costretto dall'insegnante a leggere questo libro.",
+        "Ho permesso all'insegnante di leggere questo libro."
+      ],
+      "correctIndex": 1,
+      "explanation": "～させてもらう combina la causativa con もらう e presenta l'azione come qualcosa che il soggetto ha potuto compiere grazie al permesso, all'assenso o alla disponibilità di qualcun altro."
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "今日は少し早く帰らせてもらいます。",
+      "question": "In questo contesto, che sfumatura esprime soprattutto ～させてもらいます?",
+      "options": [
+        "Una richiesta aggressiva rivolta all'interlocutore.",
+        "Una semplice descrizione neutra del fatto di tornare a casa.",
+        "L'idea di avvalersi del permesso o della comprensione altrui per andare via prima.",
+        "L'obbligo imposto da qualcun altro di tornare a casa prima."
+      ],
+      "correctIndex": 2,
+      "explanation": "Qui ～させてもらいます presenta la decisione del parlante come resa possibile o accettata dagli altri. In italiano può corrispondere, a seconda del contesto, a formule come «mi permetto di andare via un po' prima»."
+    }
+  ],
+  "shortTitle": "～させてもらう"
+}

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleRating from '../../components/ArticleRating.astro';
+import SidebarExerciseCard from '../../components/SidebarExerciseCard.astro';
 
 // 1) OBBLIGATORIO: generiamo gli slug
 export async function getStaticPaths() {
@@ -22,6 +23,7 @@ export async function getStaticPaths() {
 // 2) Carichiamo articoli e vocab
 const postModules = import.meta.glob('../../content/articoli/**/*.mdx', { eager: true });
 const vocabModules = import.meta.glob('../../data/vocab/*.vocab.json', { eager: true });
+const exerciseModules = import.meta.glob('../../data/esercizi/*.json', { eager: true });
 
 const posts = Object.entries(postModules).map(([path, mod]) => {
   const frontmatter = mod.frontmatter ?? {};
@@ -50,6 +52,16 @@ const articleToc = headings.filter((heading) => heading.depth === 2);
 
 const category = post.frontmatter.category;
 const series = post.frontmatter.series;
+
+const exercises = Object.values(exerciseModules).map((mod) => mod.default);
+const exerciseSlug = post.frontmatter.exercise;
+const exercise = exerciseSlug
+  ? exercises.find((item) => item.slug === exerciseSlug)
+  : null;
+
+if (exerciseSlug && !exercise) {
+  throw new Error(`Esercizio collegato non trovato: ${exerciseSlug}`);
+}
 
 const categoryLabels = {
   "concetti-e-distinzioni": "Concetti e Distinzioni",
@@ -169,24 +181,31 @@ const relatedPosts = posts
       )}
     </article>
 
-    {articleToc.length > 0 && (
+    {(articleToc.length > 0 || exercise) && (
       <aside class="article-sidebar">
-        <nav class="article-toc" aria-labelledby="article-toc-title">
-          <p id="article-toc-title" class="article-toc-title">
-            In questo articolo
-          </p>
+        {articleToc.length > 0 && (
+          <nav class="article-toc" aria-labelledby="article-toc-title">
+            <p id="article-toc-title" class="article-toc-title">
+              In questo articolo
+            </p>
 
-          <ol class="article-toc-list">
-         <li>
-           <a href="#introduzione">Introduzione</a>
-         </li>
-            {articleToc.map((heading) => (
+            <ol class="article-toc-list">
               <li>
-                <a href={`#${heading.slug}`}>{heading.text}</a>
+                <a href="#introduzione">Introduzione</a>
               </li>
-            ))}
-          </ol>
-        </nav>
+
+              {articleToc.map((heading) => (
+                <li>
+                  <a href={`#${heading.slug}`}>{heading.text}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
+
+        {exercise && (
+          <SidebarExerciseCard exercise={exercise} />
+        )}
       </aside>
     )}
   </div>

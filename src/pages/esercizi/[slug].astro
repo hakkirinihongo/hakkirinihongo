@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ExerciseQuiz from '../../components/ExerciseQuiz.astro';
+
+export async function getStaticPaths() {
+  const exerciseModules = import.meta.glob('../../data/esercizi/*.json', { eager: true });
+
+  const exercises = Object.values(exerciseModules).map((mod) => mod.default);
+
+  return exercises.map((exercise) => ({
+    params: {
+      slug: exercise.slug,
+    },
+  }));
+}
+
+const exerciseModules = import.meta.glob('../../data/esercizi/*.json', { eager: true });
+
+const exercises = Object.values(exerciseModules).map((mod) => mod.default);
+
+const { slug } = Astro.params;
+const exercise = exercises.find((item) => item.slug === slug);
+
+if (!exercise) {
+  throw new Error(`Esercizio non trovato: ${slug}`);
+}
+---
+
+<BaseLayout
+  title={`${exercise.title} | Hakkiri Nihongo`}
+  description={exercise.description}
+>
+  <main class="exercise-page">
+    <div class="exercise-header">
+      <p class="exercise-label">Esercizi</p>
+
+      <h1>{exercise.title}</h1>
+
+      <p class="exercise-description">
+        {exercise.description}
+      </p>
+
+      <div class="exercise-meta">
+        <span>{exercise.questions.length} domande</span>
+        <span>JLPT {exercise.jlpt}</span>
+      </div>
+    </div>
+
+    <ExerciseQuiz
+      questions={exercise.questions}
+      articleSlug={exercise.articleSlug}
+    />
+  </main>
+</BaseLayout>
+
+<style>
+  .exercise-page {
+    width: min(860px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 3.5rem 0 5rem;
+  }
+
+  .exercise-header {
+    margin-bottom: 2rem;
+  }
+
+  .exercise-label {
+    margin: 0 0 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .exercise-header h1 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.1;
+  }
+
+  .exercise-description {
+    max-width: 700px;
+    margin: 1rem 0 0;
+    font-size: 1.08rem;
+    line-height: 1.7;
+  }
+
+  .exercise-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+  }
+</style>

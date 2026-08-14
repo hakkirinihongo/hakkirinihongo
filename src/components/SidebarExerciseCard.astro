@@ -1,0 +1,85 @@
+---
+const { exercise } = Astro.props;
+---
+
+<div class="sidebar-exercise-card">
+  <p class="sidebar-exercise-label">Esercizi</p>
+
+  <p class="sidebar-exercise-title">
+    {exercise.shortTitle ?? exercise.title}
+  </p>
+
+  <p class="sidebar-exercise-meta">
+    {exercise.questions.length} domande
+    {exercise.jlpt && <> · JLPT {exercise.jlpt}</>}
+  </p>
+
+  <a
+    class="sidebar-exercise-link"
+    href={`/esercizi/${exercise.slug}/`}
+  >
+    Inizia l'esercizio
+    <span aria-hidden="true">→</span>
+  </a>
+</div>
+
+<style>
+  .sidebar-exercise-card {
+    margin-top: 1rem;
+    padding: 1.15rem 1.25rem;
+
+    border: 1px solid #eadfd2;
+    border-radius: 18px;
+
+    background: rgba(252, 249, 245, 0.96);
+    backdrop-filter: blur(8px);
+
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.035);
+  }
+
+  .sidebar-exercise-label {
+    margin: 0 0 0.35rem;
+
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    color: #8f2f28;
+  }
+
+  .sidebar-exercise-title {
+    margin: 0;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.22rem;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .sidebar-exercise-meta {
+    margin: 0.45rem 0 0;
+
+    font-size: 0.84rem;
+    line-height: 1.4;
+
+    opacity: 0.72;
+  }
+
+  .sidebar-exercise-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+
+    margin-top: 0.8rem;
+
+    color: #8f2f28;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .sidebar-exercise-link:hover {
+    text-decoration: underline;
+  }
+</style>

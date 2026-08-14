@@ -1,0 +1,451 @@
+---
+const { questions, articleSlug } = Astro.props;
+---
+
+<div class="exercise-quiz" data-exercise-root>
+  {questions.map((question, questionIndex) => (
+    <section
+      class:list={[
+        "exercise-card",
+        { "is-hidden": questionIndex !== 0 }
+      ]}
+      data-question-card
+      data-correct-index={question.correctIndex}
+    >
+      <p class="exercise-progress">
+        Domanda {questionIndex + 1} di {questions.length}
+      </p>
+
+      <p class="exercise-prompt" lang="ja">
+        {question.prompt}
+      </p>
+
+      <h2>
+        {question.question}
+      </h2>
+
+      <div class="exercise-options">
+        {question.options.map((option, optionIndex) => (
+          <label
+            class="exercise-option"
+            data-option
+            data-option-index={optionIndex}
+          >
+            <input
+              type="radio"
+              name={`exercise-answer-${questionIndex}`}
+              value={optionIndex}
+            />
+
+            <span>{option}</span>
+          </label>
+        ))}
+      </div>
+
+      <button
+        class="exercise-check"
+        type="button"
+        data-check
+        disabled
+      >
+        Verifica risposta
+      </button>
+
+      <div
+        class="exercise-feedback"
+        data-feedback
+        hidden
+        aria-live="polite"
+      >
+        <p class="exercise-feedback-title" data-feedback-title></p>
+
+        <p class="exercise-feedback-explanation">
+          {question.explanation}
+        </p>
+      </div>
+
+      <button
+        class="exercise-next"
+        type="button"
+        data-next
+        hidden
+      >
+        {questionIndex === questions.length - 1
+          ? "Vedi il risultato"
+          : "Domanda successiva"}
+      </button>
+    </section>
+  ))}
+
+  <section
+    class="exercise-result"
+    data-result
+    hidden
+  >
+    <p class="exercise-result-label">Esercizio completato</p>
+
+    <h2>Il tuo risultato</h2>
+
+    <p class="exercise-score">
+      <strong data-score>0</strong>
+      <span> / {questions.length}</span>
+    </p>
+
+    <div class="exercise-result-actions">
+      <button
+        type="button"
+        class="exercise-restart"
+        data-restart
+      >
+        Riprova l'esercizio
+      </button>
+
+      <a href={`/articoli/${articleSlug}/`}>
+        Torna all'articolo
+      </a>
+    </div>
+  </section>
+</div>
+
+<script>
+  const root = document.querySelector("[data-exercise-root]");
+
+  if (root instanceof HTMLElement) {
+    const cards = Array.from(
+      root.querySelectorAll("[data-question-card]")
+    );
+
+    const result = root.querySelector("[data-result]");
+    const scoreElement = root.querySelector("[data-score]");
+    const restartButton = root.querySelector("[data-restart]");
+
+    let score = 0;
+
+    cards.forEach((card, cardIndex) => {
+      if (!(card instanceof HTMLElement)) return;
+
+      const inputs = Array.from(
+        card.querySelectorAll('input[type="radio"]')
+      );
+
+      const options = Array.from(
+        card.querySelectorAll("[data-option]")
+      );
+
+      const checkButton = card.querySelector("[data-check]");
+      const nextButton = card.querySelector("[data-next]");
+      const feedback = card.querySelector("[data-feedback]");
+      const feedbackTitle = card.querySelector("[data-feedback-title]");
+
+      const correctIndex = Number(card.dataset.correctIndex);
+
+      inputs.forEach((input) => {
+        input.addEventListener("change", () => {
+          if (
+            checkButton instanceof HTMLButtonElement &&
+            card.dataset.checked !== "true"
+          ) {
+            checkButton.disabled = false;
+          }
+        });
+      });
+
+      if (checkButton instanceof HTMLButtonElement) {
+        checkButton.addEventListener("click", () => {
+          const selectedInput = inputs.find(
+            (input) =>
+              input instanceof HTMLInputElement &&
+              input.checked
+          );
+
+          if (
+            !(selectedInput instanceof HTMLInputElement) ||
+            card.dataset.checked === "true"
+          ) {
+            return;
+          }
+
+          const selectedIndex = Number(selectedInput.value);
+          const isCorrect = selectedIndex === correctIndex;
+
+          card.dataset.checked = "true";
+
+          inputs.forEach((input) => {
+            if (input instanceof HTMLInputElement) {
+              input.disabled = true;
+            }
+          });
+
+          options.forEach((option) => {
+            if (!(option instanceof HTMLElement)) return;
+
+            const optionIndex = Number(option.dataset.optionIndex);
+
+            if (optionIndex === correctIndex) {
+              option.classList.add("is-correct");
+            }
+
+            if (
+              optionIndex === selectedIndex &&
+              selectedIndex !== correctIndex
+            ) {
+              option.classList.add("is-wrong");
+            }
+          });
+
+          if (isCorrect) {
+            score += 1;
+
+            if (feedbackTitle) {
+              feedbackTitle.textContent = "Risposta corretta";
+            }
+          } else {
+            if (feedbackTitle) {
+              feedbackTitle.textContent = "Risposta errata";
+            }
+          }
+
+          checkButton.hidden = true;
+
+          if (feedback instanceof HTMLElement) {
+            feedback.hidden = false;
+          }
+
+          if (nextButton instanceof HTMLButtonElement) {
+            nextButton.hidden = false;
+          }
+        });
+      }
+
+      if (nextButton instanceof HTMLButtonElement) {
+        nextButton.addEventListener("click", () => {
+          card.classList.add("is-hidden");
+
+          const nextCard = cards[cardIndex + 1];
+
+          if (nextCard instanceof HTMLElement) {
+            nextCard.classList.remove("is-hidden");
+
+            nextCard.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+          } else if (result instanceof HTMLElement) {
+            result.hidden = false;
+
+            if (scoreElement) {
+              scoreElement.textContent = String(score);
+            }
+
+            result.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+          }
+        });
+      }
+    });
+
+    if (restartButton instanceof HTMLButtonElement) {
+      restartButton.addEventListener("click", () => {
+        score = 0;
+
+        cards.forEach((card, index) => {
+          if (!(card instanceof HTMLElement)) return;
+
+          card.dataset.checked = "";
+
+          if (index === 0) {
+            card.classList.remove("is-hidden");
+          } else {
+            card.classList.add("is-hidden");
+          }
+
+          const inputs = card.querySelectorAll('input[type="radio"]');
+          const options = card.querySelectorAll("[data-option]");
+          const checkButton = card.querySelector("[data-check]");
+          const nextButton = card.querySelector("[data-next]");
+          const feedback = card.querySelector("[data-feedback]");
+
+          inputs.forEach((input) => {
+            if (input instanceof HTMLInputElement) {
+              input.checked = false;
+              input.disabled = false;
+            }
+          });
+
+          options.forEach((option) => {
+            option.classList.remove("is-correct", "is-wrong");
+          });
+
+          if (checkButton instanceof HTMLButtonElement) {
+            checkButton.hidden = false;
+            checkButton.disabled = true;
+          }
+
+          if (nextButton instanceof HTMLButtonElement) {
+            nextButton.hidden = true;
+          }
+
+          if (feedback instanceof HTMLElement) {
+            feedback.hidden = true;
+          }
+        });
+
+        if (result instanceof HTMLElement) {
+          result.hidden = true;
+        }
+
+        cards[0]?.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      });
+    }
+  }
+</script>
+
+<style>
+  [hidden] {
+    display: none !important;
+  }
+
+  .is-hidden {
+    display: none;
+  }
+
+  .exercise-card,
+  .exercise-result {
+    padding: clamp(1.25rem, 4vw, 2rem);
+    border: 1px solid rgba(90, 70, 55, 0.16);
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .exercise-progress {
+    margin: 0 0 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .exercise-prompt {
+    margin: 0 0 1rem;
+    font-size: clamp(1.45rem, 4vw, 2rem);
+    line-height: 1.6;
+  }
+
+  .exercise-card h2 {
+    margin: 0 0 1.5rem;
+    font-size: 1.3rem;
+    line-height: 1.45;
+  }
+
+  .exercise-options {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .exercise-option {
+    display: flex;
+    gap: 0.9rem;
+    align-items: flex-start;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgba(90, 70, 55, 0.18);
+    border-radius: 12px;
+    cursor: pointer;
+    transition:
+      border-color 0.18s ease,
+      background-color 0.18s ease;
+  }
+
+  .exercise-option:hover {
+    background: rgba(90, 70, 55, 0.035);
+  }
+
+  .exercise-card:not([data-checked="true"]) .exercise-option:has(input:checked) {
+    border-color: rgba(47, 52, 64, 0.65);
+    background: rgba(47, 52, 64, 0.045);
+  }
+
+  .exercise-option.is-correct {
+    border-color: #39965b;
+    background: #edf8f0;
+  }
+
+  .exercise-option.is-wrong {
+    border-color: #c95757;
+    background: #fbeeee;
+  }
+
+  .exercise-option input {
+    margin-top: 0.25rem;
+  }
+
+  .exercise-option span {
+    line-height: 1.5;
+  }
+
+  .exercise-check,
+  .exercise-next,
+  .exercise-restart {
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.4rem;
+    border: 0;
+    border-radius: 999px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .exercise-check:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+
+  .exercise-feedback {
+    margin-top: 1.5rem;
+    padding: 1.1rem 1.2rem;
+    border-radius: 12px;
+    background: rgba(90, 70, 55, 0.055);
+  }
+
+  .exercise-feedback-title {
+    margin: 0 0 0.45rem;
+    font-weight: 700;
+  }
+
+  .exercise-feedback-explanation {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .exercise-result {
+    text-align: center;
+  }
+
+  .exercise-result-label {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .exercise-result h2 {
+    margin: 0.5rem 0 1rem;
+  }
+
+  .exercise-score {
+    margin: 0;
+    font-size: 2.5rem;
+  }
+
+  .exercise-result-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+</style>

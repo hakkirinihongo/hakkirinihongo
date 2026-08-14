@@ -1,0 +1,203 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const exerciseModules = import.meta.glob('../../data/esercizi/*.json', { eager: true });
+
+const exercises = Object.values(exerciseModules)
+  .map((mod) => mod.default)
+  .sort((a, b) => (a.shortTitle ?? a.title).localeCompare(
+    b.shortTitle ?? b.title,
+    'ja'
+  ));
+---
+
+<BaseLayout
+  title="Esercizi di giapponese | Hakkiri Nihongo"
+  description="Esercizi di grammatica e lessico giapponese basati sugli articoli di Hakkiri Nihongo. Quiz a risposta multipla con correzione e spiegazione."
+>
+  <main class="exercises-index">
+    <header class="exercises-index-header">
+      <p class="exercises-index-label">Hakkiri Nihongo</p>
+
+      <h1>Esercizi di giapponese</h1>
+
+      <p class="exercises-index-intro">
+        Metti alla prova grammatica, lessico e sfumature del giapponese con esercizi collegati agli articoli di Hakkiri Nihongo.
+      </p>
+    </header>
+
+    {exercises.length > 0 ? (
+      <div class="exercises-grid">
+        {exercises.map((exercise) => (
+          <article class="exercise-index-card">
+            <div class="exercise-index-card-body">
+              <p class="exercise-index-card-label">
+                Esercizio
+              </p>
+
+              <h2>
+                <a href={`/esercizi/${exercise.slug}/`}>
+                  {exercise.shortTitle ?? exercise.title}
+                </a>
+              </h2>
+
+              <p class="exercise-index-card-description">
+                {exercise.description}
+              </p>
+
+              <div class="exercise-index-card-meta">
+                <span>{exercise.questions.length} domande</span>
+
+                {exercise.jlpt && (
+                  <span>JLPT {exercise.jlpt}</span>
+                )}
+              </div>
+
+              <div class="exercise-index-card-actions">
+                <a
+                  class="exercise-index-start"
+                  href={`/esercizi/${exercise.slug}/`}
+                >
+                  Inizia l'esercizio →
+                </a>
+
+                {exercise.articleSlug && (
+                  <a
+                    class="exercise-index-article"
+                    href={`/articoli/${exercise.articleSlug}/`}
+                  >
+                    Leggi l'articolo
+                  </a>
+                )}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <p>Nessun esercizio disponibile.</p>
+    )}
+  </main>
+</BaseLayout>
+
+<style>
+  .exercises-index {
+    width: min(1080px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 4rem 0 6rem;
+  }
+
+  .exercises-index-header {
+    max-width: 760px;
+    margin-bottom: 2.75rem;
+  }
+
+  .exercises-index-label {
+    margin: 0 0 0.45rem;
+    color: #8f2f28;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .exercises-index-header h1 {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.6rem, 6vw, 4.5rem);
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .exercises-index-intro {
+    max-width: 700px;
+    margin: 1.2rem 0 0;
+    font-size: 1.12rem;
+    line-height: 1.7;
+  }
+
+  .exercises-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.3rem;
+  }
+
+  .exercise-index-card {
+    border: 1px solid #eadfd2;
+    border-radius: 20px;
+    background: rgba(252, 249, 245, 0.9);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.035);
+  }
+
+  .exercise-index-card-body {
+    padding: 1.5rem;
+  }
+
+  .exercise-index-card-label {
+    margin: 0 0 0.4rem;
+    color: #8f2f28;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .exercise-index-card h2 {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.65rem;
+    line-height: 1.25;
+  }
+
+  .exercise-index-card h2 a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .exercise-index-card h2 a:hover {
+    color: #8f2f28;
+  }
+
+  .exercise-index-card-description {
+    margin: 0.8rem 0 0;
+    line-height: 1.6;
+  }
+
+  .exercise-index-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.72;
+  }
+
+  .exercise-index-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.8rem 1.1rem;
+    margin-top: 1.25rem;
+  }
+
+  .exercise-index-start {
+    color: #8f2f28;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .exercise-index-start:hover {
+    text-decoration: underline;
+  }
+
+  .exercise-index-article {
+    color: inherit;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 720px) {
+    .exercises-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

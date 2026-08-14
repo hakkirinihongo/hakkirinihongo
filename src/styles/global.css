@@ -2020,3 +2020,40 @@ h2 {
     font-size: 1.05rem;
   }
 }
+/* ==================================================
+   SIDEBAR ARTICOLO + ESERCIZI
+   ================================================== */
+
+@media (min-width: 1350px) {
+  .article-sidebar {
+    top: 130px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-height: calc(100vh - 150px);
+  }
+
+  .article-sidebar .article-toc {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+    overflow-y: auto;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1349px) {
+  .article-sidebar {
+    top: 125px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    max-height: calc(100vh - 145px);
+  }
+
+  .article-sidebar .article-toc {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+    overflow-y: auto;
+  }
+}
