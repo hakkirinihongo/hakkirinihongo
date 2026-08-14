@@ -34,7 +34,7 @@ if (!exercise) {
     <div class="exercise-header">
       <p class="exercise-label">Esercizi</p>
 
-      <h1>{exercise.title}</h1>
+      <h1>{exercise.shortTitle ?? exercise.title}</h1>
 
       <p class="exercise-description">
         {exercise.description}

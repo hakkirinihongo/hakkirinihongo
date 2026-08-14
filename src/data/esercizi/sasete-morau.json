@@ -2,37 +2,149 @@
   "slug": "sasete-morau",
   "articleSlug": "sasete-morau-significato-uso-grammatica-giapponese",
   "title": "Esercizi su ～させてもらう",
+  "shortTitle": "～させてもらう",
   "description": "10 domande su significato, uso, permesso e sfumature di ～させてもらう.",
-  "jlpt": "N3-N2",
+  "jlpt": "N2",
   "questions": [
     {
       "id": 1,
       "type": "multiple-choice",
-      "prompt": "先生にこの本を読ませてもらいました。",
+      "prompt": "先生にこの資料を使わせてもらいました。",
       "question": "Quale interpretazione descrive meglio la frase?",
       "options": [
-        "Ho costretto l'insegnante a leggere questo libro.",
-        "L'insegnante mi ha permesso di leggere questo libro.",
-        "Sono stato costretto dall'insegnante a leggere questo libro.",
-        "Ho permesso all'insegnante di leggere questo libro."
+        "Ho fatto usare questo materiale al professore.",
+        "Il professore mi ha permesso di usare questo materiale.",
+        "Il professore ha usato questo materiale per me.",
+        "Sono stato costretto dal professore a usare questo materiale."
       ],
       "correctIndex": 1,
-      "explanation": "～させてもらう combina la causativa con もらう e presenta l'azione come qualcosa che il soggetto ha potuto compiere grazie al permesso, all'assenso o alla disponibilità di qualcun altro."
+      "explanation": "Il soggetto sottinteso è chi usa il materiale. ～させてもらう presenta questa azione come resa possibile dal permesso o dalla disponibilità del professore: chi parla compie personalmente l'azione e beneficia della possibilità di compierla."
     },
     {
       "id": 2,
       "type": "multiple-choice",
-      "prompt": "今日は少し早く帰らせてもらいます。",
-      "question": "In questo contesto, che sfumatura esprime soprattutto ～させてもらいます?",
+      "prompt": "友達に料理を手伝わせてもらった。",
+      "question": "Chi compie l'azione di 手伝う in questa frase?",
       "options": [
-        "Una richiesta aggressiva rivolta all'interlocutore.",
-        "Una semplice descrizione neutra del fatto di tornare a casa.",
-        "L'idea di avvalersi del permesso o della comprensione altrui per andare via prima.",
-        "L'obbligo imposto da qualcun altro di tornare a casa prima."
+        "L'amico aiuta il parlante.",
+        "Il parlante aiuta l'amico.",
+        "Entrambi vengono aiutati da una terza persona.",
+        "La frase non permette di stabilirlo."
+      ],
+      "correctIndex": 1,
+      "explanation": "Con ～させてもらう è il soggetto del verbo causativo, qui sottinteso e coincidente con il parlante, a compiere l'azione. Il parlante ha quindi avuto dall'amico la possibilità o il consenso di aiutarlo."
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "会社に一年間、日本で働かせてもらった。",
+      "question": "Qual è il punto di vista espresso dalla costruzione?",
+      "options": [
+        "Il parlante presenta il lavoro in Giappone esclusivamente come un obbligo imposto dall'azienda.",
+        "Il parlante presenta l'azienda come beneficiaria del proprio lavoro.",
+        "Il parlante presenta la possibilità di lavorare in Giappone come qualcosa che gli è stato consentito o reso possibile dall'azienda.",
+        "Il parlante dice di aver fatto lavorare in Giappone un dipendente dell'azienda."
       ],
       "correctIndex": 2,
-      "explanation": "Qui ～させてもらいます presenta la decisione del parlante come resa possibile o accettata dagli altri. In italiano può corrispondere, a seconda del contesto, a formule come «mi permetto di andare via un po' prima»."
+      "explanation": "L'azione di lavorare è compiuta dal parlante, ma viene rappresentata come una possibilità ricevuta grazie all'azienda. È proprio questa combinazione tra azione propria e beneficio o possibilità ricevuta a caratterizzare ～させてもらう."
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "先生に作文を＿＿＿＿。",
+      "question": "Quale forma completa la frase se vuoi dire «Il professore mi ha permesso di scrivere il tema»?",
+      "options": [
+        "書いてもらった",
+        "書かせてもらった",
+        "書かせられた",
+        "書いてくれた"
+      ],
+      "correctIndex": 1,
+      "explanation": "書かせてもらった indica che il parlante ha compiuto personalmente l'azione di scrivere grazie al permesso o alla concessione del professore. 書いてもらった significherebbe invece che è il professore a scrivere per il parlante, mentre 書かせられた esprimerebbe normalmente l'essere costretti a scrivere."
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "先輩に発表してもらった。／先輩に発表させてもらった。",
+      "question": "Qual è la differenza fondamentale tra le due frasi?",
+      "options": [
+        "Nella prima presenta il senpai; nella seconda presenta il parlante.",
+        "Nella prima presenta il parlante; nella seconda presenta il senpai.",
+        "In entrambe presenta necessariamente il senpai, ma cambia soltanto il grado di cortesia.",
+        "In entrambe presenta necessariamente il parlante, ma la seconda è più formale."
+      ],
+      "correctIndex": 0,
+      "explanation": "Con 発表してもらった il parlante riceve come beneficio l'azione compiuta dal senpai: è il senpai a presentare. Con 発表させてもらった il parlante riceve invece la possibilità di compiere personalmente l'azione: è il parlante a presentare."
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "先生が私に発表させてくれた。／私は先生に発表させてもらった。",
+      "question": "Quale descrizione coglie meglio il rapporto tra le due frasi?",
+      "options": [
+        "Descrivono necessariamente due eventi opposti.",
+        "Possono descrivere sostanzialmente lo stesso evento, ma la prima mette grammaticalmente in primo piano chi concede la possibilità e la seconda chi la riceve.",
+        "La prima significa che il professore presenta al posto mio, mentre la seconda significa che presento io.",
+        "La differenza consiste esclusivamente nel registro: ～させてくれる è formale e ～させてもらう informale."
+      ],
+      "correctIndex": 1,
+      "explanation": "Le due costruzioni possono rappresentare lo stesso rapporto da prospettive diverse. ～させてくれる costruisce l'evento dal lato di chi lascia o consente di agire; ～させてもらう lo costruisce dal lato di chi riceve favorevolmente quella possibilità."
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "prompt": "では、今日は私から説明させてもらいます。",
+      "question": "L'uso di ～させてもらいます richiede necessariamente che qualcuno abbia pronunciato in precedenza un'esplicita formula di permesso?",
+      "options": [
+        "Sì, altrimenti la frase è grammaticalmente scorretta.",
+        "Sì, ma soltanto quando il verbo è alla forma cortese.",
+        "No. Il consenso può essere implicito o dato per acquisito, e il parlante può presentare la propria azione come compiuta con l'accettazione o la disponibilità altrui.",
+        "No, perché ～させてもらう non ha mai alcun rapporto con il permesso."
+      ],
+      "correctIndex": 2,
+      "explanation": "Il valore di ～させてもらう non presuppone sempre un'autorizzazione verbalizzata in precedenza. Il consenso può essere implicito o considerato acquisito; ciò che rimane è il modo in cui il parlante presenta la propria azione come non completamente indipendente dall'altra parte."
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "prompt": "少し意見を言わせてもらいます。",
+      "question": "Perché una frase del genere può risultare più sfumata di un semplice 少し意見を言います?",
+      "options": [
+        "Perché indica che qualcun altro pronuncerà l'opinione al posto del parlante.",
+        "Perché presenta l'intervento del parlante tenendo linguisticamente conto dello spazio, del consenso o della disponibilità degli altri partecipanti.",
+        "Perché trasforma necessariamente l'opinione in una richiesta formale.",
+        "Perché indica che il parlante è stato costretto a esprimere la propria opinione."
+      ],
+      "correctIndex": 1,
+      "explanation": "言います presenta direttamente l'azione del parlante. 言わせてもらいます la inquadra invece come un'azione che il parlante si trova nella condizione di poter compiere grazie allo spazio o all'accettazione dell'altra parte. Da qui possono derivare sfumature come «con il vostro permesso» o «mi permetto di...»."
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "prompt": "～(さ)せて + もらう",
+      "question": "Qual è il contributo fondamentale di もらう nella costruzione ～させてもらう?",
+      "options": [
+        "Trasforma automaticamente la causativa in una forma passiva.",
+        "Indica che il soggetto costringe un'altra persona a compiere l'azione.",
+        "Introduce il punto di vista di chi riceve favorevolmente una possibilità o un beneficio.",
+        "Serve esclusivamente a rendere la frase più cortese e non modifica la prospettiva dell'evento."
+      ],
+      "correctIndex": 2,
+      "explanation": "もらう è centrale perché colloca la prospettiva dalla parte di chi riceve. In ～させてもらう ciò che viene concettualmente ricevuto non è l'azione eseguita da qualcun altro, ma la possibilità di compiere personalmente l'azione espressa dal verbo."
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "prompt": "正直に言わせてもらうと、その案には賛成できない。",
+      "question": "Quale interpretazione rende meglio la funzione di ～させてもらう in questo contesto?",
+      "options": [
+        "Il parlante afferma che qualcuno lo ha materialmente costretto a essere sincero.",
+        "Il parlante chiede necessariamente un'autorizzazione formale prima di poter parlare.",
+        "Il parlante introduce ciò che sta per dire come un intervento che si concede di fare tenendo conto dell'interlocutore, con una sfumatura simile a «se posso essere sincero» o «permettetemi di dirlo francamente».",
+        "Il parlante comunica che un'altra persona esprimerà al suo posto un'opinione contraria."
+      ],
+      "correctIndex": 2,
+      "explanation": "Qui non è necessario immaginare un vero permesso concesso in precedenza. ～させてもらう serve a inquadrare pragmaticamente l'intervento del parlante rispetto all'interlocutore: il parlante prende la parola e presenta ciò che sta per dire come qualcosa che si permette di esprimere nello spazio comunicativo condiviso."
     }
-  ],
-  "shortTitle": "～させてもらう"
+  ]
 }

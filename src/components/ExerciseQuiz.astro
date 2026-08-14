@@ -16,6 +16,13 @@ const { questions, articleSlug } = Astro.props;
         Domanda {questionIndex + 1} di {questions.length}
       </p>
 
+      <div class="exercise-progress-track" aria-hidden="true">
+        <span
+          class="exercise-progress-fill"
+          style={`width: ${((questionIndex + 1) / questions.length) * 100}%`}
+        ></span>
+      </div>
+
       <p class="exercise-prompt" lang="ja">
         {question.prompt}
       </p>
@@ -94,6 +101,15 @@ const { questions, articleSlug } = Astro.props;
     <div class="exercise-result-actions">
       <button
         type="button"
+        class="exercise-review-errors"
+        data-review-errors
+        hidden
+      >
+        Rivedi gli errori
+      </button>
+
+      <button
+        type="button"
         class="exercise-restart"
         data-restart
       >
@@ -104,6 +120,30 @@ const { questions, articleSlug } = Astro.props;
         Torna all'articolo
       </a>
     </div>
+  </section>
+
+  <section
+    class="exercise-review"
+    data-review
+    hidden
+  >
+    <div class="exercise-review-header">
+      <p class="exercise-result-label">Revisione</p>
+      <h2>Le risposte da rivedere</h2>
+      <p>
+        Qui trovi soltanto le domande che hai sbagliato, con la risposta corretta e la relativa spiegazione.
+      </p>
+    </div>
+
+    <div class="exercise-review-list" data-review-list></div>
+
+    <button
+      type="button"
+      class="exercise-back-result"
+      data-back-result
+    >
+      Torna al risultato
+    </button>
   </section>
 </div>
 
@@ -118,6 +158,10 @@ const { questions, articleSlug } = Astro.props;
     const result = root.querySelector("[data-result]");
     const scoreElement = root.querySelector("[data-score]");
     const restartButton = root.querySelector("[data-restart]");
+    const reviewErrorsButton = root.querySelector("[data-review-errors]");
+    const review = root.querySelector("[data-review]");
+    const reviewList = root.querySelector("[data-review-list]");
+    const backResultButton = root.querySelector("[data-back-result]");
 
     let score = 0;
 
@@ -169,6 +213,7 @@ const { questions, articleSlug } = Astro.props;
           const isCorrect = selectedIndex === correctIndex;
 
           card.dataset.checked = "true";
+          card.dataset.wasWrong = isCorrect ? "false" : "true";
 
           inputs.forEach((input) => {
             if (input instanceof HTMLInputElement) {
@@ -237,6 +282,16 @@ const { questions, articleSlug } = Astro.props;
               scoreElement.textContent = String(score);
             }
 
+            const hasErrors = cards.some(
+              (item) =>
+                item instanceof HTMLElement &&
+                item.dataset.wasWrong === "true"
+            );
+
+            if (reviewErrorsButton instanceof HTMLButtonElement) {
+              reviewErrorsButton.hidden = !hasErrors;
+            }
+
             result.scrollIntoView({
               behavior: "smooth",
               block: "start"
@@ -246,6 +301,67 @@ const { questions, articleSlug } = Astro.props;
       }
     });
 
+    if (
+      reviewErrorsButton instanceof HTMLButtonElement &&
+      review instanceof HTMLElement &&
+      reviewList instanceof HTMLElement
+    ) {
+      reviewErrorsButton.addEventListener("click", () => {
+        reviewList.innerHTML = "";
+
+        const wrongCards = cards.filter(
+          (card) =>
+            card instanceof HTMLElement &&
+            card.dataset.wasWrong === "true"
+        );
+
+        wrongCards.forEach((card) => {
+          if (!(card instanceof HTMLElement)) return;
+
+          const clone = card.cloneNode(true);
+
+          if (!(clone instanceof HTMLElement)) return;
+
+          clone.classList.remove("is-hidden");
+          clone.removeAttribute("data-question-card");
+
+          clone.querySelector("[data-check]")?.remove();
+          clone.querySelector("[data-next]")?.remove();
+
+          reviewList.appendChild(clone);
+        });
+
+        if (result instanceof HTMLElement) {
+          result.hidden = true;
+        }
+
+        review.hidden = false;
+
+        review.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      });
+    }
+
+    if (
+      backResultButton instanceof HTMLButtonElement &&
+      review instanceof HTMLElement
+    ) {
+      backResultButton.addEventListener("click", () => {
+        review.hidden = true;
+
+        if (result instanceof HTMLElement) {
+          result.hidden = false;
+
+          result.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }
+      });
+    }
+
     if (restartButton instanceof HTMLButtonElement) {
       restartButton.addEventListener("click", () => {
         score = 0;
@@ -254,6 +370,7 @@ const { questions, articleSlug } = Astro.props;
           if (!(card instanceof HTMLElement)) return;
 
           card.dataset.checked = "";
+          card.dataset.wasWrong = "";
 
           if (index === 0) {
             card.classList.remove("is-hidden");
@@ -296,6 +413,18 @@ const { questions, articleSlug } = Astro.props;
           result.hidden = true;
         }
 
+        if (review instanceof HTMLElement) {
+          review.hidden = true;
+        }
+
+        if (reviewList instanceof HTMLElement) {
+          reviewList.innerHTML = "";
+        }
+
+        if (reviewErrorsButton instanceof HTMLButtonElement) {
+          reviewErrorsButton.hidden = true;
+        }
+
         cards[0]?.scrollIntoView({
           behavior: "smooth",
           block: "start"
@@ -323,9 +452,26 @@ const { questions, articleSlug } = Astro.props;
   }
 
   .exercise-progress {
-    margin: 0 0 1.5rem;
+    margin: 0 0 0.65rem;
     font-size: 0.9rem;
     font-weight: 600;
+  }
+
+  .exercise-progress-track {
+    width: 100%;
+    height: 5px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(90, 70, 55, 0.1);
+  }
+
+  .exercise-progress-fill {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: #8f2f28;
+    transition: width 0.3s ease;
   }
 
   .exercise-prompt {
@@ -387,7 +533,9 @@ const { questions, articleSlug } = Astro.props;
 
   .exercise-check,
   .exercise-next,
-  .exercise-restart {
+  .exercise-restart,
+  .exercise-review-errors,
+  .exercise-back-result {
     margin-top: 1.5rem;
     padding: 0.8rem 1.4rem;
     border: 0;
@@ -421,6 +569,32 @@ const { questions, articleSlug } = Astro.props;
 
   .exercise-result {
     text-align: center;
+  }
+
+  .exercise-review-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .exercise-review-header h2 {
+    margin: 0.45rem 0 0.7rem;
+  }
+
+  .exercise-review-header p:last-child {
+    margin-bottom: 0;
+    line-height: 1.65;
+  }
+
+  .exercise-review-list {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .exercise-review-list .exercise-card {
+    display: block;
+  }
+
+  .exercise-back-result {
+    margin-top: 1.5rem;
   }
 
   .exercise-result-label {
