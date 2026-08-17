@@ -2057,17 +2057,20 @@ h2 {
     overflow-y: auto;
   }
 }
-.hn-home-thanks {
-  text-align: center;
-  padding: 0.1rem 1.5rem 0.2rem;
-}
+.hn-home-hero__thanks {
+  position: absolute;
+  left: 50%;
+  bottom: 0.5rem;
+  transform: translateX(-50%);
 
-.hn-home-thanks p {
-  margin: 0 auto;
-  max-width: 900px;
+  width: min(900px, calc(100% - 3rem));
+  margin: 0;
+
+  text-align: center;
   font-family: "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", serif;
-  font-size: clamp(1.35rem, 1.5vw, 1.5rem);
-  line-height: 1.9;
+  font-size: clamp(1.1rem, 1.7vw, 1.45rem);
+  line-height: 1.8;
   font-weight: 400;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
+  color: #2f3440;
 }
