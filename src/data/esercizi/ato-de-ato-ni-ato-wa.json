@@ -1,0 +1,163 @@
+{
+  "slug": "ato-de-ato-ni-ato-wa",
+  "articleSlug": "differenza-ato-de-ato-ni-ato-wa-giapponese",
+  "title": "Esercizi su 後で・後に・後は",
+  "shortTitle": "後で・後に・後は",
+  "description": "10 domande sulle differenze tra 後で, 後に e 後は: successione, momento successivo, topic e contesto d'uso.",
+  "jlpt": "N3",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "prompt": "ご飯を食べた後で勉強する。",
+      "question": "Che cosa mette soprattutto in evidenza 後で in questa frase?",
+      "options": [
+        "La semplice successione pratica: prima mangio, poi studio.",
+        "Il periodo successivo al pasto come nuovo topic della frase.",
+        "Una conseguenza particolarmente significativa del fatto di aver mangiato.",
+        "Il fatto che lo studio inizi necessariamente subito dopo il pasto."
+      ],
+      "correctIndex": 0,
+      "explanation": "後で presenta soprattutto l'ordine cronologico delle due azioni: A viene completata e successivamente avviene B. Qui il punto centrale è semplicemente «prima mangio, poi studio», senza trasformare ciò che segue nel topic né sottolineare una conseguenza particolare."
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "彼は後に有名な作家となった。",
+      "question": "Quale sfumatura di 後に emerge particolarmente bene in questa frase?",
+      "options": [
+        "Un'azione quotidiana rimandata a più tardi.",
+        "Un momento o uno stadio successivo della vicenda, presentato in modo narrativo.",
+        "Ciò che resta ancora da fare dopo aver completato un compito.",
+        "Un'abitudine che si ripete ogni volta dopo un determinato evento."
+      ],
+      "correctIndex": 1,
+      "explanation": "後に può mettere maggiormente a fuoco un momento o uno stadio successivo della sequenza temporale e ricorre facilmente in contesti narrativi o descrittivi. Qui significa che, in un momento successivo della sua vita, quella persona divenne uno scrittore famoso."
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "準備はできた。後は出発するだけだ。",
+      "question": "Come va interpretato 後は in questo contesto?",
+      "options": [
+        "Partiremo in un momento imprecisato più tardi.",
+        "La partenza è una conseguenza inevitabile dei preparativi.",
+        "I preparativi sono finiti e, quanto al resto, non rimane che partire.",
+        "La partenza avverrà immediatamente dopo la preparazione."
+      ],
+      "correctIndex": 2,
+      "explanation": "Qui 後は non indica semplicemente che un evento avviene dopo un altro. は porta in primo piano ciò che resta della situazione: i preparativi sono conclusi e «quanto al resto», rimane soltanto da partire."
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "仕事の後はビールを飲む。",
+      "question": "Qual è il ruolo fondamentale di は in 後は?",
+      "options": [
+        "Trasforma 後 in un'espressione di durata numerica.",
+        "Presenta il periodo successivo al lavoro come il topic o il contesto di ciò che segue.",
+        "Indica obbligatoriamente che bere è una conseguenza immediata del lavoro.",
+        "Rende la frase più formale rispetto a 後に."
+      ],
+      "correctIndex": 1,
+      "explanation": "In 後は, la particella は topicalizza ciò che viene dopo. 仕事の後は presenta quindi «il periodo dopo il lavoro» come il contesto di cui si sta parlando: quanto a ciò che faccio dopo il lavoro, bevo una birra."
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "後で と 後に",
+      "question": "Quale descrizione coglie meglio la differenza generale tra le due forme?",
+      "options": [
+        "後で indica sempre un intervallo lungo, mentre 後に indica sempre un intervallo breve.",
+        "後で organizza soprattutto la successione pratica A → B; 後に può mettere maggiormente a fuoco il momento, l'evento o lo stadio successivo.",
+        "後で appartiene esclusivamente alla lingua parlata, mentre 後に appartiene esclusivamente alla lingua scritta.",
+        "後で indica il futuro, mentre 後に può essere usato soltanto per eventi passati."
+      ],
+      "correctIndex": 1,
+      "explanation": "Entrambe le forme possono esprimere posteriorità e in alcuni contesti possono sovrapporsi. La differenza fondamentale discussa nell'articolo riguarda la prospettiva: 後で mette soprattutto in evidenza la successione delle azioni, mentre 後に può presentare più nettamente il momento o l'evento che segue."
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "今は忙しいから、後でやる。",
+      "question": "Perché 後で è particolarmente naturale in questa frase?",
+      "options": [
+        "Perché 後で è comune nel linguaggio quotidiano per indicare semplicemente che qualcosa verrà fatto più tardi.",
+        "Perché 後で indica che ciò che viene dopo è il topic della conversazione.",
+        "Perché 後で è la forma più formale per esprimere una successione temporale.",
+        "Perché 後で richiede sempre che venga specificata la quantità di tempo che deve trascorrere."
+      ],
+      "correctIndex": 0,
+      "explanation": "後で è molto comune nel parlato quotidiano anche con il semplice valore di «dopo / più tardi». In questa frase il parlante rimanda l'azione a un momento successivo senza conferirle una particolare sfumatura narrativa o topicale."
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "prompt": "五分＿＿戻ります。",
+      "question": "Quale completamento è corretto per dire «torno tra cinque minuti»?",
+      "options": [
+        "後に",
+        "後で",
+        "後は",
+        "の後で"
+      ],
+      "correctIndex": 0,
+      "explanation": "Con una durata numerica si usa il modello 五分後に, 三年後に e simili: «cinque minuti dopo / tra cinque minuti». In questo uso 後 si legge ご, quindi 五分後に si legge ごふんごに. Non si usa normalmente 五分後で con questo significato."
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "prompt": "食べた後で・会議の後に・仕事の後は",
+      "question": "Che cosa mostrano questi tre esempi riguardo alla formazione delle costruzioni?",
+      "options": [
+        "後で, 後に e 後は possono seguire soltanto un verbo alla forma in ～て.",
+        "Dopo un verbo si usa normalmente la forma passata in ～た; dopo un nome compare normalmente の.",
+        "後は può seguire un nome, ma non un verbo.",
+        "後に può seguire soltanto espressioni numeriche di tempo."
+      ],
+      "correctIndex": 1,
+      "explanation": "Le costruzioni descritte nell'articolo ricorrono tipicamente dopo un verbo alla forma passata in ～た, come 食べた後で, oppure dopo nome + の, come 会議の後に e 仕事の後は. 後に può inoltre comparire direttamente dopo espressioni di durata, come 三年後に."
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "prompt": "Aた後でB ／ AてからB",
+      "question": "Quale differenza descrive meglio il contrasto presentato nell'articolo?",
+      "options": [
+        "Aた後でB esprime una semplice posteriorità tra A e B, mentre AてからB può mettere più chiaramente in evidenza il completamento di A come punto di partenza per B.",
+        "Aた後でB indica che A e B avvengono contemporaneamente, mentre AてからB indica successione.",
+        "AてからB è necessariamente più formale di Aた後でB.",
+        "Le due costruzioni hanno sempre un significato completamente identico e sono intercambiabili in qualsiasi contesto."
+      ],
+      "correctIndex": 0,
+      "explanation": "Entrambe possono essere tradotte con «dopo aver fatto A, fare B», ma l'articolo distingue la semplice relazione di posteriorità espressa da Aた後でB dalla maggiore enfasi che ～てから può porre sul completamento di A come punto a partire dal quale avviene B."
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "prompt": "宿題は全部終わった。＿＿寝るだけだ。",
+      "question": "Quale forma completa meglio la frase se il parlante vuole dire «i compiti sono finiti; ormai non resta che dormire»?",
+      "options": [
+        "後で",
+        "後に",
+        "後は",
+        "五分後に"
+      ],
+      "correctIndex": 2,
+      "explanation": "後は è particolarmente naturale quando una situazione precedente è già conclusa e il parlante introduce ciò che rimane da fare. 宿題は全部終わった。後は寝るだけだ significa quindi «ho finito tutti i compiti; quanto al resto, non mi rimane che dormire»."
+    }
+  ],
+  "area": "grammatica",
+  "searchTerms": [
+    "ato de",
+    "ato ni",
+    "ato wa",
+    "後で",
+    "後に",
+    "後は",
+    "dopo",
+    "successione",
+    "posteriorità",
+    "てから"
+  ]
+}
