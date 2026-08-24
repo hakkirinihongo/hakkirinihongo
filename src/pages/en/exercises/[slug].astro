@@ -29,6 +29,8 @@ if (!exercise) {
 <BaseLayout
   title={`${exercise.title} | Hakkiri Nihongo`}
   description={exercise.description}
+  alternateItalian={`/esercizi/${exercise.slug}/`}
+  alternateEnglish={Astro.url.pathname}
 >
   <main class="exercise-page">
     <div class="exercise-header">
