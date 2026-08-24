@@ -1,0 +1,158 @@
+{
+  "slug": "sasete-morau",
+  "articleSlug": "sasete-morau-meaning-usage-japanese-grammar",
+  "title": "Exercises on ～させてもらう",
+  "shortTitle": "～させてもらう",
+  "description": "10 questions on the meaning, usage, permission, and nuances of ～させてもらう.",
+  "jlpt": "N2",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "prompt": "先生にこの資料を使わせてもらいました。",
+      "question": "Which interpretation best describes the sentence?",
+      "options": [
+        "I made the teacher use these materials.",
+        "The teacher allowed me to use these materials.",
+        "The teacher used these materials for me.",
+        "The teacher forced me to use these materials."
+      ],
+      "correctIndex": 1,
+      "explanation": "The understood subject is the person using the materials. ～させてもらう presents that action as something made possible by the teacher's permission or willingness: the speaker personally performs the action while benefiting from being allowed to do so."
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "友達に料理を手伝わせてもらった。",
+      "question": "Who performs the action expressed by 手伝う in this sentence?",
+      "options": [
+        "The friend helps the speaker.",
+        "The speaker helps the friend.",
+        "Both are helped by a third person.",
+        "The sentence does not make this clear."
+      ],
+      "correctIndex": 1,
+      "explanation": "With ～させてもらう, the understood subject of the causative verb — here, the speaker — performs the action. The speaker was therefore given the opportunity or permission by the friend to help."
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "会社に一年間、日本で働かせてもらった。",
+      "question": "What perspective does this construction express?",
+      "options": [
+        "The speaker presents working in Japan solely as an obligation imposed by the company.",
+        "The speaker presents the company as the beneficiary of their work.",
+        "The speaker presents the opportunity to work in Japan as something the company allowed or made possible.",
+        "The speaker says that they made one of the company's employees work in Japan."
+      ],
+      "correctIndex": 2,
+      "explanation": "The speaker is the one who works, but the opportunity to do so is presented as something received through the company. This combination of one's own action with a benefit or opportunity received from another party is central to ～させてもらう."
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "先生に作文を＿＿＿＿。",
+      "question": "Which form completes the sentence if you want to say, “The teacher allowed me to write the essay”?",
+      "options": [
+        "書いてもらった",
+        "書かせてもらった",
+        "書かせられた",
+        "書いてくれた"
+      ],
+      "correctIndex": 1,
+      "explanation": "書かせてもらった indicates that the speaker personally performed the action of writing thanks to the teacher's permission or consent. 書いてもらった would instead mean that the teacher wrote something for the speaker, while 書かせられた would normally express being made or forced to write."
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "先輩に発表してもらった。／先輩に発表させてもらった。",
+      "question": "What is the fundamental difference between the two sentences?",
+      "options": [
+        "In the first, the senpai gives the presentation; in the second, the speaker does.",
+        "In the first, the speaker gives the presentation; in the second, the senpai does.",
+        "In both, the senpai necessarily gives the presentation; only the level of politeness changes.",
+        "In both, the speaker necessarily gives the presentation; the second is simply more formal."
+      ],
+      "correctIndex": 0,
+      "explanation": "With 発表してもらった, the speaker receives the senpai's action as a benefit: the senpai gives the presentation. With 発表させてもらった, the speaker instead receives the opportunity to perform the action personally: the speaker gives the presentation."
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "先生が私に発表させてくれた。／私は先生に発表させてもらった。",
+      "question": "Which description best captures the relationship between the two sentences?",
+      "options": [
+        "They necessarily describe two opposite events.",
+        "They can describe essentially the same event, but the first grammatically foregrounds the person who grants the opportunity, while the second foregrounds the person who receives it.",
+        "The first means that the teacher gives the presentation instead of me, while the second means that I give it.",
+        "The only difference is register: ～させてくれる is formal, whereas ～させてもらう is informal."
+      ],
+      "correctIndex": 1,
+      "explanation": "The two constructions can represent the same relationship from different perspectives. ～させてくれる frames the event from the side of the person who allows or enables the action, whereas ～させてもらう frames it from the side of the person who favorably receives that opportunity."
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "prompt": "では、今日は私から説明させてもらいます。",
+      "question": "Does ～させてもらいます necessarily require someone to have explicitly granted permission beforehand?",
+      "options": [
+        "Yes. Otherwise, the sentence is grammatically incorrect.",
+        "Yes, but only when the verb is in the polite form.",
+        "No. Consent may be implicit or taken for granted, and the speaker can present the action as being carried out with the acceptance or willingness of the other party.",
+        "No, because ～させてもらう never has anything to do with permission."
+      ],
+      "correctIndex": 2,
+      "explanation": "～させてもらう does not always presuppose that permission was explicitly verbalized beforehand. Consent may be implicit or treated as already established; what remains is the speaker's choice to present the action as not entirely independent of the other party."
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "prompt": "少し意見を言わせてもらいます。",
+      "question": "Why can this sound more nuanced than simply saying 少し意見を言います?",
+      "options": [
+        "Because it indicates that someone else will state the opinion on the speaker's behalf.",
+        "Because it frames the speaker's intervention in a way that linguistically acknowledges the space, consent, or willingness of the other participants.",
+        "Because it necessarily turns the opinion into a formal request.",
+        "Because it indicates that the speaker has been forced to express an opinion."
+      ],
+      "correctIndex": 1,
+      "explanation": "言います simply presents the speaker's action directly. 言わせてもらいます instead frames it as something the speaker is in a position to do thanks to the space or acceptance afforded by the other party. This can give rise to nuances such as “with your permission” or “let me say...” depending on the context."
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "prompt": "～(さ)せて + もらう",
+      "question": "What is the fundamental contribution of もらう in the construction ～させてもらう?",
+      "options": [
+        "It automatically turns the causative into a passive construction.",
+        "It indicates that the subject forces another person to perform the action.",
+        "It introduces the perspective of the person who favorably receives an opportunity or benefit.",
+        "It serves only to make the sentence more polite and does not affect the perspective from which the event is presented."
+      ],
+      "correctIndex": 2,
+      "explanation": "もらう is central because it places the perspective on the receiving side. In ～させてもらう, what is conceptually received is not an action performed by someone else, but the opportunity to personally perform the action expressed by the verb."
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "prompt": "正直に言わせてもらうと、その案には賛成できない。",
+      "question": "Which interpretation best captures the function of ～させてもらう in this context?",
+      "options": [
+        "The speaker says that someone literally forced them to be honest.",
+        "The speaker necessarily asks for formal authorization before being allowed to speak.",
+        "The speaker introduces what they are about to say as an intervention they allow themselves to make while acknowledging the interlocutor, with a nuance similar to “if I may be honest” or “let me put it frankly.”",
+        "The speaker says that someone else will express an opposing opinion on their behalf."
+      ],
+      "correctIndex": 2,
+      "explanation": "There is no need to imagine that actual permission was explicitly granted beforehand. Here, ～させてもらう pragmatically frames the speaker's intervention in relation to the interlocutor: the speaker takes the floor while presenting what they are about to say as something they allow themselves to express within the shared communicative space."
+    }
+  ],
+  "area": "grammar",
+  "searchTerms": [
+    "sasete morau",
+    "させてもらう",
+    "causative",
+    "permission",
+    "benefit"
+  ]
+}

@@ -1,8 +1,55 @@
 ---
-const { questions, articleSlug } = Astro.props;
+const { questions, articleSlug, lang = 'it' } = Astro.props;
+
+const copy = lang === 'en'
+  ? {
+      question: 'Question',
+      of: 'of',
+      checkAnswer: 'Check answer',
+      seeResult: 'See result',
+      nextQuestion: 'Next question',
+      completed: 'Exercise completed',
+      yourResult: 'Your result',
+      reviewErrors: 'Review mistakes',
+      retryExercise: 'Try again',
+      backToArticle: 'Back to the article',
+      review: 'Review',
+      answersToReview: 'Answers to review',
+      reviewIntro: 'Here you will find only the questions you answered incorrectly, together with the correct answer and an explanation.',
+      backToResult: 'Back to result',
+      correctAnswer: 'Correct answer',
+      wrongAnswer: 'Incorrect answer'
+    }
+  : {
+      question: 'Domanda',
+      of: 'di',
+      checkAnswer: 'Verifica risposta',
+      seeResult: 'Vedi il risultato',
+      nextQuestion: 'Domanda successiva',
+      completed: 'Esercizio completato',
+      yourResult: 'Il tuo risultato',
+      reviewErrors: 'Rivedi gli errori',
+      retryExercise: "Riprova l'esercizio",
+      backToArticle: "Torna all'articolo",
+      review: 'Revisione',
+      answersToReview: 'Le risposte da rivedere',
+      reviewIntro: 'Qui trovi soltanto le domande che hai sbagliato, con la risposta corretta e la relativa spiegazione.',
+      backToResult: 'Torna al risultato',
+      correctAnswer: 'Risposta corretta',
+      wrongAnswer: 'Risposta errata'
+    };
+
+const articleBase = lang === 'en'
+  ? '/en/articles'
+  : '/articoli';
 ---
 
-<div class="exercise-quiz" data-exercise-root>
+<div
+  class="exercise-quiz"
+  data-exercise-root
+  data-correct-label={copy.correctAnswer}
+  data-wrong-label={copy.wrongAnswer}
+>
   {questions.map((question, questionIndex) => (
     <section
       class:list={[
@@ -13,7 +60,7 @@ const { questions, articleSlug } = Astro.props;
       data-correct-index={question.correctIndex}
     >
       <p class="exercise-progress">
-        Domanda {questionIndex + 1} di {questions.length}
+        {copy.question} {questionIndex + 1} {copy.of} {questions.length}
       </p>
 
       <div class="exercise-progress-track" aria-hidden="true">
@@ -55,7 +102,7 @@ const { questions, articleSlug } = Astro.props;
         data-check
         disabled
       >
-        Verifica risposta
+        {copy.checkAnswer}
       </button>
 
       <div
@@ -78,8 +125,8 @@ const { questions, articleSlug } = Astro.props;
         hidden
       >
         {questionIndex === questions.length - 1
-          ? "Vedi il risultato"
-          : "Domanda successiva"}
+          ? copy.seeResult
+          : copy.nextQuestion}
       </button>
     </section>
   ))}
@@ -89,9 +136,9 @@ const { questions, articleSlug } = Astro.props;
     data-result
     hidden
   >
-    <p class="exercise-result-label">Esercizio completato</p>
+    <p class="exercise-result-label">{copy.completed}</p>
 
-    <h2>Il tuo risultato</h2>
+    <h2>{copy.yourResult}</h2>
 
     <p class="exercise-score">
       <strong data-score>0</strong>
@@ -105,7 +152,7 @@ const { questions, articleSlug } = Astro.props;
         data-review-errors
         hidden
       >
-        Rivedi gli errori
+        {copy.reviewErrors}
       </button>
 
       <button
@@ -113,11 +160,11 @@ const { questions, articleSlug } = Astro.props;
         class="exercise-restart"
         data-restart
       >
-        Riprova l'esercizio
+        {copy.retryExercise}
       </button>
 
-      <a href={`/articoli/${articleSlug}/`}>
-        Torna all'articolo
+      <a href={`${articleBase}/${articleSlug}/`}>
+        {copy.backToArticle}
       </a>
     </div>
   </section>
@@ -128,10 +175,10 @@ const { questions, articleSlug } = Astro.props;
     hidden
   >
     <div class="exercise-review-header">
-      <p class="exercise-result-label">Revisione</p>
-      <h2>Le risposte da rivedere</h2>
+      <p class="exercise-result-label">{copy.review}</p>
+      <h2>{copy.answersToReview}</h2>
       <p>
-        Qui trovi soltanto le domande che hai sbagliato, con la risposta corretta e la relativa spiegazione.
+        {copy.reviewIntro}
       </p>
     </div>
 
@@ -142,7 +189,7 @@ const { questions, articleSlug } = Astro.props;
       class="exercise-back-result"
       data-back-result
     >
-      Torna al risultato
+      {copy.backToResult}
     </button>
   </section>
 </div>
@@ -151,6 +198,12 @@ const { questions, articleSlug } = Astro.props;
   const root = document.querySelector("[data-exercise-root]");
 
   if (root instanceof HTMLElement) {
+    const correctLabel =
+      root.dataset.correctLabel ?? "Risposta corretta";
+
+    const wrongLabel =
+      root.dataset.wrongLabel ?? "Risposta errata";
+
     const cards = Array.from(
       root.querySelectorAll("[data-question-card]")
     );
@@ -242,11 +295,11 @@ const { questions, articleSlug } = Astro.props;
             score += 1;
 
             if (feedbackTitle) {
-              feedbackTitle.textContent = "Risposta corretta";
+              feedbackTitle.textContent = correctLabel;
             }
           } else {
             if (feedbackTitle) {
-              feedbackTitle.textContent = "Risposta errata";
+              feedbackTitle.textContent = wrongLabel;
             }
           }
 

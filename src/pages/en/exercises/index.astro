@@ -1,7 +1,7 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 
-const exerciseModules = import.meta.glob('../../data/esercizi/*.json', { eager: true });
+const exerciseModules = import.meta.glob('../../../data/exercises/*.json', { eager: true });
 
 const exercises = Object.values(exerciseModules)
   .map((mod) => mod.default)
@@ -43,9 +43,9 @@ const availableAreas = [
 ];
 
 const areaLabels = {
-  grammatica: 'Grammatica',
-  'parole-e-sfumature': 'Parole e sfumature',
-  'uso-e-contesto': 'Uso e contesto',
+  grammar: 'Grammar',
+  'words-and-nuances': 'Words & Nuances',
+  'usage-and-context': 'Usage & Context',
 };
 
 const showSearch = exercises.length >= 6;
@@ -55,35 +55,35 @@ const showControls = showSearch || showJlptFilters || showAreaFilters;
 ---
 
 <BaseLayout
-  title="Esercizi di giapponese | Hakkiri Nihongo"
-  description="Esercizi di grammatica e lessico giapponese basati sugli articoli di Hakkiri Nihongo. Quiz a risposta multipla con correzione e spiegazione."
+  title="Japanese Exercises | Hakkiri Nihongo"
+  description="Japanese grammar and vocabulary exercises based on Hakkiri Nihongo articles, with multiple-choice questions, instant feedback, and explanations."
 >
   <main class="exercises-index" data-exercises-index>
     <header class="exercises-index-header">
       <p class="exercises-index-label">Hakkiri Nihongo</p>
 
-      <h1>Esercizi</h1>
+      <h1>Exercises</h1>
 
       <p class="exercises-index-intro">
-        Metti alla prova grammatica, lessico e sfumature del giapponese con esercizi collegati agli articoli di Hakkiri Nihongo.
+        Test your understanding of Japanese grammar, vocabulary, and nuance with exercises linked to Hakkiri Nihongo articles.
       </p>
     </header>
 
     {showControls && (
       <section
         class="exercise-filters"
-        aria-label="Filtra gli esercizi"
+        aria-label="Filter exercises"
       >
         {showSearch && (
           <div class="exercise-search">
             <label for="exercise-search-input">
-              Cerca un esercizio
+              Search exercises
             </label>
 
             <input
               id="exercise-search-input"
               type="search"
-              placeholder="Es. させてもらう, sasete morau, permesso..."
+              placeholder="E.g. させてもらう, sasete morau, permission..."
               autocomplete="off"
               data-exercise-search
             />
@@ -100,7 +100,7 @@ const showControls = showSearch || showJlptFilters || showAreaFilters;
                 class="is-active"
                 data-jlpt-filter=""
               >
-                Tutti
+                All
               </button>
 
               {availableJlpt.map((level) => (
@@ -125,7 +125,7 @@ const showControls = showSearch || showJlptFilters || showAreaFilters;
                 class="is-active"
                 data-area-filter=""
               >
-                Tutti
+                All
               </button>
 
               {availableAreas.map((area) => (
@@ -166,11 +166,11 @@ const showControls = showSearch || showJlptFilters || showAreaFilters;
               >
                 <div class="exercise-index-card-body">
                   <p class="exercise-index-card-label">
-                    Esercizio
+                    Exercise
                   </p>
 
                   <h2>
-                    <a href={`/esercizi/${exercise.slug}/`}>
+                    <a href={`/en/exercises/${exercise.slug}/`}>
                       {exercise.shortTitle ?? exercise.title}
                     </a>
                   </h2>
@@ -180,7 +180,7 @@ const showControls = showSearch || showJlptFilters || showAreaFilters;
                   </p>
 
                   <div class="exercise-index-card-meta">
-                    <span>{exercise.questions.length} domande</span>
+                    <span>{exercise.questions.length} questions</span>
 
                     {exercise.jlpt && (
                       <span>JLPT {exercise.jlpt}</span>
@@ -190,17 +190,17 @@ const showControls = showSearch || showJlptFilters || showAreaFilters;
                   <div class="exercise-index-card-actions">
                     <a
                       class="exercise-index-start"
-                      href={`/esercizi/${exercise.slug}/`}
+                      href={`/en/exercises/${exercise.slug}/`}
                     >
-                      Inizia l'esercizio →
+                      Start exercise →
                     </a>
 
                     {exercise.articleSlug && (
                       <a
                         class="exercise-index-article"
-                        href={`/articoli/${exercise.articleSlug}/`}
+                        href={`/en/articles/${exercise.articleSlug}/`}
                       >
-                        Leggi l'articolo
+                        Read the article
                       </a>
                     )}
                   </div>
@@ -215,11 +215,11 @@ const showControls = showSearch || showJlptFilters || showAreaFilters;
           data-exercise-no-results
           hidden
         >
-          Nessun esercizio corrisponde ai filtri selezionati.
+          No exercises match the selected filters.
         </p>
       </>
     ) : (
-      <p>Nessun esercizio disponibile.</p>
+      <p>No exercises available.</p>
     )}
   </main>
 </BaseLayout>

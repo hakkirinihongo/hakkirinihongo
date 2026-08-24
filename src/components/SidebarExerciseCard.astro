@@ -1,24 +1,40 @@
 ---
-const { exercise } = Astro.props;
+const { exercise, lang = 'it' } = Astro.props;
+
+const copy = lang === 'en'
+  ? {
+      label: 'Exercises',
+      questions: 'questions',
+      start: 'Start exercise'
+    }
+  : {
+      label: 'Esercizi',
+      questions: 'domande',
+      start: "Inizia l'esercizio"
+    };
+
+const exerciseBase = lang === 'en'
+  ? '/en/exercises'
+  : '/esercizi';
 ---
 
 <div class="sidebar-exercise-card">
-  <p class="sidebar-exercise-label">Esercizi</p>
+  <p class="sidebar-exercise-label">{copy.label}</p>
 
   <p class="sidebar-exercise-title">
     {exercise.shortTitle ?? exercise.title}
   </p>
 
   <p class="sidebar-exercise-meta">
-    {exercise.questions.length} domande
+    {exercise.questions.length} {copy.questions}
     {exercise.jlpt && <> · JLPT {exercise.jlpt}</>}
   </p>
 
   <a
     class="sidebar-exercise-link"
-    href={`/esercizi/${exercise.slug}/`}
+    href={`${exerciseBase}/${exercise.slug}/`}
   >
-    Inizia l'esercizio
+    {copy.start}
     <span aria-hidden="true">→</span>
   </a>
 </div>

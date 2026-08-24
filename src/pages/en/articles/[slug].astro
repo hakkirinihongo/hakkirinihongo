@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import ArticleRating from '../../../components/ArticleRating.astro';
+import SidebarExerciseCard from '../../../components/SidebarExerciseCard.astro';
 
 const normalizeCategory = (value) => {
   return String(value ?? '')
@@ -43,6 +44,7 @@ export async function getStaticPaths() {
 }
 
 const articleImports = import.meta.glob('../../../content/en/**/*.mdx');
+const exerciseModules = import.meta.glob('../../../data/exercises/*.json', { eager: true });
 
 const posts = await Promise.all(
   Object.entries(articleImports).map(async ([path, resolver]) => {
@@ -67,6 +69,16 @@ const articleToc = headings.filter((heading) => heading.depth === 2);
 const category = normalizeCategory(frontmatter.category);
 const series = frontmatter.series;
 const jlpt = frontmatter.jlpt;
+
+const exercises = Object.values(exerciseModules).map((mod) => mod.default);
+const exerciseSlug = frontmatter.exercise;
+const exercise = exerciseSlug
+  ? exercises.find((item) => item.slug === exerciseSlug)
+  : null;
+
+if (exerciseSlug && !exercise) {
+  throw new Error(`Linked exercise not found: ${exerciseSlug}`);
+}
 
 const relatedPosts = posts
   .filter((p) => p.slug !== slug)
@@ -146,25 +158,34 @@ const relatedPosts = posts
     <ArticleRating articleKey={`en:${slug}`} lang="en" />
     </article>
 
-    {articleToc.length > 0 && (
+    {(articleToc.length > 0 || exercise) && (
       <aside class="article-sidebar">
-        <nav class="article-toc" aria-labelledby="article-toc-title">
-          <p id="article-toc-title" class="article-toc-title">
-            In this article
-          </p>
+        {articleToc.length > 0 && (
+          <nav class="article-toc" aria-labelledby="article-toc-title">
+            <p id="article-toc-title" class="article-toc-title">
+              In this article
+            </p>
 
-          <ol class="article-toc-list">
-            <li>
-              <a href="#introduction">Introduction</a>
-            </li>
-
-            {articleToc.map((heading) => (
+            <ol class="article-toc-list">
               <li>
-                <a href={`#${heading.slug}`}>{heading.text}</a>
+                <a href="#introduction">Introduction</a>
               </li>
-            ))}
-          </ol>
-        </nav>
+
+              {articleToc.map((heading) => (
+                <li>
+                  <a href={`#${heading.slug}`}>{heading.text}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
+
+        {exercise && (
+          <SidebarExerciseCard
+            exercise={exercise}
+            lang="en"
+          />
+        )}
       </aside>
     )}
   </div>
