@@ -1,0 +1,164 @@
+{
+  "slug": "sei-suffix",
+  "articleSlug": "japanese-sei-suffix-meaning-usage",
+  "title": "Exercises on the Japanese Suffix ～性 (せい)",
+  "shortTitle": "～性 (せい)",
+  "description": "10 questions on the meaning and usage of ～性: abstract nouns, properties, tendencies, classifying attributes, and lexicalized forms.",
+  "jlpt": "N2",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "prompt": "～性",
+      "question": "Which description best captures the general function of the suffix ～性 in contemporary Japanese?",
+      "options": [
+        "It always turns a noun into an adjective.",
+        "It refers exclusively to an innate characteristic of a person.",
+        "It can present the preceding element as a property, state, tendency, ability, or criterion of classification.",
+        "It always creates a word equivalent to an English noun ending in “-ity.”"
+      ],
+      "correctIndex": 2,
+      "explanation": "～性 is a productive derivational element that can present the base as a property, state, tendency, ability, or criterion of classification. English “-ity” can be a useful equivalent in some cases, but it is not a general rule."
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "可能 → 可能性",
+      "question": "What does adding ～性 primarily do in 可能性?",
+      "options": [
+        "It creates a noun that presents possibility as an abstract state or property.",
+        "It creates an expression that necessarily means “highly probable.”",
+        "It creates an adjective equivalent to 可能な.",
+        "It creates a verb meaning “to make possible.”"
+      ],
+      "correctIndex": 0,
+      "explanation": "In words such as 可能性, ～性 creates an abstract noun expressing a state or degree: “possibility.” It does not by itself indicate how likely something is, nor does it turn the base into a verb or adjective."
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "安全性を高める",
+      "question": "Why is a phrase like 安全性を高める especially natural?",
+      "options": [
+        "Because ～性 turns 安全 into a transitive verb.",
+        "Because ～性 necessarily creates nouns denoting numerical quantities.",
+        "Because 高める can only be used with words ending in 性.",
+        "Because 安全性 presents safety as a property that can be assessed and improved."
+      ],
+      "correctIndex": 3,
+      "explanation": "Many formations in ～性 denote characteristics that can be assessed, measured, increased, reduced, or improved. This is why collocations such as 安全性を高める, 再現性が高い, and 可能性を検討する are so common."
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "彼の発言には攻撃性が感じられる。",
+      "question": "What semantic value does ～性 have in 攻撃性?",
+      "options": [
+        "Geographical origin.",
+        "A tendency or disposition.",
+        "Material origin.",
+        "Duration in time."
+      ],
+      "correctIndex": 1,
+      "explanation": "攻撃性 presents 攻撃 as a tendency or disposition: the speaker perceives an aggressive tendency or characteristic in the person's remarks. This is one of the recurring semantic values of words formed with ～性."
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "新素材は耐水性と耐熱性の両方に優れている。",
+      "question": "What do 耐水性 and 耐熱性 mainly express in this sentence?",
+      "options": [
+        "Two functional or performance-related properties of the material.",
+        "Two nouns indicating the geographical origin of the material.",
+        "Two moral qualities of the material.",
+        "Two alternative words simply meaning “water” and “heat.”"
+      ],
+      "correctIndex": 0,
+      "explanation": "In technical terms such as 耐水性 and 耐熱性, ～性 presents an assessable functional characteristic: resistance to water and resistance to heat, respectively. This is a clear example of why ～性 cannot always be translated mechanically with “-ity.”"
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "植物性たんぱく質",
+      "question": "What is the function of 植物性 in this expression?",
+      "options": [
+        "It turns たんぱく質 into a verb.",
+        "It creates an abstract noun meaning something like “plant-ness.”",
+        "It classifies the following noun by indicating that the protein is plant-based or of plant origin.",
+        "It indicates that the protein has characteristics resembling a plant's personality."
+      ],
+      "correctIndex": 2,
+      "explanation": "Here, ～性 has a classifying attributive function. 植物性 is not being used as an independent abstract noun; instead, it classifies たんぱく質 as plant-based or of plant origin. This is one of the clearest cases in which ～性 does not simply correspond to “-ity.”"
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "prompt": "可能性がある。／ 植物性タンパク質。",
+      "question": "Which description correctly distinguishes the use of ～性 in these two examples?",
+      "options": [
+        "In both cases, the word ending in ～性 functions exclusively as an adjective.",
+        "There is no syntactic difference between the two uses.",
+        "In 可能性がある, 可能性 is a verb; in 植物性タンパク質, 植物性 is an independent noun.",
+        "In 可能性がある, 可能性 functions as an independent noun; in 植物性タンパク質, 植物性 functions attributively and classifies the following noun."
+      ],
+      "correctIndex": 3,
+      "explanation": "Words formed with ～性 can function as independent nouns, as in 可能性がある, or as attributive elements modifying and classifying a following noun, as in 植物性タンパク質. Not all ～性 formations can be used equally freely in both patterns."
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "prompt": "X + 性",
+      "question": "Which statement best describes the productivity of ～性?",
+      "options": [
+        "～性 can only combine with Western loanwords.",
+        "～性 combines especially readily with Sino-Japanese bases and with bases that can be interpreted as classifiable properties, while other combinations generally need to be established in actual usage.",
+        "～性 can be freely added to any Japanese word to create a valid new term.",
+        "～性 can only follow i-adjectives."
+      ],
+      "correctIndex": 1,
+      "explanation": "～性 is productive, but not completely unrestricted. It is especially common with Sino-Japanese vocabulary and with bases that lend themselves to interpretation as properties or classifiable characteristics. It can also occur with loanwords and other bases, but that does not mean any combination is automatically acceptable."
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "prompt": "彼女は心配性だから、出発前に三回も切符を確認した。",
+      "question": "Which statement about 心配性 is correct?",
+      "options": [
+        "性 refers to grammatical gender here.",
+        "心配性 is a nonstandard colloquial error.",
+        "In 心配性, 性 is read しょう; this is a lexicalized form rather than a regular instance of productive ～せい.",
+        "性 is always read せい, so the word is pronounced しんぱいせい."
+      ],
+      "correctIndex": 2,
+      "explanation": "Although セイ is the normal reading in the productive pattern discussed here, some lexicalized words use the reading ショウ. 心配性 is read しんぱいしょう and describes someone who has a tendency to worry."
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "prompt": "可能性・植物性・心配性・女性",
+      "question": "Which analysis of these four words is correct?",
+      "options": [
+        "可能性 and 植物性 illustrate productive uses of ～せい; 心配性 has the lexicalized reading しょう; in 女性, 性 belongs instead to the semantic field of sex or gender.",
+        "All four contain the same productive suffix ～せい with exactly the same function.",
+        "心配性 and 女性 are both regular examples of the productive suffix ～せい, whereas 可能性 is not.",
+        "Only 女性 actually contains the meaningful element 性; in the other three words, the character is purely phonetic."
+      ],
+      "correctIndex": 0,
+      "explanation": "The presence of the character 性 does not automatically mean that a word contains the productive suffix ～せい. 可能性 is a typical abstract noun in ～せい and 植物性 a typical classifying use; 心配性 is a lexicalized ～しょう form, while in 女性, 性 belongs to the semantic field of sex or gender."
+    }
+  ],
+  "area": "grammar",
+  "searchTerms": [
+    "sei",
+    "性",
+    "せい",
+    "suffix",
+    "property",
+    "tendency",
+    "classification",
+    "possibility",
+    "可能性",
+    "安全性",
+    "植物性"
+  ]
+}

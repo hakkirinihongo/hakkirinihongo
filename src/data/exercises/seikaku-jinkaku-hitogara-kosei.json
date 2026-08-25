@@ -1,0 +1,165 @@
+{
+  "slug": "seikaku-jinkaku-hitogara-kosei",
+  "articleSlug": "difference-seikaku-jinkaku-hitogara-kosei-japanese",
+  "title": "Exercises on 性格・人格・人柄・個性",
+  "shortTitle": "性格・人格・人柄・個性",
+  "description": "10 questions on differences in meaning, usage, perspective, and typical collocations among 性格, 人格, 人柄, and 個性.",
+  "jlpt": "N2-N1",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "prompt": "性格・人格・人柄・個性",
+      "question": "Which statement best describes the relationship among these four terms?",
+      "options": [
+        "The main difference is one of register, ranging from the most casual term to the most formal.",
+        "Each term foregrounds a different dimension: habitual tendencies, the person as a whole, human qualities perceived in relationships with others, or what makes someone distinct as an individual.",
+        "They are essentially synonyms, and the choice depends mainly on the speaker's personal style.",
+        "They represent four increasingly deep levels of the same concept of “personality.”"
+      ],
+      "correctIndex": 1,
+      "explanation": "性格, 人格, 人柄, and 個性 do not form a scale and are not simply interchangeable words for “personality.” 性格 describes relatively stable tendencies; 人格 considers the person as a whole in human, psychological, moral, or legal terms; 人柄 highlights the human qualities that emerge in relationships with others; 個性 focuses on what makes someone or something distinctive and recognizable."
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "彼は明るく社交的で、初対面の人ともすぐ打ち解ける。",
+      "question": "If we want to describe these qualities as habitual, relatively stable tendencies, which term is the most natural?",
+      "options": [
+        "人柄",
+        "人格",
+        "性格",
+        "個性"
+      ],
+      "correctIndex": 2,
+      "explanation": "性格 is the neutral, everyday term for relatively stable patterns in how a person tends to think, feel, react, and behave. Words such as 明るい, 内気な, and きつい combine naturally with 性格."
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "どのような立場の人でも、その＿＿は尊重されなければならない。",
+      "question": "Which word most naturally completes the sentence?",
+      "options": [
+        "性格",
+        "個性",
+        "人格",
+        "人柄"
+      ],
+      "correctIndex": 2,
+      "explanation": "人格 is natural when a person is viewed as a complete human subject endowed with dignity, rights, and inherent worth. This is why 人格を尊重する is a typical collocation, whereas 性格を尊重する would be far less idiomatic with this meaning."
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "数回お会いしただけでも、誠実な＿＿がよく伝わってきた。",
+      "question": "Which term is most appropriate if the focus is on the impression of sincerity the person conveys through their interactions with others?",
+      "options": [
+        "個性",
+        "性格",
+        "人柄",
+        "人格"
+      ],
+      "correctIndex": 2,
+      "explanation": "人柄 concerns the kind of person someone reveals themselves to be through their behavior, words, attitudes, and dealings with others. It therefore combines very naturally with expressions such as 誠実な, 温かい, いい, and phrases describing qualities that come through in personal interaction."
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "学校は子どもの＿＿を伸ばす場であるべきだ。",
+      "question": "Which word most naturally completes the sentence?",
+      "options": [
+        "人格",
+        "個性",
+        "性格",
+        "人柄"
+      ],
+      "correctIndex": 1,
+      "explanation": "個性 highlights what distinguishes one individual from others. In educational contexts, 個性を伸ばす is a very common expression meaning to develop or nurture each person's individuality and distinctive qualities."
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "優しい性格 ／ 温かい人柄",
+      "question": "Which description best captures the difference between these two expressions?",
+      "options": [
+        "優しい性格 is more complimentary and relational, whereas 温かい人柄 is more neutral and psychological.",
+        "The difference is purely one of formality.",
+        "The two expressions adopt exactly the same perspective and are always interchangeable.",
+        "優しい性格 presents kindness as a character trait, whereas 温かい人柄 places more emphasis on the kind of person someone reveals themselves to be in their interactions with others."
+      ],
+      "correctIndex": 3,
+      "explanation": "性格 tends to describe a trait in a more neutral and analytical way, whereas 人柄 frames the person in a more human and relational way and often carries a more appreciative tone. The difference is therefore not simply one of register, but of what the speaker chooses to foreground."
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "prompt": "彼はとても無口で控えめだ。",
+      "question": "How can the same trait of reserve be viewed as either 性格 or 個性?",
+      "options": [
+        "It is 性格 when the trait is positive and 個性 when it is negative.",
+        "性格 and 個性 are interchangeable whenever a person's qualities are being described.",
+        "It is 性格 when the reserved nature is viewed as a habitual tendency; it can be viewed as 個性 when it is foregrounded as a feature that makes the person distinctive or recognizable.",
+        "性格 concerns the moral value of the trait, whereas 個性 concerns its legal significance."
+      ],
+      "correctIndex": 2,
+      "explanation": "The same characteristic can be viewed from different perspectives. When viewed as a relatively stable behavioral tendency, it can be described in terms of 性格; when treated as an identifying or distinguishing feature, it can be viewed as part of someone's 個性."
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "prompt": "人格 ／ 人柄",
+      "question": "Which distinction is the most accurate?",
+      "options": [
+        "人格 views the person in a more abstract and holistic way, including moral, educational, psychological, or legal dimensions; 人柄 refers more concretely to the human qualities perceived through interaction with others.",
+        "人柄 is the more appropriate term in legal and ethical contexts, whereas 人格 mainly describes the personal impression someone makes.",
+        "人格 can only be used negatively, whereas 人柄 is necessarily positive.",
+        "The two terms mean the same thing and differ only because 人柄 is historically older."
+      ],
+      "correctIndex": 0,
+      "explanation": "人格 readily occurs in discussions of dignity, personal development, ethics, psychology, and law. 人柄 is more concrete and relational, focusing on the kind of person someone appears to be through personal interaction. The two can overlap in evaluations of a person, but they frame that person differently."
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "prompt": "性格・人格・人柄・個性",
+      "question": "Which set contains four natural collocations that reflect the typical usage of these terms?",
+      "options": [
+        "性格を尊重する・人格が明るい・人柄を伸ばす・個性が合わない",
+        "性格形成・人格がいい・人柄を生かす・個性がきつい",
+        "性格が合わない・人格を尊重する・人柄がにじみ出る・個性を生かす",
+        "性格を磨く・人格が温かい・人柄が強い・個性を傷つける"
+      ],
+      "correctIndex": 2,
+      "explanation": "Collocations are a very useful clue when distinguishing these terms. 性格 commonly occurs with 合う／合わない and adjectives describing character traits; 人格 with 尊重する, 形成, and 磨く; 人柄 with 温かい, 誠実な, and にじみ出る; and 個性 with 伸ばす, 生かす, 尊重する, and 強い."
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "prompt": "難しい性格・誠実な人柄・強い個性・人格の面でも信頼されている",
+      "question": "Why could all four descriptions apply to the same person without being contradictory?",
+      "options": [
+        "Because 性格, 人格, 人柄, and 個性 are perfect synonyms in Japanese.",
+        "Because the four words represent successive stages in the development of the same personality.",
+        "Because each term foregrounds a different dimension: habitual disposition, relational human qualities, distinctive individuality, or the person considered in their broader human and moral character.",
+        "Because only 性格 actually describes the person, while the other three terms are figurative."
+      ],
+      "correctIndex": 2,
+      "explanation": "A person can have a difficult 性格, still convey a sincere and trustworthy 人柄, possess a strong 個性, and be respected or trusted for their 人格. There is no contradiction because each term frames a different dimension of the same individual."
+    }
+  ],
+  "area": "words-and-nuances",
+  "searchTerms": [
+    "性格",
+    "人格",
+    "人柄",
+    "個性",
+    "seikaku",
+    "jinkaku",
+    "hitogara",
+    "kosei",
+    "character",
+    "personality",
+    "disposition",
+    "individuality"
+  ]
+}
