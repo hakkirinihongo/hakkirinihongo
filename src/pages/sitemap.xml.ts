@@ -6,6 +6,9 @@ export const GET: APIRoute = async ({ site }) => {
   const postModules = import.meta.glob('../content/articoli/**/*.mdx', { eager: true });
   const englishPostModules = import.meta.glob('../content/en/**/*.mdx', { eager: true });
 
+  const exerciseModules = import.meta.glob('../data/esercizi/*.json', { eager: true });
+  const englishExerciseModules = import.meta.glob('../data/exercises/*.json', { eager: true });
+
   const now = new Date().toISOString();
 
   const articleUrls = Object.entries(postModules).map(([path, mod]: any) => {
@@ -32,9 +35,34 @@ export const GET: APIRoute = async ({ site }) => {
     };
   });
 
+  const exerciseUrls = Object.entries(exerciseModules).map(([path, mod]: any) => {
+    const data = mod.default ?? mod;
+    const fallbackSlug = path.split('/').pop()?.replace('.json', '') ?? '';
+    const slug = data.slug ?? fallbackSlug;
+    const lastmod = data.updated ?? data.date ?? now;
+
+    return {
+      loc: `${base}/esercizi/${slug}/`,
+      lastmod: new Date(lastmod).toISOString()
+    };
+  });
+
+  const englishExerciseUrls = Object.entries(englishExerciseModules).map(([path, mod]: any) => {
+    const data = mod.default ?? mod;
+    const fallbackSlug = path.split('/').pop()?.replace('.json', '') ?? '';
+    const slug = data.slug ?? fallbackSlug;
+    const lastmod = data.updated ?? data.date ?? now;
+
+    return {
+      loc: `${base}/en/exercises/${slug}/`,
+      lastmod: new Date(lastmod).toISOString()
+    };
+  });
+
   const staticUrls = [
     { loc: `${base}/`, lastmod: now },
     { loc: `${base}/articoli/`, lastmod: now },
+    { loc: `${base}/esercizi/`, lastmod: now },
     { loc: `${base}/contatti/`, lastmod: now },
     { loc: `${base}/chi-siamo/`, lastmod: now },
     { loc: `${base}/chi-siamo-metodo/`, lastmod: now },
@@ -49,6 +77,7 @@ export const GET: APIRoute = async ({ site }) => {
 
     { loc: `${base}/en/`, lastmod: now },
     { loc: `${base}/en/articles/`, lastmod: now },
+    { loc: `${base}/en/exercises/`, lastmod: now },
     { loc: `${base}/en/about/`, lastmod: now },
     { loc: `${base}/en/contact/`, lastmod: now },
 
@@ -61,7 +90,13 @@ export const GET: APIRoute = async ({ site }) => {
     { loc: `${base}/en/articles/c/history-of-grammar/`, lastmod: now },
   ];
 
-  const urls = [...staticUrls, ...articleUrls, ...englishArticleUrls]
+  const urls = [
+    ...staticUrls,
+    ...articleUrls,
+    ...englishArticleUrls,
+    ...exerciseUrls,
+    ...englishExerciseUrls
+  ]
     .filter((item) => item.loc)
     .sort((a, b) => a.loc.localeCompare(b.loc));
 
