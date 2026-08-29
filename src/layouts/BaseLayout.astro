@@ -105,18 +105,51 @@ const alternateEnglishURL = alternateEnglish
     -->
 
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RRRLNXQQ8V"></script>
-
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
+  window.dataLayer = window.dataLayer || [];
 
-      function gtag() {
-        dataLayer.push(arguments);
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-RRRLNXQQ8V');
+
+  const HN_ENGAGEMENT_INTERVAL = 30 * 1000;
+
+  let hnEngagementInterval = null;
+
+  function hnStartEngagementTracking() {
+    if (hnEngagementInterval || document.hidden) return;
+
+    hnEngagementInterval = setInterval(() => {
+      if (!document.hidden) {
+        gtag('event', 'passive_engagement', {
+          engagement_time_msec: HN_ENGAGEMENT_INTERVAL
+        });
       }
+    }, HN_ENGAGEMENT_INTERVAL);
+  }
 
-      gtag('js', new Date());
-      gtag('config', 'G-RRRLNXQQ8V');
-    </script>
+  function hnStopEngagementTracking() {
+    if (hnEngagementInterval) {
+      clearInterval(hnEngagementInterval);
+      hnEngagementInterval = null;
+    }
+  }
+
+  if (!document.hidden) {
+    hnStartEngagementTracking();
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      hnStopEngagementTracking();
+    } else {
+      hnStartEngagementTracking();
+    }
+  });
+</script>
 
     <title>{title}</title>
 
