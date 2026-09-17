@@ -774,5 +774,68 @@ const alternateEnglishURL = alternateEnglish
         }
       }
     </style>
+    <script is:inline>
+      (() => {
+        const endpoint =
+          "/.netlify/functions/traffic-confirm";
+
+        let confirmationsSent = 0;
+        let timer = null;
+
+        async function confirmVisit() {
+          if (
+            document.visibilityState !== "visible" ||
+            confirmationsSent >= 2
+          ) {
+            return;
+          }
+
+          confirmationsSent += 1;
+
+          try {
+            await fetch(endpoint, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                path: window.location.pathname
+              }),
+              keepalive: true
+            });
+          } catch {
+            // Il tracciamento non deve mai interferire con il sito.
+          }
+        }
+
+        function scheduleConfirmation() {
+          if (timer) {
+            clearTimeout(timer);
+          }
+
+          if (document.visibilityState === "visible") {
+            timer = setTimeout(
+              confirmVisit,
+              8000
+            );
+          }
+        }
+
+        document.addEventListener(
+          "visibilitychange",
+          scheduleConfirmation
+        );
+
+        scheduleConfirmation();
+
+        setTimeout(() => {
+          if (
+            document.visibilityState === "visible"
+          ) {
+            confirmVisit();
+          }
+        }, 20000);
+      })();
+    </script>
   </body>
 </html>
