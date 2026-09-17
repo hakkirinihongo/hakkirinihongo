@@ -246,12 +246,18 @@ function classifyRequest(request, source) {
     const fromSearch =
       searchSources.includes(source);
 
+    if (fromSearch) {
+      return {
+        classification: "human_likely",
+        confidence: 84,
+        reason: "Normal browser with search-engine referrer",
+      };
+    }
+
     return {
-      classification: "human_likely",
-      confidence: fromSearch ? 84 : 74,
-      reason: fromSearch
-        ? "Normal browser with search-engine referrer"
-        : "Netlify browser category",
+      classification: "unknown",
+      confidence: 45,
+      reason: "Browser category without independent human signal",
     };
   }
 
@@ -261,8 +267,8 @@ function classifyRequest(request, source) {
     )
   ) {
     return {
-      classification: "human_likely",
-      confidence: 60,
+      classification: "unknown",
+      confidence: 30,
       reason:
         "Browser-like User-Agent, not confirmed by Netlify category",
     };
