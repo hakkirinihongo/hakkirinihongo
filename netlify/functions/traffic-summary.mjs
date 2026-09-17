@@ -95,9 +95,9 @@ export const handler = async (event) => {
       data: events,
       error: eventsError,
     } = await supabase
-      .from('traffic_events')
+      .from('traffic_event_status')
       .select(
-        'created_at,path,source,country_code,classification,confidence,reason,browser_family,device_type'
+        'created_at,path,source,country_code,stato_finale,confidence,browser_family,device_type'
       )
       .order('created_at', {
         ascending: false,

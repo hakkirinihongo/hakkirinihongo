@@ -564,7 +564,7 @@
               <td>${escapeHtml(event.source || "—")}</td>
               <td>${escapeHtml(event.browser_family || "—")}</td>
               <td>${escapeHtml(event.device_type || "—")}</td>
-              <td>${escapeHtml(displayClassification(event))}</td>
+              <td>${escapeHtml(event.stato_finale || "Unknown")}</td>
               <td>${escapeHtml(event.confidence ?? "—")}</td>
             </tr>
           `).join("");
