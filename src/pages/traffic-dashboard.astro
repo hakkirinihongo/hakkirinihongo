@@ -466,6 +466,54 @@
         );
       }
 
+      function displayClassification(event) {
+        if (
+          event.classification === "human_likely" &&
+          event.reason === "Normal browser with search-engine referrer"
+        ) {
+          return "Organico plausibile";
+        }
+
+        if (
+          event.classification === "human_likely" &&
+          event.reason === "Netlify browser category"
+        ) {
+          return "Vecchia classificazione · non conteggiato";
+        }
+
+        if (
+          event.classification === "unknown" &&
+          event.reason === "Browser category without independent human signal"
+        ) {
+          return "Browser incerto";
+        }
+
+        if (
+          event.classification === "unknown" &&
+          String(event.reason || "").startsWith("Automated tooling:")
+        ) {
+          return "Tooling / prerender";
+        }
+
+        if (event.classification === "crawler") {
+          return "Crawler";
+        }
+
+        if (event.classification === "prefetch") {
+          return "Prefetch";
+        }
+
+        if (event.classification === "ai_agent") {
+          return "AI agent";
+        }
+
+        if (event.classification === "social_preview") {
+          return "Social preview";
+        }
+
+        return "Unknown";
+      }
+
       function render(days, events) {
         const today = days[0];
 
@@ -516,7 +564,7 @@
               <td>${escapeHtml(event.source || "—")}</td>
               <td>${escapeHtml(event.browser_family || "—")}</td>
               <td>${escapeHtml(event.device_type || "—")}</td>
-              <td>${escapeHtml(event.classification || "—")}</td>
+              <td>${escapeHtml(displayClassification(event))}</td>
               <td>${escapeHtml(event.confidence ?? "—")}</td>
             </tr>
           `).join("");
