@@ -91,8 +91,26 @@ export const handler = async (event) => {
       throw error;
     }
 
+    const {
+      data: events,
+      error: eventsError,
+    } = await supabase
+      .from('traffic_events')
+      .select(
+        'created_at,path,source,country_code,classification,confidence,reason,browser_family,device_type'
+      )
+      .order('created_at', {
+        ascending: false,
+      })
+      .limit(100);
+
+    if (eventsError) {
+      throw eventsError;
+    }
+
     return json(200, {
       days: data ?? [],
+      events: events ?? [],
     });
   } catch (error) {
     console.error(
