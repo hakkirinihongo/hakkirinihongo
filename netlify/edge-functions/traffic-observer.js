@@ -461,11 +461,23 @@ export default async function trafficObserver(
   request,
   context
 ) {
-  context.waitUntil(
-    saveTrafficEvent(request, context)
-  );
+  const response = await context.next({
+    sendConditionalRequest: true,
+  });
 
-  return;
+  const contentType =
+    response.headers.get("content-type") || "";
+
+  if (
+    response.status === 200 &&
+    contentType.toLowerCase().includes("text/html")
+  ) {
+    context.waitUntil(
+      saveTrafficEvent(request, context)
+    );
+  }
+
+  return response;
 }
 
 export const config = {
