@@ -1,0 +1,540 @@
+---
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+
+    <meta
+      name="robots"
+      content="noindex, nofollow, noarchive"
+    />
+
+    <title>Traffic Dashboard | Hakkiri Nihongo</title>
+
+    <style>
+      :root {
+        font-family:
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+
+        background: #f5f3ee;
+        color: #26231f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: #f5f3ee;
+      }
+
+      main {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 48px 0 80px;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: clamp(2rem, 5vw, 3rem);
+        line-height: 1.05;
+      }
+
+      .subtitle {
+        margin: 0 0 36px;
+        color: #6c665e;
+      }
+
+      .login-box {
+        max-width: 480px;
+        padding: 28px;
+        background: #ffffff;
+        border: 1px solid #ded9cf;
+        border-radius: 16px;
+        box-shadow: 0 8px 30px rgb(0 0 0 / 5%);
+      }
+
+      .login-box label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .login-row {
+        display: flex;
+        gap: 10px;
+      }
+
+      .login-row input {
+        min-width: 0;
+        flex: 1;
+        padding: 12px 14px;
+        border: 1px solid #cfc8bc;
+        border-radius: 9px;
+        font-size: 16px;
+      }
+
+      button {
+        border: 0;
+        border-radius: 9px;
+        padding: 12px 18px;
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+        background: #a94438;
+        color: white;
+      }
+
+      button:hover {
+        opacity: 0.92;
+      }
+
+      .error {
+        min-height: 24px;
+        margin: 12px 0 0;
+        color: #a1261b;
+        font-size: 0.95rem;
+      }
+
+      .dashboard {
+        display: none;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 24px;
+      }
+
+      .topbar p {
+        margin: 0;
+        color: #6c665e;
+      }
+
+      .secondary-button {
+        background: #3f3b36;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns:
+          repeat(auto-fit, minmax(190px, 1fr));
+        gap: 14px;
+        margin-bottom: 34px;
+      }
+
+      .card {
+        min-height: 125px;
+        padding: 20px;
+        background: white;
+        border: 1px solid #ded9cf;
+        border-radius: 14px;
+      }
+
+      .card-label {
+        margin-bottom: 12px;
+        color: #716a61;
+        font-size: 0.9rem;
+      }
+
+      .card-value {
+        font-size: 2rem;
+        font-weight: 700;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        background: white;
+        border: 1px solid #ded9cf;
+        border-radius: 14px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 1050px;
+      }
+
+      th,
+      td {
+        padding: 13px 14px;
+        text-align: right;
+        border-bottom: 1px solid #ebe7df;
+        white-space: nowrap;
+      }
+
+      th:first-child,
+      td:first-child {
+        text-align: left;
+      }
+
+      th {
+        background: #f9f7f2;
+        color: #575149;
+        font-size: 0.82rem;
+      }
+
+      tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .section-title {
+        margin: 0 0 14px;
+        font-size: 1.3rem;
+      }
+
+      .loading {
+        margin-top: 18px;
+        color: #6c665e;
+      }
+
+      @media (max-width: 600px) {
+        main {
+          width: min(100% - 20px, 1180px);
+          padding-top: 28px;
+        }
+
+        .login-row {
+          flex-direction: column;
+        }
+
+        .topbar {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <h1>Traffic Dashboard</h1>
+
+      <p class="subtitle">
+        Hakkiri Nihongo · analisi server-side del traffico
+      </p>
+
+      <section
+        id="login"
+        class="login-box"
+      >
+        <form id="login-form">
+          <label for="secret">
+            Password dashboard
+          </label>
+
+          <div class="login-row">
+            <input
+              id="secret"
+              name="secret"
+              type="password"
+              autocomplete="current-password"
+              required
+            />
+
+            <button type="submit">
+              Accedi
+            </button>
+          </div>
+
+          <p
+            id="error"
+            class="error"
+            aria-live="polite"
+          ></p>
+        </form>
+      </section>
+
+      <section
+        id="dashboard"
+        class="dashboard"
+      >
+        <div class="topbar">
+          <p id="updated"></p>
+
+          <button
+            id="refresh"
+            class="secondary-button"
+            type="button"
+          >
+            Aggiorna
+          </button>
+        </div>
+
+        <div
+          id="cards"
+          class="cards"
+        ></div>
+
+        <h2 class="section-title">
+          Ultimi 30 giorni
+        </h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Giorno</th>
+                <th>Umani forti</th>
+                <th>Organici plausibili</th>
+                <th>Probabili visitatori</th>
+                <th>Pageview prob. umane</th>
+                <th>Browser incerti</th>
+                <th>Crawler</th>
+                <th>Prefetch</th>
+                <th>AI agent</th>
+                <th>Social preview</th>
+                <th>Tooling</th>
+              </tr>
+            </thead>
+
+            <tbody id="history"></tbody>
+          </table>
+        </div>
+
+        <p
+          id="loading"
+          class="loading"
+        ></p>
+      </section>
+    </main>
+
+    <script is:inline>
+      const loginSection =
+        document.getElementById("login");
+
+      const dashboard =
+        document.getElementById("dashboard");
+
+      const form =
+        document.getElementById("login-form");
+
+      const secretInput =
+        document.getElementById("secret");
+
+      const errorBox =
+        document.getElementById("error");
+
+      const cards =
+        document.getElementById("cards");
+
+      const history =
+        document.getElementById("history");
+
+      const refreshButton =
+        document.getElementById("refresh");
+
+      const loading =
+        document.getElementById("loading");
+
+      const updated =
+        document.getElementById("updated");
+
+      let currentSecret = "";
+
+      const labels = [
+        [
+          "Probabili visitatori",
+          "totale_probabili_visitatori"
+        ],
+        [
+          "Umani forti",
+          "umani_forti"
+        ],
+        [
+          "Organici plausibili",
+          "organici_plausibili"
+        ],
+        [
+          "Pageview probabilmente umane",
+          "pageview_probabilmente_umane"
+        ],
+        [
+          "Browser incerti",
+          "browser_incerte"
+        ],
+        [
+          "Crawler",
+          "crawler"
+        ],
+        [
+          "Prefetch",
+          "prefetch"
+        ],
+        [
+          "AI agent",
+          "ai_agent"
+        ],
+        [
+          "Social preview",
+          "social_preview"
+        ],
+        [
+          "Tooling / prerender",
+          "tooling_prerender"
+        ]
+      ];
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function formatDate(value) {
+        if (!value) return "—";
+
+        const [year, month, day] =
+          value.split("-");
+
+        return `${day}/${month}/${year}`;
+      }
+
+      function render(days) {
+        const today = days[0];
+
+        if (!today) {
+          cards.innerHTML =
+            "<p>Nessun dato disponibile.</p>";
+
+          history.innerHTML = "";
+          return;
+        }
+
+        cards.innerHTML =
+          labels.map(([label, key]) => `
+            <article class="card">
+              <div class="card-label">
+                ${escapeHtml(label)}
+              </div>
+
+              <div class="card-value">
+                ${escapeHtml(today[key] ?? 0)}
+              </div>
+            </article>
+          `).join("");
+
+        history.innerHTML =
+          days.map((day) => `
+            <tr>
+              <td>${escapeHtml(formatDate(day.giorno))}</td>
+              <td>${escapeHtml(day.umani_forti)}</td>
+              <td>${escapeHtml(day.organici_plausibili)}</td>
+              <td>${escapeHtml(day.totale_probabili_visitatori)}</td>
+              <td>${escapeHtml(day.pageview_probabilmente_umane)}</td>
+              <td>${escapeHtml(day.browser_incerte)}</td>
+              <td>${escapeHtml(day.crawler)}</td>
+              <td>${escapeHtml(day.prefetch)}</td>
+              <td>${escapeHtml(day.ai_agent)}</td>
+              <td>${escapeHtml(day.social_preview)}</td>
+              <td>${escapeHtml(day.tooling_prerender)}</td>
+            </tr>
+          `).join("");
+
+        updated.textContent =
+          `Dati aggiornati: ${new Date().toLocaleTimeString(
+            "it-IT",
+            {
+              hour: "2-digit",
+              minute: "2-digit",
+              second: "2-digit"
+            }
+          )}`;
+      }
+
+      async function loadData(secret) {
+        errorBox.textContent = "";
+        loading.textContent =
+          "Caricamento dati...";
+
+        try {
+          const response = await fetch(
+            "/.netlify/functions/traffic-summary",
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body: JSON.stringify({
+                secret
+              })
+            }
+          );
+
+          if (response.status === 401) {
+            throw new Error(
+              "Password non corretta."
+            );
+          }
+
+          if (!response.ok) {
+            throw new Error(
+              "Errore durante il caricamento dei dati."
+            );
+          }
+
+          const payload =
+            await response.json();
+
+          currentSecret = secret;
+
+          loginSection.style.display =
+            "none";
+
+          dashboard.style.display =
+            "block";
+
+          render(payload.days || []);
+        } catch (error) {
+          errorBox.textContent =
+            error.message ||
+            "Errore imprevisto.";
+        } finally {
+          loading.textContent = "";
+        }
+      }
+
+      form.addEventListener(
+        "submit",
+        (event) => {
+          event.preventDefault();
+
+          const secret =
+            secretInput.value.trim();
+
+          if (!secret) return;
+
+          loadData(secret);
+        }
+      );
+
+      refreshButton.addEventListener(
+        "click",
+        () => {
+          if (currentSecret) {
+            loadData(currentSecret);
+          }
+        }
+      );
+    </script>
+  </body>
+</html>
