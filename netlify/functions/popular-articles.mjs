@@ -314,7 +314,10 @@ function buildRanking(states, language, limit) {
         timeValue(a.last_activity)
       );
     })
-    .slice(0, limit);
+    .slice(0, limit)
+    .map((article) => ({
+      path: article.path,
+    }));
 }
 
 export const handler = async (event) => {
