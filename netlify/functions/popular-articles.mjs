@@ -21,6 +21,7 @@ const IT_INDEX_SLUGS = new Set([
   'c',
   'jlpt',
   'serie',
+  'piu-consultati',
 ]);
 
 const EN_INDEX_SLUGS = new Set([

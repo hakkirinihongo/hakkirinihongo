@@ -202,22 +202,7 @@ const articleMetadata = posts;
           content.append(description);
         }
 
-        const meta =
-          document.createElement('div');
 
-        meta.className = 'post-meta';
-
-        const count =
-          document.createElement('span');
-
-        count.className = 'popular-count';
-        count.textContent =
-          ranking.accesses === 1
-            ? '1 accesso nelle ultime 24 ore'
-            : `${ranking.accesses} accessi nelle ultime 24 ore`;
-
-        meta.append(count);
-        content.append(meta);
 
         item.append(
           rank,
