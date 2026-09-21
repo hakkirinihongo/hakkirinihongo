@@ -1,12 +1,12 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 
 const italianPostImports = import.meta.glob(
-  '../../content/articoli/**/*.mdx'
+  '../../../content/articoli/**/*.mdx'
 );
 
 const englishPostImports = import.meta.glob(
-  '../../content/en/**/*.mdx'
+  '../../../content/en/**/*.mdx'
 );
 
 async function createArticleMetadata(
@@ -54,20 +54,20 @@ const articleMetadata = [
 ---
 
 <BaseLayout
-  title="Articoli più consultati nelle ultime 24 ore | Hakkiri Nihongo"
-  description="Gli articoli di grammatica giapponese più consultati su Hakkiri Nihongo nelle ultime 24 ore, in una classifica aggiornata automaticamente."
-  alternateEnglish="/en/articles/most-consulted/"
+  title="Most consulted articles in the last 24 hours | Hakkiri Nihongo"
+  description="The most consulted Japanese grammar articles on Hakkiri Nihongo over the last 24 hours, in a ranking updated automatically."
+  alternateItalian="/articoli/piu-consultati/"
 >
   <div class="page-articles page-articles-bg popular-page">
     <header class="popular-header">
-      <p class="popular-kicker">Tendenze su Hakkiri Nihongo</p>
+      <p class="popular-kicker">Trending on Hakkiri Nihongo</p>
 
-      <h1>Articoli più consultati nelle ultime 24 ore</h1>
+      <h1>Most consulted articles in the last 24 hours</h1>
 
       <p class="popular-intro">
-        Una classifica dinamica degli approfondimenti che stanno ricevendo più
-        attenzione. I risultati vengono aggiornati automaticamente sulla base
-        delle ultime 24 ore.
+        A dynamic ranking of the in-depth articles currently receiving the most
+        attention. Results are updated automatically based on activity over the
+        last 24 hours.
       </p>
 
       <p
@@ -84,13 +84,13 @@ const articleMetadata = [
       aria-busy="true"
     >
       <li class="popular-state">
-        Calcolo della classifica in corso…
+        Calculating the ranking…
       </li>
     </ol>
 
     <noscript>
       <p class="popular-state">
-        Per visualizzare la classifica è necessario attivare JavaScript.
+        JavaScript must be enabled to view the ranking.
       </p>
     </noscript>
   </div>
@@ -157,7 +157,7 @@ const articleMetadata = [
         rank.textContent = String(index + 1);
         rank.setAttribute(
           'aria-label',
-          `Posizione ${index + 1}`
+          `Rank ${index + 1}`
         );
 
         const thumbnail = createLink(
@@ -223,8 +223,6 @@ const articleMetadata = [
           content.append(description);
         }
 
-
-
         item.append(
           rank,
           thumbnail,
@@ -262,7 +260,7 @@ const articleMetadata = [
 
         if (!items.length) {
           showState(
-            'La classifica non contiene ancora dati sufficienti.'
+            'The ranking does not contain enough data yet.'
           );
 
           return;
@@ -277,7 +275,7 @@ const articleMetadata = [
           const time = new Date(
             payload.generated_at
           ).toLocaleTimeString(
-            'it-IT',
+            'en-GB',
             {
               timeZone: 'Europe/Rome',
               hour: '2-digit',
@@ -286,7 +284,7 @@ const articleMetadata = [
           );
 
           updated.textContent =
-            `Classifica aggiornata alle ${time}`;
+            `Ranking updated at ${time}`;
         }
       }
 
@@ -308,7 +306,7 @@ const articleMetadata = [
 
           if (!response.ok) {
             throw new Error(
-              'Richiesta non riuscita.'
+              'Request failed.'
             );
           }
 
@@ -318,7 +316,7 @@ const articleMetadata = [
           renderRanking(payload);
         } catch {
           showState(
-            'La classifica non è momentaneamente disponibile.'
+            'The ranking is temporarily unavailable.'
           );
 
           if (updated) {
@@ -423,17 +421,6 @@ const articleMetadata = [
 
     .popular-item[data-rank="3"] .popular-rank {
       background: linear-gradient(135deg, #ad724d, #7d4930);
-    }
-
-    .popular-count {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.3rem 0.62rem;
-      border: 1px solid rgba(159, 47, 39, 0.2);
-      border-radius: 999px;
-      background: rgba(255, 248, 240, 0.82);
-      color: #7f2d28;
-      font-weight: 600;
     }
 
     .popular-state {
