@@ -150,6 +150,41 @@ export default async function trafficConfirm(
       });
     }
 
+    if (
+      event.classification ===
+        'prefetch'
+    ) {
+      const {
+        error: activationError,
+      } = await supabase
+        .from(
+          'traffic_prefetch_activations'
+        )
+        .upsert(
+          {
+            event_id:
+              String(event.id),
+            path,
+            visitor_hash:
+              visitorHash,
+            activated_at:
+              new Date().toISOString(),
+          },
+          {
+            onConflict: 'event_id',
+            ignoreDuplicates: true,
+          }
+        );
+
+      if (activationError) {
+        throw activationError;
+      }
+
+      return new Response(null, {
+        status: 204,
+      });
+    }
+
     const confirmable =
       (
         event.classification ===

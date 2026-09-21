@@ -1,0 +1,454 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const postImports = import.meta.glob(
+  '../../content/articoli/**/*.mdx'
+);
+
+const posts = await Promise.all(
+  Object.entries(postImports).map(
+    async ([path, resolver]) => {
+      const mod = await resolver();
+      const frontmatter = mod.frontmatter ?? {};
+      const slug =
+        frontmatter.slug ??
+        path
+          .split('/')
+          .pop()
+          .replace(/\.mdx?$/, '');
+
+      return {
+        path: `/articoli/${slug}/`,
+        title: frontmatter.title ?? slug,
+        description:
+          frontmatter.description ?? '',
+        image:
+          frontmatter.image ??
+          '/og-image.png',
+      };
+    }
+  )
+);
+
+const articleMetadata = posts;
+---
+
+<BaseLayout
+  title="Articoli più consultati nelle ultime 24 ore | Hakkiri Nihongo"
+  description="Gli articoli di grammatica giapponese più consultati su Hakkiri Nihongo nelle ultime 24 ore, in una classifica aggiornata automaticamente."
+>
+  <div class="page-articles page-articles-bg popular-page">
+    <header class="popular-header">
+      <p class="popular-kicker">Tendenze su Hakkiri Nihongo</p>
+
+      <h1>Articoli più consultati nelle ultime 24 ore</h1>
+
+      <p class="popular-intro">
+        Una classifica dinamica degli approfondimenti che stanno ricevendo più
+        attenzione. I risultati vengono aggiornati automaticamente sulla base
+        delle ultime 24 ore.
+      </p>
+
+      <p
+        id="popular-updated"
+        class="popular-updated"
+        aria-live="polite"
+      ></p>
+    </header>
+
+    <ol
+      id="popular-list"
+      class="post-list popular-list"
+      aria-live="polite"
+      aria-busy="true"
+    >
+      <li class="popular-state">
+        Calcolo della classifica in corso…
+      </li>
+    </ol>
+
+    <noscript>
+      <p class="popular-state">
+        Per visualizzare la classifica è necessario attivare JavaScript.
+      </p>
+    </noscript>
+  </div>
+
+  <script define:vars={{ articleMetadata }}>
+    (() => {
+      const endpoint =
+        '/.netlify/functions/popular-articles?lang=it&limit=10';
+
+      const list =
+        document.getElementById('popular-list');
+
+      const updated =
+        document.getElementById('popular-updated');
+
+      if (!(list instanceof HTMLOListElement)) {
+        return;
+      }
+
+      const articlesByPath = new Map(
+        articleMetadata.map((article) => [
+          article.path,
+          article,
+        ])
+      );
+
+      function createLink(
+        className,
+        href
+      ) {
+        const link =
+          document.createElement('a');
+
+        link.className = className;
+        link.href = href;
+
+        return link;
+      }
+
+      function createRankingItem(
+        ranking,
+        index
+      ) {
+        const article =
+          articlesByPath.get(ranking.path);
+
+        if (!article) {
+          return null;
+        }
+
+        const item =
+          document.createElement('li');
+
+        item.className =
+          'post-item popular-item';
+
+        item.dataset.rank =
+          String(index + 1);
+
+        const rank =
+          document.createElement('span');
+
+        rank.className = 'popular-rank';
+        rank.textContent = String(index + 1);
+        rank.setAttribute(
+          'aria-label',
+          `Posizione ${index + 1}`
+        );
+
+        const thumbnail = createLink(
+          'post-thumb',
+          article.path
+        );
+
+        thumbnail.setAttribute(
+          'aria-hidden',
+          'true'
+        );
+
+        thumbnail.tabIndex = -1;
+
+        const image =
+          document.createElement('img');
+
+        image.src = article.image;
+        image.alt = '';
+        image.loading =
+          index < 3 ? 'eager' : 'lazy';
+
+        thumbnail.append(image);
+
+        const content =
+          document.createElement('div');
+
+        content.className = 'post-content';
+
+        const title =
+          document.createElement('h3');
+
+        title.className = 'post-title';
+
+        const titleLink = createLink(
+          'post-link',
+          article.path
+        );
+
+        titleLink.textContent = article.title;
+        title.append(titleLink);
+        content.append(title);
+
+        if (article.description) {
+          const description =
+            document.createElement('p');
+
+          description.className =
+            'post-description';
+
+          const descriptionLink = createLink(
+            'post-link',
+            article.path
+          );
+
+          descriptionLink.textContent =
+            article.description;
+
+          description.append(
+            descriptionLink
+          );
+
+          content.append(description);
+        }
+
+        const meta =
+          document.createElement('div');
+
+        meta.className = 'post-meta';
+
+        const count =
+          document.createElement('span');
+
+        count.className = 'popular-count';
+        count.textContent =
+          ranking.accesses === 1
+            ? '1 accesso nelle ultime 24 ore'
+            : `${ranking.accesses} accessi nelle ultime 24 ore`;
+
+        meta.append(count);
+        content.append(meta);
+
+        item.append(
+          rank,
+          thumbnail,
+          content
+        );
+
+        return item;
+      }
+
+      function showState(message) {
+        const state =
+          document.createElement('li');
+
+        state.className = 'popular-state';
+        state.textContent = message;
+
+        list.replaceChildren(state);
+      }
+
+      function renderRanking(payload) {
+        const items = [];
+
+        for (
+          const ranking of payload.articles || []
+        ) {
+          const item = createRankingItem(
+            ranking,
+            items.length
+          );
+
+          if (item) {
+            items.push(item);
+          }
+        }
+
+        if (!items.length) {
+          showState(
+            'La classifica non contiene ancora dati sufficienti.'
+          );
+
+          return;
+        }
+
+        list.replaceChildren(...items);
+
+        if (
+          updated &&
+          payload.generated_at
+        ) {
+          const time = new Date(
+            payload.generated_at
+          ).toLocaleTimeString(
+            'it-IT',
+            {
+              timeZone: 'Europe/Rome',
+              hour: '2-digit',
+              minute: '2-digit',
+            }
+          );
+
+          updated.textContent =
+            `Classifica aggiornata alle ${time}`;
+        }
+      }
+
+      async function loadRanking() {
+        list.setAttribute(
+          'aria-busy',
+          'true'
+        );
+
+        try {
+          const response = await fetch(
+            endpoint,
+            {
+              headers: {
+                Accept: 'application/json',
+              },
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error(
+              'Richiesta non riuscita.'
+            );
+          }
+
+          const payload =
+            await response.json();
+
+          renderRanking(payload);
+        } catch {
+          showState(
+            'La classifica non è momentaneamente disponibile.'
+          );
+
+          if (updated) {
+            updated.textContent = '';
+          }
+        } finally {
+          list.setAttribute(
+            'aria-busy',
+            'false'
+          );
+        }
+      }
+
+      loadRanking();
+
+      window.setInterval(
+        loadRanking,
+        5 * 60 * 1000
+      );
+    })();
+  </script>
+
+  <style is:global>
+    .popular-page {
+      padding-bottom: 2rem;
+    }
+
+    .popular-header {
+      max-width: 850px;
+    }
+
+    .popular-kicker {
+      margin: 0 0 0.55rem;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.08rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #9f2f27;
+    }
+
+    .popular-page h1 {
+      margin: 0;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.14;
+      color: #2f2925;
+    }
+
+    .popular-intro {
+      max-width: 760px !important;
+      margin: 1rem 0 0 !important;
+      font-family: "Cormorant Garamond", Georgia, serif !important;
+      font-size: 1.18rem !important;
+      line-height: 1.58 !important;
+      color: #493d37 !important;
+    }
+
+    .popular-updated {
+      min-height: 1.3rem;
+      margin: 0.7rem 0 0 !important;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif !important;
+      font-size: 0.78rem !important;
+      color: #766d66 !important;
+    }
+
+    .popular-list {
+      margin-top: 1.3rem;
+    }
+
+    .popular-item {
+      position: relative;
+    }
+
+    .popular-rank {
+      position: absolute;
+      z-index: 2;
+      top: 2rem;
+      left: 0.7rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.4rem;
+      height: 2.4rem;
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      border-radius: 999px;
+      background: #8f2d27;
+      box-shadow: 0 7px 18px rgba(55, 30, 24, 0.24);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1;
+      color: #fffdf9;
+    }
+
+    .popular-item[data-rank="1"] .popular-rank {
+      background: linear-gradient(135deg, #c6953f, #9c6825);
+    }
+
+    .popular-item[data-rank="2"] .popular-rank {
+      background: linear-gradient(135deg, #8d949c, #646c74);
+    }
+
+    .popular-item[data-rank="3"] .popular-rank {
+      background: linear-gradient(135deg, #ad724d, #7d4930);
+    }
+
+    .popular-count {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.3rem 0.62rem;
+      border: 1px solid rgba(159, 47, 39, 0.2);
+      border-radius: 999px;
+      background: rgba(255, 248, 240, 0.82);
+      color: #7f2d28;
+      font-weight: 600;
+    }
+
+    .popular-state {
+      padding: 2rem 0;
+      color: #6c625c;
+      font-style: italic;
+    }
+
+    @media (max-width: 760px) {
+      .popular-rank {
+        top: 2rem;
+        left: 0.7rem;
+      }
+
+      .popular-page h1 {
+        font-size: clamp(1.9rem, 9vw, 2.5rem);
+      }
+
+      .popular-intro {
+        font-size: 1.08rem !important;
+      }
+    }
+  </style>
+</BaseLayout>
