@@ -28,6 +28,7 @@ const EN_INDEX_SLUGS = new Set([
   'c',
   'jlpt',
   'series',
+  'most-consulted',
 ]);
 
 function json(statusCode, body) {
