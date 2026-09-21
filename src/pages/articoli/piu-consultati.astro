@@ -1,36 +1,56 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const postImports = import.meta.glob(
+const italianPostImports = import.meta.glob(
   '../../content/articoli/**/*.mdx'
 );
 
-const posts = await Promise.all(
-  Object.entries(postImports).map(
-    async ([path, resolver]) => {
-      const mod = await resolver();
-      const frontmatter = mod.frontmatter ?? {};
-      const slug =
-        frontmatter.slug ??
-        path
-          .split('/')
-          .pop()
-          .replace(/\.mdx?$/, '');
-
-      return {
-        path: `/articoli/${slug}/`,
-        title: frontmatter.title ?? slug,
-        description:
-          frontmatter.description ?? '',
-        image:
-          frontmatter.image ??
-          '/og-image.png',
-      };
-    }
-  )
+const englishPostImports = import.meta.glob(
+  '../../content/en/**/*.mdx'
 );
 
-const articleMetadata = posts;
+async function createArticleMetadata(
+  postImports,
+  basePath
+) {
+  return Promise.all(
+    Object.entries(postImports).map(
+      async ([path, resolver]) => {
+        const mod = await resolver();
+        const frontmatter =
+          mod.frontmatter ?? {};
+        const slug =
+          frontmatter.slug ??
+          path
+            .split('/')
+            .pop()
+            .replace(/\.mdx?$/, '');
+
+        return {
+          path: `${basePath}${slug}/`,
+          title:
+            frontmatter.title ?? slug,
+          description:
+            frontmatter.description ?? '',
+          image:
+            frontmatter.image ??
+            '/og-image.png',
+        };
+      }
+    )
+  );
+}
+
+const articleMetadata = [
+  ...(await createArticleMetadata(
+    italianPostImports,
+    '/articoli/'
+  )),
+  ...(await createArticleMetadata(
+    englishPostImports,
+    '/en/articles/'
+  )),
+];
 ---
 
 <BaseLayout
@@ -77,7 +97,7 @@ const articleMetadata = posts;
   <script define:vars={{ articleMetadata }}>
     (() => {
       const endpoint =
-        '/.netlify/functions/popular-articles?lang=it&limit=10';
+        '/.netlify/functions/popular-articles?limit=10';
 
       const list =
         document.getElementById('popular-list');
