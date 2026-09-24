@@ -1,0 +1,166 @@
+{
+  "slug": "kuuki-kankyou-funiki",
+  "articleSlug": "difference-kuuki-kankyou-funiki-japanese",
+  "title": "Exercises on 空気・環境・雰囲気",
+  "shortTitle": "空気・環境・雰囲気",
+  "description": "10 questions on the differences in meaning, usage, and perspective among 空気, 環境, and 雰囲気.",
+  "jlpt": "N3",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "prompt": "空気・環境・雰囲気",
+      "question": "Which description best captures the relationship among these three terms?",
+      "options": [
+        "They are three synonyms for “atmosphere” that differ mainly in register.",
+        "They can describe different aspects of the same situation: 環境 focuses on surrounding conditions, 雰囲気 on the overall impression, and 空気 on the implicit social climate shared by the people involved.",
+        "環境 refers only to physical places, 雰囲気 only to people, and 空気 only to groups.",
+        "The main difference is duration: 環境 is permanent, 雰囲気 is temporary, and 空気 is instantaneous."
+      ],
+      "correctIndex": 1,
+      "explanation": "The three words can refer to the same scene, but they frame different aspects of it. 環境 describes the surrounding conditions and circumstances; 雰囲気 the overall impression something gives; and 空気 the implicit social climate that develops among people."
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "彼の一言で、会議の＿＿が一変した。",
+      "question": "Which term most naturally foregrounds the fact that a single remark immediately changed the climate among the participants?",
+      "options": [
+        "環境",
+        "雰囲気",
+        "自然環境",
+        "空気"
+      ],
+      "correctIndex": 3,
+      "explanation": "空気 is particularly natural when the shared climate of an interaction changes suddenly. Tension, discomfort, silence, or expectations can shift immediately even though the objective circumstances remain unchanged."
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "この会社は働く環境はいいけど、職場の雰囲気は少し堅い。",
+      "question": "What does this sentence primarily show?",
+      "options": [
+        "A good 環境 does not necessarily imply a good 雰囲気, because working conditions and the overall atmosphere belong to different levels of description.",
+        "雰囲気 is a physical component of 環境 and should therefore improve automatically when the 環境 improves.",
+        "環境 and 雰囲気 are synonyms, but 環境 is more formal.",
+        "The sentence is contradictory because a workplace cannot have both a good 環境 and a somewhat rigid 雰囲気."
+      ],
+      "correctIndex": 0,
+      "explanation": "Objective conditions and perceived atmosphere are different things. A workplace may offer good working hours, resources, organization, and other favorable conditions while still feeling rigid, cold, or unwelcoming."
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "彼女は上品な＿＿がある。",
+      "question": "Which term is the most appropriate if we want to describe the elegant or refined impression a person gives?",
+      "options": [
+        "環境",
+        "空気",
+        "雰囲気",
+        "職場環境"
+      ],
+      "correctIndex": 2,
+      "explanation": "雰囲気 can describe not only places and groups but also individual people when referring to the aura, presence, or overall impression they give."
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "空気を読む",
+      "question": "Which interpretation is the most accurate?",
+      "options": [
+        "To notice whether a place has a pleasant or unpleasant atmosphere.",
+        "To evaluate the material and organizational conditions of a situation.",
+        "To pick up on the unspoken expectations of the people and the situation and adjust one's behavior accordingly.",
+        "To understand the aesthetic impression conveyed by a place."
+      ],
+      "correctIndex": 2,
+      "explanation": "空気を読む, often naturally rendered as “to read the room,” is not simply about sensing a mood. It means picking up on what is left unsaid and understanding whether the situation calls for speaking, staying quiet, changing the subject, pressing a point, or backing off."
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "このクラスの雰囲気が好き。／ まだこのクラスの空気が読めない。",
+      "question": "Which interpretation best captures the difference between these two sentences?",
+      "options": [
+        "In the first sentence, the speaker is evaluating the class's overall atmosphere; in the second, they are trying to understand the group's implicit dynamics and unspoken expectations.",
+        "The first sentence concerns the structure of the school, while the second concerns the appearance of the classroom.",
+        "雰囲気 refers to what the group implicitly expects, whereas 空気 merely indicates whether the class feels pleasant.",
+        "The two sentences express essentially the same idea using different words."
+      ],
+      "correctIndex": 0,
+      "explanation": "雰囲気 refers here to the group's overall, relatively stable impression, whereas 空気 concerns what happens between people: implicit expectations, unspoken rules, and what behavior is appropriate in the situation."
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "prompt": "環境・雰囲気・空気",
+      "question": "Which statement accurately reflects the tendency described in the article?",
+      "options": [
+        "Only 環境 can change over time.",
+        "雰囲気 always refers to something momentary, whereas 空気 is necessarily stable.",
+        "Duration is a grammatical rule that automatically determines which word must be used.",
+        "環境 tends to refer to a broader and more enduring framework; 雰囲気 can convey a relatively stable impression of a place or person; 空気 can be closely tied to a particular moment and change quickly during an interaction."
+      ],
+      "correctIndex": 3,
+      "explanation": "This is a useful tendency rather than an absolute rule. 環境 is often broader and more enduring, 雰囲気 can convey a relatively stable overall impression, and 空気 can shift rapidly as an interaction unfolds."
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "prompt": "職場の環境を改善したい。／ 職場の雰囲気を良くしたい。",
+      "question": "What is the most natural difference between these two intentions?",
+      "options": [
+        "The first means improving only the building, while the second means improving only the decor.",
+        "The first focuses on working conditions such as organization, facilities, working hours, and other practical conditions; the second focuses on the workplace's interpersonal climate and overall atmosphere.",
+        "The first is objective and therefore cannot include relationships among coworkers.",
+        "There is no substantial difference: 改善する simply requires 環境, while 良くする requires 雰囲気."
+      ],
+      "correctIndex": 1,
+      "explanation": "環境 covers concrete and structural factors, including social ones, whereas 雰囲気 describes the perceived tone of the place or group. The distinction comes from what is being brought into focus, not simply from the verbs 改善する and 良くする."
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "prompt": "独特の空気がある ／ 独特の雰囲気がある",
+      "question": "Which conclusion is correct?",
+      "options": [
+        "Only 雰囲気 can grammatically occur with がある.",
+        "空気がある is possible only when 空気 refers to physical air.",
+        "The two expressions are always fully interchangeable because both can occur with がある.",
+        "Both 空気 and 雰囲気 can occur with がある; the difference lies in the kind of atmosphere being foregrounded, not in whether this construction can be used."
+      ],
+      "correctIndex": 3,
+      "explanation": "空気 can occur with がある, especially when it is qualified or when the context makes the type of social atmosphere clear. The construction itself does not determine whether 空気 or 雰囲気 is appropriate; what matters is whether the focus is on an implicit interpersonal climate or on an overall impression."
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "prompt": "A restaurant is located in a quiet area, has elegant decor, and after an argument between two customers, a strong sense of tension suddenly spreads among the people present.",
+      "question": "Which pairing correctly describes the three levels?",
+      "options": [
+        "Quiet surroundings = 空気; elegance = 環境; tension among the people present = 雰囲気.",
+        "Quiet surroundings = 雰囲気; elegance = 空気; tension = 環境.",
+        "Surrounding conditions = 環境; elegant overall impression = 雰囲気; sudden shared tension = 空気.",
+        "All three aspects should be described with 雰囲気 because they belong to the same place."
+      ],
+      "correctIndex": 2,
+      "explanation": "All three terms can apply to the same scene while highlighting different aspects of it. 環境 describes the surrounding conditions, 雰囲気 the overall aesthetic or perceptual impression, and 空気 the immediate social climate shared by the people present."
+    }
+  ],
+  "area": "words-and-nuances",
+  "searchTerms": [
+    "空気",
+    "環境",
+    "雰囲気",
+    "kuuki",
+    "kankyou",
+    "funiki",
+    "fun'iki",
+    "atmosphere",
+    "environment",
+    "social climate",
+    "mood",
+    "read the room",
+    "空気を読む"
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "slug": "kibun-choushi-taichou-guai",
+  "articleSlug": "differenza-kibun-choushi-taichou-guai",
+  "title": "Esercizi su 気分・調子・体調・具合",
+  "shortTitle": "気分・調子・体調・具合",
+  "description": "10 domande sulle differenze di significato, uso e prospettiva tra 気分, 調子, 体調 e 具合.",
+  "jlpt": "N3",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "prompt": "気分・調子・体調・具合",
+      "question": "Quale descrizione rappresenta meglio la distinzione fondamentale tra i quattro termini?",
+      "options": [
+        "気分 riguarda il corpo, 体調 l'umore, 調子 la salute e 具合 esclusivamente gli oggetti.",
+        "気分 mette a fuoco ciò che il soggetto percepisce, 体調 la condizione fisica complessiva, 調子 il funzionamento o rendimento e 具合 lo stato concreto in cui qualcosa si trova.",
+        "Sono quattro sinonimi di “condizione” che differiscono principalmente per grado di formalità.",
+        "気分 e 体調 riguardano soltanto persone, mentre 調子 e 具合 riguardano soltanto oggetti."
+      ],
+      "correctIndex": 1,
+      "explanation": "La distinzione non consiste semplicemente nell'oggetto descritto, ma nel punto di osservazione. 気分 guarda alla sensazione vissuta dall'interno, 体調 allo stato fisico del corpo, 調子 al modo in cui qualcuno o qualcosa funziona o rende, 具合 allo stato concreto o risultante in cui qualcosa si presenta."
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "バスに酔って＿＿が悪くなった。",
+      "question": "Quale termine è particolarmente naturale se il parlante vuole mettere in primo piano la nausea e la sensazione di malessere che sta provando?",
+      "options": [
+        "調子",
+        "体調",
+        "具合",
+        "気分"
+      ],
+      "correctIndex": 3,
+      "explanation": "気分 può descrivere non soltanto l'umore, ma anche una sensazione fisica soggettiva. In casi come nausea, capogiro o malessere improvviso, 気分が悪い mette in primo piano proprio ciò che la persona avverte."
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "Un calciatore non ha particolari problemi di salute, ma oggi sbaglia molto più del solito ed è chiaramente fuori forma.",
+      "question": "Quale termine mette più naturalmente a fuoco questa situazione?",
+      "options": [
+        "調子",
+        "気分",
+        "体調",
+        "具合"
+      ],
+      "correctIndex": 0,
+      "explanation": "調子 riguarda il funzionamento, l'andamento o il rendimento rispetto alla condizione abituale. Una persona può quindi essere 調子が悪い senza essere malata: può semplicemente essere fuori forma, poco concentrata o rendere meno del solito."
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "膝の＿＿がよくない。",
+      "question": "Se il parlante vuole concentrarsi sullo stato concreto del ginocchio stesso, quale termine corrisponde meglio alla prospettiva descritta nell'articolo?",
+      "options": [
+        "気分",
+        "具合",
+        "体調",
+        "気分 oppure 体調 indistintamente"
+      ],
+      "correctIndex": 1,
+      "explanation": "具合 può riferirsi alla condizione concreta di una parte specifica del corpo. Non descrive necessariamente la sensazione generale del soggetto né la condizione fisica complessiva dell'organismo: qui il centro dell'attenzione è il ginocchio."
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "機械の調子 ／ 機械の具合",
+      "question": "Quale affermazione coglie meglio la differenza tra i due termini quando si parla di un macchinario?",
+      "options": [
+        "Solo 調子 può essere usato con oggetti; 具合 è limitato agli esseri viventi.",
+        "調子 descrive esclusivamente la velocità della macchina, mentre 具合 esclusivamente il suo aspetto esterno.",
+        "Entrambi possono descrivere una macchina, ma 調子 tende a mettere maggiormente a fuoco il funzionamento o l'andamento, mentre 具合 può mettere in primo piano lo stato concreto in cui essa si trova.",
+        "I due termini sono completamente intercambiabili e non presentano alcuna differenza di prospettiva."
+      ],
+      "correctIndex": 2,
+      "explanation": "Sia 調子 sia 具合 possono essere usati con macchine e dispositivi. L'articolo presenta però una tendenza: 調子 richiama più facilmente il funzionamento, mentre 具合 lo stato risultante o il modo in cui qualcosa concretamente si presenta. Non è comunque una separazione assoluta."
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "焼け具合を見てください。",
+      "question": "Perché 具合 è particolarmente adatto in questa espressione?",
+      "options": [
+        "Perché può indicare lo stato risultante o il grado raggiunto da qualcosa, qui il grado di cottura.",
+        "Perché 具合 indica sempre un problema o un malfunzionamento.",
+        "Perché 焼け具合 descrive l'umore della persona che sta cucinando.",
+        "Perché 具合 è la forma più formale di 調子."
+      ],
+      "correctIndex": 0,
+      "explanation": "Uno degli usi caratteristici di 具合 è esprimere il modo in cui qualcosa è venuto o il grado raggiunto da un processo. Per questo compaiono forme come 焼け具合 “grado di cottura” o 出来具合 “grado di riuscita / come è venuto qualcosa”."
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "prompt": "「明日会える？」「ごめん、明日はちょっと具合が悪いんだ……」",
+      "question": "Nel contesto illustrato nell'articolo, che cosa può significare 具合が悪い?",
+      "options": [
+        "“Domani sarò sicuramente malato.”",
+        "“Domani sarò di cattivo umore.”",
+        "“Domani non riuscirò a rendere bene.”",
+        "“Domani per me non è molto conveniente / le circostanze non mi permettono facilmente di farlo.”"
+      ],
+      "correctIndex": 3,
+      "explanation": "具合 può riferirsi anche alla convenienza o alle circostanze di una situazione, con un valore vicino a 都合. In questo uso 具合が悪い non riguarda necessariamente la salute: può significare che qualcosa non viene bene o non è conveniente per il parlante."
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "prompt": "お体の具合はいかがですか？ ／ ご気分はいかがですか？",
+      "question": "Quale interpretazione coglie meglio la differenza suggerita dall'articolo?",
+      "options": [
+        "La prima chiede dell'umore, la seconda esclusivamente della temperatura corporea.",
+        "La prima chiede della condizione di salute del corpo; la seconda può chiedere, per esempio in ambito medico, come il paziente si sente soggettivamente.",
+        "La seconda è scorretta perché 気分 non può mai riferirsi a sensazioni fisiche.",
+        "Le due espressioni sono identiche e non presentano alcuna differenza di prospettiva."
+      ],
+      "correctIndex": 1,
+      "explanation": "お体の具合はいかがですか？ guarda alla condizione fisica della persona. ご気分はいかがですか？ può invece essere usato da personale medico per chiedere come il paziente si sente, quindi dalla prospettiva della sensazione soggettivamente avvertita."
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "prompt": "体調が悪い ／ 具合が悪い ／ 調子が悪い ／ 気分が悪い",
+      "question": "Quale affermazione è la più accurata?",
+      "options": [
+        "Solo 体調が悪い può riferirsi alla salute fisica.",
+        "Le quattro espressioni hanno sempre esattamente lo stesso significato.",
+        "Possono sovrapporsi quando una persona non sta bene, ma 体調 mette a fuoco lo stato fisico generale, 具合 la condizione concreta, 調子 la forma o il funzionamento rispetto al normale e 気分 la sensazione vissuta dal soggetto.",
+        "気分が悪い indica sempre cattivo umore e non può descrivere nausea o malessere."
+      ],
+      "correctIndex": 2,
+      "explanation": "La stessa situazione può essere descritta con più termini; ciò che cambia è il modo in cui viene concettualizzata. Una nausea, per esempio, può essere presentata come sensazione vissuta con 気分が悪い oppure come parte della condizione fisica generale con 体調が悪い."
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "prompt": "胃の＿＿が悪い。",
+      "question": "Quale coppia di termini può essere usata naturalmente per parlare della condizione o del funzionamento dello stomaco, secondo l'articolo?",
+      "options": [
+        "気分・体調",
+        "調子・具合",
+        "気分・具合",
+        "体調・気分"
+      ],
+      "correctIndex": 1,
+      "explanation": "Per una parte specifica del corpo sono naturali espressioni come 胃の調子が悪い e 胃の具合が悪い. 気分 riguarda invece la sensazione complessiva percepita dalla persona, mentre 体調 descrive normalmente la condizione generale del corpo, non quella di un singolo organo."
+    }
+  ],
+  "area": "parole-e-sfumature",
+  "searchTerms": [
+    "気分",
+    "調子",
+    "体調",
+    "具合",
+    "kibun",
+    "choushi",
+    "choshi",
+    "taichou",
+    "taicho",
+    "guai",
+    "stare bene",
+    "stare male",
+    "umore",
+    "condizione fisica",
+    "salute",
+    "funzionamento"
+  ]
+}

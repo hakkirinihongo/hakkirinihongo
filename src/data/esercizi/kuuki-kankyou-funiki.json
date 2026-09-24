@@ -1,0 +1,165 @@
+{
+  "slug": "kuuki-kankyou-funiki",
+  "articleSlug": "differenza-kuuki-kankyou-funiki-giapponese",
+  "title": "Esercizi su 空気・環境・雰囲気",
+  "shortTitle": "空気・環境・雰囲気",
+  "description": "10 domande sulle differenze di significato, uso e prospettiva tra 空気, 環境 e 雰囲気.",
+  "jlpt": "N3",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "prompt": "空気・環境・雰囲気",
+      "question": "Quale descrizione rappresenta meglio il rapporto tra questi tre termini?",
+      "options": [
+        "Sono tre sinonimi di “atmosfera” che differiscono soprattutto per registro.",
+        "Possono descrivere aspetti della stessa situazione, ma 環境 mette a fuoco le condizioni, 雰囲気 l'impressione complessiva e 空気 il clima implicito condiviso tra le persone.",
+        "環境 riguarda soltanto luoghi fisici, 雰囲気 soltanto persone e 空気 soltanto gruppi.",
+        "La differenza principale consiste nella durata: 環境 è permanente, 雰囲気 temporanea e 空気 istantanea."
+      ],
+      "correctIndex": 1,
+      "explanation": "I tre vocaboli possono riferirsi alla stessa scena, ma selezionano prospettive diverse. 環境 descrive la cornice e le condizioni; 雰囲気 l'impressione generale che qualcosa trasmette; 空気 il clima sociale implicito che si crea tra le persone."
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "彼の一言で、会議の＿＿が一変した。",
+      "question": "Quale termine mette più naturalmente in primo piano il fatto che una sola frase abbia cambiato immediatamente il clima tra i partecipanti?",
+      "options": [
+        "環境",
+        "雰囲気",
+        "自然環境",
+        "空気"
+      ],
+      "correctIndex": 3,
+      "explanation": "空気 è particolarmente naturale quando cambia il clima condiviso di un'interazione: tensione, disagio, silenzio o aspettative possono mutare improvvisamente senza che cambino le condizioni oggettive della situazione."
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "この会社は働く環境はいいけど、職場の雰囲気は少し堅い。",
+      "question": "Che cosa dimostra soprattutto questa frase?",
+      "options": [
+        "Un buon 環境 non implica necessariamente una buona 雰囲気, perché condizioni di lavoro e impressione complessiva appartengono a piani diversi.",
+        "雰囲気 è una componente fisica di 環境 e quindi dovrebbe necessariamente migliorare insieme ad esso.",
+        "環境 e 雰囲気 sono sinonimi, ma il primo è più formale.",
+        "La frase è contraddittoria, perché un luogo non può avere contemporaneamente un buon 環境 e una 雰囲気 rigida."
+      ],
+      "correctIndex": 0,
+      "explanation": "Le condizioni oggettive e l'impressione percepita appartengono a piani diversi. Un posto può offrire buoni orari, risorse e organizzazione e, allo stesso tempo, trasmettere un'atmosfera fredda o rigida."
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "彼女は上品な＿＿がある。",
+      "question": "Se vogliamo descrivere l'impressione elegante o raffinata che una persona trasmette, quale termine è il più adatto?",
+      "options": [
+        "環境",
+        "空気",
+        "雰囲気",
+        "職場環境"
+      ],
+      "correctIndex": 2,
+      "explanation": "雰囲気 può essere attribuito non soltanto a luoghi o gruppi, ma anche a singole persone, quando si descrive l'aura, il tono o l'impressione complessiva che trasmettono."
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "空気を読む",
+      "question": "Quale interpretazione è la più precisa?",
+      "options": [
+        "Osservare se un luogo ha un'atmosfera gradevole o sgradevole.",
+        "Valutare le condizioni materiali e organizzative di una situazione.",
+        "Cogliere ciò che le persone e la situazione richiedono implicitamente e adeguare di conseguenza il proprio comportamento.",
+        "Capire l'impressione estetica che un luogo comunica."
+      ],
+      "correctIndex": 2,
+      "explanation": "空気を読む non significa semplicemente percepire un mood. Significa comprendere il non detto: se sia opportuno parlare, tacere, cambiare argomento, insistere oppure fermarsi."
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "このクラスの雰囲気が好き。／ まだこのクラスの空気が読めない。",
+      "question": "Quale interpretazione coglie meglio la differenza?",
+      "options": [
+        "Nella prima frase il parlante valuta l'impressione generale della classe; nella seconda cerca di capire le dinamiche implicite e le regole non dette del gruppo.",
+        "La prima riguarda la struttura scolastica, la seconda l'aspetto estetico dell'aula.",
+        "雰囲気 indica ciò che il gruppo richiede implicitamente, mentre 空気 indica soltanto se la classe è piacevole.",
+        "Le due frasi esprimono sostanzialmente la stessa cosa con parole diverse."
+      ],
+      "correctIndex": 0,
+      "explanation": "雰囲気 descrive qui l'impressione complessiva e relativamente stabile del gruppo; 空気 riguarda invece ciò che accade tra le persone, le aspettative implicite e il comportamento appropriato nella situazione."
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "prompt": "環境・雰囲気・空気",
+      "question": "Quale affermazione riflette correttamente la tendenza descritta nell'articolo?",
+      "options": [
+        "Solo 環境 può cambiare nel tempo.",
+        "雰囲気 indica sempre qualcosa di momentaneo, mentre 空気 è necessariamente stabile.",
+        "La durata costituisce una regola grammaticale che determina automaticamente quale parola usare.",
+        "環境 tende a indicare una cornice più ampia e durevole; 雰囲気 può caratterizzare in modo relativamente stabile un luogo o una persona; 空気 può essere fortemente legata al momento e cambiare rapidamente durante un'interazione."
+      ],
+      "correctIndex": 3,
+      "explanation": "Si tratta di una tendenza utile, non di una regola assoluta. La dimensione temporale può aiutare a distinguere i tre livelli: 環境 tende a essere più ampio e durevole, 雰囲気 può costituire un'impressione relativamente stabile, mentre 空気 può cambiare rapidamente durante un'interazione."
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "prompt": "職場の環境を改善したい。／ 職場の雰囲気を良くしたい。",
+      "question": "Qual è la differenza più naturale tra le due intenzioni?",
+      "options": [
+        "La prima vuole migliorare soltanto l'edificio; la seconda soltanto l'arredamento.",
+        "La prima mira alle condizioni di lavoro, come organizzazione, strutture o circostanze; la seconda al clima e all'impressione umana del posto di lavoro.",
+        "La prima è oggettiva e quindi non può includere relazioni tra colleghi.",
+        "Non c'è una differenza sostanziale: 改善する richiede 環境 e 良くする richiede 雰囲気."
+      ],
+      "correctIndex": 1,
+      "explanation": "環境 comprende fattori concreti e strutturali, anche sociali; 雰囲気 descrive invece il tono percepito del luogo o del gruppo. La differenza non dipende dai verbi 改善する e 良くする, ma da ciò che viene messo a fuoco."
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "prompt": "独特の空気がある ／ 独特の雰囲気がある",
+      "question": "Quale conclusione è corretta?",
+      "options": [
+        "Solo 雰囲気 può comparire grammaticalmente con がある.",
+        "空気がある è possibile soltanto quando 空気 significa aria fisica.",
+        "Le due espressioni sono sempre perfettamente intercambiabili perché condividono がある.",
+        "Entrambi possono comparire con がある; la differenza dipende dal tipo di atmosfera messo a fuoco, non dalla presenza di questa costruzione."
+      ],
+      "correctIndex": 3,
+      "explanation": "空気 può comparire con がある quando viene qualificato. La costruzione sintattica, da sola, non decide tra 空気 e 雰囲気: bisogna capire se si parla di clima sociale implicito oppure di impressione complessiva."
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "prompt": "Un ristorante si trova in una zona tranquilla, ha un arredamento elegante e, dopo una discussione tra due clienti, tra i presenti cala improvvisamente una forte tensione.",
+      "question": "Quale associazione descrive correttamente i tre livelli?",
+      "options": [
+        "Zona tranquilla = 空気; eleganza = 環境; tensione tra i presenti = 雰囲気.",
+        "Zona tranquilla = 雰囲気; eleganza = 空気; tensione = 環境.",
+        "Zona e condizioni circostanti = 環境; impressione elegante = 雰囲気; tensione momentanea condivisa = 空気.",
+        "Tutti e tre gli aspetti vanno descritti con 雰囲気 perché appartengono allo stesso luogo."
+      ],
+      "correctIndex": 2,
+      "explanation": "I tre termini possono convivere nella stessa scena. 環境 descrive la cornice e le condizioni, 雰囲気 l'impressione estetica o complessiva, 空気 il clima sociale immediato che attraversa in quel momento le persone presenti."
+    }
+  ],
+  "area": "parole-e-sfumature",
+  "searchTerms": [
+    "空気",
+    "環境",
+    "雰囲気",
+    "kuuki",
+    "kankyou",
+    "funiki",
+    "fun'iki",
+    "atmosfera",
+    "ambiente",
+    "clima",
+    "aria",
+    "空気を読む"
+  ]
+}
