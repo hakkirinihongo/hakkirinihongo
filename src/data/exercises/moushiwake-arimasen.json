@@ -1,0 +1,170 @@
+{
+  "slug": "moushiwake-arimasen",
+  "articleSlug": "moushiwake-arimasen-meaning-origin-history-usage-and-variants",
+  "title": "Exercises on 申し訳ありません (moushiwake arimasen)",
+  "shortTitle": "申し訳ありません",
+  "description": "10 questions on the meaning, origin, historical development, register, and usage of 申し訳ありません and related forms.",
+  "jlpt": "All levels",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "prompt": "申し訳ありません",
+      "question": "Which interpretation best reflects the historical semantic core of the expression?",
+      "options": [
+        "The speaker acknowledges that they have no explanation or justification sufficient to defend their conduct.",
+        "The speaker literally states that they feel sad about what happened.",
+        "The speaker formally asks the listener to forgive them.",
+        "The speaker states that the mistake can no longer be corrected."
+      ],
+      "correctIndex": 0,
+      "explanation": "The noun 申し訳 originally refers to an explanation, justification, or defense that could be offered to account for one's actions. To say that there is no 申し訳 therefore means acknowledging that no adequate justification can be given. Much of the force of the modern expression comes from this refusal to defend oneself."
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "申訳",
+      "question": "What did 申訳 originally refer to before the expression developed into a conventional formula of apology?",
+      "options": [
+        "A personal feeling of shame.",
+        "A ritual act of religious repentance.",
+        "An explanation, justification, or verbal defense put forward to account for one's actions.",
+        "A formal request for forgiveness addressed to a superior."
+      ],
+      "correctIndex": 2,
+      "explanation": "Historically, 申訳 is first and foremost a noun meaning an excuse, justification, explanation, or verbal defense. Its later use as part of a conventional apology developed from this lexical base."
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "申訳 → 申訳がない → 申し訳ない",
+      "question": "Which description best represents the historical development discussed in the article?",
+      "options": [
+        "申し訳ない originated directly as an adjective and was only later reinterpreted as a noun followed by a negative element.",
+        "申訳がない and 申し訳ない have always been completely independent constructions.",
+        "An initially transparent structure, 申訳 + が + ない, gradually became lexicalized and came to be perceived as a single form, 申し訳ない.",
+        "申し訳ない developed as a modern contraction of 申し訳ありません."
+      ],
+      "correctIndex": 2,
+      "explanation": "A central development described in the article is the shift from a transparent nominal construction meaning 'there is no justification' to an increasingly fixed lexical unit. Modern dictionaries can therefore describe 申し訳ない as a compound adjective consisting of a single word."
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "申し訳ない ／ 申し訳ありません ／ 申し訳ございません",
+      "question": "Which statement most accurately describes how deference and contextual appropriateness interact across these three forms?",
+      "options": [
+        "Because 申し訳ございません is the most deferential form, it is always preferable to the other two whenever the apology is sincere.",
+        "The choice depends primarily on the objective seriousness of the mistake: the more serious the incident, the more elevated the form must necessarily be.",
+        "The differences among the three forms are essentially morphological; pragmatically, they can be used in the same contexts without significant effects.",
+        "The three forms show a perceived progression in deference, but the appropriate choice also depends on social role, interpersonal distance, and the communicative situation; the most deferential form is not automatically the most appropriate."
+      ],
+      "correctIndex": 3,
+      "explanation": "Contemporary Japanese does perceive a progression from 申し訳ない to 申し訳ありません and then to 申し訳ございません, but this does not operate as a mechanical scale. A highly deferential form may sound excessively ceremonious in a close relationship, while a less elevated form may be inappropriate in an institutional setting. Appropriateness depends on the interplay of responsibility, social distance, role, and communicative context."
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "申し訳ない → 申し訳ありません",
+      "question": "Why, according to the analysis in the article, should 申し訳ありません and 申し訳ございません not simply be dismissed as grammatically incorrect forms?",
+      "options": [
+        "Because ない can freely be replaced by any polite negative form.",
+        "Because modern Japanese no longer recognizes 申し訳ない as a lexical unit.",
+        "Because alongside the lexicalized form 申し訳ない, 申し訳 continues to function independently as a noun, which helps explain how forms with ありません or ございません could develop and become established.",
+        "Because the forms were deliberately created by modern grammarians."
+      ],
+      "correctIndex": 2,
+      "explanation": "申し訳ない became lexicalized as a single unit, but the noun 申し訳 did not disappear. It continues to occur in expressions such as 申し訳がない and 申し訳が立たない. This dual status helps explain how 申し訳ありません and 申し訳ございません could arise and become established."
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "お忙しいところ申し訳ありませんが、この書類をご確認いただけますか。",
+      "question": "What is the main function of 申し訳ありません in this sentence?",
+      "options": [
+        "To confess that the speaker has already committed a serious mistake.",
+        "To apologize for having sent the wrong document.",
+        "To state that the request cannot be fulfilled.",
+        "To acknowledge in advance the burden placed on the listener and mitigate the request that follows."
+      ],
+      "correctIndex": 3,
+      "explanation": "Forms in the 申し訳 series are not used only to repair something that has already happened. They can also preface a request, refusal, or unwelcome message, signaling that the speaker is aware of the burden or inconvenience involved."
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "prompt": "An employee needs to apologize formally to a customer for a delay in replying, but the situation does not call for the formal institutional tone of a public statement.",
+      "question": "Which form best matches the usage profile described in the article?",
+      "options": [
+        "ごめん",
+        "申し訳ない",
+        "申し訳ありません",
+        "ごめんなさい"
+      ],
+      "correctIndex": 2,
+      "explanation": "申し訳ありません often provides an appropriate balance in professional contexts: it is clearly formal and respectful, while being somewhat less ceremonious than 申し訳ございません. The latter is especially common in customer-facing language, corporate communications, and highly institutional contexts."
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "prompt": "すみません ／ 申し訳ありません",
+      "question": "Which statement best captures the difference described in the article?",
+      "options": [
+        "すみません always expresses a more serious apology than 申し訳ありません.",
+        "申し訳ありません can be used only when the speaker is legally responsible for causing harm.",
+        "すみません belongs exclusively to informal speech, whereas 申し訳ありません belongs exclusively to written language.",
+        "すみません has a much broader range of everyday pragmatic uses, whereas 申し訳ありません places greater emphasis on the inconvenience caused and on the speaker's position as someone who must account for their conduct."
+      ],
+      "correctIndex": 3,
+      "explanation": "すみません can be used to apologize, attract attention, address a stranger, introduce a request, and even express gratitude in some contexts. 申し訳ありません is less generic and more strongly foregrounds responsibility, deference, and acknowledgment of the burden or inconvenience caused to the other person."
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "prompt": "申訳がない",
+      "question": "According to the historical chronology reconstructed in the article, which statement is correct?",
+      "options": [
+        "An attestation of 申し訳がない is recorded in 1700, while the more lexicalized form 申訳無い / 申し訳ない is attested later, in 1804.",
+        "申し訳ありません is already documented in the Heian period as a fixed apology formula.",
+        "申し訳ない appears only after World War II.",
+        "申し訳ございません developed only with the rise of modern customer service."
+      ],
+      "correctIndex": 0,
+      "explanation": "The article distinguishes the attestation of 申し訳がない in 1700 from the later documentation of the more compact form 申訳無い in 1804. The polite variants are documented later still, but these dates should be understood as the earliest securely verifiable attestations in the sources discussed, not necessarily as the absolute dates on which the forms first arose."
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "prompt": "申し訳ございません",
+      "question": "A customer-service representative says 申し訳ございません because the company cannot fulfill a customer's request. Which description best captures this use?",
+      "options": [
+        "The expression can acknowledge that the customer has been placed in an unfavorable situation and help manage the relationship, without necessarily amounting to an admission of personal wrongdoing.",
+        "The representative is necessarily admitting that they personally caused the problem.",
+        "If the representative is not personally at fault, using 申し訳ございません is grammatically inappropriate.",
+        "The expression merely makes the refusal more formal and has no reparative function."
+      ],
+      "correctIndex": 0,
+      "explanation": "In contemporary Japanese, the 申し訳 series has developed pragmatic functions that go beyond admitting personal wrongdoing. It can acknowledge inconvenience, imposition, an inability to fulfill a request, or the need for relational repair even when the speaker is not personally at fault."
+    }
+  ],
+  "area": "usage-and-context",
+  "searchTerms": [
+    "申し訳ありません",
+    "申し訳ございません",
+    "申し訳ない",
+    "申し訳がない",
+    "申訳",
+    "moushiwake arimasen",
+    "moushiwake gozaimasen",
+    "moushiwake nai",
+    "Japanese apologies",
+    "apology",
+    "formality",
+    "deference",
+    "register",
+    "history",
+    "origin",
+    "すみません",
+    "ごめんなさい"
+  ]
+}
