@@ -1,0 +1,167 @@
+{
+  "slug": "no-ka",
+  "articleSlug": "no-ka-japanese-doubt-conjecture-rhetorical-questions",
+  "title": "Exercises on ～のか (no ka)",
+  "shortTitle": "～のか (no ka)",
+  "description": "10 questions on the meaning and use of ～のか, how it differs from ～か and ～のだ／～んだ, and its interrogative, conjectural, and interpretive uses.",
+  "jlpt": "N3-N2",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "prompt": "～のか",
+      "question": "Which description best captures the central function of ～のか as explained in the article?",
+      "options": [
+        "It turns any proposition into a rhetorical question that does not require an answer.",
+        "Its main function is to show that the speaker considers P highly probable.",
+        "It presents P as an interpretation connected to the context and leaves the validity of that interpretation open by framing it as a question.",
+        "It is simply a colloquial variant of the interrogative particle か."
+      ],
+      "correctIndex": 2,
+      "explanation": "～のか does more than ask whether P is true. It connects the proposition to a clue, presupposition, or situation already salient in the context and presents it as an interpretation to be tested rather than as a definitive assertion."
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "山田さんは、眠くなったのか、目をこすっています。",
+      "question": "How should the relationship between P = 眠くなった and Q = 目をこすっています be understood?",
+      "options": [
+        "P is presented as a confirmed fact, while Q specifies when it happened.",
+        "Q is the cause of P and is presented as a hypothesis.",
+        "Q is the observed fact, while P is proposed as a possible cause or explanation for it.",
+        "P and Q are simply two successive events with no inferential relationship."
+      ],
+      "correctIndex": 2,
+      "explanation": "In the Pのか、Q pattern, the speaker typically starts from Q, the observed or described fact, and reconstructs P as a possible explanation. P remains open to question rather than being asserted as true."
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "寒いか？ ／ 寒いのか？",
+      "question": "Which description best captures the difference presented in the article?",
+      "options": [
+        "寒いか can simply ask whether it is cold, whereas 寒いのか tends to present 'it is cold' as an interpretation connected to something the speaker observes or already knows.",
+        "寒いのか necessarily means that the speaker is almost certain that it is cold.",
+        "寒いか is colloquial, whereas 寒いのか is formal.",
+        "寒いのか is always a rhetorical question."
+      ],
+      "correctIndex": 0,
+      "explanation": "The main difference is not formality or a fixed degree of certainty. の connects the proposition to the context, so 寒いのか can carry meanings such as 'So, is it cold?' or 'Am I to understand that it is cold?'"
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "寒いのか ／ 寒いんだろうか",
+      "question": "What is the most important difference between these two constructions?",
+      "options": [
+        "～のだろうか explicitly introduces a conjectural component through だろう, whereas with ～のか, whether the construction expresses a question, doubt, verification, or self-questioning depends more heavily on context and intonation.",
+        "～のか is simply a colloquial abbreviation of ～のだろうか.",
+        "～のだろうか always expresses greater certainty than ～のか.",
+        "The two constructions are semantically identical and differ only in register."
+      ],
+      "correctIndex": 0,
+      "explanation": "～のか should not be treated as a shortened colloquial form of ～のだろうか. The presence of だろう explicitly marks a conjectural evaluation and naturally lends itself to an interpretation such as 'I wonder whether...', whereas ～のか remains more dependent on context."
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "～のか",
+      "question": "Which statement about the speaker's degree of conviction is the most accurate?",
+      "options": [
+        "～のか does not grammatically encode a fixed degree of probability; the strength of the hypothesis depends on the evidence, context, intonation, and other elements of the utterance.",
+        "～のか always expresses a higher probability than ～かもしれない.",
+        "～のか normally signals that the speaker has already reached near certainty.",
+        "～のか always expresses only a very weak doubt."
+      ],
+      "correctIndex": 0,
+      "explanation": "～のか does not automatically express 'high probability' or 'near certainty.' In some contexts the hypothesis may be strongly supported by available evidence, but the speaker's degree of conviction is determined by the broader context rather than by ～のか itself."
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "本当なのか？",
+      "question": "What determines whether a sentence ending in ～のか is a genuine question addressed to someone, a request for confirmation, a doubt voiced aloud, or a rhetorical question?",
+      "options": [
+        "The verb used in the proposition.",
+        "The obligatory presence of an interrogative adverb.",
+        "The communicative context, intonation, whether there is an addressee, and the relationship between the participants.",
+        "Only whether the sentence is written with a question mark."
+      ],
+      "correctIndex": 2,
+      "explanation": "The form ～のか does not by itself assign a single pragmatic function. In final position, it can serve several purposes, and the communicative context and intonation determine which interpretation predominates."
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "prompt": "～のか",
+      "question": "Which contrast correctly reflects one of the pragmatic differences described in the article?",
+      "options": [
+        "When addressed to someone, ～のか is always polite; in inner monologue, it is always aggressive.",
+        "When addressed to someone, ～のか expresses certainty; in inner monologue, it always expresses improbability.",
+        "When addressed directly to someone, ～のか can sound insistent, firm, or even accusatory; in inner monologue, it can instead express reflection, doubt, or a hypothesis under consideration.",
+        "～のか cannot be used in inner monologue."
+      ],
+      "correctIndex": 2,
+      "explanation": "The same interrogative construction can have very different pragmatic effects. Addressed directly to another person, it may press for confirmation or explanation; in narrative or inner monologue, it can make the speaker's interpretive process visible."
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "prompt": "寒いんだ。 ／ 寒いのか。",
+      "question": "Which distinction is correct?",
+      "options": [
+        "Both are interrogative; only their degree of formality differs.",
+        "～んだ always expresses absolute certainty, whereas ～のか always expresses absolute doubt.",
+        "～んだ presents the content as an explanation, conclusion, or information linked to the context, whereas ～のか turns that possible interpretation into a question.",
+        "～のか is simply the negative form of ～んだ."
+      ],
+      "correctIndex": 2,
+      "explanation": "～のだ／～んだ are not inherently interrogative. They present the content within an explanatory framework. With ～のか, that interpretation is instead questioned and left open."
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "prompt": "山田さんは遅刻した。電車が遅れたのか、寝坊したのか、はっきり分からない。",
+      "question": "What is the function of the Pのか、Rのか sequence in this example?",
+      "options": [
+        "It asserts that both causes are true at the same time.",
+        "It indicates that P is more likely than R.",
+        "It presents two alternative possible explanations without deciding which one is correct.",
+        "It necessarily turns P and R into two questions addressed directly to the listener."
+      ],
+      "correctIndex": 2,
+      "explanation": "The suspension introduced by ～のか allows several hypotheses to be juxtaposed. Here, the delayed train and oversleeping are presented as two possible explanations for Yamada's lateness, without either one being confirmed."
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "prompt": "[P] の + か",
+      "question": "Which analysis best reflects the structural explanation given in the article?",
+      "options": [
+        "の frames the preceding content as an interpretive unit connected to the context, while か gives it interrogative force and leaves the validity of that interpretation open.",
+        "の marks probability, while か marks past tense.",
+        "の necessarily makes P causal, while か turns it into an assertion.",
+        "の and か form a single indivisible particle with no distinguishable functions."
+      ],
+      "correctIndex": 0,
+      "explanation": "の is connected to the explanatory framework of ～のだ／～んだ and allows the preceding content to be treated as a unit for consideration; か keeps that proposition open as a question rather than turning it into a definitive assertion."
+    }
+  ],
+  "area": "grammar",
+  "searchTerms": [
+    "～のか",
+    "のか",
+    "no ka",
+    "Japanese grammar",
+    "rhetorical questions",
+    "conjecture",
+    "doubt",
+    "interrogatives",
+    "self-questioning",
+    "～か",
+    "～のだ",
+    "～んだ",
+    "～のだろうか",
+    "Pのか Q"
+  ]
+}
