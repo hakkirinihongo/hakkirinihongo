@@ -1,0 +1,168 @@
+{
+  "slug": "totemo-kanari-zuibun",
+  "articleSlug": "totemo-kanari-zuibun-differenza-avverbi-intensita-giapponese",
+  "title": "Esercizi su とても・かなり・ずいぶん",
+  "shortTitle": "とても・かなり・ずいぶん",
+  "description": "10 domande sulle differenze di significato, intensità, aspettativa, registro e uso di とても, かなり e ずいぶん.",
+  "jlpt": "N4-N3",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "prompt": "とても ／ かなり ／ ずいぶん",
+      "question": "Quale descrizione coglie meglio la differenza fondamentale tra i tre avverbi?",
+      "options": [
+        "Non differiscono soltanto per quantità: とても presenta soprattutto un grado elevato, かなり lo valuta rispetto a una soglia o norma implicita e ずいぶん mette maggiormente in primo piano lo scarto rispetto alle aspettative del parlante.",
+        "とても indica sempre il grado massimo, かなり un grado medio e ずいぶん un grado leggermente inferiore.",
+        "とても appartiene alla lingua formale, かなり a quella scritta e ずいぶん esclusivamente al parlato.",
+        "I tre sono sinonimi e la scelta dipende principalmente dal gusto personale."
+      ],
+      "correctIndex": 0,
+      "explanation": "Non è utile considerare i tre avverbi come una semplice graduatoria di forza. とても presenta soprattutto un grado elevato in modo relativamente neutro; かなり mette in rilievo che quel grado è considerevole rispetto a una soglia o norma implicita; ずいぶん rende più evidente lo scarto rispetto alle aspettative e l'impressione soggettiva del parlante."
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "Un rapporto descrive un fenomeno come chiaramente superiore alla norma, ma vuole mantenere un tono relativamente misurato e informativo.",
+      "question": "Quale avverbio corrisponde meglio a questa prospettiva?",
+      "options": [
+        "ずいぶん",
+        "かなり",
+        "とても",
+        "めっちゃ"
+      ],
+      "correctIndex": 1,
+      "explanation": "かなり è particolarmente adatto quando un grado viene presentato come considerevole rispetto a una norma o soglia implicita, senza mettere necessariamente in primo piano la sorpresa personale. Per questo compare naturalmente anche in descrizioni informative, quantitative e relativamente analitiche."
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "Rivedi dopo molto tempo un bambino e rimani colpito da quanto è cresciuto.",
+      "question": "Quale frase rende meglio non soltanto l'alto grado del cambiamento, ma anche la tua reazione rispetto a ciò che ti aspettavi?",
+      "options": [
+        "とても大きくなったね。",
+        "ずいぶん大きくなったね。",
+        "かなりの大きくなったね。",
+        "とてもと大きくなったね。"
+      ],
+      "correctIndex": 1,
+      "explanation": "ずいぶん è particolarmente naturale quando una qualità o un cambiamento appaiono notevoli rispetto alle aspettative del parlante. In questo caso non comunica soltanto che il bambino è cresciuto molto, ma anche che la crescita colpisce chi parla."
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "＿＿の人数",
+      "question": "Quale completamento forma normalmente una costruzione nominale neutra con il significato di \"un numero considerevole di persone\"?",
+      "options": [
+        "とても",
+        "かなり",
+        "ずいぶん",
+        "ずいぶんと"
+      ],
+      "correctIndex": 1,
+      "explanation": "かなり può precedere regolarmente un sostantivo attraverso の, come in かなりの時間 o かなりの人数. ずいぶん non forma normalmente l'equivalente neutro con の; nella costruzione ずいぶんな～ assume invece facilmente un valore più marcato e valutativo."
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "ずいぶん変わったね。 ／ ずいぶんと変わったね。",
+      "question": "Quale descrizione rappresenta meglio il rapporto tra le due forme?",
+      "options": [
+        "Il significato fondamentale è sostanzialmente lo stesso; と può rendere la valutazione più marcata o distesa nel ritmo, ma non codifica regolarmente un grado maggiore.",
+        "ずいぶんと indica necessariamente un'intensità superiore a ずいぶん.",
+        "ずいぶん è colloquiale, mentre ずいぶんと è obbligatoriamente formale.",
+        "ずいぶんと può essere usato soltanto davanti ai verbi."
+      ],
+      "correctIndex": 0,
+      "explanation": "ずいぶん è già un avverbio completo. Nella forma ずいぶんと, と può rendere più esplicito o marcato il collegamento con ciò che segue e influire sul ritmo della frase, ma non introduce una differenza semantica regolare di intensità."
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "Vuoi dire: \"Hai mangiato davvero tanto!\"",
+      "question": "Quale frase è naturale nel senso descritto nell'articolo?",
+      "options": [
+        "とても食べたね。",
+        "とてもと食べたね。",
+        "かなりの食べたね。",
+        "ずいぶん食べたね。"
+      ],
+      "correctIndex": 3,
+      "explanation": "ずいぶん può quantificare naturalmente l'estensione di un'azione, come in ずいぶん食べた o ずいぶん待たされた. とても, invece, non si usa normalmente direttamente con un verbo affermativo per esprimere semplicemente l'idea di fare molto qualcosa."
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "prompt": "ずいぶんな人だ。",
+      "question": "Perché questa costruzione non equivale semplicemente a un neutro \"una persona molto X\"?",
+      "options": [
+        "Perché ずいぶん non può mai modificare espressioni riferite a persone.",
+        "Perché la forma in な indica automaticamente cortesia elevata.",
+        "Perché ずいぶんな～ assume facilmente un valore valutativo, ironico, critico o di disapprovazione.",
+        "Perché ずいぶんな è soltanto una grafia alternativa di かなりの."
+      ],
+      "correctIndex": 2,
+      "explanation": "Nella costruzione attributiva ずいぶんな～, ずいぶん può assumere facilmente un valore fortemente valutativo, ironico o critico. Questo uso va distinto dall'avverbiale ずいぶんと失礼だ, in cui l'espressione significa semplicemente qualcosa come \"davvero molto scortese\"."
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "prompt": "とても難しい ／ かなり難しい",
+      "question": "Quale interpretazione evita una semplificazione fuorviante?",
+      "options": [
+        "かなり難しい significa sempre che qualcosa è oggettivamente meno difficile di とても難しい.",
+        "とても難しい indica sorpresa, mentre かなり難しい non può mai esprimerla.",
+        "とても presenta direttamente un grado elevato; かなり mette maggiormente in rilievo che quel grado è considerevole rispetto a un parametro implicito, senza creare necessariamente una gerarchia fissa tra le due frasi.",
+        "Le due espressioni sono completamente intercambiabili in ogni contesto."
+      ],
+      "correctIndex": 2,
+      "explanation": "In alcuni contesti とても può essere percepito come un intensificatore più forte, ma non bisogna trasformare questa tendenza in una gerarchia rigida. La caratteristica centrale di かなり è presentare il grado come considerevole rispetto a un parametro, una norma o una soglia implicita."
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "prompt": "Un testo informativo vuole dire che una situazione è considerevolmente grave evitando di rendere troppo evidente la reazione personale dell'autore.",
+      "question": "Quale avverbio è particolarmente adatto?",
+      "options": [
+        "かなり",
+        "ずいぶん",
+        "めっちゃ",
+        "ずいぶんな"
+      ],
+      "correctIndex": 0,
+      "explanation": "かなり è molto versatile nello scritto e nei contesti informativi perché permette di presentare un grado notevole mantenendo una certa distanza valutativa. ずいぶん tende invece a rendere più percepibile l'impressione soggettiva del parlante."
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "prompt": "① vuoi semplicemente dire che oggi fa molto caldo; ② vuoi sottolineare che il caldo è considerevolmente superiore alla norma; ③ sei personalmente colpito da quanto sia insolitamente caldo.",
+      "question": "Quale associazione riflette meglio le distinzioni tra i tre avverbi?",
+      "options": [
+        "① かなり　② ずいぶん　③ とても",
+        "① とても　② かなり　③ ずいぶん",
+        "① ずいぶん　② とても　③ かなり",
+        "① とても　② ずいぶん　③ かなり"
+      ],
+      "correctIndex": 1,
+      "explanation": "とても è la scelta più neutra per indicare semplicemente un grado elevato; かなり segnala che quel grado è considerevole rispetto a un parametro; ずいぶん rende più visibile lo scarto dalle aspettative e l'impressione soggettiva del parlante."
+    }
+  ],
+  "area": "parole-e-sfumature",
+  "searchTerms": [
+    "とても",
+    "かなり",
+    "ずいぶん",
+    "ずいぶんと",
+    "totemo",
+    "kanari",
+    "zuibun",
+    "molto in giapponese",
+    "avverbi di grado",
+    "avverbi di intensità",
+    "differenza totemo kanari zuibun",
+    "sfumature",
+    "intensità",
+    "aspettative",
+    "registro"
+  ]
+}
