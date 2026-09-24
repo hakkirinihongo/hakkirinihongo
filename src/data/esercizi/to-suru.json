@@ -1,0 +1,167 @@
+{
+  "slug": "to-suru",
+  "articleSlug": "to-suru-significato-uso-grammatica-giapponese",
+  "title": "Esercizi su とする・とすると・とすれば・としたら",
+  "shortTitle": "とする・とすると・とすれば・としたら",
+  "description": "10 domande sul significato e sulla struttura di とする, sulle differenze tra とすると, とすれば e としたら e sull'uso di forma in ～た, volitivo e particelle.",
+  "jlpt": "N2",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "prompt": "彼が犯人だとする。",
+      "question": "Nel valore ipotetico studiato nell'articolo, che cosa compie principalmente とする?",
+      "options": [
+        "Assume il contenuto precedente come premessa valida entro il ragionamento, senza necessariamente affermarlo come vero nella realtà.",
+        "Esprime il grado di probabilità che il parlante attribuisce al contenuto precedente.",
+        "Trasforma necessariamente una proposizione falsa in una proposizione possibile.",
+        "Indica che il parlante ha deciso di credere definitivamente al contenuto precedente."
+      ],
+      "correctIndex": 0,
+      "explanation": "Il punto centrale di とする non è stabilire quanto una proposizione sia vera o probabile, ma cambiarne lo statuto nel discorso: il contenuto viene adottato come premessa o base operativa del ragionamento. Può essere plausibile, falso, immaginario o persino già noto."
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "参加費を千円とする。",
+      "question": "La stessa frase può significare sia «si fissa la quota di partecipazione a mille yen» sia «assumiamo, ai fini del ragionamento, una quota di mille yen». Da che cosa dipende principalmente questa differenza?",
+      "options": [
+        "Dalla presenza implicita o esplicita del soggetto di する.",
+        "Dal fatto che 千円 indichi una quantità reale oppure approssimativa.",
+        "Dal contesto e dallo scopo discorsivo: la struttura può stabilire effettivamente un valore oppure adottarlo soltanto come dato provvisorio all'interno di un ragionamento.",
+        "Dal registro: nello scritto とする è decisionale, mentre nel parlato è ipotetico."
+      ],
+      "correctIndex": 2,
+      "explanation": "La forma grammaticale, da sola, non decide se il valore venga realmente fissato oppure soltanto assunto per ipotesi. In un contesto organizzativo, 参加費を千円とする può stabilire davvero la quota; in un calcolo esemplificativo, la stessa cifra può essere adottata soltanto come premessa. Il valore concreto dell'operazione dipende quindi dal contesto."
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "P とすると・P とすれば・P としたら",
+      "question": "Quale analisi della loro formazione è corretta?",
+      "options": [
+        "とすると, とすれば e としたら sono tre particelle indipendenti aggiunte direttamente a P.",
+        "In tutte e tre le forme è P stesso a essere trasformato rispettivamente in と, ば e たら.",
+        "Soltanto とすると deriva da とする; le altre due sono costruzioni indipendenti.",
+        "Prima P viene assunto mediante とする; poi する prende rispettivamente la forma condizionale と, ば o たら."
+      ],
+      "correctIndex": 3,
+      "explanation": "La struttura è [P とする] + と → P とすると, [P とする] + ば → P とすれば e [P とする] + たら → P としたら. In とすると compaiono quindi due と con funzioni differenti: il primo delimita il contenuto assunto, il secondo è il と condizionale applicato a する."
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "とすると・とすれば・としたら",
+      "question": "Quale descrizione rappresenta meglio le loro tendenze d'uso?",
+      "options": [
+        "とすると esprime situazioni reali, とすれば situazioni probabili e としたら situazioni irreali.",
+        "とすると favorisce il passaggio dalla premessa alle sue conseguenze; とすれば mette maggiormente a fuoco l'accettazione e la valutazione della premessa; としたら si presta particolarmente a scenari immaginati, domande e reazioni personali.",
+        "とすれば è sempre più formale e quindi grammaticalmente preferibile alle altre due.",
+        "Le tre forme hanno esattamente lo stesso valore e differiscono soltanto per stile."
+      ],
+      "correctIndex": 1,
+      "explanation": "Queste differenze sono orientamenti pragmatici, non regole assolute né una scala rigida di probabilità. とすると mette facilmente in primo piano ciò che consegue dalla premessa; とすれば l'accettazione della premessa come base del ragionamento; としたら uno scenario nel quale il parlante o l'interlocutore viene invitato a collocarsi mentalmente."
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "明日の試験に合格したとする。",
+      "question": "Come va interpretata la forma 合格した in questa frase?",
+      "options": [
+        "Dimostra che l'esame è già avvenuto, nonostante 明日.",
+        "È grammaticalmente incompatibile con un evento futuro.",
+        "Indica che il parlante considera molto probabile il superamento dell'esame.",
+        "L'esame è futuro, ma all'interno dello scenario ipotizzato viene rappresentato come già superato."
+      ],
+      "correctIndex": 3,
+      "explanation": "La forma in ～た resta all'interno dell'ipotesi. Può collocare mentalmente il parlante in uno stadio successivo alla realizzazione di un evento che, nel mondo reale, è ancora futuro. Perciò ～たとする non equivale automaticamente a ipotizzare qualcosa del passato."
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "行くとしよう ／ 行こうとする",
+      "question": "Perché queste due strutture non vanno confuse?",
+      "options": [
+        "Perché としよう è una forma passata, mentre 行こうとする è una forma presente.",
+        "Perché soltanto 行こうとする contiene il verbo する.",
+        "Perché としよう esprime necessariamente una decisione reale, mai un'ipotesi.",
+        "In 行くとしよう il volitivo riguarda する e significa, nel valore studiato, «supponiamo di andare»; in 行こうとする il volitivo appartiene a 行く e la costruzione può indicare un tentativo o l'imminenza dell'azione."
+      ],
+      "correctIndex": 3,
+      "explanation": "La posizione della flessione è decisiva. 行く + と + しよう è la forma volitiva di とする; 行こう + とする contiene invece la forma volitiva del verbo 行く e appartiene a una costruzione diversa."
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "prompt": "温度は一定だとする。／ 温度が一定だとする。／ 温度を一定とする。",
+      "question": "Quale analisi distingue correttamente le tre particelle?",
+      "options": [
+        "は, が e を svolgono qui la stessa funzione e possono essere sostituiti liberamente.",
+        "は indica sempre contrasto, が chi formula l'ipotesi e を il soggetto dell'ipotesi.",
+        "は presenta 温度 come tema; が lo marca come soggetto della situazione ipotizzata; を lo presenta come elemento al quale viene attribuito un valore o una qualifica.",
+        "が e を sono equivalenti, mentre solo は modifica realmente la struttura della frase."
+      ],
+      "correctIndex": 2,
+      "explanation": "Le tre formulazioni possono condurre a una premessa simile, ma organizzano diversamente l'informazione. は topicalizza 温度; が lo identifica come soggetto del predicato interno alla premessa; を lo presenta come elemento al quale viene assegnata la qualifica o il valore espresso dopo di esso."
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "prompt": "雨が降ったら、試合を中止します。／ 雨が降るとしたら、夕方以降だろう。",
+      "question": "Qual è la differenza strutturale fondamentale?",
+      "options": [
+        "Nella seconda frase としたら significa che la pioggia è meno probabile.",
+        "La prima riguarda il futuro, mentre la seconda riguarda necessariamente il passato.",
+        "Nel primo caso たら collega direttamente l'evento alla conseguenza; nel secondo la possibilità della pioggia viene prima assunta come premessa e poi si ragiona all'interno di quello scenario.",
+        "Nella seconda frase としたら equivale semplicemente a una versione più formale di たら."
+      ],
+      "correctIndex": 2,
+      "explanation": "Con il normale たら si stabilisce direttamente una relazione tra la condizione e ciò che avverrà se essa si realizza. Con とする + condizionale interviene un livello ulteriore: la possibilità della pioggia viene prima costituita come premessa sulla quale sviluppare il ragionamento."
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "prompt": "彼はすでに辞退したらしい。とすれば、次の候補は田中さんだ。",
+      "question": "Che funzione svolge とすれば in questo esempio?",
+      "options": [
+        "Introduce una nuova ipotesi completamente indipendente dalla frase precedente.",
+        "Indica che il parlante considera falsa l'informazione appena ricevuta.",
+        "Trasforma 次の候補は田中さんだ nella premessa del ragionamento.",
+        "Riprende l'informazione precedente come premessa e introduce l'inferenza che viene ricavata da essa."
+      ],
+      "correctIndex": 3,
+      "explanation": "とすると, とすれば e としたら possono avere anche una funzione anaforica e testuale: la premessa può essere già stata formulata nella frase precedente. Qui とすれば equivale sostanzialmente a «se è così» o «partendo da questo»."
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "prompt": "とする・とすると・とすれば・としたら",
+      "question": "Quale affermazione sul loro registro è più accurata?",
+      "options": [
+        "Le preferenze di registro esistono, ma dipendono anche dalla funzione discorsiva: としたら è particolarmente affine alla conversazione e agli scenari immaginati, とすれば al ragionamento ponderato e とすると allo sviluppo delle conseguenze, senza che nessuna forma sia rigidamente confinata allo scritto o al parlato.",
+        "としたら appartiene esclusivamente al parlato informale e non può comparire in una domanda cortese.",
+        "とすれば è sempre scritto e formale, mentre とすると è esclusivamente colloquiale.",
+        "La scelta fra le quattro forme dipende solo dal grado di cortesia desiderato."
+      ],
+      "correctIndex": 0,
+      "explanation": "Registro e funzione comunicativa non coincidono. としたら può comparire anche in domande professionali cortesi; とすれば non è confinato alla scrittura; とすると è naturale anche nel parlato quando si ragiona sulle conseguenze di un dato. Le differenze sono tendenze d'uso, non restrizioni assolute."
+    }
+  ],
+  "area": "grammatica",
+  "searchTerms": [
+    "とする",
+    "とすると",
+    "とすれば",
+    "としたら",
+    "としよう",
+    "to suru",
+    "to suru to",
+    "to sureba",
+    "to shitara",
+    "grammatica giapponese",
+    "ipotesi",
+    "supporre",
+    "assumere",
+    "condizionale"
+  ]
+}
