@@ -2842,14 +2842,41 @@ h2 {
 }
 
 /* ==================================================
-   HOME TABLET — CILIEGIO HEADER
+   HOME TABLET — HEADER
    ================================================== */
 @media (min-width: 601px) and (max-width: 1100px) {
+
+  .site-header .header-inner {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    padding: 0.7rem 1.5rem 0.9rem;
+  }
+
+  .site-logo-image {
+    left: 0;
+    top: 0;
+    width: 195px;
+  }
+
+  .site-nav {
+    width: 100%;
+    transform: none;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+  }
+
+  .site-header .search-trigger {
+    left: 0;
+  }
+
   body:has(.hn-home-hero) .site-header::before {
-    top: -45px;
-    left: -110px;
-    width: 1250px;
-    height: 210px;
+    top: -75px;
+    left: -170px;
+    width: 900px;
+    height: 190px;
   }
 }
 
