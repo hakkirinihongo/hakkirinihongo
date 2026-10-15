@@ -4,28 +4,33 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 const categories = [
   {
     slug: 'concepts-and-distinctions',
-    title: 'Concepts\nand Distinctions',
-    description: 'Learning Japanese by seeing the differences.'
+    title: 'Concepts and\nDistinctions',
+    description: 'Learning Japanese by understanding the differences.',
+    icon: 'book'
   },
   {
     slug: 'grammar-dissections',
     title: 'Grammar\nDissections',
-    description: 'In-depth explanations of Japanese grammar.'
+    description: 'In-depth analyses of Japanese grammar.',
+    icon: 'document'
   },
   {
     slug: 'niche-japanese',
     title: 'Niche\nJapanese',
-    description: 'What textbooks often leave unexplained.'
+    description: 'What usually goes unexplained.',
+    icon: 'compass'
   },
   {
     slug: 'history-of-grammar',
     title: 'History of\nGrammar',
-    description: 'Where Japanese expressions come from.'
+    description: 'The origins of the language.',
+    icon: 'temple'
   },
   {
-  slug: 'functional-kanji',
-  title: 'Functional\nKanji',
-  description: 'The kanji that build grammar.'
+    slug: 'functional-kanji',
+    title: 'Functional\nKanji',
+    description: 'The kanji that build grammar.',
+    icon: 'kanji'
   }
 ];
 
@@ -39,6 +44,9 @@ const posts = Object.entries(postModules).map(([path, mod]) => {
   return {
     slug,
     title: frontmatter.title ?? slug,
+    subtitle: frontmatter.subtitle ?? '',
+    description: frontmatter.description ?? '',
+    category: frontmatter.category ?? '',
     date: frontmatter.date ?? '',
     image: frontmatter.image ?? '/images/article-placeholder.jpg',
   };
@@ -47,6 +55,14 @@ const posts = Object.entries(postModules).map(([path, mod]) => {
 posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 const latestPosts = posts.slice(0, 3);
+
+const categoryLabels: Record<string, string> = {
+  'concepts-and-distinctions': 'Concepts and Distinctions',
+  'grammar-dissections': 'Grammar Dissections',
+  'niche-japanese': 'Niche Japanese',
+  'history-of-grammar': 'History of Grammar',
+  'functional-kanji': 'Functional Kanji',
+};
 
 const formatDate = (date) => {
   if (!date) return '';
@@ -73,59 +89,189 @@ const formatDate = (date) => {
 />
 
   <section class="hn-home-hero">
-  <div class="hn-home-hero__overlay">
-    <div class="hn-home-hero__content">
-      <h1>Hakkiri Nihongo</h1>
-      <p class="hn-home-hero__subtitle">Understand Japanese beyond the rules</p>
-      <p class="hn-home-hero__text">
-        Your reference point for advanced Japanese grammar explained clearly.
-      </p>
+    <div class="hn-home-hero__inner">
 
-      <a href="/en/articles/" class="hn-home-hero__button">
-        Browse articles
-      </a>
+      <div class="hn-home-hero__content">
+
+        <p class="hn-home-hero__eyebrow">
+          STUDY <span>•</span> IN-DEPTH ANALYSIS <span>•</span> CULTURE
+        </p>
+
+        <h1>
+          <span class="hn-home-hero__title-dark">Hakkiri</span>
+          <span class="hn-home-hero__title-red">Nihongo</span>
+        </h1>
+
+        <p class="hn-home-hero__subtitle">
+          Understand Japanese beyond the rules
+        </p>
+
+        <span class="hn-home-hero__divider" aria-hidden="true"></span>
+
+        <p class="hn-home-hero__text">
+          Your reference point for advanced Japanese grammar,<br />
+          linguistic nuance, and cultural context.
+        </p>
+
+        <a href="/en/articles/" class="hn-home-hero__button">
+          <span>Browse articles</span>
+          <span class="hn-home-hero__button-arrow" aria-hidden="true">→</span>
+        </a>
+
+        <div class="hn-home-hero__thanks">
+          <p lang="ja">
+            たくさんある中からこのサイトを選んで、<br />
+            勉強してくれて、本当にありがとう。
+          </p>
+
+          <p class="hn-home-hero__thanks-it">
+  Thank you so much for choosing this site<br />
+  out of so many others<br />
+  and for studying with us.
+</p>
+        </div>
+
+      </div>
+
+      <div class="hn-home-hero__vertical-note" aria-hidden="true">
+        言葉の、その先へ
+      </div>
+
     </div>
-  </div>
-
-  <p class="hn-home-hero__thanks">
-    たくさんある中からこのサイトを選んで、勉強してくれて、<br />
-    本当にありがとう。
-  </p>
-</section>
+  </section>
 
   <main class="hn-home-main">
 
     <section class="hn-home-categories">
-      {categories.map((cat, index) => (
-        <a href={`/en/articles/c/${cat.slug}/`} class={`hn-home-category-card cat-${index}`}>
-          <h2>{cat.title}</h2>
-          <p>{cat.description}</p>
-        </a>
-      ))}
+
+      <div class="hn-home-categories__heading">
+        <div>
+          <p class="hn-home-categories__eyebrow">CATEGORIES</p>
+          <h2>Explore the topics</h2>
+          <span class="hn-home-categories__divider" aria-hidden="true"></span>
+        </div>
+
+        <p class="hn-home-categories__intro">
+          In-depth guides, analyses, and resources for understanding
+          Japanese in all its complexity and beauty.
+        </p>
+      </div>
+
+      <div class="hn-home-categories__grid">
+        {categories.map((cat, index) => (
+          <a href={`/en/articles/c/${cat.slug}/`} class={`hn-home-category-card cat-${index}`}>
+
+            <span class="hn-home-category-card__icon" aria-hidden="true">
+
+              {cat.icon === 'book' && (
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 5.5c2.6-.8 5.2-.4 8 1.2v12c-2.8-1.6-5.4-2-8-1.2v-12Z" />
+                  <path d="M20 5.5c-2.6-.8-5.2-.4-8 1.2v12c2.8-1.6 5.4-2 8-1.2v-12Z" />
+                </svg>
+              )}
+
+              {cat.icon === 'document' && (
+                <svg viewBox="0 0 24 24">
+                  <rect x="5" y="3.5" width="14" height="17" rx="1.5" />
+                  <path d="M8 8h8M8 11.5h8M8 15h5" />
+                </svg>
+              )}
+
+              {cat.icon === 'compass' && (
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="8.5" />
+                  <path d="m15.5 8.5-2 5-5 2 2-5 5-2Z" />
+                </svg>
+              )}
+
+              {cat.icon === 'temple' && (
+                <svg viewBox="0 0 24 24">
+                  <path d="M3.5 9h17M5 9l7-5 7 5M6.5 9v8M10 9v8M14 9v8M17.5 9v8M4 17h16M3 20h18" />
+                </svg>
+              )}
+
+              {cat.icon === 'kanji' && (
+                <span class="hn-home-category-card__kanji">字</span>
+              )}
+
+            </span>
+
+            <div class="hn-home-category-card__body">
+              <h3>{cat.title}</h3>
+              <p>{cat.description}</p>
+            </div>
+
+            <span class="hn-home-category-card__arrow" aria-hidden="true">
+              →
+            </span>
+
+          </a>
+        ))}
+      </div>
+
     </section>
 
     <section class="hn-home-latest">
-      <h2>Latest Articles</h2>
+
+      <div class="hn-home-latest__heading">
+        <div>
+          <p class="hn-home-latest__eyebrow">RECENT ARTICLES</p>
+          <h2>Latest Articles</h2>
+          <span class="hn-home-latest__divider" aria-hidden="true"></span>
+        </div>
+
+        <a href="/en/articles/" class="hn-home-latest__all">
+          <span>View all articles</span>
+          <span class="hn-home-latest__all-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
 
       <div class="hn-home-latest-grid">
         {latestPosts.map((post) => (
           <article class="hn-home-post-card">
-            <a href={`/en/articles/${post.slug}/`}>
-              <img src={post.image} alt="" loading="lazy" />
-              <div class="hn-home-post-card__body">
-                <h3>{post.title}</h3>
-                {post.date && <p>{formatDate(post.date)}</p>}
+
+            <a href={`/en/articles/${post.slug}/`} class="hn-home-post-card__link">
+
+              <div class="hn-home-post-card__image">
+                <img src={post.image} alt="" loading="lazy" />
               </div>
+
+              <div class="hn-home-post-card__body">
+
+                {post.category && (
+                  <span class="hn-home-post-card__category">
+                    {categoryLabels[post.category] ?? post.category}
+                  </span>
+                )}
+
+                <h3>{post.title}</h3>
+
+                {post.description && (
+                  <p class="hn-home-post-card__description">
+                    {post.description}
+                  </p>
+                )}
+
+                <div class="hn-home-post-card__footer">
+                  {post.date && (
+                    <time datetime={post.date}>
+                      {formatDate(post.date)}
+                    </time>
+                  )}
+
+                  <span class="hn-home-post-card__arrow" aria-hidden="true">
+                    →
+                  </span>
+                </div>
+
+              </div>
+
             </a>
+
           </article>
         ))}
       </div>
 
-      <div class="hn-home-all-link">
-  <a href="/en/articles/" class="hn-home-all-button">
-    Browse all articles&nbsp;›
-  </a>
-</div>
     </section>
 
   </main>

@@ -256,11 +256,14 @@ const alternateEnglishURL = alternateEnglish
     <header class="site-header" data-pagefind-ignore>
       <div class="header-inner">
         <div class="site-title">
-          <a href="/" class="site-logo">
-            <span class="logo-jp">はっきり日本語</span>
-            <span class="logo-it">il giapponese chiaramente</span>
-          </a>
-        </div>
+  <a href={isEnglish ? "/en/" : "/"} class="site-logo">
+    <img
+      src="/images/hakkiri-logo.png"
+      alt="Hakkiri Nihongo"
+      class="site-logo-image"
+    />
+  </a>
+</div>
 
         <nav class="site-nav">
   {isEnglish ? (
@@ -592,12 +595,31 @@ const alternateEnglishURL = alternateEnglish
           }
         });
 
-        document.addEventListener('keydown', (event) => {
+                document.addEventListener('keydown', (event) => {
           if (event.key === 'Escape') {
             closeNavDropdown();
           }
         });
       }
+
+      const siteHeader = document.querySelector('.site-header');
+
+      function updateHeaderScrollState() {
+        if (!siteHeader) return;
+
+        siteHeader.classList.toggle(
+          'is-scrolled',
+          window.scrollY > 10
+        );
+      }
+
+      updateHeaderScrollState();
+
+      window.addEventListener(
+        'scroll',
+        updateHeaderScrollState,
+        { passive: true }
+      );
     </script>
 
     <style>
@@ -631,13 +653,13 @@ const alternateEnglishURL = alternateEnglish
       }
 
       .search-trigger-icon {
-        width: 18px;
-        height: 18px;
-        display: block;
-        stroke: currentColor;
-        fill: none;
-        stroke-width: 2.2;
-      }
+  width: 21px;
+  height: 21px;
+  display: block;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.2;
+}
 
       .search-overlay[hidden] {
         display: none;
@@ -772,8 +794,8 @@ const alternateEnglishURL = alternateEnglish
         }
 
         .search-trigger span {
-          display: none;
-        }
+  display: inline;
+}
       }
     </style>
     <script is:inline>
