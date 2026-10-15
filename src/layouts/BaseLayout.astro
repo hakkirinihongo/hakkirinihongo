@@ -407,10 +407,19 @@ const alternateEnglishURL = alternateEnglish
       </p>
 
       <p>
-        {isEnglish
-          ? 'A site dedicated to Japanese grammar: distinctions, nuanced grammar, advanced patterns, and clear explanations beyond textbook rules.'
-          : 'Sito dedicato allo studio della grammatica giapponese: concetti, distinzioni, grammatica di nicchia e dissezioni grammaticali spiegati chiaramente.'}
-      </p>
+  {isEnglish ? (
+    <>
+      A site dedicated to Japanese grammar: distinctions, nuanced grammar,
+      advanced patterns, and clear explanations beyond textbook rules.
+    </>
+  ) : (
+    <>
+      Sito dedicato allo studio della grammatica giapponese: concetti, distinzioni,
+      <br class="footer-tablet-break" />
+      grammatica di nicchia e dissezioni grammaticali spiegati chiaramente.
+    </>
+  )}
+</p>
 
       <p>
         {isEnglish ? 'Follow Hakkiri Nihongo on' : 'Segui Hakkiri Nihongo anche su'}
