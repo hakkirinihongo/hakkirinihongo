@@ -2893,3 +2893,32 @@ h2 {
     transform: none;
   }
 }
+
+/* ==================================================
+   HOME TABLET — CARD CATEGORIE
+   ================================================== */
+@media (min-width: 601px) and (max-width: 900px) {
+  .hn-home-categories__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 88vw;
+    gap: 1.4rem;
+  }
+
+  .hn-home-category-card {
+    aspect-ratio: auto;
+    min-height: 380px;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1366px) {
+  .hn-home-categories__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 90vw;
+    gap: 1.4rem;
+  }
+
+  .hn-home-category-card {
+    aspect-ratio: auto;
+    min-height: 380px;
+  }
+}
