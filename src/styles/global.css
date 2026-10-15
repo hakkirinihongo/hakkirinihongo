@@ -2846,10 +2846,25 @@ h2 {
    ================================================== */
 @media (min-width: 601px) and (max-width: 1100px) {
 
+  body:has(.hn-home-hero) .site-header {
+    position: sticky;
+    top: 0;
+    left: auto;
+    right: auto;
+
+    background: #fbf8f4;
+    border-bottom: 1px solid rgba(90, 70, 55, 0.12);
+  }
+
+  body:has(.hn-home-hero) .site-header::before {
+    display: none;
+  }
+
   .site-header .header-inner {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     gap: 0.65rem;
     padding: 0.7rem 1.5rem 0.9rem;
   }
@@ -2863,6 +2878,7 @@ h2 {
   .site-nav {
     width: 100%;
     transform: none;
+
     justify-content: center;
     flex-wrap: wrap;
     gap: 0.5rem 1rem;
@@ -2872,11 +2888,8 @@ h2 {
     left: 0;
   }
 
-  body:has(.hn-home-hero) .site-header::before {
-    top: -75px;
-    left: -170px;
-    width: 900px;
-    height: 190px;
+  .site-header .search-trigger-icon,
+  .site-header .search-trigger span {
+    transform: none;
   }
 }
-
