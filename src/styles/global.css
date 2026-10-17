@@ -425,8 +425,8 @@ body:has(.hn-home-hero)::after {
   right: -5px;
   bottom: -12px;
 
-  width: 250px;
-  height: 400px;
+  width: 220px;
+  height: 320px;
 
   background: url("/images/home-tanuki-corner.webp") bottom right / contain no-repeat;
 
@@ -479,7 +479,7 @@ body:has(.hn-home-hero) .site-header .header-inner {
   rgba(251, 248, 241, 0.18) 65%,
   rgba(251, 248, 241, 0.02) 100%
 ),
-    url("/images/Alba giapponese tra sakura e Fuji.avif") center center / cover no-repeat;
+    url("/images/Maneki-neko nella stanza tatami fiorita.avif") center center / cover no-repeat;
 }
 
 /* alone luminoso molto leggero, simile al mockup */
@@ -498,23 +498,9 @@ body:has(.hn-home-hero) .site-header .header-inner {
     );
 }
 
-/* curva inferiore che accompagna il passaggio alla sezione successiva */
+/* la sinusoide è già incorporata nell'immagine hero */
 .hn-home-hero::after {
-  content: "";
-  position: absolute;
-  z-index: 0;
-
-  left: 50%;
-  bottom: -115px;
-  transform: translateX(-50%);
-
-  width: 125%;
-  height: 155px;
-
-  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-  background: #fbf8f1;
-
-  pointer-events: none;
+  display: none;
 }
 
 .hn-home-hero__inner {
@@ -775,7 +761,7 @@ padding:
     rgba(251, 248, 241, 0.42) 45%,
     rgba(251, 248, 241, 0.16) 100%
   ),
-  url("/images/Alba sul lago ai piedi del Fuji (1).webp") center center / cover no-repeat;
+  url("/images/Maneki-neko nella stanza tatami fiorita.avif") center 68% / cover no-repeat;
   }
 
   .hn-home-hero__inner {
