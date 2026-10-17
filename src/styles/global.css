@@ -2942,4 +2942,18 @@ h2 {
   }
 }
 
+/* HOME — LUMINOSITÀ FOTO SOLO CELLULARE */
+@media (max-width: 600px) {
+  .hn-home-hero {
+    background-image:
+      linear-gradient(
+        to bottom,
+        rgba(251, 248, 241, 0.30) 0%,
+        rgba(251, 248, 241, 0.25) 45%,
+        rgba(251, 248, 241, 0.08) 100%
+      ),
+      url("/images/Maneki-neko nella stanza tatami fiorita.avif");
+  }
+}
+
 
