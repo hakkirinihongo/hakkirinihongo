@@ -2941,3 +2941,10 @@ h2 {
     display: initial;
   }
 }
+
+/* HOME — POSIZIONE IMMAGINE SOLO CELLULARE */
+@media (max-width: 600px) {
+  .hn-home-hero {
+    background-position: center, 88% 68%;
+  }
+}
