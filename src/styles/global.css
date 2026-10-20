@@ -2945,5 +2945,238 @@ h2 {
 }
 
 
+/* ==================================================
+   BIBLIOTECA DI GRAMMATICA DI BASE
+   ================================================== */
+
+/* Titolo principale */
+.hn-basic-library > h1 {
+  margin: 0 0 0.9rem;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.5rem, 4.2vw, 3.6rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+
+  color: #7a332b;
+}
+
+/* Linea decorativa sotto il titolo */
+.hn-basic-library > h1::after {
+  content: "";
+  display: block;
+
+  width: 54px;
+  height: 2px;
+  margin-top: 0.9rem;
+
+  background: #b7352d;
+}
+
+/* Presentazione della biblioteca */
+.hn-basic-library > .basic-library-intro {
+  max-width: 760px;
+  margin: 0 0 2.4rem;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.15rem, 1.6vw, 1.36rem);
+  font-weight: 500;
+  line-height: 1.55;
+
+  color: #414552;
+}
+
+/* Titoli degli articoli nella biblioteca */
+.hn-basic-library .post-item h2.post-title {
+  display: inline-block;
+  margin: 0 0 0.55rem !important;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.65rem, 2.2vw, 1.9rem);
+  font-weight: 600;
+  line-height: 1.2;
+
+  color: #7a332b;
+  transition: color 0.25s ease;
+}
+
+/* Linea decorativa al passaggio del mouse */
+.hn-basic-library .post-item h2.post-title::after {
+  content: "";
+  display: block;
+
+  width: 0;
+  height: 2px;
+  margin-top: 0.35rem;
+
+  background: #b7352d;
+  transition: width 0.35s ease;
+}
+
+.hn-basic-library .post-item:hover h2.post-title::after {
+  width: 100%;
+}
+
+.hn-basic-library .post-item:hover h2.post-title {
+  color: #9f3b32;
+}
+
+
+/* ==================================================
+   HOME — BIBLIOTECA DI GRAMMATICA DI BASE
+   ================================================== */
+
+.hn-home-basic-library {
+  position: relative;
+  z-index: 2;
+
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+
+  padding: 1.3rem 1.5rem 1.5rem;
+
+  background: linear-gradient(
+    110deg,
+    #fbf7f2 0%,
+    #f3e9e1 50%,
+    #fbf7f2 100%
+  );
+
+  border-top: 1px solid rgba(130, 85, 70, 0.10);
+  border-bottom: 1px solid rgba(130, 85, 70, 0.10);
+}
+
+.hn-home-basic-library__inner {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Piccola intestazione superiore */
+
+.hn-home-basic-library__eyebrow {
+  margin: 0 0 0.6rem;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+
+  color: #a4443b;
+}
+
+/* Titolo */
+
+.hn-home-basic-library h2 {
+  margin: 0;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.2rem, 3.5vw, 3.1rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+
+  color: #7a332b;
+}
+
+/* Linea decorativa */
+
+.hn-home-basic-library__divider {
+  display: block;
+
+  width: 48px;
+  height: 2px;
+  margin: 1rem auto 1.15rem;
+
+  background: #b7352d;
+}
+
+/* Descrizione */
+
+.hn-home-basic-library__description {
+  max-width: 650px;
+  margin: 0 auto;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+  font-weight: 500;
+  line-height: 1.5;
+
+  color: #424650;
+}
+
+/* Pulsante */
+
+.hn-home-basic-library__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+
+  margin-top: 1.7rem;
+  padding: 0.75rem 1.8rem;
+
+  border: 1px solid rgba(120, 40, 35, 0.20);
+  border-radius: 999px;
+
+  background: linear-gradient(
+    135deg,
+    #b33b33,
+    #913029
+  );
+
+  color: #ffffff !important;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.12rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  text-decoration: none;
+
+  box-shadow: 0 8px 20px rgba(110, 36, 31, 0.14);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.hn-home-basic-library__button:hover {
+  transform: translateY(-2px);
+  color: #ffffff !important;
+  box-shadow: 0 13px 27px rgba(110, 36, 31, 0.22);
+}
+
+.hn-home-basic-library__button span {
+  transition: transform 0.25s ease;
+}
+
+.hn-home-basic-library__button:hover span {
+  transform: translateX(4px);
+}
+
+/* Adattamento smartphone */
+
+@media (max-width: 600px) {
+  .hn-home-basic-library {
+  padding: 1.3rem 1.4rem 1.5rem;
+}
+
+  .hn-home-basic-library h2 {
+    font-size: 2.35rem;
+  }
+
+  .hn-home-basic-library__description {
+    font-size: 1.13rem;
+    line-height: 1.55;
+  }
+
+  .hn-home-basic-library__button {
+    max-width: 100%;
+  }
+}
+
+
+
 
 
