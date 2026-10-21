@@ -36,7 +36,10 @@ const expandJlptLevels = (value) => {
 };
 
 export async function getStaticPaths() {
-  const postImports = import.meta.glob('../../../../content/en/**/*.mdx');
+  const postImports = {
+    ...import.meta.glob('../../../../content/en/**/*.mdx'),
+    ...import.meta.glob('../../../../content/basic-grammar/**/*.mdx')
+  };
   const allowed = new Set(['n5', 'n4', 'n3', 'n2', 'n1']);
 
   const allLevels = await Promise.all(
@@ -81,7 +84,10 @@ export async function getStaticPaths() {
   }));
 }
 
-const postImports = import.meta.glob('../../../../content/en/**/*.mdx');
+const postImports = {
+  ...import.meta.glob('../../../../content/en/**/*.mdx'),
+  ...import.meta.glob('../../../../content/basic-grammar/**/*.mdx')
+};
 
 const posts = await Promise.all(
   Object.entries(postImports).map(async ([path, resolver]) => {
@@ -89,7 +95,11 @@ const posts = await Promise.all(
     const fm = mod.frontmatter ?? {};
     const slug = fm.slug ?? path.split('/').pop().replace(/\.mdx?$/, '');
 
-    return { slug, frontmatter: fm };
+    const url = path.includes('/content/basic-grammar/')
+      ? `/en/basic-japanese-grammar/${slug}/`
+      : `/en/articles/${slug}/`;
+
+    return { slug, url, frontmatter: fm };
   })
 );
 
@@ -173,22 +183,22 @@ const seriesSummary = Object.values(
 )}
 
     <ul class="post-list">
-      {filteredPosts.map(({ slug, frontmatter }) => (
+      {filteredPosts.map(({ slug, url, frontmatter }) => (
         <li class="post-item">
-          <a class="post-thumb" href={`/en/articles/${slug}/`} aria-hidden="true" tabindex="-1">
+          <a class="post-thumb" href={url} aria-hidden="true" tabindex="-1">
             <img src={frontmatter.image ?? '/og-image.png'} alt="" loading="lazy" />
           </a>
 
           <div class="post-content">
             <h3 class="post-title">
-              <a class="post-link" href={`/en/articles/${slug}/`}>
+              <a class="post-link" href={url}>
                 {frontmatter.title ?? slug}
               </a>
             </h3>
 
             {frontmatter.description && (
               <p class="post-description">
-                <a class="post-link" href={`/en/articles/${slug}/`}>
+                <a class="post-link" href={url}>
                   {frontmatter.description}
                 </a>
               </p>
