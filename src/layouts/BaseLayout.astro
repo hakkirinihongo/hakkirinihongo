@@ -13,15 +13,9 @@ export interface Props {
   alternateEnglish?: string;
 }
 
-const isEnglish = Astro.url.pathname.startsWith('/en/');
-
 const {
-  title = isEnglish
-    ? 'Hakkiri Nihongo | Japanese Grammar Explained Clearly'
-    : 'Hakkiri Nihongo | Grammatica giapponese spiegata chiaramente',
-  description = isEnglish
-    ? 'Explore Japanese grammar with clear explanations of essential structures, subtle distinctions, and advanced patterns.'
-    : 'Esplora la grammatica giapponese: strutture fondamentali, distinzioni, sfumature e forme avanzate spiegate chiaramente.',
+  title = 'Hakkiri Nihongo | grammatica giapponese avanzata spiegata chiaramente',
+  description = 'Hakkiri Nihongo: grammatica giapponese avanzata, concetti, distinzioni e grammatica di nicchia spiegati chiaramente.',
   image = 'https://hakkirinihongo.com/og-image.png',
   canonical,
   noindex = false,
@@ -30,13 +24,7 @@ const {
   alternateEnglish
 } = Astro.props as Props;
 
-// Le homepage e gli archivi della nuova biblioteca non sono singoli articoli.
-const isWebsitePage = [
-  '/',
-  '/en/',
-  '/grammatica-di-base/',
-  '/en/basic-japanese-grammar/'
-].includes(Astro.url.pathname);
+const isEnglish = Astro.url.pathname.startsWith('/en/');
 
 const canonicalURL =
   canonical ?? new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site).href;
@@ -228,7 +216,7 @@ const alternateEnglishURL = alternateEnglish
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content={isWebsitePage ? "website" : "article"} />
+    <meta property="og:type" content="article" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content="Hakkiri Nihongo" />
     <meta property="og:image" content={imageURL} />

@@ -54,10 +54,7 @@ const normalizeSeries = (value) => {
 };
 
 export async function getStaticPaths() {
-  const postImports = {
-    ...import.meta.glob('../../../content/articoli/**/*.mdx'),
-    ...import.meta.glob('../../../content/grammatica-base/**/*.mdx')
-  };
+  const postImports = import.meta.glob('../../../content/articoli/**/*.mdx');
 
   const allLevels = await Promise.all(
     Object.entries(postImports).map(async ([_, resolver]) => {
@@ -106,10 +103,7 @@ export async function getStaticPaths() {
   }));
 }
 
-const postImports = {
-  ...import.meta.glob('../../../content/articoli/**/*.mdx'),
-  ...import.meta.glob('../../../content/grammatica-base/**/*.mdx')
-};
+const postImports = import.meta.glob('../../../content/articoli/**/*.mdx');
 
 const posts = await Promise.all(
   Object.entries(postImports).map(async ([path, resolver]) => {
@@ -117,13 +111,8 @@ const posts = await Promise.all(
     const fm = mod.frontmatter ?? {};
     const slug = fm.slug ?? path.split('/').pop().replace(/\.mdx?$/, '');
 
-    const url = path.includes('/content/grammatica-base/')
-      ? `/grammatica-di-base/${slug}/`
-      : `/articoli/${slug}/`;
-
     return {
       slug,
-      url,
       frontmatter: fm,
     };
   })
@@ -206,11 +195,11 @@ const visibleSeries = Object.entries(
     )}
 
     <ul class="post-list">
-      {filteredPosts.map(({ slug, url, frontmatter }) => (
+      {filteredPosts.map(({ slug, frontmatter }) => (
         <li class="post-item">
           <a
             class="post-thumb"
-            href={url}
+            href={`/articoli/${slug}/`}
             aria-hidden="true"
             tabindex="-1"
           >
@@ -223,14 +212,14 @@ const visibleSeries = Object.entries(
 
           <div class="post-content">
             <h3 class="post-title">
-              <a class="post-link" href={url}>
+              <a class="post-link" href={`/articoli/${slug}/`}>
                 {frontmatter.title ?? slug}
               </a>
             </h3>
 
             {frontmatter.description && (
               <p class="post-description">
-                <a class="post-link" href={url}>
+                <a class="post-link" href={`/articoli/${slug}/`}>
                   {frontmatter.description}
                 </a>
               </p>
