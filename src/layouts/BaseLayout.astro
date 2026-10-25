@@ -13,9 +13,15 @@ export interface Props {
   alternateEnglish?: string;
 }
 
+const isEnglish = Astro.url.pathname.startsWith('/en/');
+
 const {
-  title = 'Hakkiri Nihongo | grammatica giapponese avanzata spiegata chiaramente',
-  description = 'Hakkiri Nihongo: grammatica giapponese avanzata, concetti, distinzioni e grammatica di nicchia spiegati chiaramente.',
+  title = isEnglish
+    ? 'Hakkiri Nihongo | Advanced Japanese Grammar Explained Clearly'
+    : 'Hakkiri Nihongo | grammatica giapponese avanzata spiegata chiaramente',
+  description = isEnglish
+    ? 'Hakkiri Nihongo: clear explanations of advanced Japanese grammar, key concepts, subtle distinctions, and lesser-known grammar patterns.'
+    : 'Hakkiri Nihongo: grammatica giapponese avanzata, concetti, distinzioni e grammatica di nicchia spiegati chiaramente.',
   image = 'https://hakkirinihongo.com/og-image.png',
   canonical,
   noindex = false,
@@ -24,7 +30,32 @@ const {
   alternateEnglish
 } = Astro.props as Props;
 
-const isEnglish = Astro.url.pathname.startsWith('/en/');
+// Le homepage e le pagine di archivio non sono singoli articoli.
+const currentPath = Astro.url.pathname.replace(/\/?$/, '/');
+const isWebsitePage = [
+  '/',
+  '/en/',
+  '/articoli/',
+  '/en/articles/',
+  '/articoli/serie/',
+  '/en/articles/series/',
+  '/articoli/piu-consultati/',
+  '/en/articles/most-consulted/',
+  '/articoli/jlpt/',
+  '/en/articles/jlpt/',
+  '/chi-siamo/',
+  '/en/about/',
+  '/contatti/',
+  '/en/contact/',
+  '/esercizi/',
+  '/en/exercises/',
+  '/prossimi-articoli/',
+  '/en/upcoming-articles/',
+  '/sfoglia-articoli/',
+  '/traffic-dashboard/'
+].includes(currentPath) ||
+  /^\/articoli\/jlpt\/n[1-5]\/$/.test(currentPath) ||
+  /^\/en\/articles\/jlpt\/n[1-5]\/$/.test(currentPath);
 
 const canonicalURL =
   canonical ?? new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site).href;
@@ -216,7 +247,7 @@ const alternateEnglishURL = alternateEnglish
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content={isWebsitePage ? "website" : "article"} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content="Hakkiri Nihongo" />
     <meta property="og:image" content={imageURL} />
