@@ -1,0 +1,245 @@
+{
+  "slug": "kai-do",
+  "articleSlug": "kai-vs-do-japanese-counters",
+  "title": "Exercises on 回 and 度 (kai and do)",
+  "shortTitle": "回 and 度",
+  "description": "15 questions on the difference between 回 and 度, counting occurrences, expressing frequency, and key constructions with 一度, 一回, 何度, and 何回.",
+  "jlpt": "All levels",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "prompt": "回 ／ 度",
+      "question": "Which description best captures the core distinction presented in the article?",
+      "options": [
+        "回 tends to present occurrences as units in a series to be counted, whereas 度 more readily presents individual occurrences as occasions on which something happens.",
+        "回 is used exclusively for regular events, whereas 度 is used exclusively for unpredictable events.",
+        "回 always refers to repeatable events, whereas 度 refers to events that can happen only once.",
+        "回 expresses an exact number, whereas 度 cannot."
+      ],
+      "correctIndex": 0,
+      "explanation": "The distinction mainly concerns how the event is viewed. 回 naturally brings the count and number of repetitions to the foreground, whereas 度 can give greater prominence to the occasions on which the event occurs. This is a tendency rather than an absolute rule, and the two counters overlap considerably."
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "You need to tell someone to press a button three times.",
+      "question": "Which statement best describes 三回 and 三度 in this context?",
+      "options": [
+        "三度 is grammatically impossible.",
+        "Both can indicate three presses, but 三回 is the more usual choice in an instruction that specifies the number of repetitions.",
+        "三度 means that the three presses must be separated in time.",
+        "三回 necessarily implies that the button will be pressed again in the future."
+      ],
+      "correctIndex": 1,
+      "explanation": "In an instruction that specifies a number of repetitions, 回 is especially natural because it presents the actions as units in a count. 三度 is still possible and can refer to the same three presses."
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "その作家には一回だけ会ったことがあります。",
+      "question": "What can be inferred from the use of 一回?",
+      "options": [
+        "The speaker expects to meet the writer again.",
+        "一回 presents the meeting as a single counted occurrence, but it does not imply that another meeting will take place.",
+        "一回 shows that the meeting was part of a planned series.",
+        "With a one-time event, 一度 would be obligatory."
+      ],
+      "correctIndex": 1,
+      "explanation": "一回 can refer to a single performance or event with no expectation that it will be repeated. 回 presents the event as a countable occurrence; it does not make a prediction about what will happen in the future."
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "月に一回、家族で外食します。 ／ 月に一度、家族で外食します。",
+      "question": "Which interpretation is correct?",
+      "options": [
+        "Only 月に一回 is natural because a monthly habit is regular.",
+        "月に一度 necessarily implies that the monthly outing is exceptional.",
+        "Both are natural: regular periodicity does not make 回 obligatory.",
+        "月に一度 can be used only when the interval is longer than one month."
+      ],
+      "correctIndex": 2,
+      "explanation": "The simple rule '回 for regular events, 度 for irregular ones' does not account for actual usage. The pattern time interval + に + 一度 is completely normal with periodic events."
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "よかったら、一度うちに遊びに来てください。",
+      "question": "Which interpretation best reflects the role of 一度 here?",
+      "options": [
+        "It means that the person may visit only once.",
+        "It presents the visit as an opportunity or experience to have, approaching meanings such as 'sometime' or 'at least once' depending on the context.",
+        "It indicates that the speaker does not want a second visit.",
+        "It necessarily establishes an exact numerical limit."
+      ],
+      "correctIndex": 1,
+      "explanation": "In invitations and suggestions, the numerical value of 一 can recede into the background. Interpreting 一度 as 'exactly once and no more' would impose a restriction that the speaker does not necessarily intend."
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "一度始めた以上、最後までやり遂げなければならない。",
+      "question": "What role does 一度 play in this sentence?",
+      "options": [
+        "It counts how many times the action of starting is performed.",
+        "It presents the act of starting as a condition that has already been fulfilled and reinforces the temporal and consequential relationship expressed by the sentence.",
+        "It grammatically replaces 以上.",
+        "It means that starting is permitted only once."
+      ],
+      "correctIndex": 1,
+      "explanation": "Here 一度 comes close to 'once...' or 'now that...'. It is not required by the 以上 construction, but it reinforces the idea that once the action has begun, a consequence or obligation follows."
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "prompt": "何回 ／ 何度",
+      "question": "Which statement is correct?",
+      "options": [
+        "何度 is used only when the speaker does not know even approximately how many times something happened.",
+        "何回 presupposes that the events were planned.",
+        "Only 何回 can be answered with an exact number.",
+        "Both can ask how many times something happened and can be answered with an exact number."
+      ],
+      "correctIndex": 3,
+      "explanation": "何度 does not make the number unknowable, and 何回 does not imply that the events were planned. Both can be used to ask for an exact number of occurrences."
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "prompt": "何回も ／ 何度も",
+      "question": "Which description avoids drawing an overly rigid distinction between the two?",
+      "options": [
+        "Only 何度も can mean 'many times.'",
+        "何回も is always neutral, whereas 何度も always expresses exasperation.",
+        "何度も necessarily refers to events spread over a long period of time.",
+        "Both can express numerous repetitions; insistence, impatience, or perseverance also depend on the predicate, context, and intonation."
+      ],
+      "correctIndex": 3,
+      "explanation": "何度も can be particularly well suited to highlighting the recurrence of an experience, but 何回も can also convey impatience, exasperation, or perseverance. The counter alone does not determine the full nuance."
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "prompt": "彼女はこの大会で五度優勝しています。",
+      "question": "Which assessment is correct?",
+      "options": [
+        "The sentence is incorrect because 度 can only be used up to 三度.",
+        "It is possible only if 五度 means five degrees.",
+        "It is grammatically possible: there is no general limit at 三度, although 回 is often the less marked choice for ordinary counting as the number becomes larger.",
+        "度 can be used with numbers above three only in negative expressions."
+      ],
+      "correctIndex": 2,
+      "explanation": "The fact that 一度, 二度, and 三度 are particularly common does not create a grammatical limit. 度 can also occur with numbers greater than three."
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "prompt": "You need to record zero occurrences and an average of 2.5 times per week.",
+      "question": "Which counter is normally used when counting occurrences?",
+      "options": [
+        "度 in both cases.",
+        "回: for example, 0回 and 平均2.5回.",
+        "回 with zero, but 度 is obligatory with decimal values.",
+        "Neither counter can be used with a non-integer value."
+      ],
+      "correctIndex": 1,
+      "explanation": "When counting occurrences, 回 can record both zero events and a decimal statistical average. 2.5回 does not mean 'two and a half individual actions'; the decimal value is the result of calculating an average."
+    },
+    {
+      "id": 11,
+      "type": "multiple-choice",
+      "prompt": "第十回 ／ 三回目 ／ 三度目",
+      "question": "Which description is correct?",
+      "options": [
+        "Because 度 cannot replace 回 in 第～回, it cannot be followed by 目 either.",
+        "第十度 is the normal form for 'tenth edition.'",
+        "Only ～度目 can form an ordinal referring to occurrences.",
+        "Formal numbering of a series uses 第 + number + 回, whereas both ～回目 and ～度目 are possible with 目."
+      ],
+      "correctIndex": 3,
+      "explanation": "These are different constructions. 第十回 formally identifies an item within a numbered series, whereas 三回目 and 三度目 place an occurrence in relation to previous ones. 全～回 is another characteristic construction with 回."
+    },
+    {
+      "id": 12,
+      "type": "multiple-choice",
+      "prompt": "一回も～ない ／ 一度も～ない",
+      "question": "Which statement is correct?",
+      "options": [
+        "Both can rule out even a single occurrence and therefore, depending on the context, mean 'not even once' or 'never.'",
+        "Only 一度も can be used in a negative sentence.",
+        "一回も always means 'zero times,' whereas 一度も means exclusively 'never in one's life.'",
+        "Because 0度 is not normally used when counting occurrences, 一度も～ない is also incorrect."
+      ],
+      "correctIndex": 0,
+      "explanation": "With 一 + も + negation, even the minimum unit of a single occurrence is denied. The fact that the sentence is negative does not by itself determine which counter must be used."
+    },
+    {
+      "id": 13,
+      "type": "multiple-choice",
+      "prompt": "みんなが一度に話すと、何も聞き取れません。",
+      "question": "What does 一度に mean in this sentence?",
+      "options": [
+        "Everyone is speaking at the same time.",
+        "Each person is allowed to speak only once.",
+        "The speakers are taking turns.",
+        "It refers to the first round of the conversation."
+      ],
+      "correctIndex": 0,
+      "explanation": "一度に has an established adverbial use meaning 'all at once,' 'simultaneously,' or 'in one go.' The focus is on several actions being concentrated in the same occasion, not on counting a single occurrence."
+    },
+    {
+      "id": 14,
+      "type": "multiple-choice",
+      "prompt": "一度も～ない ／ 二度と～ない",
+      "question": "What is the fundamental difference between these two constructions?",
+      "options": [
+        "Both always mean 'never again.'",
+        "二度と～ない implies that the event previously happened exactly once.",
+        "一度も～ない denies that the event occurred even once within the period or context being discussed, whereas 二度と～ない rules out its happening again from a certain point onward.",
+        "一度も refers to the past, whereas 二度と is used only for events that have already happened twice."
+      ],
+      "correctIndex": 2,
+      "explanation": "二度と～ない means 'never... again' and can be used even when the event has already happened many times. The difference from 一度も～ない is temporal and semantic rather than arithmetic."
+    },
+    {
+      "id": 15,
+      "type": "multiple-choice",
+      "prompt": "今朝の気温は0度でした。 ／ 角度の差は0.5度です。",
+      "question": "Why are zero and decimal values perfectly possible with 度 in these sentences?",
+      "options": [
+        "Because 度 is always pronounced differently when used in measurements.",
+        "Because temperature and angles cannot be expressed with 回.",
+        "Because 度 becomes an independent numeral in these contexts.",
+        "Because 度 is functioning as a unit of measurement rather than as a counter for occurrences: the function changes even though the kanji is the same."
+      ],
+      "correctIndex": 3,
+      "explanation": "The restriction discussed for 0度 and decimal values applies when 度 is being used to count how many times an event occurs. As a unit of temperature or angle, zero and decimal values are completely normal."
+    }
+  ],
+  "area": "words-and-nuances",
+  "searchTerms": [
+    "回",
+    "度",
+    "kai",
+    "do",
+    "一回",
+    "一度",
+    "ikkai",
+    "ichido",
+    "何回",
+    "何度",
+    "一回も",
+    "一度も",
+    "一度に",
+    "二度と",
+    "第回",
+    "回目",
+    "度目",
+    "Japanese counters",
+    "counting times in Japanese",
+    "frequency in Japanese",
+    "kai vs do",
+    "difference between kai and do"
+  ]
+}

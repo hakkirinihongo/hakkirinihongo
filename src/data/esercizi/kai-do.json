@@ -1,0 +1,242 @@
+{
+  "slug": "kai-do",
+  "articleSlug": "differenza-kai-do-contare-volte-giapponese",
+  "title": "Esercizi su 回 e 度 (kai e do)",
+  "shortTitle": "回 e 度",
+  "description": "15 domande sulla differenza tra 回 e 度, sul conteggio delle volte, la frequenza e le principali costruzioni con 一度, 一回, 何度 e 何回.",
+  "jlpt": "Tutti i livelli",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "prompt": "回 ／ 度",
+      "question": "Quale descrizione coglie meglio la distinzione fondamentale presentata nell’articolo?",
+      "options": [
+        "回 tende a presentare le occorrenze come unità di una serie da contare, mentre 度 conserva più facilmente l’idea delle singole volte come occasioni in cui qualcosa accade.",
+        "回 si usa esclusivamente per eventi regolari, mentre 度 esclusivamente per eventi imprevedibili.",
+        "回 indica sempre eventi ripetibili, mentre 度 eventi che possono verificarsi una sola volta.",
+        "回 esprime un numero preciso, mentre 度 non può farlo."
+      ],
+      "correctIndex": 0,
+      "explanation": "La distinzione riguarda soprattutto il punto di vista. 回 mette naturalmente in primo piano il conteggio delle ripetizioni; 度 può dare maggiore rilievo alle occasioni in cui l’evento si verifica. Non si tratta però di una regola assoluta e i due contatori si sovrappongono ampiamente."
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "Devi dire a qualcuno di premere un pulsante tre volte.",
+      "question": "Quale affermazione descrive meglio 三回 e 三度 in questo contesto?",
+      "options": [
+        "三度 è grammaticalmente impossibile.",
+        "Entrambe possono indicare tre pressioni, ma 三回 è la scelta più consueta in un’istruzione che stabilisce il numero delle esecuzioni.",
+        "三度 significa che le pressioni devono essere separate nel tempo.",
+        "三回 implica necessariamente che in futuro il pulsante verrà premuto ancora."
+      ],
+      "correctIndex": 1,
+      "explanation": "In un’istruzione numerica 回 è particolarmente naturale perché presenta le azioni come unità di un conteggio. 三度 rimane possibile e può descrivere lo stesso numero di pressioni."
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "その作家には一回だけ会ったことがあります。",
+      "question": "Che cosa si può dedurre dall’uso di 一回?",
+      "options": [
+        "Il parlante prevede di incontrare nuovamente lo scrittore.",
+        "一回 presenta l’incontro come una singola occorrenza nel conteggio, ma non implica che ce ne sarà un’altra.",
+        "一回 indica che l’incontro faceva parte di una serie programmata.",
+        "Con un evento unico sarebbe obbligatorio usare 一度."
+      ],
+      "correctIndex": 1,
+      "explanation": "Anche 一回 può indicare una sola esecuzione o un solo episodio senza alcuna prospettiva di continuazione. 回 organizza l’evento come unità contabile; non predice ciò che accadrà in futuro."
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "月に一回、家族で外食します。 ／ 月に一度、家族で外食します。",
+      "question": "Quale interpretazione è corretta?",
+      "options": [
+        "Solo 月に一回 è naturale perché un’abitudine mensile è regolare.",
+        "月に一度 indica necessariamente che l’uscita mensile è eccezionale.",
+        "Entrambe sono naturali: la periodicità regolare non rende obbligatorio 回.",
+        "月に一度 può essere usato soltanto se l’intervallo è superiore a un mese."
+      ],
+      "correctIndex": 2,
+      "explanation": "La regola semplicistica «回 = regolare, 度 = irregolare» non descrive gli usi reali. Anche la struttura intervallo di tempo + に + 一度 è del tutto normale con eventi periodici."
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "よかったら、一度うちに遊びに来てください。",
+      "question": "Quale interpretazione riflette meglio il valore di 一度?",
+      "options": [
+        "«Puoi venire soltanto una volta.»",
+        "Presenta la visita come un’occasione da trovare o un’esperienza da fare, avvicinandosi secondo il contesto a «una volta o l’altra» o «almeno una volta».",
+        "Indica che il parlante non desidera una seconda visita.",
+        "Stabilisce necessariamente una quantità numerica esatta."
+      ],
+      "correctIndex": 1,
+      "explanation": "Negli inviti e nei suggerimenti il valore numerico di 一 può passare in secondo piano. Interpretare 一度 come «esattamente una volta e non di più» introdurrebbe un limite che la frase non esprime necessariamente."
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "一度始めた以上、最後までやり遂げなければならない。",
+      "question": "Quale ruolo svolge 一度 in questa frase?",
+      "options": [
+        "Conta quante volte l’azione di cominciare viene eseguita.",
+        "Presenta l’inizio come una condizione ormai verificatasi e rafforza il rapporto temporale/consequenziale espresso dalla frase.",
+        "Sostituisce grammaticalmente 以上.",
+        "Significa che è permesso iniziare una sola volta."
+      ],
+      "correctIndex": 1,
+      "explanation": "Qui 一度 si avvicina a «una volta che / ormai che». Non è indispensabile alla costruzione con 以上, ma rafforza l’idea del punto oltre il quale deriva una conseguenza o un obbligo."
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "prompt": "何回 ／ 何度",
+      "question": "Quale affermazione è corretta?",
+      "options": [
+        "何度 si usa soltanto quando il parlante non conosce nemmeno approssimativamente il numero.",
+        "何回 presuppone che gli eventi siano programmati.",
+        "Soltanto 何回 può ricevere come risposta un numero preciso.",
+        "Entrambe possono chiedere quante volte qualcosa sia accaduto e possono ricevere una risposta numerica esatta."
+      ],
+      "correctIndex": 3,
+      "explanation": "Né 何度 rende il numero inconoscibile, né 何回 implica programmazione. Entrambe possono essere vere domande quantitative."
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "prompt": "何回も ／ 何度も",
+      "question": "Quale descrizione evita una distinzione troppo rigida?",
+      "options": [
+        "Solo 何度も può significare «molte volte».",
+        "何回も è sempre neutro, mentre 何度も esprime sempre esasperazione.",
+        "何度も indica necessariamente episodi lontani nel tempo.",
+        "Entrambe possono esprimere numerose ripetizioni; insistenza, impazienza o perseveranza dipendono anche dal predicato, dal contesto e dall’intonazione."
+      ],
+      "correctIndex": 3,
+      "explanation": "何度も può prestarsi bene a mettere in rilievo il ripetersi di un’esperienza, ma anche 何回も può essere impaziente, esasperato o perseverante. Il contatore da solo non determina tutta la sfumatura."
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "prompt": "彼女はこの大会で五度優勝しています。",
+      "question": "Quale valutazione è corretta?",
+      "options": [
+        "È scorretto perché 度 può arrivare soltanto fino a 三度.",
+        "È possibile soltanto se 五度 indica cinque gradi.",
+        "È grammaticalmente possibile: non esiste un limite generale a 三度, anche se nel conteggio ordinario con numeri elevati 回 può risultare meno marcato.",
+        "度 può superare tre soltanto nelle espressioni negative."
+      ],
+      "correctIndex": 2,
+      "explanation": "La frequenza delle forme 一度・二度・三度 non costituisce un limite grammaticale. Anche numeri superiori a tre possono comparire con 度."
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "prompt": "Devi registrare 0 volte e una media di 2,5 volte alla settimana.",
+      "question": "Quale contatore viene normalmente utilizzato per il numero delle occorrenze?",
+      "options": [
+        "度 in entrambi i casi.",
+        "回: 0回 e, per esempio, 平均2.5回.",
+        "回 con zero, ma obbligatoriamente 度 con i decimali.",
+        "Nessuno dei due può essere usato con valori non interi."
+      ],
+      "correctIndex": 1,
+      "explanation": "Nel conteggio delle occorrenze, 回 può registrare sia zero eventi sia una media statistica decimale. Il valore 2.5回 non significa «due azioni e mezzo»: è il risultato di una media."
+    },
+    {
+      "id": 11,
+      "type": "multiple-choice",
+      "prompt": "第十回 ／ 三回目 ／ 三度目",
+      "question": "Quale descrizione è corretta?",
+      "options": [
+        "Se 度 non può comparire in 第～回, non può neppure essere seguito da 目.",
+        "第十度 è la forma normale per «decima edizione».",
+        "Soltanto ～度目 può indicare un ordinale riferito alle volte.",
+        "La numerazione formale di una serie usa 第 + numero + 回, mentre con 目 sono possibili sia ～回目 sia ～度目."
+      ],
+      "correctIndex": 3,
+      "explanation": "Sono due strutture diverse. 第十回 identifica formalmente un elemento di una serie; 三回目 e 三度目 collocano invece un’occorrenza rispetto alle precedenti. Anche 全～回 appartiene agli impieghi caratteristici di 回."
+    },
+    {
+      "id": 12,
+      "type": "multiple-choice",
+      "prompt": "一回も～ない ／ 一度も～ない",
+      "question": "Quale affermazione è corretta?",
+      "options": [
+        "Entrambe possono negare persino una singola occorrenza e quindi, secondo il contesto, significare «neanche una volta» o «mai».",
+        "Solo 一度も può essere usato in una frase negativa.",
+        "一回も significa sempre «zero volte», mentre 一度も significa esclusivamente «mai nella vita».",
+        "Poiché 0度 non si usa normalmente nel conteggio, anche 一度も～ない è scorretto."
+      ],
+      "correctIndex": 0,
+      "explanation": "Con 一 + も + negazione si nega che sia stata raggiunta persino l’unità minima di una sola occorrenza. La frase negativa non impone automaticamente uno dei due contatori."
+    },
+    {
+      "id": 13,
+      "type": "multiple-choice",
+      "prompt": "みんなが一度に話すと、何も聞き取れません。",
+      "question": "Che cosa significa 一度に in questa frase?",
+      "options": [
+        "Le persone parlano tutte insieme, nello stesso momento.",
+        "Ogni persona può parlare soltanto una volta.",
+        "Le persone parlano una dopo l’altra.",
+        "Si sta contando il primo turno di conversazione."
+      ],
+      "correctIndex": 0,
+      "explanation": "一度に ha un proprio uso avverbiale: può significare «tutto insieme», «contemporaneamente», «in una sola volta». Il punto centrale è la concentrazione di più azioni nella stessa occasione, non il semplice conteggio."
+    },
+    {
+      "id": 14,
+      "type": "multiple-choice",
+      "prompt": "一度も～ない ／ 二度と～ない",
+      "question": "Qual è la differenza fondamentale?",
+      "options": [
+        "Entrambe significano sempre «mai più».",
+        "二度と～ない implica che l’evento precedente sia accaduto esattamente una volta.",
+        "一度も～ない nega anche una sola occorrenza nell’ambito considerato; 二度と～ない esclude che l’evento si ripresenti da un certo momento in poi.",
+        "一度も riguarda il passato e 二度と esclusivamente eventi avvenuti due volte."
+      ],
+      "correctIndex": 2,
+      "explanation": "二度と～ない significa «non… mai più» e può essere usato anche se l’evento si è già verificato numerose volte. La differenza rispetto a 一度も～ない è temporale e semantica, non aritmetica."
+    },
+    {
+      "id": 15,
+      "type": "multiple-choice",
+      "prompt": "今朝の気温は0度でした。 ／ 角度の差は0.5度です。",
+      "question": "Perché qui zero e valori decimali con 度 sono perfettamente possibili?",
+      "options": [
+        "Perché nelle misure 度 viene pronunciato sempre diversamente.",
+        "Perché temperatura e angoli non ammettono 回.",
+        "Perché 度 diventa un numerale indipendente.",
+        "Perché in queste frasi 度 è un’unità di misura, non il contatore delle occorrenze: cambia la funzione, anche se il carattere è lo stesso."
+      ],
+      "correctIndex": 3,
+      "explanation": "La restrizione discussa per 0度 e per i valori decimali riguarda 度 quando conta quante volte un evento si verifica. Come unità di temperatura o di angolo, 0度 e 0.5度 sono del tutto normali."
+    }
+  ],
+  "area": "parole-e-sfumature",
+  "searchTerms": [
+    "回",
+    "度",
+    "kai",
+    "do",
+    "一回",
+    "一度",
+    "何回",
+    "何度",
+    "一回も",
+    "一度も",
+    "一度に",
+    "二度と",
+    "第回",
+    "回目",
+    "度目",
+    "contare le volte in giapponese",
+    "contatori giapponesi",
+    "frequenza in giapponese",
+    "differenza kai do"
+  ]
+}

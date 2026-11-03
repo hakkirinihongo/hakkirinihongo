@@ -1,0 +1,172 @@
+{
+  "slug": "choudai",
+  "articleSlug": "choudai-giapponese-significato-uso",
+  "title": "Esercizi su 頂戴 (ちょうだい, choudai)",
+  "shortTitle": "頂戴 (ちょうだい)",
+  "description": "10 domande sul significato e sull’uso di 頂戴, sulle richieste con ちょうだい e sulle differenze rispetto a もらう, いただく e ください.",
+  "jlpt": "N3-N2",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "prompt": "頂戴する ／ それちょうだい ／ 取ってちょうだい",
+      "question": "Quale descrizione riassume meglio i principali usi moderni di 頂戴?",
+      "options": [
+        "頂戴 ha sempre valore umile, anche quando viene usato in una richiesta colloquiale.",
+        "頂戴する significa ricevere umilmente, mentre ちょうだい dopo un nome e ～てちょうだい esprimono richieste dirette e familiari.",
+        "頂戴 viene usato soltanto come equivalente formale di ください.",
+        "La forma ちょうだい ha soltanto il significato di mangiare o bere."
+      ],
+      "correctIndex": 1,
+      "explanation": "Nel giapponese moderno bisogna distinguere funzioni appartenenti a registri molto diversi. 頂戴する esprime il ricevere in modo umile; dopo un nome, ちょうだい può significare «dammi...», mentre ～てちょうだい serve a chiedere familiarmente che qualcuno faccia qualcosa."
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "頂戴する",
+      "question": "Dal punto di vista grammaticale, come viene trattato fondamentalmente 頂戴 in questo uso?",
+      "options": [
+        "Come un verbo godan autonomo.",
+        "Come un aggettivo nominale che richiede だ.",
+        "Come un nome che si combina con する e si coniuga attraverso する.",
+        "Come una particella di richiesta invariabile in tutti i contesti."
+      ],
+      "correctIndex": 2,
+      "explanation": "頂戴 è fondamentalmente un nome che può combinarsi con する. Da 頂戴する si ottengono quindi forme come 頂戴します, 頂戴した, 頂戴しない e 頂戴したい."
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "Origine di 頂戴",
+      "question": "Quale percorso storico riflette meglio lo sviluppo descritto nell’articolo?",
+      "options": [
+        "Dal gesto di sollevare rispettosamente qualcosa sopra la testa si sviluppò il significato di ricevere umilmente e, in seguito, anche l’uso colloquiale di richiesta.",
+        "La parola nacque come imperativo colloquiale e solo successivamente acquistò un significato cerimonioso.",
+        "頂戴 deriva direttamente da ください e ne rappresenta una forma abbreviata.",
+        "Il significato originario era esclusivamente quello di mangiare o bere."
+      ],
+      "correctIndex": 0,
+      "explanation": "Il nucleo originario riguarda il gesto rispettoso di sollevare o tenere qualcosa sopra la testa. Da questa immagine si è sviluppato il significato di «ricevere umilmente», al quale si collega storicamente anche la successiva funzione di richiesta."
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "もらう ／ 頂戴する",
+      "question": "Quale frase descrive correttamente il rapporto tra le due forme?",
+      "options": [
+        "もらう è più rispettoso di 頂戴する.",
+        "Entrambi sono verbi onorifici rivolti alla persona che riceve.",
+        "もらう è il verbo neutro «ricevere», mentre 頂戴する ne rappresenta un equivalente umile usato per mostrare deferenza verso chi dà.",
+        "頂戴する serve normalmente per fare una richiesta diretta, mentre もらう descrive esclusivamente ordini."
+      ],
+      "correctIndex": 2,
+      "explanation": "もらう esprime semplicemente il ricevere senza marcare di per sé deferenza. 頂戴する appartiene invece al linguaggio umile e può essere usato quando il parlante vuole mostrare rispetto verso la persona da cui riceve qualcosa."
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "ちょっと手伝ってちょうだい。",
+      "question": "Quale descrizione del registro di ～てちょうだい è più accurata?",
+      "options": [
+        "È la forma standard da usare con clienti e superiori.",
+        "È una costruzione esclusivamente infantile e grammaticalmente vietata agli adulti.",
+        "È più formale e indiretta di ～ていただけますか.",
+        "È una richiesta diretta e familiare, tradizionalmente associata soprattutto al parlato femminile e infantile, ma non grammaticalmente limitata a questi parlanti."
+      ],
+      "correctIndex": 3,
+      "explanation": "～てちょうだい appartiene al registro colloquiale e presuppone normalmente familiarità. L’associazione con parlato femminile e infantile è una tendenza tradizionale e sociolinguistica, non una restrizione grammaticale assoluta."
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "お水ちょうだい。",
+      "question": "Perché questa richiesta può risultare poco appropriata se rivolta a un cameriere?",
+      "options": [
+        "Perché ちょうだい non può seguire un nome.",
+        "Perché 水 richiede obbligatoriamente il verbo もらう.",
+        "Perché la frase significa letteralmente che l’acqua deve essere regalata.",
+        "Perché ちょうだい esprime un grado di familiarità e immediatezza che può risultare eccessivo in una situazione di servizio; お水をください è più neutro e appropriato."
+      ],
+      "correctIndex": 3,
+      "explanation": "Nome + ちょうだい è perfettamente grammaticale, ma appartiene a un registro confidenziale. Con una persona con cui non si ha familiarità, come un cameriere, una richiesta con ください risulta normalmente più adatta."
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "prompt": "お名前を頂戴できますか。",
+      "question": "Quale cautela segnala l’articolo riguardo a questa formulazione?",
+      "options": [
+        "頂戴する non può mai riferirsi a elementi astratti.",
+        "La frase è impossibile perché 頂戴 non può essere seguito da できますか.",
+        "Il Digital Daijisen considera problematico questo uso specifico per chiedere il nome e suggerisce formulazioni come お名前をお願いします o お名前をお伺いできますか.",
+        "La frase può essere usata soltanto per chiedere il nome di un bambino."
+      ],
+      "correctIndex": 2,
+      "explanation": "La cautela riguarda specificamente お名前を頂戴できますか e non costituisce un divieto generale di usare 頂戴 con contenuti astratti. Sono infatti normali combinazioni come ご意見を頂戴する, ご助言を頂戴する e お時間を頂戴する."
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "prompt": "ドアを開けてちょうだい。 ／ ドアを開けてください。 ／ ドアを開けてもらえますか。",
+      "question": "Quale descrizione distingue correttamente le tre richieste?",
+      "options": [
+        "Le tre forme differiscono soltanto nella grammatica, ma non nel registro o nel modo in cui viene presentata la richiesta.",
+        "～てちょうだい è familiare e diretto; ～てください è una richiesta cortese standard; ～てもらえますか presenta più indirettamente l’azione come favore che si chiede di ricevere.",
+        "～てください è la più informale delle tre, mentre ～てちょうだい è la più rispettosa.",
+        "～てもらえますか descrive soltanto un favore già ricevuto e non può essere usato come richiesta."
+      ],
+      "correctIndex": 1,
+      "explanation": "Il risultato pratico può essere lo stesso, ma cambia il modo di presentare la richiesta. ちょうだい è confidenziale, ください è la forma cortese standard, mentre もらえますか formula indirettamente la possibilità di ricevere l’azione dell’altro come favore."
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "prompt": "～ていただく ／ ～て頂く",
+      "question": "Quale grafia viene indicata come preferibile nella prosa ufficiale quando いただく ha valore ausiliare?",
+      "options": [
+        "Sempre 頂く in kanji.",
+        "Entrambe sono vietate e bisogna usare もらう.",
+        "いただく in hiragana.",
+        "Solo la forma katakana イタダク."
+      ],
+      "correctIndex": 2,
+      "explanation": "Quando いただく funziona come ausiliare, nella prosa ufficiale si preferisce la grafia in hiragana, come in ～ていただく. Questa convenzione aiuta anche a distinguere l’uso ausiliare dal verbo autonomo."
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "prompt": "手伝ってちょうだい ／ 手伝ってもらった",
+      "question": "Qual è la differenza grammaticale fondamentale tra queste due costruzioni?",
+      "options": [
+        "Entrambe descrivono un favore già ricevuto.",
+        "～てちょうだい opera come richiesta diretta nel momento in cui si chiede l’azione; ～てもらう può invece descrivere l’azione ricevuta come favore e, in forme interrogative come ～てもらえますか, può anche servire per una richiesta indiretta.",
+        "～てもらう è un imperativo, mentre ～てちょうだい non può essere usato per chiedere qualcosa.",
+        "～てちょうだい è la forma umile standard di ～てもらった."
+      ],
+      "correctIndex": 1,
+      "explanation": "Nel suo uso legato a un verbo, ちょうだい serve alla richiesta diretta. Non si usa normalmente per descrivere a posteriori un favore ricevuto come in ～して頂戴した; in quel caso si usano costruzioni come ～してもらった o ～していただいた."
+    }
+  ],
+  "area": "uso-e-contesto",
+  "searchTerms": [
+    "頂戴",
+    "ちょうだい",
+    "choudai",
+    "頂戴する",
+    "てちょうだい",
+    "ないでちょうだい",
+    "choudai meaning",
+    "choudai kudasai",
+    "choudai morau",
+    "choudai itadaku",
+    "ください",
+    "いただく",
+    "もらう",
+    "てください",
+    "てもらう",
+    "ていただく",
+    "richieste in giapponese",
+    "ricevere in giapponese",
+    "linguaggio umile giapponese"
+  ]
+}

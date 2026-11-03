@@ -1,0 +1,173 @@
+{
+  "slug": "nuku",
+  "articleSlug": "verbo-ausiliare-nuku-significato-uso",
+  "title": "Esercizi sul verbo ausiliare ～抜く (nuku)",
+  "shortTitle": "～抜く (nuku)",
+  "description": "10 domande sul significato, la formazione e l’uso di ～抜く, sulle sue restrizioni semantiche e sulle differenze rispetto a ～切る e ～通す.",
+  "jlpt": "N2",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "prompt": "～抜く",
+      "question": "Quale descrizione riassume meglio i principali valori dell’ausiliare ～抜く?",
+      "options": [
+        "Indica sempre che un’azione viene ripetuta numerose volte.",
+        "Esprime esclusivamente la conclusione materiale di un’attività.",
+        "Può mettere in risalto il completamento, la perseveranza nel proseguire fino in fondo, l’approfondimento oppure il raggiungimento di un grado estremo di intensità.",
+        "Trasforma sempre il verbo principale in un verbo transitivo."
+      ],
+      "correctIndex": 2,
+      "explanation": "～抜く non possiede un unico equivalente fisso. A seconda del verbo, può evidenziare il portare un’azione fino in fondo nonostante le difficoltà, l’approfondimento di un processo oppure l’intensità estrema di uno stato. Per questo non può essere ridotto semplicemente a «finire»."
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "考える → 考え抜く",
+      "question": "Come si forma normalmente un verbo composto ausiliare con ～抜く?",
+      "options": [
+        "連用形 del verbo principale + 抜く.",
+        "Forma in ～て + 抜く.",
+        "Forma dizionario + 抜く.",
+        "Forma negativa + 抜く."
+      ],
+      "correctIndex": 0,
+      "explanation": "～抜く si collega direttamente alla 連用形, cioè alla cosiddetta base in ます. Da 考えます si ricava 考え, a cui viene aggiunto 抜く: 考え抜く."
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "考える → 考え抜く",
+      "question": "Quale affermazione descrive correttamente la coniugazione del composto?",
+      "options": [
+        "Poiché 考える è ichidan, anche 考え抜く si coniuga come un verbo ichidan.",
+        "Il composto si coniuga secondo 抜く, che è un verbo godan; la parte 考え rimane invariata.",
+        "考える e 抜く devono essere coniugati separatamente.",
+        "I composti in ～抜く sono invariabili."
+      ],
+      "correctIndex": 1,
+      "explanation": "Una volta formato, il composto funziona come un unico verbo e l’elemento finale 抜く determina la coniugazione. Si hanno quindi forme come 考え抜きます, 考え抜いた, 考え抜かない, 考え抜こう e 考え抜ける."
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "守り抜く ／ 生き抜く",
+      "question": "Che cosa accade alla transitività quando 抜く viene usato come ausiliare?",
+      "options": [
+        "Tutti i composti diventano transitivi perché 抜く è transitivo.",
+        "La struttura argomentale dipende principalmente dal verbo iniziale: 守り抜く rimane transitivo, mentre 生き抜く conserva il funzionamento intransitivo di 生きる.",
+        "Tutti i composti diventano intransitivi.",
+        "La transitività dipende esclusivamente dal tempo verbale utilizzato."
+      ],
+      "correctIndex": 1,
+      "explanation": "Il valore ausiliare di ～抜く modifica soprattutto il modo in cui viene rappresentato l’evento, ma non impone automaticamente al composto la transitività del verbo 抜く autonomo."
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "野菜を炒め抜く ／ ごみを捨て抜く",
+      "question": "Perché combinazioni di questo tipo risultano normalmente innaturali in un contesto ordinario?",
+      "options": [
+        "Perché 炒める e 捨てる non possiedono una 連用形.",
+        "Perché ～抜く può combinarsi soltanto con verbi intransitivi.",
+        "Perché la possibilità di formare grammaticalmente una base non garantisce la compatibilità semantica: un’azione ordinaria e priva di un percorso significativo da portare a compimento non si presta necessariamente a ～抜く.",
+        "Perché ～抜く può essere usato soltanto con verbi che durano più di un giorno."
+      ],
+      "correctIndex": 2,
+      "explanation": "La struttura 連用形 + 抜く descrive il meccanismo formale, ma non rende naturale qualsiasi combinazione. Conta il modo in cui l’azione può essere concettualizzata: perseveranza, superamento, approfondimento o raggiungimento di un limite devono risultare semanticamente plausibili."
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "考え抜く ／ 引き抜く ／ 見抜く",
+      "question": "Quale affermazione distingue correttamente i composti ausiliari da quelli lessicali?",
+      "options": [
+        "Tutti i verbi che terminano in 抜く hanno necessariamente lo stesso valore grammaticale.",
+        "In composti come 考え抜く, ～抜く esprime valori ausiliari come approfondimento o completamento; in forme lessicalizzate come 引き抜く o 見抜く, 抜く partecipa invece a un significato specifico e convenzionale.",
+        "I composti lessicali non usano mai la 連用形.",
+        "I composti ausiliari possono essere riconosciuti semplicemente dalla presenza del kanji 抜."
+      ],
+      "correctIndex": 1,
+      "explanation": "La forma esteriore non basta a stabilire la natura del composto. Sia i composti ausiliari sia quelli lessicali possono utilizzare la 連用形 del primo verbo; ciò che cambia è il rapporto semantico e grammaticale tra i due elementi."
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "prompt": "考えた ／ 考え抜いた",
+      "question": "Quale informazione aggiunge soprattutto 考え抜いた rispetto a 考えた?",
+      "options": [
+        "Indica necessariamente che il problema è stato risolto.",
+        "Indica che la riflessione è stata molto breve ma decisiva.",
+        "Significa che il soggetto ha smesso di pensare.",
+        "Presenta la riflessione come particolarmente approfondita ed esaustiva, senza garantire che sia stata trovata una soluzione."
+      ],
+      "correctIndex": 3,
+      "explanation": "考え抜く caratterizza il processo come condotto a fondo, cercando di esaminare accuratamente la questione. Questo non implica però che il risultato desiderato sia stato raggiunto: si può 考え抜く senza trovare una risposta soddisfacente."
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "prompt": "最後まで戦い抜いた。",
+      "question": "Che cosa NON possiamo necessariamente concludere da questa frase?",
+      "options": [
+        "Che il soggetto abbia vinto.",
+        "Che l’azione sia stata mantenuta fino alla fine.",
+        "Che venga messa in evidenza la perseveranza.",
+        "Che il parlante presenti il combattimento o la competizione come affrontati fino in fondo."
+      ],
+      "correctIndex": 0,
+      "explanation": "戦い抜く descrive il modo in cui si affronta la lotta o la competizione, non il risultato finale. Una persona o una squadra può aver combattuto con determinazione fino alla fine ed essere comunque stata sconfitta."
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "prompt": "困る → 困り抜く",
+      "question": "Quale interpretazione è corretta?",
+      "options": [
+        "困り抜く significa decidere volontariamente di continuare a essere in difficoltà.",
+        "困り抜く significa necessariamente riuscire a superare il problema.",
+        "～抜く può qui indicare che lo stato di difficoltà ha raggiunto un grado estremo, senza esprimere perseveranza volontaria né soluzione del problema.",
+        "困り抜く indica semplicemente una durata maggiore di 困る, senza alcuna differenza di intensità."
+      ],
+      "correctIndex": 2,
+      "explanation": "Con verbi che esprimono condizioni psicologiche o stati non necessariamente controllabili, ～抜く può indicare soprattutto intensità estrema. La volontarietà non è quindi una condizione universale per l’uso dell’ausiliare."
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "prompt": "～切る ／ ～通す ／ ～抜く",
+      "question": "Quale confronto rispecchia meglio le tendenze descritte nell’articolo?",
+      "options": [
+        "Le tre costruzioni sono equivalenti e possono essere sostituite liberamente.",
+        "～切る tende a mettere in evidenza la realizzazione completa o il raggiungimento di un limite, ～通す la continuità fino alla fine, mentre ～抜く può dare maggiore rilievo alla perseveranza e al superamento delle difficoltà.",
+        "～抜く indica esclusivamente il risultato finale, mentre ～切る esprime sempre perseveranza.",
+        "～通す è l’unica delle tre forme che può esprimere completamento."
+      ],
+      "correctIndex": 1,
+      "explanation": "Le tre costruzioni condividono alcuni valori, ma mettono in primo piano aspetti diversi dell’evento. Per questo non sono automaticamente intercambiabili: la scelta dipende dalla prospettiva che il parlante vuole evidenziare."
+    }
+  ],
+  "area": "grammatica",
+  "searchTerms": [
+    "抜く",
+    "～抜く",
+    "nuku",
+    "nuku auxiliary verb",
+    "Japanese auxiliary nuku",
+    "やり抜く",
+    "守り抜く",
+    "生き抜く",
+    "戦い抜く",
+    "耐え抜く",
+    "考え抜く",
+    "調べ抜く",
+    "困り抜く",
+    "苦しみ抜く",
+    "連用形",
+    "masu stem",
+    "Japanese compound verbs",
+    "nuku vs kiru",
+    "nuku vs toosu",
+    "抜く grammar"
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "slug": "kiru",
+  "articleSlug": "kiru-auxiliary-verb-meaning-usage-japanese",
+  "title": "Exercises on ～切る (kiru)",
+  "shortTitle": "～切る (kiru)",
+  "description": "10 questions on the meaning, formation, and usage of ～切る, negative potential forms such as ～切れない, and the difference between ～切る and ～終わる.",
+  "jlpt": "N3",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "prompt": "～切る",
+      "question": "Which description best captures the core meaning of ～切る as an auxiliary?",
+      "options": [
+        "It simply indicates that an action was interrupted before it was completed.",
+        "It necessarily implies that an action was difficult and required considerable effort.",
+        "It always means that a physical resource has been completely used up.",
+        "It presents an action as fully completed, or a change or condition as fully realized or as having reached an extreme degree."
+      ],
+      "correctIndex": 3,
+      "explanation": "The core meaning of ～切る involves reaching a relevant limit: an action may be carried through completely, a resource may be exhausted, or a condition may reach a full or extreme degree. Effort can be implied by the context, but it is not part of the auxiliary's meaning in every use."
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "読む → 読み切る",
+      "question": "How are compound verbs with ～切る normally formed?",
+      "options": [
+        "～て form + 切る.",
+        "Dictionary form + 切る.",
+        "The preceding verb's 連用形, or masu stem, + 切る.",
+        "Negative form + 切る."
+      ],
+      "correctIndex": 2,
+      "explanation": "～切る attaches to the 連用形 of the preceding verb, also known as its masu stem. 読みます gives 読み, to which 切る is added directly: 読み切る."
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "食べる → 食べ切る",
+      "question": "Which statement about the conjugation of the resulting compound is correct?",
+      "options": [
+        "Even though 食べる is an ichidan verb, 食べ切る conjugates according to 切る, which is a godan verb.",
+        "The compound always retains the conjugation class of the first verb.",
+        "食べ切る becomes an ichidan verb because 食べる is ichidan.",
+        "The two parts of the compound are conjugated separately."
+      ],
+      "correctIndex": 0,
+      "explanation": "Once the compound has been formed, the final element 切る determines its conjugation. This gives forms such as 食べ切ります, 食べ切らない, 食べ切った, and 食べ切って."
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "食べ切らなかった ／ 食べ切れなかった",
+      "question": "What is the key difference between these two forms?",
+      "options": [
+        "食べ切らなかった means that it was not all eaten, whereas 食べ切れなかった means that the person was unable to eat it all.",
+        "食べ切らなかった expresses inability, whereas 食べ切れなかった is a simple negative.",
+        "The two forms have exactly the same meaning.",
+        "食べ切らなかった refers to the past, whereas 食べ切れなかった necessarily refers to the present."
+      ],
+      "correctIndex": 0,
+      "explanation": "～切らない is the simple negative of the compound, whereas ～切れない is the negative potential form. With ～切れない, what is denied is the ability or possibility of completing the action in full."
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "分かり切ったこと ／ 知り切る",
+      "question": "What does the contrast between these forms show?",
+      "options": [
+        "Any verb that is semantically similar to 分かる can combine freely with ～切る.",
+        "A formally possible combination is not necessarily idiomatic: 分かり切った is natural, whereas 知り尽くす is normally used for knowing something in every detail.",
+        "知る has no 連用形 and therefore cannot appear in compound verbs.",
+        "～切る can combine only with transitive verbs."
+      ],
+      "correctIndex": 1,
+      "explanation": "Knowing the formation rule is not enough to predict which combinations sound natural. Meaning and established usage also matter. The existence of 分かり切る therefore does not mean that 知り切る can automatically be used in the same way."
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "使い終わる ／ 使い切る",
+      "question": "Which statement best captures the difference between these two compounds?",
+      "options": [
+        "使い終わる necessarily means that none of the resource remains.",
+        "使い終わる presents the activity of using something as finished, whereas 使い切る indicates that the entire quantity in question has been used up.",
+        "使い切る simply means to stop using something temporarily.",
+        "The two compounds are always completely interchangeable."
+      ],
+      "correctIndex": 1,
+      "explanation": "Finishing the activity and exhausting the resource are different outcomes. You can finish using something while some of it remains; 使い切る specifically indicates that the entire quantity in question has been used up."
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "prompt": "読み終わる ／ 読み切る",
+      "question": "When both refer to completing a novel, which interpretation best describes the difference?",
+      "options": [
+        "Both can indicate that the reader reached the end, but 読み切る places greater emphasis on having read the entire book through to the end; any sense of effort or accomplishment comes from the context.",
+        "読み終わる means that the novel was fully understood, whereas 読み切る refers only to reaching the last page.",
+        "読み切る always implies that the novel was difficult to read.",
+        "読み終わる can be used only when part of the novel was left unread."
+      ],
+      "correctIndex": 0,
+      "explanation": "Both forms can describe reading a book through to the end. 読み切る places greater emphasis on having read the entire text through to the end. A sense of effort or accomplishment may arise in context, but it is not an inherent part of ～切る."
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "prompt": "疲れ切る",
+      "question": "Why is ～終わる not normally a natural equivalent of ～切る in this compound?",
+      "options": [
+        "Because 疲れる cannot appear in any compound verb.",
+        "Because ～終わる can be used only with transitive verbs.",
+        "Because 疲れ切る necessarily describes a voluntary action.",
+        "Because 疲れ切る highlights the extreme degree of a condition rather than the completion of a bounded activity."
+      ],
+      "correctIndex": 3,
+      "explanation": "疲れ切る means 'to be utterly exhausted.' The completeness expressed by ～切る concerns how fully the state of exhaustion has developed, and that state can continue afterward. Simply replacing ～切る with ～終わる would not preserve this meaning."
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "prompt": "言い切る",
+      "question": "Which statement correctly describes the meanings 言い切る can have?",
+      "options": [
+        "It means only to stop speaking abruptly.",
+        "It always means to repeat the same statement several times.",
+        "It can mean either to say something all the way through or to state something categorically, without hesitation or reservations.",
+        "It is simply a more polite form of 言う."
+      ],
+      "correctIndex": 2,
+      "explanation": "The meaning of 言い切る depends on context. It can refer to saying something completely or to asserting something firmly and categorically. The latter meaning also helps explain 言い切れない, 'to be unable to say something with certainty.'"
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "prompt": "長い小説だったが、一晩で読み切った。",
+      "question": "Which piece of information is NOT necessarily conveyed by 読み切った?",
+      "options": [
+        "That the novel was fully understood.",
+        "That the reading reached the end.",
+        "That the entire text in question was read.",
+        "That the reading is presented as having been completed in full."
+      ],
+      "correctIndex": 0,
+      "explanation": "読み切った presents the act of reading as fully completed, but it does not tell us how well the text was understood. Completing the reading and understanding the content are separate matters."
+    }
+  ],
+  "area": "grammar",
+  "searchTerms": [
+    "切る",
+    "～切る",
+    "kiru",
+    "kiru auxiliary verb",
+    "Japanese auxiliary kiru",
+    "読み切る",
+    "食べ切る",
+    "使い切る",
+    "走り切る",
+    "疲れ切る",
+    "言い切る",
+    "切れない",
+    "読み切れない",
+    "食べ切れない",
+    "終わる",
+    "kiru vs owaru",
+    "Japanese compound verbs",
+    "completeness in Japanese"
+  ]
+}
