@@ -1,186 +1,673 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const postImports = import.meta.glob('../../content/articoli/**/*.mdx');
+type ArticleMeta = {
+  slug?: string;
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  image?: string;
+  date?: string | Date;
+  category?: string | string[];
+  series?: string;
+  jlpt?: string;
+  tags?: string | string[];
+};
 
-const posts = await Promise.all(
-  Object.entries(postImports).map(async ([path, resolver]) => {
-    const mod = await resolver();
-    const fm = mod.frontmatter ?? {};
-    const slug = fm.slug ?? path.split('/').pop().replace(/\.mdx?$/, '');
-
-    return {
-      slug,
-      frontmatter: fm,
-    };
-  })
-);
-
-posts.sort((a, b) => {
-  const dateA = a.frontmatter.date ? new Date(a.frontmatter.date) : new Date(0);
-  const dateB = b.frontmatter.date ? new Date(b.frontmatter.date) : new Date(0);
-  return dateB.getTime() - dateA.getTime();
-});
-
-const categoriesMap = {
+const categories: Record<string, string> = {
   'concetti-e-distinzioni': 'Concetti e Distinzioni',
   'dissezionamenti-grammaticali': 'Dissezioni grammaticali',
   'giapponese-di-nicchia': 'Giapponese di nicchia',
   'storia-della-grammatica': 'Storia della grammatica',
-  'kanji-funzionali': 'Kanji funzionali'
+  'kanji-funzionali': 'Kanji funzionali',
 };
 
-const normalizeSeries = (value) => {
-  return String(value ?? '')
-    .toLowerCase()
-    .trim()
-    .replace(/[–—−]/g, '-')
-    .replace(/\s+/g, '-')
-    .replace(/[^\w-]/g, '');
-};
+const oldCategory = Astro.url.searchParams.get('cat');
+if (oldCategory) return Astro.redirect('/articoli/c/' + encodeURIComponent(oldCategory) + '/', 301);
 
-const normalizeJlpt = (value) => {
-  return String(value ?? '')
-    .toLowerCase()
-    .trim()
-    .replace(/[–—−]/g, '-')
-    .replace(/\s*-\s*/g, '-')
-    .replace(/\s+/g, '-')
-    .replace(/[^\w-]/g, '');
-};
-
-const isFilterableJlpt = (value) => {
-  const raw = String(value ?? '').trim().toLowerCase();
-
-  if (raw === 'tutti i livelli' || raw === 'tutti-i-livelli') {
-    return true;
-  }
-
-  const normalized = normalizeJlpt(value);
-  const parts = normalized.split('-').filter(Boolean);
-  const allowed = new Set(['n5', 'n4', 'n3', 'n2', 'n1']);
-
-  if (parts.length === 1) {
-    return allowed.has(parts[0]);
-  }
-
-  if (parts.length === 2) {
-    return allowed.has(parts[0]) && allowed.has(parts[1]);
-  }
-
-  return false;
-};
-
-const catFromQuery = Astro.url.searchParams.get('cat');
-if (catFromQuery) {
-  return Astro.redirect(`/articoli/c/${catFromQuery}/`, 301);
+function taxonomySlug(value: unknown) {
+  return String(value ?? '').toLowerCase().trim()
+    .replace(/[–—−]/g, '-').replace(/\s+/g, '-').replace(/[^\w-]/g, '');
 }
 
-const filteredPosts = posts;
+const singleLevels = ['n5', 'n4', 'n3', 'n2', 'n1'];
+const allLevels = 'tutti-i-livelli';
+
+function matchingLevels(key: string) {
+  if (key === allLevels) return [...singleLevels, key];
+  if (!/^n[1-5](?:-n[1-5])?$/.test(key)) return [];
+  return [...new Set([key, ...key.split('-')])];
+}
+
+function asList(value?: string | string[]) {
+  return Array.isArray(value) ? value : value ? [value] : [];
+}
+
+const categoryEntries = Object.entries(categories);
+const modules = import.meta.glob<ArticleMeta>('../../content/articoli/**/*.mdx', {
+  eager: true,
+  import: 'frontmatter',
+});
+const posts = Object.entries(modules).map(([path, metadata]) => {
+  const fm = metadata ?? {};
+  const slug = fm.slug ?? path.split('/').pop()!.replace(/\.mdx$/, '');
+  const date = fm.date instanceof Date ? fm.date : fm.date ? new Date(fm.date) : null;
+  const rawCategories = asList(fm.category).map(taxonomySlug);
+  const categoryKeys = categoryEntries
+    .filter(([key, label]) => rawCategories.includes(key) || rawCategories.includes(taxonomySlug(label)))
+    .map(([key]) => key);
+  const levelKey = taxonomySlug(String(fm.jlpt ?? '').replace(/\s*[-–—−]\s*/g, '-'));
+  return {
+    fm, slug, categoryKeys, levelKey,
+    title: fm.title ?? slug,
+    href: '/articoli/' + slug + '/',
+    date: date && Number.isFinite(date.getTime()) ? date : null,
+    seriesKey: taxonomySlug(fm.series),
+    levels: matchingLevels(levelKey),
+    tags: asList(fm.tags),
+  };
+});
+posts.sort((a, b) => (b.date?.getTime() ?? -Infinity) - (a.date?.getTime() ?? -Infinity));
+const series = new Map<string, string>();
+const usedLevels = new Set<string>();
+for (const post of posts) {
+  if (post.seriesKey && post.fm.series) series.set(post.seriesKey, String(post.fm.series));
+  for (const level of post.levels) usedLevels.add(level);
+}
+const seriesOptions = [...series].sort((a, b) => a[1].localeCompare(b[1], 'it'));
+const levelOptions = [
+  ...singleLevels.filter(level => usedLevels.has(level)),
+  ...[...usedLevels].filter(level => /^n[1-5]-n[1-5]$/.test(level)).sort(),
+];
+const dateFormat = new Intl.DateTimeFormat('it-IT', {
+  day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC',
+});
 ---
 
 <BaseLayout
   title="Articoli – grammatica giapponese avanzata | Hakkiri Nihongo"
   description="Articoli di grammatica giapponese avanzata: concetti, distinzioni, grammatica di nicchia e approfondimenti per studenti di livello intermedio e avanzato."
 >
-  <div class="page-articles page-articles-bg">
-    <h2>Articoli</h2>
+  <section class="hn-archive" aria-labelledby="hn-archive-title">
+    <noscript><style is:inline>.hn-archive { visibility: visible; }</style></noscript>
+    <div class="masthead">
+      <h1 id="hn-archive-title">Articoli</h1>
+      <p>Esplora la grammatica giapponese per argomento, serie e livello JLPT.</p>
+      <img class="landscape" src="/images/paesaggio-archivio-fuji.webp" width="1200" height="289" alt="" />
+    </div>
 
-    <nav class="category-nav">
-      <script>
-        const params = new URLSearchParams(window.location.search);
-        const cat = params.get("cat");
-        if (cat) {
-          window.location.replace(`/articoli/c/${cat}/`);
-        }
-      </script>
+    <div class="archive-grid">
+      <div class="toolbar" data-pagefind-ignore>
+        <label class="search-box">
+          <span class="sr-only">Cerca negli articoli</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5" /><path d="m15 15 5 5" /></svg>
+          <input id="hn-archive-search" type="search" placeholder="Cerca negli articoli" autocomplete="off" />
+        </label>
+        <button class="filter-toggle" type="button" aria-expanded="false" aria-controls="hn-archive-filters">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h5m4 0h9M3 17h9m4 0h5" /><circle cx="10" cy="7" r="2" /><circle cx="14" cy="17" r="2" /></svg>
+          Filtri<span class="filter-count" hidden></span>
+        </button>
+        <label class="sort-field">
+          <span class="sr-only">Ordina gli articoli</span>
+          <select id="hn-archive-order">
+            <option value="recenti">Più recenti</option>
+            <option value="meno-recenti">Meno recenti</option>
+          </select>
+        </label>
+      </div>
 
-      <a href="/articoli/" class="active">Tutti</a>
-      {Object.entries(categoriesMap).map(([slug, title]) => (
-        <a href={`/articoli/c/${slug}/`}>{title}</a>
-      ))}
-    </nav>
-
-    <p class="archive-links">
-      <a href="/articoli/serie/">Vedi tutte le serie</a>
-      <span> · </span>
-      <a href="/articoli/jlpt/">Vedi tutti i livelli JLPT</a>
-    </p>
-
-    <ul class="post-list">
-      {filteredPosts.map(({ slug, frontmatter }) => (
-        <li class="post-item">
-  <a
-    class="post-thumb"
-    href={`/articoli/${slug}/`}
-    aria-hidden="true"
-    tabindex="-1"
-  >
-    <img
-  src={frontmatter.image ?? '/og-image.png'}
-  alt=""
-/>
-  </a>
-
-  <div class="post-content">
-            <h3 class="post-title">
-              <a class="post-link" href={`/articoli/${slug}/`}>
-                {frontmatter.title ?? slug}
-              </a>
-            </h3>
-
-            {frontmatter.description && (
-              <p class="post-description">
-                <a class="post-link" href={`/articoli/${slug}/`}>
-                  {frontmatter.description}
-                </a>
-              </p>
-            )}
-
-            <div class="post-meta">
-              {frontmatter.date && (
-                <time datetime={frontmatter.date}>
-                  {new Date(frontmatter.date).toLocaleDateString('it-IT')}
-                </time>
-              )}
-
-              {frontmatter.series && (
-                <a
-                  class="series"
-                  href={`/articoli/serie/${normalizeSeries(frontmatter.series)}/`}
-                >
-                  {frontmatter.series}
-                </a>
-              )}
-
-              {frontmatter.jlpt && (
-                isFilterableJlpt(frontmatter.jlpt) ? (
-                  <a
-                    class="tag"
-                    href={
-                      normalizeJlpt(frontmatter.jlpt) === 'tutti-i-livelli'
-                        ? '/articoli/jlpt/'
-                        : `/articoli/jlpt/${normalizeJlpt(frontmatter.jlpt)}/`
-                    }
-                  >
-                    JLPT {frontmatter.jlpt}
-                  </a>
-                ) : (
-                  <span class="tag">JLPT {frontmatter.jlpt}</span>
-                )
-              )}
-
-              {frontmatter.tags && frontmatter.tags.map((tag) => (
-                <span class="tag">{tag}</span>
+      <aside class="filters" id="hn-archive-filters" aria-labelledby="hn-filter-title" data-pagefind-ignore>
+        <div class="filters-inner">
+          <h2 id="hn-filter-title">Filtra per</h2>
+          <nav aria-labelledby="hn-archive-topics">
+            <h3 class="eyebrow" id="hn-archive-topics">Argomento</h3>
+            <div class="topics">
+              <a href="/articoli/" data-topic="" aria-current="true">Tutti gli articoli</a>
+              {categoryEntries.map(([slug, label]) => (
+                <a href={'/articoli/c/' + slug + '/'} data-topic={slug}>{label}</a>
               ))}
             </div>
+          </nav>
+          <div class="select-filters">
+            <label>Serie
+              <select id="hn-archive-series">
+                <option value="">Tutte le serie</option>
+                {seriesOptions.map(([key, label]) => <option value={key}>{label}</option>)}
+              </select>
+            </label>
+            <label>Livello JLPT
+              <select id="hn-archive-level">
+                <option value="">Tutti i livelli</option>
+                {levelOptions.map(level => <option value={level}>{level.toUpperCase().replace('-', '–')}</option>)}
+                {usedLevels.has(allLevels) && <option value={allLevels}>Solo articoli per tutti i livelli</option>}
+              </select>
+            </label>
           </div>
-        </li>
-      ))}
+          <div class="archive-links-small">
+            <a class="topic-directory" href="/articoli/" hidden>Apri la pagina della categoria <span aria-hidden="true">→</span></a>
+            <a href="/articoli/serie/">Vedi tutte le serie <span aria-hidden="true">→</span></a>
+            <a href="/articoli/jlpt/">Vedi tutti i livelli JLPT <span aria-hidden="true">→</span></a>
+          </div>
+          <button class="show-results" type="button">Mostra i risultati</button>
+        </div>
+      </aside>
 
-      {filteredPosts.length === 0 && (
-        <li class="post-item">Non ci sono articoli in questa sezione al momento.</li>
-      )}
-    </ul>
-  </div>
+      <div class="results">
+        <div class="result-info" data-pagefind-ignore>
+          <span role="status" aria-live="polite" aria-atomic="true">{posts.length === 1 ? '1 articolo' : `${posts.length} articoli`}</span>
+          <button class="reset" type="button" hidden>Azzera filtri e ricerca</button>
+        </div>
+        <ul class="stories" aria-label="Elenco degli articoli">
+          {posts.map((post, index) => {
+            const { fm, href, title, date } = post;
+            const levelLabel = post.levelKey === allLevels ? 'Tutti i livelli' : 'JLPT ' + fm.jlpt;
+            return (
+              <li class="story"
+                data-series={post.seriesKey} data-levels={post.levels.join(' ')}
+                data-topics={post.categoryKeys.join(' ')} data-date={date?.getTime()}
+                data-keywords={[post.slug, fm.subtitle, ...post.categoryKeys.map(key => categories[key])].filter(Boolean).join(' ')}>
+                <a class="cover" href={href} tabindex="-1" aria-hidden="true">
+                  <img src={fm.image || '/og-image.png'} alt="" width="1200" height="600"
+                    loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
+                </a>
+                <div class="story-text">
+                  <h2 data-search-text><a href={href}>{title}</a></h2>
+                  {fm.description && <p class="excerpt" data-search-text><a href={href}>{fm.description}</a></p>}
+                  <div class="meta" data-search-text>
+                    {date && <time datetime={date.toISOString().slice(0, 10)}>{dateFormat.format(date)}</time>}
+                    {fm.series && <a class="series-link" href={'/articoli/serie/' + post.seriesKey + '/'}>{fm.series}</a>}
+                    {fm.jlpt && (post.levels.length
+                      ? <a class="level-tag" href={post.levelKey === allLevels ? '/articoli/jlpt/' : '/articoli/jlpt/' + post.levelKey + '/'}>{levelLabel}</a>
+                      : <span class="level-tag">{levelLabel}</span>)}
+                    {post.tags.map(tag => <span class="tag-name">{tag}</span>)}
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+        <p class="empty" hidden={posts.length > 0}>
+          {posts.length > 0 ? 'Prova un’altra parola o modifica i filtri selezionati.' : 'Non ci sono ancora articoli in questa sezione.'}
+        </p>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<script>
+  function initArchive(root: HTMLElement) {
+    const legacy = new URLSearchParams(location.search).get('cat');
+    if (legacy) {
+      location.replace('/articoli/c/' + encodeURIComponent(legacy) + '/');
+      return;
+    }
+    const get = <T extends HTMLElement>(selector: string) => root.querySelector<T>(selector)!;
+    const search = get<HTMLInputElement>('#hn-archive-search');
+    const series = get<HTMLSelectElement>('#hn-archive-series');
+    const level = get<HTMLSelectElement>('#hn-archive-level');
+    const order = get<HTMLSelectElement>('#hn-archive-order');
+    const toggle = get<HTMLButtonElement>('.filter-toggle');
+    const panel = get('#hn-archive-filters');
+    const badge = get('.filter-count');
+    const topicDirectory = get<HTMLAnchorElement>('.topic-directory');
+    const showResults = get<HTMLButtonElement>('.show-results');
+    const reset = get<HTMLButtonElement>('.reset');
+    const list = get('.stories');
+    const status = get('[role="status"]');
+    const empty = get('.empty');
+    const topics = [...root.querySelectorAll<HTMLAnchorElement>('[data-topic]')];
+
+    // Confronta accenti latini, kana e forme a larghezza piena preservando i dakuten.
+    function searchable(value: string) {
+      return value.normalize('NFKC').toLowerCase()
+        .replace(/[ァ-ヶ]/g, kana => String.fromCharCode(kana.charCodeAt(0) - 0x60))
+        .normalize('NFD').replace(/(\p{Script=Latin})\p{M}+/gu, '$1').normalize('NFC')
+        .replace(/[\p{P}\p{S}]+/gu, ' ').replace(/\s+/g, ' ').trim();
+    }
+
+    const articles = [...list.querySelectorAll<HTMLElement>('.story')].map(node => {
+      const content = [...node.querySelectorAll('[data-search-text]')].map(el => el.textContent);
+      return {
+        node, topicKeys: (node.dataset.topics || '').split(' '),
+        seriesKey: node.dataset.series, levels: (node.dataset.levels || '').split(' '),
+        text: searchable([node.dataset.keywords, ...content].join(' ')),
+        time: node.dataset.date === undefined ? Infinity : Number(node.dataset.date),
+      };
+    });
+    let topic = '';
+    let activeOrder = 'recenti';
+
+    function update(saveUrl = true) {
+      const words = searchable(search.value).split(' ').filter(Boolean);
+      const filterCount = [topic, series.value, level.value].filter(Boolean).length;
+      const filtered = filterCount > 0 || search.value.trim() !== '';
+      const changed = filtered || order.value !== 'recenti';
+      let count = 0;
+      for (const article of articles) {
+        const matches = (!topic || article.topicKeys.includes(topic))
+          && (!series.value || article.seriesKey === series.value)
+          && (!level.value || article.levels.includes(level.value))
+          && words.every(word => article.text.includes(word));
+        article.node.hidden = !matches;
+        if (matches) count++;
+      }
+      if (order.value !== activeOrder) {
+        // L'ordine iniziale è quello generato da Astro. Le date mancanti restano in fondo.
+        const ordered = order.value === 'recenti' ? articles : [...articles].sort((a, b) => a.time - b.time);
+        list.append(...ordered.map(article => article.node));
+        activeOrder = order.value;
+      }
+      for (const link of topics) {
+        if (link.dataset.topic === topic) link.setAttribute('aria-current', 'true');
+        else link.removeAttribute('aria-current');
+      }
+      topicDirectory.hidden = !topic;
+      if (topic) topicDirectory.href = '/articoli/c/' + encodeURIComponent(topic) + '/';
+      badge.hidden = filterCount === 0;
+      badge.textContent = String(filterCount);
+      empty.hidden = count > 0;
+      reset.hidden = !changed;
+      reset.textContent = filtered ? 'Azzera filtri e ricerca' : 'Ripristina l’ordine';
+      status.textContent = count === 0 ? 'Nessun articolo trovato.'
+        : count === 1 ? '1 articolo' : count + ' articoli';
+
+      if (saveUrl) {
+        const url = new URL(location.href);
+        const values = { q: search.value.trim(), argomento: topic, serie: series.value, jlpt: level.value,
+          ordine: order.value === 'recenti' ? '' : order.value };
+        for (const [key, value] of Object.entries(values)) {
+          if (value) url.searchParams.set(key, value);
+          else url.searchParams.delete(key);
+        }
+        if (url.href !== location.href) history.replaceState(history.state, '', url);
+      }
+    }
+
+    function readUrl() {
+      const params = new URLSearchParams(location.search);
+      search.value = params.get('q') ?? '';
+      topic = topics.find(link => link.dataset.topic === params.get('argomento'))?.dataset.topic ?? '';
+      for (const [select, key] of [[series, 'serie'], [level, 'jlpt'], [order, 'ordine']] as const) {
+        const value = params.get(key);
+        select.value = Array.from(select.options).find(option => option.value === value)?.value ?? select.options[0].value;
+      }
+      update(false);
+    }
+
+    topics.forEach(link => link.addEventListener('click', event => {
+      if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      topic = link.dataset.topic ?? '';
+      update();
+    }));
+    search.addEventListener('input', () => update());
+    for (const select of [series, level, order]) select.addEventListener('change', () => update());
+    function setPanelOpen(open: boolean) {
+      panel.toggleAttribute('data-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    }
+    toggle.addEventListener('click', () => setPanelOpen(!panel.hasAttribute('data-open')));
+    showResults.addEventListener('click', () => {
+      setPanelOpen(false);
+      toggle.focus();
+    });
+    reset.addEventListener('click', () => {
+      topic = '';
+      search.value = series.value = level.value = '';
+      order.value = 'recenti';
+      update();
+      search.focus();
+    });
+    window.addEventListener('popstate', readUrl);
+    readUrl();
+    root.setAttribute('data-ready', '');
+  }
+
+  const archive = document.querySelector<HTMLElement>('.hn-archive');
+  if (archive) initArchive(archive);
+</script>
+
+<style>
+  /* Il contenitore più ampio serve solo alla pagina che ospita questo archivio. */
+  :global(main.container:has(> .hn-archive)) {
+    max-width: 88rem;
+    padding-inline: clamp(1rem, 3vw, 2.75rem);
+  }
+
+  .hn-archive {
+    --ink: #282b2a;
+    --muted: #514c47;
+    --red: #94352c;
+    --dark-red: #72251e;
+    --line: #d9cbbd;
+    --soft-red: #f4e4d9;
+    --paper: #fffaf3;
+    --serif: "Cormorant Garamond", Georgia, "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    --serif-text: Georgia, "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    margin: 0 auto;
+    padding-bottom: clamp(2.8rem, 6vw, 5rem);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.5;
+  }
+  .hn-archive [hidden] { display: none; }
+  .hn-archive :focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .masthead {
+    display: grid;
+    grid-template-columns: minmax(0, 1.22fr) minmax(0, .95fr);
+    align-content: center;
+    column-gap: clamp(1rem, 3vw, 3rem);
+    padding-block: clamp(.8rem, 1.4vw, 1.25rem);
+    border-bottom: 1px solid #b57567;
+  }
+  .masthead h1 {
+    align-self: end;
+    margin: 0;
+    color: var(--red);
+    font: 600 clamp(3rem, 5vw, 4.65rem)/1 var(--serif);
+    letter-spacing: -0.035em;
+  }
+  .masthead p {
+    grid-column: 1;
+    margin: .55rem 0 0;
+    font: 500 clamp(.98rem, 1.15vw, 1.12rem)/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+    letter-spacing: -.018em;
+    text-wrap: pretty;
+  }
+  .landscape {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+    justify-self: end;
+    display: block;
+    width: 100%;
+    max-width: 38rem;
+    max-height: 7.5rem;
+    height: auto;
+    object-fit: contain;
+    object-position: right center;
+  }
+
+  .archive-grid {
+    display: grid;
+    grid-template-columns: clamp(12.75rem, 17vw, 15.5rem) minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    column-gap: clamp(1.2rem, 2.1vw, 2rem);
+    padding-top: clamp(.95rem, 1.6vw, 1.35rem);
+    align-items: start;
+  }
+  .toolbar { display: none; }
+  .hn-archive[data-ready] .toolbar {
+    grid-area: 1 / 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: .75rem;
+    margin-bottom: clamp(.7rem, 1.2vw, 1rem);
+  }
+  .hn-archive select, .filter-toggle, .search-box {
+    min-height: 2.8rem;
+    border: 1px solid #a99b8c;
+    border-radius: .45rem;
+    color: var(--ink);
+    background-color: var(--paper);
+    font: inherit;
+    font-size: .97rem;
+  }
+  .hn-archive select {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    padding: .5rem 2.25rem .5rem .8rem;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23443b34' stroke-width='1.7'%3E%3Cpath d='m3 6 5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right .8rem center;
+    background-size: .85rem;
+    cursor: pointer;
+  }
+  .sort-field { min-width: 10.4rem; }
+  .search-box, .filter-toggle { align-items: center; gap: .65rem; }
+  .search-box { display: flex; min-width: 0; padding-inline: .9rem; }
+  .search-box:focus-within { outline: 2px solid var(--red); outline-offset: 2px; }
+  .search-box input {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.72rem;
+    padding: .42rem 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 1rem;
+  }
+  .search-box input::placeholder { color: #5b5752; opacity: 1; }
+  .search-box input:focus-visible { outline: none; }
+  .toolbar svg { width: 1.24rem; height: 1.24rem; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+  .filter-toggle { display: none; padding: .5rem .85rem; cursor: pointer; }
+  .filter-count {
+    min-width: 1.25rem;
+    border-radius: 1rem;
+    background: var(--soft-red);
+    color: var(--dark-red);
+    font-size: .8rem;
+    font-weight: 650;
+    text-align: center;
+  }
+
+  .filters {
+    grid-area: 1 / 1 / 3 / 2;
+    align-self: stretch;
+    min-width: 0;
+    padding-right: clamp(1rem, 1.7vw, 1.6rem);
+    border-right: 1px solid var(--line);
+  }
+  /* The border stays full height; only the filter controls stick while scrolling. */
+  @media (min-width: 62rem) and (min-height: 54rem) {
+    .filters-inner { position: sticky; top: 6rem; }
+  }
+  .filters h2 { margin: 0 0 1rem; font: 600 1.62rem/1.12 var(--serif); color: var(--ink); }
+  .eyebrow {
+    margin: 0 0 .55rem;
+    font: 650 .74rem/1.4 system-ui, sans-serif;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .topics { display: grid; }
+  .topics a {
+    display: flex;
+    align-items: center;
+    min-height: 2.4rem;
+    padding: .37rem .55rem .37rem .72rem;
+    border-left: 3px solid transparent;
+    color: var(--ink);
+    font: 600 1.04rem/1.25 var(--serif);
+    overflow-wrap: anywhere;
+  }
+  .topics a:hover { background: #f4ede4; }
+  .topics a[aria-current] { color: var(--dark-red); border-left-color: var(--red); background: var(--soft-red); }
+  .select-filters { display: none; }
+  .hn-archive[data-ready] .select-filters {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.15rem;
+    padding-top: 1.15rem;
+    border-top: 1px solid var(--line);
+  }
+  .select-filters label { display: grid; gap: .35rem; font-weight: 600; font-size: .93rem; }
+  .select-filters select { font-weight: 400; }
+  .archive-links-small { display: grid; gap: .35rem; margin-top: 1.25rem; }
+  .archive-links-small a, .series-link { width: fit-content; color: var(--muted); }
+  .archive-links-small a { padding-block: .22rem; font-size: .84rem; }
+  .archive-links-small a:hover, .series-link:hover { color: var(--red); text-decoration: underline; }
+  .show-results { display: none; }
+
+  .results { grid-area: 2 / 2; min-width: 0; }
+  .result-info { display: flex; flex-wrap: wrap; gap: .3rem .85rem; align-items: baseline; margin-bottom: .65rem; color: var(--muted); font-size: .86rem; }
+  .result-info:has(.reset:not([hidden])) { margin-bottom: .85rem; }
+  .reset {
+    cursor: pointer;
+    margin-left: auto;
+    padding: .22rem 0;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    color: var(--red);
+    text-decoration: underline;
+    text-underline-offset: .17em;
+  }
+  /* Schede editoriali compatte: stessi pesi e dimensioni per ogni articolo. */
+  .stories { display: grid; gap: .75rem; list-style: none; margin: 0; padding: 0; }
+  .story {
+    display: grid;
+    grid-template-columns: minmax(0, 26%) minmax(0, 1fr);
+    gap: clamp(.8rem, 1.2vw, 1.1rem);
+    align-items: center;
+    position: relative;
+    min-width: 0;
+    padding: .7rem;
+    border: 1px solid var(--line);
+    border-radius: .64rem;
+    background: var(--paper);
+    box-shadow: 0 2px 7px rgb(52 38 29 / 3%);
+    transition: border-color .22s ease, box-shadow .22s ease, transform .22s ease, background-color .22s ease;
+  }
+  .story:focus-within {
+    border-color: #b77968;
+    box-shadow: 0 5px 17px rgb(73 41 29 / 9%);
+  }
+  .cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 2 / 1;
+    overflow: hidden;
+    border-radius: .48rem;
+    background: #f0eae2;
+  }
+  .cover img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Le immagini degli articoli NON vengono ritagliate. */
+    transition: filter .25s ease;
+  }
+  .story-text { min-width: 0; }
+  .story h2 {
+    margin: 0;
+    color: var(--dark-red);
+    font: 600 clamp(1.18rem, 1.38vw, 1.43rem)/1.23 var(--serif);
+    letter-spacing: -.012em;
+    overflow-wrap: anywhere;
+  }
+  .story h2 a { color: inherit; }
+  /* The title link covers the card without intercepting the series or JLPT links. */
+  .story h2 a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+  .story .meta a, .story .excerpt a { position: relative; z-index: 2; }
+  .story h2 a:hover { color: var(--red); }
+  .story h2 a:focus-visible { outline-offset: 4px; }
+  .excerpt {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    margin: .34rem 0 0;
+    color: var(--muted);
+    font: 400 .87rem/1.43 var(--serif-text);
+    overflow-wrap: anywhere;
+  }
+  .excerpt a { color: inherit; }
+  .excerpt a:hover { color: var(--dark-red); }
+  .meta { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .65rem; margin-top: .48rem; color: var(--muted); font-size: .77rem; }
+  .meta:empty { display: none; }
+  .meta time { font-variant-numeric: tabular-nums; }
+  .meta > * { max-width: 100%; overflow-wrap: anywhere; }
+  .level-tag, .tag-name { display: inline-block; border-radius: .26rem; padding: .12rem .4rem; }
+  .level-tag { background: var(--soft-red); color: var(--dark-red); }
+  a.level-tag:hover { color: var(--dark-red); text-decoration: underline; }
+  .tag-name { background: #ede9e1; }
+
+  @media (hover: hover) and (pointer: fine) {
+    .story:hover {
+      transform: translateY(-2px);
+      border-color: #bf9787;
+      background: #fffdf9;
+      box-shadow: 0 7px 20px rgb(73 41 29 / 9%);
+    }
+    .story:hover .cover img { filter: saturate(1.06) brightness(1.025); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .story, .cover img { transition: none; }
+    .story:hover { transform: none; }
+    .story:hover .cover img { filter: none; }
+  }
+  .empty { margin: 1rem 0; padding: 1.1rem 1.2rem; border-left: 3px solid var(--red); background: var(--paper); color: var(--ink); }
+
+  /* Su schermi intermedi il testo rimane leggibile e le immagini non si ritagliano. */
+  @media (min-width: 62rem) and (max-width: 78rem) {
+    .story { grid-template-columns: minmax(0, 30%) minmax(0, 1fr); }
+    .story h2 { font-size: 1.24rem; }
+  }
+
+  @media (max-width: 61.99rem) {
+    .archive-grid { display: flex; flex-direction: column; align-items: stretch; }
+    .hn-archive[data-ready] .toolbar { grid-template-columns: minmax(0, 1fr) auto auto; }
+    .filter-toggle { display: inline-flex; }
+    .filters { border: 1px solid var(--line); border-radius: .55rem; padding: 1rem; margin-bottom: 1rem; }
+    .hn-archive[data-ready] .filters:not([data-open]) { display: none; }
+    .filters h2 { margin-bottom: 1rem; }
+    .topics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .hn-archive[data-ready] .select-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .archive-links-small { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; }
+    .hn-archive[data-ready] .show-results {
+      display: block;
+      min-height: 2.75rem;
+      margin-top: 1rem;
+      padding: .45rem 1.1rem;
+      border: 0;
+      border-radius: .45rem;
+      background: var(--red);
+      color: white;
+      font: inherit;
+      cursor: pointer;
+    }
+  }
+
+  @media (max-width: 39.99rem) {
+    .masthead { grid-template-columns: auto minmax(0, 1fr); gap: .4rem .7rem; }
+    .masthead p { grid-column: 1 / -1; margin: 0; font-size: 1.04rem; }
+    .landscape { grid-row: 1; max-height: 4.2rem; }
+    .hn-archive[data-ready] .toolbar { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
+    .search-box { grid-column: 1 / -1; }
+    .sort-field { min-width: 0; }
+    .hn-archive select, .filter-toggle { font-size: 1rem; }
+    .topics, .hn-archive[data-ready] .select-filters { grid-template-columns: 1fr; }
+    .story { grid-template-columns: minmax(0, 35%) minmax(0, 1fr); gap: .7rem; padding: .65rem; }
+    .story h2 { font-size: clamp(1.12rem, 3.9vw, 1.36rem); line-height: 1.21; }
+    .excerpt { margin-top: .3rem; font-size: .84rem; -webkit-line-clamp: 2; line-clamp: 2; }
+    .meta { margin-top: .4rem; gap: .28rem .5rem; font-size: .72rem; }
+  }
+
+  @media (max-width: 30rem) {
+    .story { grid-template-columns: minmax(0, 35%) minmax(0, 1fr); gap: .6rem; padding: .58rem; }
+    .story h2 { font-size: 1.12rem; }
+    .excerpt { display: none; }
+    .meta { font-size: .7rem; }
+  }
+</style>
