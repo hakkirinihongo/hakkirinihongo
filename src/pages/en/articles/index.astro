@@ -1,150 +1,637 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 
-const postImports = import.meta.glob('../../../content/en/**/*.mdx');
+type ArticleMeta = {
+  slug?: string;
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  image?: string;
+  date?: string | Date;
+  category?: string | string[];
+  series?: string;
+  jlpt?: string;
+  tags?: string | string[];
+};
 
-const posts = await Promise.all(
-  Object.entries(postImports).map(async ([path, resolver]) => {
-    const mod = await resolver();
-    const fm = mod.frontmatter ?? {};
-    const slug = fm.slug ?? path.split('/').pop().replace(/\.mdx?$/, '');
-
-    return {
-      slug,
-      frontmatter: fm,
-    };
-  })
-);
-
-posts.sort((a, b) => {
-  const dateA = a.frontmatter.date ? new Date(a.frontmatter.date) : new Date(0);
-  const dateB = b.frontmatter.date ? new Date(b.frontmatter.date) : new Date(0);
-  return dateB.getTime() - dateA.getTime();
-});
-
-const categoriesMap = {
+const categories: Record<string, string> = {
   'concepts-and-distinctions': 'Concepts & Distinctions',
   'grammar-dissections': 'Grammar Dissections',
   'niche-japanese': 'Niche Japanese',
   'history-of-grammar': 'History of Grammar',
-  'functional-kanji': 'Functional Kanji'
+  'functional-kanji': 'Functional Kanji',
 };
 
-const normalizeSeries = (value) => {
-  return String(value ?? '')
-    .toLowerCase()
-    .trim()
-    .replace(/[–—−]/g, '-')
-    .replace(/\s+/g, '-')
-    .replace(/[^\w-]/g, '');
+const categoryIcons: Record<string, string> = {
+  "concepts-and-distinctions": "<path d=\"M12 6.5C9 4.5 5.5 4 2 5.2V20c3.5-1.2 7-.7 10 1.3 3-2 6.5-2.5 10-1.3V5.2c-3.5-1.2-7-.7-10 1.3Z\"/><path d=\"M12 6.5v14.8\"/>",
+  "grammar-dissections": "<circle cx=\"10.5\" cy=\"10.5\" r=\"7.5\"/><path d=\"m16 16 5 5\"/>",
+  "niche-japanese": "<path d=\"M2 4c6 1.8 14 1.8 20 0M3 8h18M7 5v17M17 5v17M12 5v3\"/>",
+  "history-of-grammar": "<path d=\"M7 3h13a2 2 0 0 1 0 4h-3M7 3a2 2 0 0 0-2 2v12H3a2 2 0 0 0 0 4h11a3 3 0 0 0 3-3V5a2 2 0 0 1 2-2M5 17h7a2 2 0 0 1 0 4\"/>",
+  "functional-kanji": "<text x=\"12\" y=\"20\" text-anchor=\"middle\" font-size=\"22\" font-family=\"sans-serif\">漢</text>"
 };
 
-const normalizeJlpt = (value) => {
-  return String(value ?? '')
-    .toLowerCase()
-    .trim()
-    .replace(/[–—−]/g, '-')
-    .replace(/\s*-\s*/g, '-')
-    .replace(/\s+/g, '-')
-    .replace(/[^\w-]/g, '');
-};
+const oldCategory = Astro.url.searchParams.get('cat');
+if (oldCategory) return Astro.redirect('/en/articles/c/' + encodeURIComponent(oldCategory) + '/', 301);
 
-const filteredPosts = posts;
+function taxonomySlug(value: unknown) {
+  return String(value ?? '').toLowerCase().trim()
+    .replace(/[–—−]/g, '-').replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+}
+
+const singleLevels = ['n5', 'n4', 'n3', 'n2', 'n1'];
+const allLevels = 'all-levels';
+
+function matchingLevels(key: string) {
+  if (key === allLevels || key === 'tutti-i-livelli') return [...singleLevels, allLevels];
+  if (!/^n[1-5](?:-n[1-5])?$/.test(key)) return [];
+  return [...new Set([key, ...key.split('-')])];
+}
+
+function asList(value?: string | string[]) {
+  return Array.isArray(value) ? value : value ? [value] : [];
+}
+
+const categoryEntries = Object.entries(categories);
+const modules = import.meta.glob<ArticleMeta>('../../../content/en/**/*.mdx', {
+  eager: true,
+  import: 'frontmatter',
+});
+const posts = Object.entries(modules).map(([path, metadata]) => {
+  const fm = metadata ?? {};
+  const slug = fm.slug ?? path.split('/').pop()!.replace(/\.mdx$/, '');
+  const date = fm.date instanceof Date ? fm.date : fm.date ? new Date(fm.date) : null;
+  const rawCategories = asList(fm.category).map(taxonomySlug);
+  // A few metadata records may spell the category as a heading rather than a slug.
+  const categoryAliases: Record<string, string> = {
+    'concepts-distinctions': 'concepts-and-distinctions',
+    'concepts--distinctions': 'concepts-and-distinctions',
+  };
+  const normalizedCategories = rawCategories.map(key => categoryAliases[key] ?? key);
+  const categoryKeys = categoryEntries
+    .filter(([key, label]) => normalizedCategories.includes(key) || normalizedCategories.includes(taxonomySlug(label)))
+    .map(([key]) => key);
+  const rawLevelKey = taxonomySlug(String(fm.jlpt ?? '').replace(/\s*[-–—−]\s*/g, '-'));
+  const levelKey = rawLevelKey === 'tutti-i-livelli' ? allLevels : rawLevelKey;
+  return {
+    fm, slug, categoryKeys, levelKey,
+    title: fm.title ?? slug,
+    href: '/en/articles/' + slug + '/',
+    date: date && Number.isFinite(date.getTime()) ? date : null,
+    seriesKey: taxonomySlug(fm.series),
+    levels: matchingLevels(levelKey),
+    tags: asList(fm.tags),
+  };
+});
+posts.sort((a, b) => (b.date?.getTime() ?? -Infinity) - (a.date?.getTime() ?? -Infinity));
+const series = new Map<string, string>();
+const usedLevels = new Set<string>();
+for (const post of posts) {
+  if (post.seriesKey && post.fm.series) series.set(post.seriesKey, String(post.fm.series));
+  for (const level of post.levels) usedLevels.add(level);
+}
+const seriesOptions = [...series].sort((a, b) => a[1].localeCompare(b[1], 'en'));
+const levelOptions = [
+  ...singleLevels.filter(level => usedLevels.has(level)),
+  ...[...usedLevels].filter(level => /^n[1-5]-n[1-5]$/.test(level)).sort(),
+];
+const dateFormat = new Intl.DateTimeFormat('en-US', {
+  month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC',
+});
 ---
 
 <BaseLayout
-  title="Articles – advanced Japanese grammar | Hakkiri Nihongo"
-  description="Japanese grammar articles in English: distinctions, nuance, niche grammar and advanced explanations made clear."
+  title="Articles – Advanced Japanese Grammar | Hakkiri Nihongo"
+  description="Explore Japanese grammar articles on subtle distinctions, complex structures, and linguistic nuance, with in-depth explanations for intermediate and advanced learners."
   alternateItalian="/articoli/"
   alternateEnglish="/en/articles/"
 >
-  <div class="page-articles page-articles-bg">
-    <h2>Articles</h2>
+  <section class="hn-archive" aria-labelledby="hn-archive-title">
+    <noscript><style is:inline>.hn-archive { visibility: visible; }</style></noscript>
+    <div class="masthead">
+      <h1 id="hn-archive-title">Articles</h1>
+      <p>Explore Japanese grammar by topic, series, and JLPT level.</p>
+    </div>
 
-    <nav class="category-nav">
-      <a href="/en/articles/" class="active">All</a>
+    <div class="archive-grid">
+      <div class="toolbar" data-pagefind-ignore>
+        <label class="search-box">
+          <span class="sr-only">Search articles</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5" /><path d="m15 15 5 5" /></svg>
+          <input id="hn-archive-search" type="search" placeholder="Search articles" autocomplete="off" />
+        </label>
+        <button class="filter-toggle" type="button" aria-expanded="false" aria-controls="hn-archive-filters">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h5m4 0h9M3 17h9m4 0h5" /><circle cx="10" cy="7" r="2" /><circle cx="14" cy="17" r="2" /></svg>
+          Filters<span class="filter-count" hidden></span>
+        </button>
+        <label class="sort-field">
+          <span class="sr-only">Sort articles</span>
+          <select id="hn-archive-order">
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+          </select>
+        </label>
+      </div>
 
-      {Object.entries(categoriesMap).map(([slug, title]) => (
-        <a href={`/en/articles/c/${slug}/`}>{title}</a>
-      ))}
-    </nav>
-
-    <p class="archive-links">
-      <a href="/en/articles/series/">Browse all series</a>
-      <span> · </span>
-      <a href="/en/articles/jlpt/">Browse all JLPT levels</a>
-    </p>
-
-    <ul class="post-list">
-      {filteredPosts.map(({ slug, frontmatter }) => (
-        <li class="post-item">
-          <a
-            class="post-thumb"
-            href={`/en/articles/${slug}/`}
-            aria-hidden="true"
-            tabindex="-1"
-          >
-            <img
-              src={frontmatter.image ?? '/og-image.png'}
-              alt=""
-              loading="lazy"
-            />
-          </a>
-
-          <div class="post-content">
-            <h3 class="post-title">
-              <a class="post-link" href={`/en/articles/${slug}/`}>
-                {frontmatter.title ?? slug}
+      <aside class="filters" id="hn-archive-filters" aria-labelledby="hn-filter-title" data-pagefind-ignore>
+        <div class="filters-inner">
+          <h2 id="hn-filter-title">Filter by</h2>
+          <nav aria-labelledby="hn-archive-topics">
+            <h3 class="eyebrow" id="hn-archive-topics">Topic</h3>
+            <div class="topics">
+              <a href="/en/articles/" data-topic="" aria-current="true">
+                <svg class="topic-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 10 5-10 5L2 7l10-5Z" /><path d="m2 12 10 5 10-5M2 17l10 5 10-5" /></svg>
+                <span>All articles</span>
               </a>
-            </h3>
-
-            {frontmatter.description && (
-              <p class="post-description">
-                <a class="post-link" href={`/en/articles/${slug}/`}>
-                  {frontmatter.description}
+              {categoryEntries.map(([slug, label]) => (
+                <a href={'/en/articles/c/' + slug + '/'} data-topic={slug}>
+                  <svg class:list={['topic-icon', { kanji: slug === 'functional-kanji' }]} viewBox="0 0 24 24" aria-hidden="true" set:html={categoryIcons[slug]} />
+                  <span>{label}</span>
                 </a>
-              </p>
-            )}
-
-            <div class="post-meta">
-              {frontmatter.date && (
-                <time datetime={frontmatter.date}>
-                  {new Date(frontmatter.date).toLocaleDateString('en-US')}
-                </time>
-              )}
-
-              {frontmatter.series && (
-                <a
-                  class="series"
-                  href={`/en/articles/series/${normalizeSeries(frontmatter.series)}/`}
-                >
-                  {frontmatter.series}
-                </a>
-              )}
-
-              {frontmatter.jlpt && (
-  <a
-    class="tag"
-    href={
-      normalizeJlpt(frontmatter.jlpt) === 'all-levels' ||
-      normalizeJlpt(frontmatter.jlpt) === 'tutti-i-livelli'
-        ? '/en/articles/jlpt/'
-        : `/en/articles/jlpt/${normalizeJlpt(frontmatter.jlpt)}/`
-    }
-  >
-    JLPT {frontmatter.jlpt}
-  </a>
-)}
+              ))}
             </div>
+          </nav>
+          <div class="select-filters">
+            <label>Series
+              <select id="hn-archive-series">
+                <option value="">All series</option>
+                {seriesOptions.map(([key, label]) => <option value={key}>{label}</option>)}
+              </select>
+            </label>
+            <label>JLPT level
+              <select id="hn-archive-level">
+                <option value="">All levels</option>
+                {levelOptions.map(level => <option value={level}>{level.toUpperCase().replace('-', '–')}</option>)}
+                {usedLevels.has(allLevels) && <option value={allLevels}>All-level articles only</option>}
+              </select>
+            </label>
           </div>
-        </li>
-      ))}
+          <div class="archive-links-small">
+            <a class="topic-directory" href="/en/articles/" hidden>Browse this category <span aria-hidden="true">→</span></a>
+            <a href="/en/articles/series/">Browse all series <span aria-hidden="true">→</span></a>
+            <a href="/en/articles/jlpt/">Browse all JLPT levels <span aria-hidden="true">→</span></a>
+          </div>
+          <button class="show-results" type="button">Show results</button>
+        </div>
+      </aside>
 
-      {filteredPosts.length === 0 && (
-        <li class="post-item">
-          No English articles available yet.
-        </li>
-      )}
-    </ul>
-  </div>
+      <div class="results">
+        <div class="result-info" data-pagefind-ignore>
+          <span role="status" aria-live="polite" aria-atomic="true">{posts.length === 1 ? '1 article' : `${posts.length} articles`}</span>
+          <button class="reset" type="button" hidden>Clear filters and search</button>
+        </div>
+        <ul class="stories" aria-label="Article list">
+          {posts.map((post, index) => {
+            const { fm, href, title, date } = post;
+            const levelLabel = post.levelKey === allLevels ? 'JLPT All levels' : 'JLPT ' + fm.jlpt;
+            return (
+              <li class="story"
+                data-series={post.seriesKey} data-levels={post.levels.join(' ')}
+                data-topics={post.categoryKeys.join(' ')} data-date={date?.getTime()}
+                data-keywords={[post.slug, fm.subtitle, ...post.categoryKeys.map(key => categories[key])].filter(Boolean).join(' ')}>
+                <a class="cover" href={href} tabindex="-1" aria-hidden="true">
+                  <img src={fm.image || '/og-image.png'} alt="" width="1200" height="600"
+                    loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
+                </a>
+                <div class="story-text">
+                  <h2 data-search-text><a href={href}>{title}</a></h2>
+                  {fm.description && <p class="excerpt" data-search-text><a href={href}>{fm.description}</a></p>}
+                  <div class="meta" data-search-text>
+                    {date && <time datetime={date.toISOString().slice(0, 10)}>{dateFormat.format(date)}</time>}
+                    {fm.series && <a class="series-link" href={'/en/articles/series/' + post.seriesKey + '/'}>{fm.series}</a>}
+                    {fm.jlpt && (post.levels.length
+                      ? <a class="level-tag" href={post.levelKey === allLevels ? '/en/articles/jlpt/' : '/en/articles/jlpt/' + post.levelKey + '/'}>{levelLabel}</a>
+                      : <span class="level-tag">{levelLabel}</span>)}
+                    {post.tags.map(tag => <span class="tag-name">{tag}</span>)}
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+        <p class="empty" hidden={posts.length > 0}>
+          {posts.length > 0 ? 'Try another search term or adjust your filters.' : 'There are no articles in this section yet.'}
+        </p>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<script>
+  function initArchive(root: HTMLElement) {
+    const legacy = new URLSearchParams(location.search).get('cat');
+    if (legacy) {
+      location.replace('/en/articles/c/' + encodeURIComponent(legacy) + '/');
+      return;
+    }
+    const get = <T extends HTMLElement>(selector: string) => root.querySelector<T>(selector)!;
+    const search = get<HTMLInputElement>('#hn-archive-search');
+    const series = get<HTMLSelectElement>('#hn-archive-series');
+    const level = get<HTMLSelectElement>('#hn-archive-level');
+    const order = get<HTMLSelectElement>('#hn-archive-order');
+    const toggle = get<HTMLButtonElement>('.filter-toggle');
+    const panel = get('#hn-archive-filters');
+    const badge = get('.filter-count');
+    const topicDirectory = get<HTMLAnchorElement>('.topic-directory');
+    const showResults = get<HTMLButtonElement>('.show-results');
+    const reset = get<HTMLButtonElement>('.reset');
+    const list = get('.stories');
+    const status = get('[role="status"]');
+    const empty = get('.empty');
+    const topics = [...root.querySelectorAll<HTMLAnchorElement>('[data-topic]')];
+
+    // Normalize Latin accents, kana and full-width forms while preserving dakuten.
+    function searchable(value: string) {
+      return value.normalize('NFKC').toLowerCase()
+        .replace(/[ァ-ヶ]/g, kana => String.fromCharCode(kana.charCodeAt(0) - 0x60))
+        .normalize('NFD').replace(/(\p{Script=Latin})\p{M}+/gu, '$1').normalize('NFC')
+        .replace(/[\p{P}\p{S}]+/gu, ' ').replace(/\s+/g, ' ').trim();
+    }
+
+    const articles = [...list.querySelectorAll<HTMLElement>('.story')].map(node => {
+      const content = [...node.querySelectorAll('[data-search-text]')].map(el => el.textContent);
+      return {
+        node, topicKeys: (node.dataset.topics || '').split(' '),
+        seriesKey: node.dataset.series, levels: (node.dataset.levels || '').split(' '),
+        text: searchable([node.dataset.keywords, ...content].join(' ')),
+        time: node.dataset.date === undefined ? Infinity : Number(node.dataset.date),
+      };
+    });
+    let topic = '';
+    let activeOrder = 'newest';
+
+    function update(saveUrl = true) {
+      const words = searchable(search.value).split(' ').filter(Boolean);
+      const filterCount = [topic, series.value, level.value].filter(Boolean).length;
+      const filtered = filterCount > 0 || search.value.trim() !== '';
+      const changed = filtered || order.value !== 'newest';
+      let count = 0;
+      for (const article of articles) {
+        const matches = (!topic || article.topicKeys.includes(topic))
+          && (!series.value || article.seriesKey === series.value)
+          && (!level.value || article.levels.includes(level.value))
+          && words.every(word => article.text.includes(word));
+        article.node.hidden = !matches;
+        if (matches) count++;
+      }
+      if (order.value !== activeOrder) {
+        // Astro generates the initial order. Undated articles stay at the end.
+        const ordered = order.value === 'newest' ? articles : [...articles].sort((a, b) => a.time - b.time);
+        list.append(...ordered.map(article => article.node));
+        activeOrder = order.value;
+      }
+      for (const link of topics) {
+        if (link.dataset.topic === topic) link.setAttribute('aria-current', 'true');
+        else link.removeAttribute('aria-current');
+      }
+      topicDirectory.hidden = !topic;
+      if (topic) topicDirectory.href = '/en/articles/c/' + encodeURIComponent(topic) + '/';
+      badge.hidden = filterCount === 0;
+      badge.textContent = String(filterCount);
+      empty.hidden = count > 0;
+      reset.hidden = !changed;
+      reset.textContent = filtered ? 'Clear filters and search' : 'Reset sort order';
+      status.textContent = count === 0 ? 'No articles found.'
+        : count === 1 ? '1 article' : count + ' articles';
+
+      if (saveUrl) {
+        const url = new URL(location.href);
+        const values = { q: search.value.trim(), topic, series: series.value, jlpt: level.value,
+          sort: order.value === 'newest' ? '' : order.value };
+        for (const [key, value] of Object.entries(values)) {
+          if (value) url.searchParams.set(key, value);
+          else url.searchParams.delete(key);
+        }
+        if (url.href !== location.href) history.replaceState(history.state, '', url);
+      }
+    }
+
+    function readUrl() {
+      const params = new URLSearchParams(location.search);
+      search.value = params.get('q') ?? '';
+      topic = topics.find(link => link.dataset.topic === params.get('topic'))?.dataset.topic ?? '';
+      for (const [select, key] of [[series, 'series'], [level, 'jlpt'], [order, 'sort']] as const) {
+        const value = params.get(key);
+        select.value = Array.from(select.options).find(option => option.value === value)?.value ?? select.options[0].value;
+      }
+      update(false);
+    }
+
+    topics.forEach(link => link.addEventListener('click', event => {
+      if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      topic = link.dataset.topic ?? '';
+      update();
+    }));
+    search.addEventListener('input', () => update());
+    for (const select of [series, level, order]) select.addEventListener('change', () => update());
+    function setPanelOpen(open: boolean) {
+      panel.toggleAttribute('data-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    }
+    toggle.addEventListener('click', () => setPanelOpen(!panel.hasAttribute('data-open')));
+    showResults.addEventListener('click', () => {
+      setPanelOpen(false);
+      toggle.focus();
+    });
+    reset.addEventListener('click', () => {
+      topic = '';
+      search.value = series.value = level.value = '';
+      order.value = 'newest';
+      update();
+      search.focus();
+    });
+    window.addEventListener('popstate', readUrl);
+    readUrl();
+    // Align the background at the top of the page, beneath the existing header.
+    const header = document.querySelector<HTMLElement>('.site-header');
+    if (header) {
+      const syncHeader = () => root.style.setProperty('--archive-header-height', `${header.getBoundingClientRect().height}px`);
+      syncHeader();
+      if ('ResizeObserver' in window) new ResizeObserver(syncHeader).observe(header);
+    }
+    root.setAttribute('data-ready', '');
+  }
+
+  const archive = document.querySelector<HTMLElement>('.hn-archive');
+  if (archive) initArchive(archive);
+</script>
+
+<style>
+  /* Reference design: 1774px. Desktop dimensions scale proportionally. */
+  @font-face {
+    font-family: 'HN Archive Manrope';
+    src: url('/fonts/hn-archive-manrope-latin.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 200 800;
+    font-display: swap;
+  }
+  :global(main.container:has(> .hn-archive)) {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: clip;
+    background: #faf7f3;
+  }
+  .hn-archive {
+    --u: clamp(.82px, .0563698vw, 1.155px);
+    --ink: #172237;
+    --muted: #4d5260;
+    --red: #b83e31;
+    --dark-red: #9e3024;
+    --soft-red: #fbe6df;
+    --line: #ebd6cc;
+    --font: 'HN Archive Manrope', system-ui, -apple-system, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+    --archive-header-height: 66px;
+    --cover-ratio: 2;
+    position: relative;
+    isolation: isolate;
+    width: min(82.3%, 1684px);
+    margin: 0 auto;
+    padding: 0 0 calc(80 * var(--u));
+    color: var(--ink);
+    font: 400 calc(16 * var(--u))/1.5 var(--font);
+  }
+  .hn-archive::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    top: calc(-1 * var(--archive-header-height));
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    background: url('/images/archivio-sakura-pastello.webp') center top / 100% auto no-repeat;
+  }
+  .hn-archive, .hn-archive * { box-sizing: border-box; }
+  .hn-archive [hidden] { display: none !important; }
+  .hn-archive a { text-decoration: none; }
+  .hn-archive :focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+  .masthead {
+    position: relative;
+    min-height: calc(153 * var(--u));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: calc(19 * var(--u)) calc(34 * var(--u)) calc(22 * var(--u));
+  }
+  .masthead h1 {
+    margin: 0;
+    color: var(--red);
+    font: 500 calc(70 * var(--u))/1.08 "Playfair Display", Georgia, serif;
+    letter-spacing: -.025em;
+  }
+  .masthead p {
+    margin: calc(5 * var(--u)) 0 0;
+    max-width: 68%;
+    color: var(--ink);
+    font: 500 calc(19 * var(--u))/1.5 var(--font);
+    letter-spacing: -.022em;
+    text-wrap: pretty;
+  }
+  .masthead::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: calc(34 * var(--u));
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, rgb(216 79 63 / 0), #d84f3f 3%, #d84f3f 39%, rgb(216 79 63 / .55) 66%, rgb(216 79 63 / 0) 94%);
+  }
+  .archive-grid {
+    display: grid;
+    grid-template-columns: 20.8% minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    column-gap: 2.15%;
+    align-items: start;
+    padding-top: calc(27 * var(--u));
+  }
+  .toolbar { display: none; }
+  .hn-archive[data-ready] .toolbar {
+    grid-area: 1 / 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) calc(202 * var(--u));
+    align-items: center;
+    gap: calc(17 * var(--u));
+    margin: calc(3 * var(--u)) 0 calc(17 * var(--u));
+  }
+  .hn-archive select, .filter-toggle, .search-box {
+    min-height: calc(49 * var(--u));
+    border: 1px solid rgb(80 67 61 / .14);
+    border-radius: 999px;
+    color: var(--ink);
+    background-color: rgb(255 255 255 / .92);
+    box-shadow: 0 4px 10px rgb(51 43 39 / .07), 0 1px 2px rgb(51 43 39 / .025);
+    font: 500 calc(16 * var(--u))/1.35 var(--font);
+  }
+  .hn-archive select {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: calc(9 * var(--u)) calc(42 * var(--u)) calc(9 * var(--u)) calc(24 * var(--u));
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23172237' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3 6 5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right calc(22 * var(--u)) center;
+    background-size: calc(14 * var(--u));
+    cursor: pointer;
+  }
+  .sort-field { min-width: 0; }
+  .sort-field select { font-weight: 650; }
+  .search-box { display: flex; align-items: center; min-width: 0; gap: calc(15 * var(--u)); padding-inline: calc(24 * var(--u)); }
+  .search-box:focus-within { outline: 2px solid var(--red); outline-offset: 3px; }
+  .search-box input { width: 100%; min-width: 0; min-height: calc(47 * var(--u)); padding: calc(8 * var(--u)) 0; border: 0; outline: none; background: transparent; color: inherit; font: inherit; }
+  .search-box input::placeholder { color: #596171; opacity: 1; }
+  .search-box input:focus-visible { outline: none; }
+  .toolbar svg { width: calc(22 * var(--u)); height: calc(22 * var(--u)); flex: none; fill: none; stroke: currentColor; stroke-width: 1.65; stroke-linecap: round; }
+  .filter-toggle { display: none; align-items: center; justify-content: center; gap: 8px; padding: 9px 16px; cursor: pointer; }
+  .filter-count { min-width: 21px; padding: 0 5px; border-radius: 999px; color: var(--dark-red); background: var(--soft-red); font-size: 12px; text-align: center; }
+
+  .filters { grid-area: 1 / 1 / 3 / 2; min-width: 0; align-self: stretch; }
+  .filters-inner {
+    padding: calc(16 * var(--u)) calc(17 * var(--u)) calc(27 * var(--u));
+    border: 1px solid rgb(255 255 255 / .7);
+    border-radius: calc(28 * var(--u));
+    background: rgb(255 253 251 / .92);
+    box-shadow: 0 10px 25px rgb(36 45 45 / .095), 0 1px 3px rgb(36 45 45 / .025);
+  }
+  .filters h2 { margin: 0 calc(10 * var(--u)) calc(14 * var(--u)); color: #39424f; font: 800 calc(26 * var(--u))/1.25 var(--font); letter-spacing: -.035em; }
+  .eyebrow { margin: 0 calc(10 * var(--u)) calc(10 * var(--u)); color: #62646c; font: 800 calc(12 * var(--u))/1.5 var(--font); letter-spacing: .13em; text-transform: uppercase; }
+  .topics { display: grid; gap: 0; }
+  .topics a {
+    display: flex;
+    align-items: center;
+    min-height: calc(38 * var(--u));
+    gap: calc(20 * var(--u));
+    padding: calc(7 * var(--u)) calc(19 * var(--u));
+    border-radius: 999px;
+    color: var(--ink);
+    font: 500 calc(15.5 * var(--u))/1.4 var(--font);
+    letter-spacing: -.028em;
+  }
+  .topic-icon { flex: 0 0 calc(24 * var(--u)); width: calc(24 * var(--u)); height: calc(24 * var(--u)); fill: none; stroke: currentColor; stroke-width: 1.65; stroke-linecap: round; stroke-linejoin: round; }
+  .topic-icon.kanji { fill: currentColor; stroke: none; }
+  .topics a[data-topic='niche-japanese'] .topic-icon { color: var(--red); }
+  .topics a:hover { color: var(--dark-red); background: #f8ede7; }
+  .topics a[aria-current] { color: var(--dark-red); background: var(--soft-red); font-weight: 750; }
+  .select-filters { display: none; }
+  .hn-archive[data-ready] .select-filters { display: grid; gap: calc(17 * var(--u)); margin: calc(20 * var(--u)) calc(10 * var(--u)) 0; padding-top: calc(14 * var(--u)); border-top: 1px solid var(--line); }
+  .select-filters label { display: grid; gap: calc(6 * var(--u)); font-size: calc(16 * var(--u)); font-weight: 750; }
+  .select-filters select { min-height: calc(40 * var(--u)); border-radius: calc(13 * var(--u)); padding: calc(7 * var(--u)) calc(38 * var(--u)) calc(7 * var(--u)) calc(19 * var(--u)); background-position: right calc(15 * var(--u)) center; font-weight: 500; }
+  .archive-links-small { display: grid; gap: calc(10 * var(--u)); margin: calc(25 * var(--u)) calc(13 * var(--u)) 0; }
+  .archive-links-small a { display: inline-flex; align-items: center; gap: calc(12 * var(--u)); width: fit-content; padding-block: calc(2 * var(--u)); color: var(--red); font-size: calc(15.5 * var(--u)); font-weight: 550; }
+  .archive-links-small span { font-size: 1.35em; line-height: 1; }
+  .archive-links-small a:hover { text-decoration: underline; text-underline-offset: .2em; }
+  .show-results { display: none; }
+
+  .results { grid-area: 2 / 2; min-width: 0; }
+  .result-info { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; min-height: calc(24 * var(--u)); margin-bottom: calc(14 * var(--u)); color: #454b57; font-size: calc(15 * var(--u)); font-weight: 550; }
+  .reset { margin-left: auto; padding: 0; border: 0; color: var(--red); background: none; cursor: pointer; font: inherit; text-decoration: underline; text-underline-offset: .2em; }
+  .stories { display: grid; gap: calc(12 * var(--u)); margin: 0; padding: 0; list-style: none; }
+  .story {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 28.3%) minmax(0, 1fr);
+    align-items: center;
+    gap: calc(21 * var(--u));
+    min-width: 0;
+    padding: calc(12 * var(--u)) calc(15 * var(--u));
+    border: 1px solid rgb(255 255 255 / .85);
+    border-radius: calc(26 * var(--u));
+    background: rgb(255 255 255 / .94);
+    box-shadow: 0 7px 16px rgb(45 46 48 / .075), 0 1px 3px rgb(45 46 48 / .025);
+    transition: box-shadow .2s ease, transform .2s ease;
+  }
+  .cover { display: block; width: 100%; aspect-ratio: var(--cover-ratio); overflow: hidden; border-radius: calc(14 * var(--u)); background: #f4eeE6; }
+  .cover img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 36%; }
+  .story-text { min-width: 0; padding-block: calc(4 * var(--u)); }
+  .story h2 { margin: 0; color: var(--ink); font: 800 calc(24 * var(--u))/1.2 var(--font); letter-spacing: -.035em; overflow-wrap: anywhere; }
+  .story h2 a { color: inherit; }
+  .story h2 a::after { content: ''; position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+  .story h2 a:hover { color: var(--red); }
+  .story .meta a, .story .excerpt a { position: relative; z-index: 2; }
+  .excerpt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; margin: calc(5 * var(--u)) 0 0; color: #3c4350; font: 450 calc(15.5 * var(--u))/1.45 var(--font); letter-spacing: -.022em; }
+  .excerpt a { color: inherit; }
+  .excerpt a:hover { color: var(--dark-red); }
+  .meta { display: flex; flex-wrap: wrap; align-items: center; gap: calc(6 * var(--u)) calc(17 * var(--u)); margin-top: calc(12 * var(--u)); color: #626064; font-size: calc(14.5 * var(--u)); line-height: 1.4; }
+  .meta:empty { display: none; }
+  .meta time { font-variant-numeric: tabular-nums; }
+  .meta > * { max-width: 100%; overflow-wrap: anywhere; }
+  .series-link, .level-tag, .tag-name { display: inline-block; width: fit-content; padding: calc(5 * var(--u)) calc(15 * var(--u)); border-radius: 999px; font-size: calc(13.5 * var(--u)); font-weight: 650; line-height: 1.4; }
+  .series-link { background: #eee5f3; color: #40355e; }
+  .story[data-series='understanding-nuance'] .series-link { color: #2e5a3c; background: #e5ecdc; }
+  .story[data-series='reading-the-context'] .series-link { color: #315f72; background: #e2eef1; }
+  .level-tag { color: var(--dark-red); background: var(--soft-red); }
+  .tag-name { color: #4c5a5e; background: #eaf0ed; }
+  .series-link:hover, a.level-tag:hover { color: var(--dark-red); text-decoration: underline; text-underline-offset: .18em; }
+  .story:focus-within { box-shadow: 0 0 0 2px #cc7868, 0 9px 24px rgb(45 46 48 / .1); }
+  .empty { margin: 0; padding: 24px; border-radius: 22px; background: #fffdfb; box-shadow: 0 6px 16px rgb(45 46 48 / .06); }
+  @media (hover: hover) and (pointer: fine) { .story:hover { transform: translateY(-2px); box-shadow: 0 11px 26px rgb(45 46 48 / .12); } }
+  @media (prefers-reduced-motion: reduce) { .story { transition: none; } .story:hover { transform: none; } }
+
+  @media (min-width: 62rem) and (min-height: 56rem) { .filters-inner { position: sticky; top: calc(var(--archive-header-height) + 20px); } }
+  @media (min-width: 62rem) and (max-width: 94rem) {
+    .hn-archive { width: calc(100% - 64px); }
+    .archive-grid { grid-template-columns: 258px minmax(0, 1fr); gap: 0 24px; }
+    .story h2 { font-size: 21px; }
+    .excerpt { font-size: 14px; }
+    .meta { gap: 6px 10px; font-size: 13px; }
+    .topics a { font-size: 14px; gap: 13px; }
+  }
+  @media (max-width: 61.99rem) {
+    .hn-archive { --u: 1px; width: calc(100% - 40px); }
+    .hn-archive::before { top: 0; background-size: max(1150px, 100vw) auto; background-position: 62% 0; }
+    .masthead { min-height: 180px; padding: 24px 12px; }
+    .masthead h1 { font-size: 60px; }
+    .masthead p { max-width: 70%; font-size: 16px; }
+    .masthead::after { left: 12px; }
+    .archive-grid { display: flex; flex-direction: column; align-items: stretch; padding-top: 22px; }
+    .hn-archive[data-ready] .toolbar { grid-template-columns: minmax(0, 1fr) auto 168px; gap: 10px; margin: 0 0 18px; }
+    .filter-toggle { display: inline-flex; }
+    .filters { margin-bottom: 20px; }
+    .hn-archive[data-ready] .filters:not([data-open]) { display: none; }
+    .filters-inner { position: static; padding: 22px; }
+    .topics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .topics a { min-height: 44px; }
+    .hn-archive[data-ready] .select-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .select-filters select { min-height: 44px; }
+    .archive-links-small { display: flex; flex-wrap: wrap; gap: 12px 24px; }
+    .hn-archive[data-ready] .show-results { display: block; margin: 20px 10px 0; padding: 10px 22px; min-height: 44px; border: 0; border-radius: 999px; color: white; background: var(--red); font: 650 15px/1.5 var(--font); cursor: pointer; }
+    .story { grid-template-columns: 30% minmax(0, 1fr); gap: 16px; padding: 12px; border-radius: 23px; }
+    .story h2 { font-size: 21px; }
+    .excerpt { font-size: 14px; }
+    .meta { font-size: 12px; gap: 6px 9px; margin-top: 10px; }
+    .series-link, .level-tag, .tag-name { padding: 4px 10px; font-size: 11px; }
+  }
+  @media (max-width: 39.99rem) {
+    .hn-archive { width: calc(100% - 28px); }
+    .hn-archive::before { background-size: 950px auto; background-position: 76% 10px; opacity: .65; }
+    .masthead { min-height: 210px; padding: 24px 8px 22px; }
+    .masthead h1 { font-size: 49px; }
+    .masthead p { max-width: 85%; margin-top: 10px; font-size: 16px; line-height: 1.45; text-shadow: 0 1px 6px #fffdf8, 0 0 12px #fffdf8; }
+    .masthead::after { left: 8px; }
+    .archive-grid { padding-top: 20px; }
+    .hn-archive[data-ready] .toolbar { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .search-box { grid-column: 1 / -1; padding-inline: 18px; }
+    .search-box input { font-size: 16px; }
+    .hn-archive select, .filter-toggle { font-size: 15px; min-height: 46px; }
+    .sort-field select { padding-left: 18px; }
+    .topics, .hn-archive[data-ready] .select-filters { grid-template-columns: 1fr; }
+    .filters-inner { padding: 20px 12px; }
+    .topics a { gap: 16px; font-size: 15px; }
+    .result-info { font-size: 14px; }
+    .stories { gap: 15px; }
+    .story { grid-template-columns: minmax(0, 1fr); gap: 13px; padding: 12px; border-radius: 24px; }
+    .cover { aspect-ratio: 2; border-radius: 14px; }
+    .cover img { object-fit: contain; }
+    .story-text { padding: 0 5px 7px; }
+    .story h2 { font-size: 22px; line-height: 1.23; }
+    .excerpt { margin-top: 7px; font-size: 14px; line-height: 1.5; }
+    .meta { margin-top: 13px; row-gap: 8px; font-size: 12px; }
+    .series-link, .level-tag, .tag-name { font-size: 11px; padding: 5px 10px; }
+  }
+
+</style>
