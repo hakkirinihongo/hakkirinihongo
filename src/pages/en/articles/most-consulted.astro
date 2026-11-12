@@ -1,99 +1,105 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 
-const italianPostImports = import.meta.glob(
-  '../../../content/articoli/**/*.mdx'
-);
+/** The ranking combines Italian and English articles, as provided by the backend. */
+const postImports = {
+  ...import.meta.glob('../../../content/articoli/**/*.mdx'),
+  ...import.meta.glob('../../../content/en/**/*.mdx'),
+};
 
-const englishPostImports = import.meta.glob(
-  '../../../content/en/**/*.mdx'
-);
-
-async function createArticleMetadata(
-  postImports,
-  basePath
-) {
-  return Promise.all(
-    Object.entries(postImports).map(
-      async ([path, resolver]) => {
-        const mod = await resolver();
-        const frontmatter =
-          mod.frontmatter ?? {};
-        const slug =
-          frontmatter.slug ??
-          path
-            .split('/')
-            .pop()
-            .replace(/\.mdx?$/, '');
-
-        return {
-          path: `${basePath}${slug}/`,
-          title:
-            frontmatter.title ?? slug,
-          description:
-            frontmatter.description ?? '',
-          image:
-            frontmatter.image ??
-            '/og-image.png',
-        };
-      }
-    )
-  );
+function slugify(value: unknown) {
+  return String(value ?? '').toLowerCase().trim()
+    .replace(/[–—−]/g, '-')
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]/g, '');
 }
 
-const articleMetadata = [
-  ...(await createArticleMetadata(
-    italianPostImports,
-    '/articoli/'
-  )),
-  ...(await createArticleMetadata(
-    englishPostImports,
-    '/en/articles/'
-  )),
-];
+const dateFormat = new Intl.DateTimeFormat('en-US', {
+  month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC',
+});
+
+const posts = await Promise.all(
+  Object.entries(postImports).map(async ([path, resolver]) => {
+    const mod = await resolver();
+    const frontmatter = (mod as { frontmatter?: Record<string, unknown> }).frontmatter ?? {};
+    const slug = String(frontmatter.slug ?? path.split('/').pop()!.replace(/\.mdx?$/, ''));
+    const isEnglish = path.includes('/content/en/');
+    const articlePrefix = isEnglish ? '/en/articles' : '/articoli';
+    const seriesSegment = isEnglish ? 'series' : 'serie';
+    const rawDate = frontmatter.date;
+    const date = rawDate instanceof Date ? rawDate : rawDate ? new Date(String(rawDate)) : null;
+    const validDate = date && Number.isFinite(date.getTime()) ? date : null;
+    const series = typeof frontmatter.series === 'string' ? frontmatter.series : '';
+    const jlpt = typeof frontmatter.jlpt === 'string' ? frontmatter.jlpt : '';
+    const levelKey = slugify(jlpt);
+    const levelIsAll = levelKey === 'tutti-i-livelli' || levelKey === 'all-levels';
+    const levelHref = levelIsAll ? `${articlePrefix}/jlpt/` : `${articlePrefix}/jlpt/${levelKey}/`;
+    const localDateFormat = dateFormat;
+
+    return {
+      path: `${articlePrefix}/${slug}/`,
+      title: String(frontmatter.title ?? slug),
+      description: String(frontmatter.description ?? ''),
+      image: String(frontmatter.image ?? '/og-image.png'),
+      isoDate: validDate ? validDate.toISOString().slice(0, 10) : '',
+      dateLabel: validDate ? localDateFormat.format(validDate) : '',
+      series,
+      seriesHref: `${articlePrefix}/${seriesSegment}/${slugify(series)}/`,
+      jlpt,
+      levelHref,
+      jlptHref: levelHref,
+      levelLabel: levelIsAll ? 'JLPT All levels' : `JLPT ${jlpt}`,
+    };
+  })
+);
+
+const articleMetadata = posts;
 ---
 
 <BaseLayout
-  title="Most popular articles in the last 24 hours | Hakkiri Nihongo"
-  description="The most popular Japanese grammar articles on Hakkiri Nihongo over the last 24 hours, in a ranking updated automatically."
+  title="Most Read Articles in the Last 24 Hours | Hakkiri Nihongo"
+  description="Discover the most-read Japanese grammar articles on Hakkiri Nihongo over the last 24 hours, in a ranking updated automatically."
   alternateItalian="/articoli/piu-consultati/"
+  alternateEnglish="/en/articles/most-consulted/"
 >
-  <div class="page-articles page-articles-bg popular-page">
-    <header class="popular-header">
-      <p class="popular-kicker">Trending on Hakkiri Nihongo</p>
-
-      <h1>Most popular articles in the last 24 hours</h1>
-
-      <p class="popular-intro">
-        A dynamic ranking of the in-depth articles currently receiving the most
-        attention. Results are updated automatically based on activity over the
-        last 24 hours.
-      </p>
-
-      <p
-        id="popular-updated"
-        class="popular-updated"
-        aria-live="polite"
-      ></p>
+  <section class="hn-archive popular-page" aria-labelledby="popular-title">
+    <noscript><style is:inline>.hn-archive { visibility: visible; }</style></noscript>
+    <header class="masthead">
+      <h1 id="popular-title">Most Read Articles</h1>
+      <p>Explore the Japanese grammar articles read most often over the last 24 hours.</p>
     </header>
 
-    <ol
-      id="popular-list"
-      class="post-list popular-list"
-      aria-live="polite"
-      aria-busy="true"
-    >
-      <li class="popular-state">
-        Calculating the ranking…
-      </li>
-    </ol>
+    <div class="popular-grid">
+      <aside class="popular-aside" aria-label="About the ranking">
+        <div class="popular-aside-inner">
+          <p class="eyebrow">Trending on Hakkiri Nihongo</p>
+          <h2>Last 24 Hours</h2>
+          <p>A dynamic ranking of the articles attracting the most interest.</p>
+          <p>The ranking updates automatically and highlights up to ten articles.</p>
+        </div>
+      </aside>
 
-    <noscript>
-      <p class="popular-state">
-        JavaScript must be enabled to view the ranking.
-      </p>
-    </noscript>
-  </div>
+      <div class="popular-results">
+        <div class="result-info">
+          <span>The most-read articles right now</span>
+          <p id="popular-updated" class="popular-updated" aria-live="polite"></p>
+        </div>
+        <ol
+          id="popular-list"
+          class="stories popular-list"
+          aria-label="Ten most-read articles"
+          aria-live="polite"
+          aria-busy="true"
+        >
+          <li class="popular-state">Loading the ranking…</li>
+        </ol>
+
+        <noscript>
+          <p class="popular-state">JavaScript must be enabled to view the ranking.</p>
+        </noscript>
+      </div>
+    </div>
+  </section>
 
   <script define:vars={{ articleMetadata }}>
     (() => {
@@ -108,6 +114,17 @@ const articleMetadata = [
 
       if (!(list instanceof HTMLOListElement)) {
         return;
+      }
+
+      // Match the background alignment of the main article archive.
+      const root = document.querySelector('.popular-page');
+      const siteHeader = document.querySelector('.site-header');
+      if (root instanceof HTMLElement && siteHeader instanceof HTMLElement) {
+        const syncHeader = () => root.style.setProperty(
+          '--archive-header-height', `${siteHeader.getBoundingClientRect().height}px`
+        );
+        syncHeader();
+        if ('ResizeObserver' in window) new ResizeObserver(syncHeader).observe(siteHeader);
       }
 
       const articlesByPath = new Map(
@@ -134,8 +151,9 @@ const articleMetadata = [
         ranking,
         index
       ) {
+        const normalizedPath = String(ranking.path ?? '').replace(/\/?$/, '/');
         const article =
-          articlesByPath.get(ranking.path);
+          articlesByPath.get(normalizedPath);
 
         if (!article) {
           return null;
@@ -145,7 +163,7 @@ const articleMetadata = [
           document.createElement('li');
 
         item.className =
-          'post-item popular-item';
+          'story popular-item';
 
         item.dataset.rank =
           String(index + 1);
@@ -161,7 +179,7 @@ const articleMetadata = [
         );
 
         const thumbnail = createLink(
-          'post-thumb',
+          'cover',
           article.path
         );
 
@@ -185,15 +203,15 @@ const articleMetadata = [
         const content =
           document.createElement('div');
 
-        content.className = 'post-content';
+        content.className = 'story-text';
 
         const title =
-          document.createElement('h3');
+          document.createElement('h2');
 
-        title.className = 'post-title';
+        title.className = 'story-title';
 
         const titleLink = createLink(
-          'post-link',
+          'story-link',
           article.path
         );
 
@@ -206,10 +224,10 @@ const articleMetadata = [
             document.createElement('p');
 
           description.className =
-            'post-description';
+            'excerpt';
 
           const descriptionLink = createLink(
-            'post-link',
+            'story-link',
             article.path
           );
 
@@ -222,6 +240,32 @@ const articleMetadata = [
 
           content.append(description);
         }
+
+        const meta =
+          document.createElement('div');
+
+        meta.className = 'meta';
+
+        if (article.dateLabel) {
+          const published = document.createElement('time');
+          published.textContent = article.dateLabel;
+          if (article.isoDate) published.dateTime = article.isoDate;
+          meta.append(published);
+        }
+
+        if (article.series) {
+          const series = createLink('series-link', article.seriesHref);
+          series.textContent = article.series;
+          meta.append(series);
+        }
+
+        if (article.jlpt) {
+          const level = createLink('level-tag', article.jlptHref);
+          level.textContent = article.levelLabel;
+          meta.append(level);
+        }
+
+        if (meta.hasChildNodes()) content.append(meta);
 
         item.append(
           rank,
@@ -260,7 +304,7 @@ const articleMetadata = [
 
         if (!items.length) {
           showState(
-            'The ranking does not contain enough data yet.'
+            'There is not enough data to display a ranking yet.'
           );
 
           return;
@@ -275,7 +319,7 @@ const articleMetadata = [
           const time = new Date(
             payload.generated_at
           ).toLocaleTimeString(
-            'en-GB',
+            'en-US',
             {
               timeZone: 'Europe/Rome',
               hour: '2-digit',
@@ -284,7 +328,7 @@ const articleMetadata = [
           );
 
           updated.textContent =
-            `Ranking updated at ${time}`;
+            `Ranking last updated at ${time}`;
         }
       }
 
@@ -340,108 +384,318 @@ const articleMetadata = [
   </script>
 
   <style is:global>
-    .popular-page {
-      padding-bottom: 2rem;
+    @font-face {
+      font-family: 'HN Archive Manrope';
+      src: url('/fonts/hn-archive-manrope-latin.woff2') format('woff2');
+      font-style: normal;
+      font-weight: 200 800;
+      font-display: swap;
     }
 
-    .popular-header {
-      max-width: 850px;
-    }
-
-    .popular-kicker {
-      margin: 0 0 0.55rem;
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 1.08rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: #9f2f27;
-    }
-
-    .popular-page h1 {
+    main.container:has(> .hn-archive.popular-page) {
+      width: 100%;
+      max-width: none;
       margin: 0;
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      line-height: 1.14;
-      color: #2f2925;
+      padding: 0;
+      overflow: clip;
+      background: #faf7f3;
     }
 
-    .popular-intro {
-      max-width: 760px !important;
-      margin: 1rem 0 0 !important;
-      font-family: "Cormorant Garamond", Georgia, serif !important;
-      font-size: 1.18rem !important;
-      line-height: 1.58 !important;
-      color: #493d37 !important;
-    }
-
-    .popular-updated {
-      min-height: 1.3rem;
-      margin: 0.7rem 0 0 !important;
-      font-family: system-ui, -apple-system, "Segoe UI", sans-serif !important;
-      font-size: 0.78rem !important;
-      color: #766d66 !important;
-    }
-
-    .popular-list {
-      margin-top: 1.3rem;
-    }
-
-    .popular-item {
+    .hn-archive.popular-page {
+      --u: clamp(.82px, .0563698vw, 1.155px);
+      --ink: #172237;
+      --muted: #4d5260;
+      --red: #b83e31;
+      --dark-red: #9e3024;
+      --soft-red: #fbe6df;
+      --line: #ebd6cc;
+      --font: 'HN Archive Manrope', system-ui, -apple-system, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+      --archive-header-height: 66px;
+      --cover-ratio: 2;
       position: relative;
+      isolation: isolate;
+      width: min(82.3%, 1684px);
+      margin: 0 auto;
+      padding: 0 0 calc(80 * var(--u));
+      color: var(--ink);
+      font: 400 calc(16 * var(--u))/1.5 var(--font);
     }
 
-    .popular-rank {
+    .popular-page::before {
+      content: '';
       position: absolute;
+      z-index: -1;
+      pointer-events: none;
+      top: calc(-1 * var(--archive-header-height));
+      bottom: 0;
+      left: 50%;
+      width: 100vw;
+      transform: translateX(-50%);
+      background: url('/images/archivio-sakura-pastello.webp') center top / 100% auto no-repeat;
+    }
+
+    .popular-page, .popular-page * { box-sizing: border-box; }
+    .popular-page a { text-decoration: none; }
+    .popular-page :focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+    .popular-page .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+    .popular-page .masthead {
+      position: relative;
+      min-height: calc(153 * var(--u));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: calc(19 * var(--u)) calc(34 * var(--u)) calc(22 * var(--u));
+    }
+    .popular-page .masthead h1 {
+      margin: 0;
+      color: var(--red);
+      font: 500 calc(70 * var(--u))/1.08 'Playfair Display', Georgia, serif;
+      letter-spacing: -.025em;
+    }
+    .popular-page .masthead p {
+      margin: calc(5 * var(--u)) 0 0;
+      max-width: 75%;
+      color: var(--ink);
+      font: 500 calc(19 * var(--u))/1.5 var(--font);
+      letter-spacing: -.022em;
+      text-wrap: pretty;
+    }
+    .popular-page .masthead::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: calc(34 * var(--u));
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgb(216 79 63 / 0), #d84f3f 3%, #d84f3f 39%, rgb(216 79 63 / .55) 66%, rgb(216 79 63 / 0) 94%);
+    }
+
+    .popular-page .popular-grid {
+      display: grid;
+      grid-template-columns: 20.8% minmax(0, 1fr);
+      column-gap: 2.15%;
+      align-items: start;
+      padding-top: calc(27 * var(--u));
+    }
+    .popular-page .popular-aside { min-width: 0; }
+    .popular-page .popular-aside-inner {
+      padding: calc(25 * var(--u)) calc(25 * var(--u)) calc(30 * var(--u));
+      border: 1px solid rgb(255 255 255 / .7);
+      border-radius: calc(28 * var(--u));
+      background: rgb(255 253 251 / .92);
+      box-shadow: 0 10px 25px rgb(36 45 45 / .095), 0 1px 3px rgb(36 45 45 / .025);
+    }
+    .popular-page .eyebrow {
+      margin: 0 0 calc(12 * var(--u));
+      color: #62646c;
+      font: 800 calc(12 * var(--u))/1.5 var(--font);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .popular-page .popular-aside h2 {
+      margin: 0 0 calc(12 * var(--u));
+      color: #39424f;
+      font: 800 calc(26 * var(--u))/1.25 var(--font);
+      letter-spacing: -.035em;
+    }
+    .popular-page .popular-aside p:not(.eyebrow) {
+      margin: 0 0 calc(12 * var(--u));
+      color: #4d5260;
+      font: 450 calc(15.5 * var(--u))/1.55 var(--font);
+    }
+    .popular-page .popular-aside p:last-child { margin-bottom: 0; }
+
+    .popular-page .popular-results { min-width: 0; }
+    .popular-page .result-info {
+      display: flex;
+      align-items: baseline;
+      min-height: calc(24 * var(--u));
+      margin: calc(4 * var(--u)) 0 calc(16 * var(--u));
+      color: #454b57;
+      font-size: calc(15 * var(--u));
+      font-weight: 550;
+    }
+.popular-page .popular-updated {
+  margin: 0 0 0 auto;
+  color: #766d66;
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.popular-page .result-info {
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
+    .popular-page .stories {
+      display: grid;
+      gap: calc(12 * var(--u));
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .popular-page .story {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 28.3%) minmax(0, 1fr);
+      align-items: center;
+      gap: calc(21 * var(--u));
+      min-width: 0;
+      padding: calc(12 * var(--u)) calc(15 * var(--u));
+      border: 1px solid rgb(255 255 255 / .85);
+      border-radius: calc(26 * var(--u));
+      background: rgb(255 255 255 / .94);
+      box-shadow: 0 7px 16px rgb(45 46 48 / .075), 0 1px 3px rgb(45 46 48 / .025);
+      transition: box-shadow .2s ease, transform .2s ease;
+    }
+    .popular-page .cover {
+      display: block;
+      width: 100%;
+      aspect-ratio: var(--cover-ratio);
+      overflow: hidden;
+      border-radius: calc(14 * var(--u));
+      background: #f4eee6;
+    }
+    .popular-page .cover img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+    .popular-page .story-text { min-width: 0; padding-block: calc(4 * var(--u)); }
+    .popular-page .story-title {
+      margin: 0;
+      color: var(--ink);
+      font: 800 calc(24 * var(--u))/1.2 var(--font);
+      letter-spacing: -.035em;
+      overflow-wrap: anywhere;
+    }
+    .popular-page .story-title a { color: inherit; }
+    .popular-page .story-title a::after { content: ''; position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+    .popular-page .story-title a:hover { color: var(--red); }
+    .popular-page .excerpt {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      overflow: hidden;
+      margin: calc(5 * var(--u)) 0 0;
+      color: #3c4350;
+      font: 450 calc(15.5 * var(--u))/1.45 var(--font);
+      letter-spacing: -.022em;
+    }
+    .popular-page .excerpt a { position: relative; z-index: 2; color: inherit; }
+    .popular-page .excerpt a:hover { color: var(--dark-red); }
+    .popular-page .meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: calc(6 * var(--u)) calc(17 * var(--u));
+      margin-top: calc(12 * var(--u));
+      color: #626064;
+      font-size: calc(14.5 * var(--u));
+      line-height: 1.4;
+    }
+    .popular-page .meta:empty { display: none; }
+    .popular-page .meta time { font-variant-numeric: tabular-nums; }
+    .popular-page .meta > * { max-width: 100%; overflow-wrap: anywhere; }
+    .popular-page .series-link, .popular-page .level-tag {
+      position: relative;
       z-index: 2;
-      top: 2rem;
-      left: 0.7rem;
+      display: inline-block;
+      width: fit-content;
+      padding: calc(5 * var(--u)) calc(15 * var(--u));
+      border-radius: 999px;
+      font-size: calc(13.5 * var(--u));
+      font-weight: 650;
+      line-height: 1.4;
+    }
+    .popular-page .series-link { color: #40355e; background: #eee5f3; }
+    .popular-page .level-tag { color: var(--dark-red); background: var(--soft-red); }
+    .popular-page .series-link:hover, .popular-page .level-tag:hover { text-decoration: underline; text-underline-offset: .18em; }
+    .popular-page .popular-rank {
+      position: absolute;
+      z-index: 3;
+      top: calc(5 * var(--u));
+      left: calc(5 * var(--u));
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 2.4rem;
-      height: 2.4rem;
-      border: 2px solid rgba(255, 255, 255, 0.9);
+      width: calc(35 * var(--u));
+      height: calc(35 * var(--u));
+      border: 2px solid rgb(255 255 255 / .96);
       border-radius: 999px;
-      background: #8f2d27;
-      box-shadow: 0 7px 18px rgba(55, 30, 24, 0.24);
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: 1.05rem;
-      font-weight: 600;
-      line-height: 1;
-      color: #fffdf9;
+      background: #b83e31;
+      box-shadow: 0 5px 14px rgb(55 30 24 / .16);
+      color: white;
+      font: 700 calc(15 * var(--u))/1 var(--font);
+    }
+    .popular-page .story[data-rank='1'] .popular-rank { background: linear-gradient(135deg, #c6953f, #9c6825); }
+    .popular-page .story[data-rank='2'] .popular-rank { background: linear-gradient(135deg, #8d949c, #646c74); }
+    .popular-page .story[data-rank='3'] .popular-rank { background: linear-gradient(135deg, #ad724d, #7d4930); }
+    .popular-page .story:focus-within { box-shadow: 0 0 0 2px #cc7868, 0 9px 24px rgb(45 46 48 / .1); }
+    .popular-page .popular-state {
+      padding: calc(28 * var(--u));
+      border: 1px solid rgb(255 255 255 / .85);
+      border-radius: calc(26 * var(--u));
+      background: rgb(255 255 255 / .94);
+      color: #626064;
+      box-shadow: 0 7px 16px rgb(45 46 48 / .075);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .popular-page .story:hover { transform: translateY(-2px); box-shadow: 0 11px 26px rgb(45 46 48 / .12); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .popular-page .story { transition: none; }
+      .popular-page .story:hover { transform: none; }
     }
 
-    .popular-item[data-rank="1"] .popular-rank {
-      background: linear-gradient(135deg, #c6953f, #9c6825);
+    @media (min-width: 62rem) and (max-width: 94rem) {
+      .hn-archive.popular-page { width: calc(100% - 64px); }
+      .popular-page .popular-grid { grid-template-columns: 258px minmax(0, 1fr); gap: 0 24px; }
+      .popular-page .story-title { font-size: 21px; }
+      .popular-page .excerpt { font-size: 14px; }
+      .popular-page .meta { gap: 6px 10px; font-size: 13px; }
     }
-
-    .popular-item[data-rank="2"] .popular-rank {
-      background: linear-gradient(135deg, #8d949c, #646c74);
+    @media (max-width: 61.99rem) {
+      .hn-archive.popular-page { --u: 1px; width: calc(100% - 40px); }
+      .popular-page::before { top: 0; background-size: max(1150px, 100vw) auto; background-position: 62% 0; }
+      .popular-page .masthead { min-height: 180px; padding: 24px 12px; }
+      .popular-page .masthead h1 { font-size: 60px; }
+      .popular-page .masthead p { max-width: 80%; font-size: 16px; }
+      .popular-page .masthead::after { left: 12px; }
+      .popular-page .popular-grid { display: flex; flex-direction: column; align-items: stretch; gap: 20px; padding-top: 22px; }
+      .popular-page .popular-aside-inner { padding: 18px 22px; }
+      .popular-page .popular-aside h2 { font-size: 22px; }
+      .popular-page .popular-aside p:not(.eyebrow) { font-size: 14px; }
+      .popular-page .story { grid-template-columns: 30% minmax(0, 1fr); gap: 16px; padding: 12px; border-radius: 23px; }
+      .popular-page .story-title { font-size: 21px; }
+      .popular-page .excerpt { font-size: 14px; }
+      .popular-page .meta { font-size: 12px; gap: 6px 9px; margin-top: 10px; }
+      .popular-page .series-link, .popular-page .level-tag { padding: 4px 10px; font-size: 11px; }
+      .popular-page .popular-rank { width: 32px; height: 32px; top: 5px; left: 5px; font-size: 13px; }
     }
-
-    .popular-item[data-rank="3"] .popular-rank {
-      background: linear-gradient(135deg, #ad724d, #7d4930);
-    }
-
-    .popular-state {
-      padding: 2rem 0;
-      color: #6c625c;
-      font-style: italic;
-    }
-
-    @media (max-width: 760px) {
-      .popular-rank {
-        top: 2rem;
-        left: 0.7rem;
-      }
-
-      .popular-page h1 {
-        font-size: clamp(1.9rem, 9vw, 2.5rem);
-      }
-
-      .popular-intro {
-        font-size: 1.08rem !important;
-      }
+    @media (max-width: 39.99rem) {
+      .hn-archive.popular-page { width: calc(100% - 28px); }
+      .popular-page::before { background-size: 950px auto; background-position: 76% 10px; opacity: .65; }
+      .popular-page .masthead { min-height: 210px; padding: 24px 8px 22px; }
+      .popular-page .masthead h1 { font-size: 49px; }
+      .popular-page .masthead p { max-width: 85%; margin-top: 10px; font-size: 16px; line-height: 1.45; text-shadow: 0 1px 6px #fffdf8, 0 0 12px #fffdf8; }
+      .popular-page .masthead::after { left: 8px; }
+      .popular-page .popular-grid { padding-top: 20px; }
+      .popular-page .popular-aside { display: none; }
+      .popular-page .result-info { font-size: 14px; }
+      .popular-page .stories { gap: 15px; }
+      .popular-page .story { grid-template-columns: minmax(0, 1fr); gap: 13px; padding: 12px; border-radius: 24px; }
+      .popular-page .cover { aspect-ratio: 2; border-radius: 14px; }
+      .popular-page .story-text { padding: 0 5px 7px; }
+      .popular-page .story-title { font-size: 22px; line-height: 1.23; }
+      .popular-page .excerpt { margin-top: 7px; font-size: 14px; line-height: 1.5; }
+      .popular-page .meta { margin-top: 13px; row-gap: 8px; font-size: 12px; }
+      .popular-page .series-link, .popular-page .level-tag { font-size: 11px; padding: 5px 10px; }
+      .popular-page .popular-rank { top: 5px; left: 5px; }
     }
   </style>
 </BaseLayout>

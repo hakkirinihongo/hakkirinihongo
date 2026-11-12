@@ -82,7 +82,7 @@ const articleMetadata = posts;
       <div class="popular-results">
         <div class="result-info">
           <span>La classifica degli articoli più letti</span>
-          <p id="popular-updated" class="sr-only" aria-live="polite"></p>
+          <p id="popular-updated" class="popular-updated" aria-live="polite"></p>
         </div>
         <ol
           id="popular-list"
@@ -516,6 +516,18 @@ const articleMetadata = posts;
       font-size: calc(15 * var(--u));
       font-weight: 550;
     }
+    .popular-page .popular-updated {
+    margin: 0 0 0 auto;
+    color: #766d66;
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+    }
+
+   .popular-page .result-info {
+   flex-wrap: wrap;
+   gap: 6px 14px;
+   }
     .popular-page .stories {
       display: grid;
       gap: calc(12 * var(--u));
